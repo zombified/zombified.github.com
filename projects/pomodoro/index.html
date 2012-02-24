@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta-http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+        <title>Pomodoro Timer</title>
+    </head>
+    <body>
+        <input type='button' onclick='startpom();' value='Start' />
+        <script type='text/javascript'>
+            function startpom() {
+                setTimeout('dopom()', (1000*60*20));
+            }
+            function dopom() {
+                alert('hey, you! Yes, YOU! you need to get up and walk around. Its been 20 minutes.');
+                setTimeout('dopom()', (1000*60*20));
+            }
+        </script>
+    </body>
+</html>

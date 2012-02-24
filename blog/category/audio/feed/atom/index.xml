@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">happy bubble</title>
+  <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
+
+  <updated>2012-02-24T17:53:27Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
+  <id>http://zombified.github.com/blog/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Ping.4]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/09/30/ping.4" />
+    <id>http://zombified.github.com/blog/2011/09/30/ping.4</id>
+    <updated>2011-09-30T00:00:00Z</updated>
+    <published>2011-09-30T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="Ping" />
+    <category scheme="http://zombified.github.com/blog" term="audio" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="html5" />
+    <summary type="html"><![CDATA[Ping.4]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/09/30/ping.4"><![CDATA[<p>Switching tactics on creating this lovely Pong-like game, I present you with a possible (partial) solution to the audio woes of the Audio spec for "HTML5".</p>
+<p>Found at <a href="http://www.storiesinflight.com/html5/audio.html">Stories in Flight</a>, the solution is basically to pre-load your sounds, then to load each sound into a new audio object (channel) every time you want to play a sound. This method rely's on the browser caching the audio to not perform multiple requests for the audio source from the server. It's not perfect, but I think it's more than sufficient for my current needs.</p>]]></content>
+  </entry>
+</feed>

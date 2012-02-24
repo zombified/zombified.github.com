@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">happy bubble</title>
+  <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
+
+  <updated>2012-02-24T17:53:27Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
+  <id>http://zombified.github.com/blog/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Website stuff]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/12/07/website-stuff" />
+    <id>http://zombified.github.com/blog/2011/12/07/website-stuff</id>
+    <updated>2011-12-07T00:00:00Z</updated>
+    <published>2011-12-07T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="LD48" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Website stuff]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/12/07/website-stuff"><![CDATA[<p>Spent a little time re-arranging my website. Nothing fancy, just a few tweaks. I kind of like it plain text... need to find the time to style it slightly though. The typeface is hurting my eyes a little.</p>
+<p>Also updated my twitter username! 'pbdiode'. Figured I'd stick with it since that's what I'm registered at <a href="http://ludumdare.com">ld48</a> with. It's time for a change I think.</p>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[We Have Sound]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/12/06/we-have-sound" />
+    <id>http://zombified.github.com/blog/2011/12/06/we-have-sound</id>
+    <updated>2011-12-06T00:00:00Z</updated>
+    <published>2011-12-06T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="LD48" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[We Have Sound]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/12/06/we-have-sound"><![CDATA[<p>10 Days left until the event!</p>
+<p>I will be recording the event -- I'll be using 'recordmydesktop', with the following command:</p>
+<pre><code>recordmydesktop --no-sound --on-the-fly-encoding --v_quality 30 --no-frame
+</code></pre>
+<p>Then I just let it sit! Hopefully I'll have enough disk space... it is set to record at a crappy quality, so I should have enough space. And my tests indicate the text is at least readable... eh. We'll see.</p>
+<p>Now on to finding out about audio...</p>
+<p>WolframTones seems interesting, but I can't seem to get firefox configured correctly for it. I'm also having issues setting up PulseAudio, so I may have issues recording even a tone matrix output. Ugh.</p>
+<p>I think I'm just going to forego the music for now. Less to stress me out, less to actually work on during the competition. I will, at least, have good sound effects from sfxr!</p>
+<p>So, what do I need to do next to prepare?</p>
+<ul>
+<li>I know what tech I'm using -- Javascript/HTML/CSS, melonJS</li>
+<li>I'm axing the music generation</li>
+<li>I have my tools ready -- a terminal, tmux, vim, chromium and firefox, sfxr, gimp, recordmydesktop, tiled</li>
+<li>I've posted an 'I'm In' message on the ludum dare website (http://www.ludumdare.com/compo/2011/12/06/im-in-255/) -- I posted under 'pbdiode', supposedly pronounced 'lead diode'. I think it sounded better in my head.</li>
+</ul>
+<p>I think it's time I practice a bit. I think I'll do some exercises to get myself more familiar with melonJS.</p>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Ludum Dare]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/12/05/ludum-dare" />
+    <id>http://zombified.github.com/blog/2011/12/05/ludum-dare</id>
+    <updated>2011-12-05T00:00:00Z</updated>
+    <published>2011-12-05T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Ludum Dare]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/12/05/ludum-dare"><![CDATA[<p>I just found out that the Ludum Dare #22 is in 11 days! I'm totally in.</p>
+<p>To start preparing I've started playing with some music generation stuff, since, out of all my weaknesses, music and sound effects are by far my most weakest point::</p>
+<ul>
+<li><a href="http://www.drpetter.se/project_sfxr.html">sfxr</a></li>
+<li><a href="http://audacity.sourceforge.net">Audacity</a></li>
+<li><a href="http://lab.andre-michelle.com/tonematrix">Tone Matrix</a></li>
+<li><a href="http://www.inudge.net/">inudge -- another tone matrix</a></li>
+</ul>
+<p>I still need to figure out how to do some stuff with pulse audio so that I can record sounds generated by applications, then I can use the tone matrix apps to generate the music, and audacity to capture it.</p>
+<p>I'll definitely be writing more about this!</p>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Eat All The Things! p1]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/12/02/eat-all-the-things!-p1" />
+    <id>http://zombified.github.com/blog/2011/12/02/eat-all-the-things!-p1</id>
+    <updated>2011-12-02T00:00:00Z</updated>
+    <published>2011-12-02T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="eatt" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Eat All The Things! p1]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/12/02/eat-all-the-things!-p1"><![CDATA[<p>Now that I'm done moving, and Thanksgiving has come and gone, it's time to jump back into the fray.</p>
+<p>I've decided that I've learned enough from "Blocks of Destruction 2", and will be moving on to my next project. It will be a 'Pac-Man' like game.</p>
+<p>I've chosen to move back to HTML+CSS+JAVASCRIPT.</p>
+<p>Why? Because, frankly I am nearly paralyzed with indecision about what tech to use, and not at all focusing on my end goal. I needed to pick something, so I fell back to old faithful.</p>
+<p>Now:</p>
+<p><em>What I've Done</em></p>
+<ul>
+<li>Setup basic <a href="http://www.melonjs.org">melonJS</a> app</li>
+<li>rendering my custom map</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<ul>
+<li>none today, sorry!</li>
+</ul>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>load character entity on screen</li>
+<li>setup character animation</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p8]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/24/bd2-p8" />
+    <id>http://zombified.github.com/blog/2011/10/24/bd2-p8</id>
+    <updated>2011-10-24T00:00:00Z</updated>
+    <published>2011-10-24T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p8]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/24/bd2-p8"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Added background image (very very rough -- not final image by any means)</li>
+<li>Added some textures for the bricks</li>
+<li>Added the mouse events for the game state manager (even though I don't use them yet)</li>
+<li>Decided that using a fixed-frame rate was enough, and that's all I'm doing for timing for this game</li>
+<li>Added the selection indicator triangle on menu</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-24 Screenshot" src="/pics/bd2_screen20111024.png" title="BD2 2011-10-24 Screenshot" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Spend more time creating a better background</li>
+<li>Implement player lives</li>
+<li>Add texture for paddle and ball</li>
+<li>Start implementing a game-over state -- for now just show if player won or lost</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p7]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/23/bd2-p7" />
+    <id>http://zombified.github.com/blog/2011/10/23/bd2-p7</id>
+    <updated>2011-10-23T00:00:00Z</updated>
+    <published>2011-10-23T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p7]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/23/bd2-p7"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Finished the physics utility function</li>
+<li>Added paddle and paddle collision (it even shrinks when the first red brick gets destroyed!)</li>
+<li>Added score -- red are 7, orange are 5, green are 3, and yellow are 1</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-23 Screenshot" src="/pics/bd2_screen20111023.png" title="BD2 2011-10-23 Screenshot" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Add mouse events to game state manager</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
+<li>Implent selection indicator triangle on start menu</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p6]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/22/bd2-p6" />
+    <id>http://zombified.github.com/blog/2011/10/22/bd2-p6</id>
+    <updated>2011-10-22T00:00:00Z</updated>
+    <published>2011-10-22T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p6]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/22/bd2-p6"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Finished implementing the startmenu with placeholder graphics, and excepting the selection indicator triangle</li>
+<li>Put up the board, and got a ball colliding with the bricks -- the collision detection definitely works well this time around.</li>
+<li>Started to work on a physics utility function to determine the direction and magnatude of a bounce, which shouldn't be to much to finish tomorrow</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p>None today, sorry! Next time, I swear!</p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Finish the physics utility function to determine direction and magnatude of a bounce</li>
+<li>Add mouse events to game state manager</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
+<li>Implent selection indicator triangle on start menu</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p5]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/21/bd2-p5" />
+    <id>http://zombified.github.com/blog/2011/10/21/bd2-p5</id>
+    <updated>2011-10-21T00:00:00Z</updated>
+    <published>2011-10-21T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p5]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/21/bd2-p5"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Implemented a basic game state management library -- need to finish hooking menu buttons into the main program, but otherwise all methods should be called. The switch between states seems to work flawlessly.</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p>None today, sorry!</p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Add mouse events to game state manager</li>
+<li>Get a menu up and working</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p4]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/20/bd2-p4" />
+    <id>http://zombified.github.com/blog/2011/10/20/bd2-p4</id>
+    <updated>2011-10-20T00:00:00Z</updated>
+    <published>2011-10-20T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p4]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/20/bd2-p4"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Wow, really spent a lot of time studying collision detection (I discovered my previous utilities just weren't going to cut it). Found out that I'm a bit rusty on some math concepts, so I did a little review as well.</li>
+<li>Finished implementing the Separating Axis Theorem for Circle to AABB shapes (and also AABB to AABB) -- <a href="http://www.metanetsoftware.com/technique/tutorialA.html">N Tutorial A by Metanet Software Inc</a> was probably THE most helpful resource on this subject.</li>
+<li>Also decided to implement the library and a small test program in python + pygame. Why? I have less experience with Lua, and I'm finding that I can work faster in Python because of it (duh) -- basically I've just decided to use tools I know rather than experiment. I <em>LOVE</em> <a href="http://love2d.org">love2d</a>, but I don't think a sweet api is enough for me, right now. Tech switches are dangerous when just trying to get something done, but I feel like I prototyped in love2d/lua, and now I'm actually building the game.</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-20 Screenshot" src="/pics/bd2_screen20111020.png" title="BD2 2011-10-20 Screenshot" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Implement gamestate management system</li>
+<li>Get a menu up and working</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p3]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/16/bd2-p3" />
+    <id>http://zombified.github.com/blog/2011/10/16/bd2-p3</id>
+    <updated>2011-10-16T00:00:00Z</updated>
+    <published>2011-10-16T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="love2d" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="lua" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p3]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/16/bd2-p3"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Spent time learning about the Separating Axis Theorem and how to apply it to collision detection in the form of an Axis Aligned Bounding Box</li>
+<li>Made a very primitive set of utility functions for calculating AABB to AABB and Circle to AABB collisions</li>
+<li>made a texture for the bricks</li>
+<li>Added a paddle to the screen (moveable by left and right keys, and the ball interacts with it)</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-16 Screenshot" src="/pics/bd2_screen20111016.png" title="BD2 2011-10-16 Screenshot" /></p>
+<p><img alt="BD2 2011-10-16 Screenshot 2" src="/pics/bd2_screen20111016_2.png" title="BD2 2011-10-16 Screenshot 2" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Fix occasional stutter</li>
+<li>Refactor</li>
+<li>Add scoring</li>
+<li>Add ball hold/release on paddle</li>
+</ul>]]></content>
+  </entry>
+</feed>

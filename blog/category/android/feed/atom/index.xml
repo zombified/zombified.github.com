@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">happy bubble</title>
+  <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
+
+  <updated>2012-02-24T17:53:27Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
+  <id>http://zombified.github.com/blog/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Ping.3]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/07/13/ping.3" />
+    <id>http://zombified.github.com/blog/2011/07/13/ping.3</id>
+    <updated>2011-07-13T20:00:00Z</updated>
+    <published>2011-07-13T20:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="Ping" />
+    <category scheme="http://zombified.github.com/blog" term="android" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Ping.3]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/07/13/ping.3"><![CDATA[<p>It's been a few weeks since my last post, and I have progressed a little on the project, but not in the last week or so.</p>
+<p>Why is development going so slowly? I think it's mostly because of limited time combined with needing to learn a new set of tools. I'm definitely seeing some of the wisdom behind "use what you know, even if it's not 'cool' and new", especially for a side project that you just want to see complete.</p>
+<p>Currently I have the ball bouncing around on the screen, and a paddle that responds to touch. The paddle and ball don't interact yet, and there's definitely no AI, scoring, sound, or polish yet.</p>
+<p>I think for my next project I'll be using HTML5/Canvas/JS, then embedding the code into an APK. Though, that method has issues too, so I may change my mind again :)</p>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Ping.2]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/06/21/ping.2" />
+    <id>http://zombified.github.com/blog/2011/06/21/ping.2</id>
+    <updated>2011-06-21T20:00:00Z</updated>
+    <published>2011-06-21T20:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="Ping" />
+    <category scheme="http://zombified.github.com/blog" term="android" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Ping.2]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/06/21/ping.2"><![CDATA[<p>After I went through the <a href="http://developer.android.com/sdk/index.html">documentation</a> for installing the SDK, creating a 'Hello, World' application and publishing the result to a virtual device, and to my actual dev phone, I started putting together an absolutely bare-bones application. It's mostly the <a href="http://developer.android.com/resources/articles/glsurfaceview.html">GLSurfaceView example</a>, with a few modifications.</p>
+<p>You can view code on my <a href="http://bitbucket.org/jkleier">bitbucket</a> site, the relevant revision of Ping is <a href="https://bitbucket.org/jkleier/ping/src/4094ae4e83ca/">4094ae4e83ca</a>.</p>
+<p>I did add a LICENSE, but more for future development than anything that's in the repo at revision 4094ae4e83ca.</p>
+<p>Next up: input! Technically, I'm already handling input a little, but it's not configurable!</p>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Ping.1]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/06/21/ping.1" />
+    <id>http://zombified.github.com/blog/2011/06/21/ping.1</id>
+    <updated>2011-06-21T18:00:00Z</updated>
+    <published>2011-06-21T18:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="Ping" />
+    <category scheme="http://zombified.github.com/blog" term="android" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <summary type="html"><![CDATA[Ping.1]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/06/21/ping.1"><![CDATA[<p>I've decided that it would be interesting to make a few games and put them out on the Android Market. Nothing fancy, just some fun little arcade games. I'm not planning on porting these games to other systems either, so I can focus on using the Java and the Android SDK. I'm also specifically targetting phones, no tablets or TV's, etc. I'm also only targetting devices that have Android 2.x on them, at least for now.</p>
+<p>The first game is going to be called 'Ping' -- not really all that original, but it will suffice. It is going to be a 'Pong' clone, and will not have any gameplay elements other than the original. It's just 2 paddles (AI vs Human), 2 'goals', 2 walls, 1 ball, and a score.</p>
+<p>My plan is to make the game as polished as I can -- I want smooth animations, crisp graphics, and as few bugs as possible.</p>
+<p>My plan is as follows:</p>
+<ol>
+<li>Install and prep Android SDK</li>
+<li>Compile sample 'hello world' app and push it to my (dev) phone to make sure everything works</li>
+<li>Create a bare-bones app that doesn't do anything except initialize a drawing surface of some kind</li>
+<li>Build on the previous app to add input -- input should be reconfigureable by the user (different phones have different inputs). There should be an entirely touch input method.</li>
+<li>Build on the previous app to add a background image -- should be reconfigurable by the user</li>
+<li>Build on the previous app to add bouncing ball -- there should be no goals yet</li>
+<li>Build on the previous app to add 2 paddles -- player should control one of them (which one should be configurable by user)</li>
+<li>Build on the previous app to add ball physics to the paddles -- IE, the ball bounces off the paddles</li>
+<li>Build on the previous app to add a score-board to the screen</li>
+<li>Build on the previous app to remove 2 walls and keep score -- this means tracking when the ball leaves the field, performing a score increment, and reseting the ball</li>
+<li>Build on the previous app to make the non-player paddle an ai -- the ai should be configurable as 'easy', 'medium', 'hard', 'impossible'</li>
+<li>Clean up the app</li>
+<li>Create webpage for it</li>
+<li>Publish to Android Market</li>
+</ol>
+<p>Definitely not comprhensive, but a good framework for me to work within. I've already done steps 1 and 2. My next entry will be about step 3, creating a bare-bones app that doesn't do anything except initialize a drawing surface of some kind.</p>]]></content>
+  </entry>
+</feed>

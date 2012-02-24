@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">happy bubble</title>
+  <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
+
+  <updated>2012-02-24T17:53:27Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
+  <id>http://zombified.github.com/blog/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Fighting with my system and myself]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/08/02/fighting-with-my-system-and-myself" />
+    <id>http://zombified.github.com/blog/2011/08/02/fighting-with-my-system-and-myself</id>
+    <updated>2011-08-02T00:00:00Z</updated>
+    <published>2011-08-02T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="mono" />
+    <category scheme="http://zombified.github.com/blog" term="dev" />
+    <summary type="html"><![CDATA[Fighting with my system and myself]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/08/02/fighting-with-my-system-and-myself"><![CDATA[<p>Inspired by (Manic Digger)[http://manicdigger.sourceforge.net/news/], I decided to do some Mono experimentation.</p>
+<p>For my experiments, I decided to use OpenTK -- the same as used in ManicDigger.</p>
+<p>I am using monodevelop, but I did not realize it doesn't behave like VS in it's build actions -- it does not copy the assemblies required by your application into it's target directory. So I was getting "The entry point method could not be loaded" error messages, but I could not see the rest of the very helpful message, an issue with the setup I was using. I'm not sure if the message was just being clipped, or what.</p>
+<p>After a lot of reconfiguring, poking, and googling, my dumb self finally switched to a different setup and saw the rest of the error message:</p>
+<pre><code>** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: The following assembly referenced from &lt;project directory&gt;/bin/Debug/bd2cs.exe could not be loaded:
+     Assembly:   OpenTK    (assemblyref_index=0)
+     Version:    1.0.0.0
+     Public Key: bad199fe84eb3df4
+The assembly was not found in the Global Assembly Cache, a path listed in the MONO_PATH environment variable, or in the location of the executing assembly (&lt;project directory&gt;/bin/Debug/).
+
+** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: Could not load file or assembly 'OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4' or one of its dependencies.
+The entry point method could not be loaded
+</code></pre>
+<p>The mono runtime can't find the OpenTK.dll assembly. Simple enough -- just setup a command to execute after the project is built to copy the OpenTK.dll file into the target directory!</p>]]></content>
+  </entry>
+</feed>

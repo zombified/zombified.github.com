@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+   >
+  <title type="text">happy bubble</title>
+  <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
+
+  <updated>2012-02-24T17:53:27Z</updated>
+  <generator uri="http://blogofile.com/">Blogofile</generator>
+
+  <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
+  <id>http://zombified.github.com/blog/feed/atom/</id>
+  <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Experiments with haXe]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/09/11/experiments-with-haxe" />
+    <id>http://zombified.github.com/blog/2011/09/11/experiments-with-haxe</id>
+    <updated>2011-09-11T00:00:00Z</updated>
+    <published>2011-09-11T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="haXe" />
+    <category scheme="http://zombified.github.com/blog" term="dev" />
+    <summary type="html"><![CDATA[Experiments with haXe]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/09/11/experiments-with-haxe"><![CDATA[<p>I'm interested in playing around with <a href="http://haxe.org">haXe</a> -- it seems like a concept I could get behind and have some fun with.</p>
+<p>In trying to get a working little example that uses webgl/canvas, I've come accross a file called "Html5Dom.hx".</p>
+<p>I was curious about the origin of this file, so I did a small amount of looking. The source seems to be from the <a href="https://launchpad.net/jeash">Jeash</a> project, which was created from the merging of the Canvas-NME and Neash projects. However, the Html5Dom.hx file seems to not contain any reference to webgl until changeset 27 (a0f27fc5c734) on August 16th 2010. At this point a port of the Khronos groups <a href="http://www.khronos.org/registry/webgl/specs/latest/webgl.idl">WebGL IDL</a> was added to the file. Further changes fixed areas of the initial port by adding support for the TypedArray ID from the Khronos group.</p>
+<p>Easy enough information to find out, but is the file relevant (the webgl spec is moving fast, or so I've read), or is there some other work out there to create an extern library for haxe that enables the use of WebGL for the javascript target?</p>
+<p>As far as I can tell, this is the best, and possibly only, extern library made publicly available for WebGL use in haXe. I found a <a href="http://mikecann.co.uk/programming/5000000-chrome-crawlers-why-not-haxe-webgl/">blog post</a> by a 'Michael Cann' that uses a version of the Html5Dom.hx extern library for a test project that produces 5,000,000 point sprites on screen, so I think the library is still relevant.</p>
+<p>I did find the <a href="https://github.com/tong/hx.html5">hx.html5</a> project, but that seems to just contain extern's for the 2D canvas context.</p>
+<p>I also found a extern library for <a href="https://github.com/mrdoob/three.js/">three.js</a>, called <a href="https://github.com/jgranick/three.js-completion">three.js-completion</a>. This library doesn't seem to be updated to the latest three.js version though. Might still be a starting point.</p>]]></content>
+  </entry>
+</feed>

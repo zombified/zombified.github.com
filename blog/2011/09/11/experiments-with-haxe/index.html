@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    
+    <title>happy bubble</title>
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/blog/feed" />
+<link rel="alternate" type="application/atom+xml" title="Atom 1.0"
+href="/blog/feed/atom" />
+<link rel='stylesheet' href='/css/pygments_murphy.css' type='text/css' />
+
+<style type='text/css'>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0b1 | 201101 
+NOTE: WORK IN PROGRESS
+USE WITH CAUTION AND TEST WITH ABANDON */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+
+/* remember to define visible focus styles! 
+:focus {
+outline: ?????;
+} */
+
+/* remember to highlight inserts somehow! */
+ins {
+text-decoration: none;
+}
+del {
+text-decoration: line-through;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+
+
+
+body {background-color:#999;}
+
+p {margin:10px 0; line-height:120%;}
+
+a:link      {text-decoration:none; color:#C40F4F;}
+a:visited   {text-decoration:none;}
+a:hover     {text-decoration:underline;}
+a:active    {text-decoration:underline;}
+
+h1 a:link      {text-decoration:none; color:#92CD4D;}
+h1 a:visited   {text-decoration:none;}
+h1 a:hover     {text-decoration:underline;}
+h1 a:active    {text-decoration:underline;}
+
+h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
+h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
+
+.wrapper
+{
+    width: 790px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 5px;
+}
+
+.bpost {margin-top:1.8em;}
+.bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.6em;}
+
+.footer {margin-top:1.8em; background-color: #ddd; padding: 5px; color: #777;}
+
+.postwrap {width:500px;}
+
+.homenavigation {width:270px; float:right; text-align:center; border-left:1px solid #ddd;}
+.homenavigation ul {padding-bottom:.4em;}
+.homenavigation li {padding-top:.2em;}
+
+.homenavigation h3 {margin-top:20px; font-style:italic;}
+</style>
+
+
+</head>
+<body>
+<div class='wrapper'>
+    <div class='header'>
+        
+    <h1 class='siteheader'><a href="/">happy bubble</a></h1>
+
+
+    </div>
+    <div class='content'>
+        
+
+<div class="bpost">
+  <a name="experiments-with-haxe"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/09/11/experiments-with-haxe" rel="bookmark" title="Permanent Link to Experiments with haXe">Experiments with haXe</a></h2>
+    <div class="post_prose">
+    
+  <p>I'm interested in playing around with <a href="http://haxe.org">haXe</a> -- it seems like a concept I could get behind and have some fun with.</p>
+<p>In trying to get a working little example that uses webgl/canvas, I've come accross a file called "Html5Dom.hx".</p>
+<p>I was curious about the origin of this file, so I did a small amount of looking. The source seems to be from the <a href="https://launchpad.net/jeash">Jeash</a> project, which was created from the merging of the Canvas-NME and Neash projects. However, the Html5Dom.hx file seems to not contain any reference to webgl until changeset 27 (a0f27fc5c734) on August 16th 2010. At this point a port of the Khronos groups <a href="http://www.khronos.org/registry/webgl/specs/latest/webgl.idl">WebGL IDL</a> was added to the file. Further changes fixed areas of the initial port by adding support for the TypedArray ID from the Khronos group.</p>
+<p>Easy enough information to find out, but is the file relevant (the webgl spec is moving fast, or so I've read), or is there some other work out there to create an extern library for haxe that enables the use of WebGL for the javascript target?</p>
+<p>As far as I can tell, this is the best, and possibly only, extern library made publicly available for WebGL use in haXe. I found a <a href="http://mikecann.co.uk/programming/5000000-chrome-crawlers-why-not-haxe-webgl/">blog post</a> by a 'Michael Cann' that uses a version of the Html5Dom.hx extern library for a test project that produces 5,000,000 point sprites on screen, so I think the library is still relevant.</p>
+<p>I did find the <a href="https://github.com/tong/hx.html5">hx.html5</a> project, but that seems to just contain extern's for the 2D canvas context.</p>
+<p>I also found a extern library for <a href="https://github.com/mrdoob/three.js/">three.js</a>, called <a href="https://github.com/jgranick/three.js-completion">three.js-completion</a>. This library doesn't seem to be updated to the latest three.js version though. Might still be a starting point.</p>
+
+  </div>
+    <div class='foot'>September 11, 2011 | categories: 
+    
+    <a href='/blog/category/haxe'>haXe</a>, <a href='/blog/category/dev'>dev</a></div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_url = "http://zombified.github.com/blog/2011/09/11/experiments-with-haxe";
+</script>
+
+    </div>
+    <div class='footer'>
+        
+    <p id="credits">
+Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
+<br/>
+RSS feeds for <a href="/blog/feed">Entries</a>
+<br>
+</p>
+
+
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+

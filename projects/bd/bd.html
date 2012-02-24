@@ -1,0 +1,1526 @@
+<html>
+	<head>
+		<title>bd - blocks of destruction</title>
+		<script src='http://code.jquery.com/jquery-1.4.3.min.js'></script>
+		<style type='text/css'>
+			html
+			{
+				font-family: verdana, sans-serif;
+			}
+			
+			#playgrid_wrapper
+			{
+				background-image: url(frame.png);
+				
+				height: 504px;
+				width: 288px;
+				
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				margin-left: -144px;
+			}
+
+			#playgrid
+			{
+				background-color: #f3f3f3;
+				margin-left: 24px;
+			}
+
+			#previewgrid
+			{				
+				background-color: #f3f3f3;
+				border: 1px solid #999;
+				
+				position: absolute;
+				top: 185px;
+				left: 50%;
+				margin-left: 154px;
+			}
+
+			#level
+			{
+				position: absolute;
+				top: 124px;
+				left: 50%;
+				margin-left: 154px;
+			}
+
+			#score
+			{				
+				position: absolute;
+				top: 144px;
+				left: 50%;
+				margin-left: 154px;
+			}
+			
+			#options
+			{
+				position: absolute;
+				top: 285px;
+				left: 50%;
+				margin-left: 159px; 
+			}
+
+			#options dt
+			{
+				font-size: smaller;
+				font-weight: bold;
+				float: left;
+				clear: left;
+				width: 70px
+			}
+
+			#options dd
+			{
+				font-size: smaller;
+				margin-left: 5px;
+				padding-left: 0;
+				float: left;
+			}
+			
+			#debug_block
+			{
+				xdisplay: none;
+				position: absolute;
+				top: 10px;
+				right: 10;
+			}
+			
+			#touch_interface
+			{
+				display:none;
+			
+				width: 60px;
+				
+				position: absolute;
+				top: 509px;
+				left: 50%;
+				
+				margin-left: -30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='playgrid_wrapper'>
+			<canvas height='480px' width='240px' id='playgrid'></canvas>
+		</div>
+	
+		<div id='level'>Level: <span id='level_value'>0</span></div>
+		<div id='score'>Score: <span id='score_value'>0</span></div>
+		<canvas height='92px' width='92px' id='previewgrid'></canvas>
+		
+		<input type='text' id='touch_interface' />
+		
+		<div id='debug_block'>
+			<div id='output'></div>
+			<div id='fps'></div>
+			<div id='output2'></div>
+		</div>
+		
+		<dl id='options'>
+			<dt>w, l or up</dt>
+			<dd>Rotate</dd>
+
+			<dt>s or down</dt>
+			<dd>Soft Drop</dd>
+
+			<dt>a or left</dt>
+			<dd>Move Left</dd>
+
+			<dt>d or right</dt>
+			<dd>Move Right</dd>
+
+			<dt>shift</dt>
+			<dd>Swap</dd>
+
+			<dt>g</dt>
+			<dd>Toggle Ghost</dd>
+			
+			<dt>click/tap</dt>
+			<dd>Turn on the touch inputbox</dd>
+			
+			<dt>enter</dt>
+			<dd>Start or reset game</dd>
+		</dl>
+
+		
+		
+		<script>
+			var Cons = {
+				clear : function() { $('#output2').html(''); },
+				append : function(str) { $('#output2').html($('#output2').html() + str); },
+				appendLine : function(str) { Cons.append(str + '<br />') },
+			};
+
+
+			var Renderer = {
+				rect : function(context, x, y, h, w, color) {
+					context.fillStyle = color;
+					context.fillRect(x,y,h,w);
+				},
+				
+				texture : function(context, x, y, h, w, texture) {
+					context.drawImage(texture, x, y, w, h);
+				},
+				
+				text : function(context, text, x, y, color) {
+					context.font = 'bold 12px monospace';
+					context.fillStyle = color;
+					context.fillText(text, x, y);
+				},
+			};
+			
+			var KeyManager = {
+				KEYS : {
+					A : 65,
+					D : 68,
+					G : 71,
+					L : 76,
+					S : 83,
+					T : 84,
+					W : 87,				
+					
+					LEFT : 37,
+					RIGHT : 39,
+					UP : 38,
+					DOWN : 40,
+
+					COMMA : 188,
+					PERIOD : 190,
+					
+					SHIFT : 16,
+					
+					ENTER : 13,
+				},
+			
+				KEY_ROTATE : 0,
+				KEY_ALT_ROTATE : 0,
+				KEY_TOUCH_ROTATE : 0,
+				
+				KEY_SOFT_DROP : 0,
+				KEY_ALT_SOFT_DROP : 0,
+				
+				KEY_LEFT : 0,
+				KEY_ALT_LEFT : 0,
+				
+				KEY_RIGHT : 0,
+				KEY_ALT_LEFT : 0,
+				
+				KEY_SWAP : 0,
+				
+				KEY_GHOST : 0,
+				
+				KEY_START : 0,
+				
+				KEY_TOGGLE_TOUCH : 0,
+				
+				
+				rotate_held : false,
+				soft_drop_held : false,
+				left_held : false,
+				right_held : false,
+				swap_held : false,
+				ghost_held : false,
+				start_held : false,
+				
+				
+				rotate_events : [],
+				soft_drop_events_down : [],
+				soft_drop_events_up : [],
+				left_events : [],
+				right_events : [],
+				swap_events : [],
+				toggle_ghost_events : [],
+				start_events : [],
+				
+				
+				keypress_interval : 250,
+				
+				
+				init : function()
+				{
+					KeyManager.KEY_ROTATE = KeyManager.KEYS.W;
+					KeyManager.KEY_ALT_ROTATE = KeyManager.KEYS.UP;
+					KeyManager.KEY_TOUCH_ROTATE = KeyManager.KEYS.L;
+					KeyManager.KEY_SOFT_DROP = KeyManager.KEYS.S;
+					KeyManager.KEY_ALT_SOFT_DROP = KeyManager.KEYS.DOWN;
+					KeyManager.KEY_LEFT = KeyManager.KEYS.A;
+					KeyManager.KEY_ALT_LEFT = KeyManager.KEYS.LEFT;
+					KeyManager.KEY_RIGHT = KeyManager.KEYS.D;
+					KeyManager.KEY_ALT_RIGHT = KeyManager.KEYS.RIGHT;
+					KeyManager.KEY_SWAP = KeyManager.KEYS.SHIFT;
+					KeyManager.KEY_GHOST = KeyManager.KEYS.G;
+					KeyManager.KEY_START = KeyManager.KEYS.ENTER;
+					KeyManager.KEY_TOGGLE_TOUCH = KeyManager.KEYS.T;
+				
+					$(document).keydown(KeyManager._handleKeyboardInput_Down);
+					$(document).keyup(KeyManager._handleKeyboardInput_Up);
+				},
+				
+				
+				_fireEvents : function(eventList) {
+					for(var i = 0; i < eventList.length; i++) { eventList[i](); }
+				},
+				
+				_handleKeyboardInput_Down : function(event)
+				{
+					var cd = event.which;
+
+					if( cd == KeyManager.KEY_ROTATE || cd == KeyManager.KEY_ALT_ROTATE || cd == KeyManager.KEY_TOUCH_ROTATE )
+					{
+						event.preventDefault();
+						KeyManager.rotate_held = true;
+						KeyManager._fireEvents(KeyManager.rotate_events);
+					}					
+					else if( cd == KeyManager.KEY_SOFT_DROP || cd == KeyManager.KEY_ALT_SOFT_DROP )
+					{
+						event.preventDefault();
+						KeyManager.soft_drop_held = true;
+						KeyManager._fireEvents(KeyManager.soft_drop_events_down);
+					}
+					else if( cd == KeyManager.KEY_LEFT || cd == KeyManager.KEY_ALT_LEFT )
+					{
+						// don't execute the handler code if the key is being held down - some
+						//	browsers repeatedly fire the keyDown/keyUp events when a key is held
+						//	down instead of just firing the keyPress event.
+						if( !KeyManager.left_held )
+						{
+							event.preventDefault();
+							KeyManager.left_held = true;
+							KeyManager._fireEvents(KeyManager.left_events);
+
+							if( GO.side_init_timer == 0 && GO.side_timer == 0 ) 
+							{
+								GO.side_init_timer = setTimeout("GO.create_side_move_timer()", KeyManager.keypress_interval);
+							}
+						}
+					}
+					else if( cd == KeyManager.KEY_RIGHT || cd == KeyManager.KEY_ALT_RIGHT )
+					{
+						// don't execute the handler code if the key is being held down - some
+						//	browsers repeatedly fire the keyDown/keyUp events when a key is held
+						//	down instead of just firing the keyPress event.
+						if( !KeyManager.left_held )
+						{
+							event.preventDefault();
+							KeyManager.right_held = true;
+							KeyManager._fireEvents(KeyManager.right_events);
+						
+							if( GO.side_init_timer == 0 && GO.side_timer == 0) 
+							{
+								GO.side_init_timer = setTimeout("GO.create_side_move_timer()", KeyManager.keypress_interval);
+							}
+						}
+					}
+					else if( cd == KeyManager.KEY_SWAP )
+					{
+						event.preventDefault();
+						KeyManager.swap_held = true;
+						KeyManager._fireEvents(KeyManager.swap_events);
+					}
+					else if( cd == KeyManager.KEY_GHOST )
+					{
+						event.preventDefault();
+						KeyManager.ghost_held = true;
+						KeyManager._fireEvents(KeyManager.toggle_ghost_events);
+					}
+					else if( cd == KeyManager.KEY_START )
+					{
+						event.preventDefault();
+						KeyManager.start_held = true;
+						KeyManager._fireEvents(KeyManager.start_events);
+					}
+					else if( cd == KeyManager.KEY_TOGGLE_TOUCH )
+					{
+						event.preventDefault();
+						//$('#touch_interface').css('display', 'auto');
+						//$('#touch_interface').focus();
+					}
+				},
+				
+				_handleKeyboardInput_Up : function(event)
+				{
+					var cd = event.which;
+					
+					if( cd == KeyManager.KEY_ROTATE || cd == KeyManager.KEY_ALT_ROTATE )
+					{
+						event.preventDefault();
+						KeyManager.rotate_held = false;
+					}					
+					else if( cd == KeyManager.KEY_SOFT_DROP || cd == KeyManager.KEY_ALT_SOFT_DROP )
+					{
+						event.preventDefault();
+						KeyManager.soft_drop_held = false;
+						KeyManager._fireEvents(KeyManager.soft_drop_events_up);
+					}
+					else if( cd == KeyManager.KEY_LEFT || cd == KeyManager.KEY_ALT_LEFT )
+					{
+						event.preventDefault();
+						KeyManager.left_held = false;
+						
+						if( GO.side_init_timer != 0 )
+						{
+							clearTimeout(GO.side_init_timer);
+							GO.side_init_timer = 0;
+						}
+						
+						if( GO.side_timer != 0 )
+						{
+							clearInterval(GO.side_timer);
+							GO.side_timer = 0;
+						}
+					}
+					else if( cd == KeyManager.KEY_RIGHT || cd == KeyManager.KEY_ALT_RIGHT )
+					{
+						event.preventDefault();
+						KeyManager.right_held = false;
+						
+						if( GO.side_init_timer != 0 )
+						{
+							clearTimeout(GO.side_init_timer);
+							GO.side_init_timer = 0;
+						}
+						
+						if( GO.side_timer != 0 )
+						{
+							clearInterval(GO.side_timer);
+							GO.side_timer = 0;
+						}
+					}
+					else if( cd == KeyManager.KEY_SWAP )
+					{
+						event.preventDefault();
+						KeyManager.swap_held = false;
+					}
+					else if( cd == KeyManager.KEY_GHOST )
+					{
+						event.preventDefault();
+						KeyManager.ghost_held = false;
+					}
+					else if( cd == KeyManager.KEY_START )
+					{
+						event.preventDefault();
+						KeyManager.start_held = false;
+					}
+
+					$('#output').html(cd);
+				},
+			};
+
+		
+			var Block = function() {
+				this.background_color = '#f3f3f3';
+				this.is_empty_block = true; // represents an empty block
+			};
+
+			var BlockConfigurations = {
+				_create : function(width, height, indexes, color)
+				{
+					var blocks = [];
+					for(var i = 0; i < (width * height); i++)
+					{
+						blocks.push(new Block());
+					}
+
+					BlockConfigurations._set(blocks, indexes, color);
+					
+					// prepend height and width info to the returned array
+					blocks.splice(0, 0, width, height);
+
+					return blocks;
+				},
+				_set : function(blocks, indexes, color)
+				{
+					for(var i = 0; i < indexes.length; i++)
+					{
+						blocks[indexes[i]].is_empty_block = false;
+						blocks[indexes[i]].background_color = color;
+					}
+				},
+				I : function(){
+					return BlockConfigurations._create(4, 4, [4,5,6,7], 'cyan');					
+				},
+				O : function(){
+					return BlockConfigurations._create(2, 2, [0,1,2,3], 'yellow');
+				},
+				T : function(){
+					return BlockConfigurations._create(3, 3, [0,1,2,4], 'purple');
+				},
+				J : function(){
+					return BlockConfigurations._create(3, 3, [0,1,2,5], 'blue');
+				},
+				L : function(){
+					return BlockConfigurations._create(3, 3, [0,1,2,3], 'orange');
+				},
+				S : function(){
+					return BlockConfigurations._create(3, 3, [1,2,3,4], 'red');
+				},
+				Z : function(){
+					return BlockConfigurations._create(3, 3, [0,1,4,5], 'green');
+				},
+			};
+
+			var Board = function() {
+				this.block_height = 24;
+				this.block_width = 24;
+				this.width = 10; // in blocks
+				this.height = 22; // this is the actual height of the board in blocks
+				this.hidden_rows = 2; // this is how many rows are hidden from view
+
+				this.grid = [];
+				this.falling_blocks = [];
+				this.falling_x = -1;
+				this.falling_y = -1;
+				this.falling_type = '';
+
+				this.ghost_on = false;
+				
+				this.possible_configs = ['I','O','T','J','L','S','Z'];
+				this.upcoming_list = [];
+				this.upcoming_config = 0;
+				this.upcoming_config_type = '';
+
+				this.grid_canvas = $('#playgrid');
+				this.grid_context = this.grid_canvas[0].getContext('2d');
+				this.preview_canvas = $('#previewgrid');
+				this.preview_context = this.preview_canvas[0].getContext('2d');
+
+				this.lock_timer = 0;
+				
+				this.rows_soft_dropped = 0;
+				
+				this.config_texture = 0;
+				this.config_texture_ready = false;
+				this.empty_texture = 0;
+				
+				this.started = false;
+				this.start_text_visible = true;
+				this.game_over = false;
+
+
+				this.init = function()
+				{
+					//var colors = ['#ff0000','#00ff00','#0000ff','#ffff00','#00ffff','#ff00ff'];
+					
+					this.config_texture = new Image();
+					this.config_texture.onload = function() {
+						GO.board.config_texture_ready = true;
+					};
+					this.config_texture.src = '/projects/bd/bd-block.png';
+					
+					var block;
+					for(var i = 0; i < this.height; i++)
+					{
+						for(var j = 0; j < this.width; j++)
+						{
+							block = new Block(j,i);
+							//block.background_color = colors[Math.floor(Math.random() * 5)];
+							this.grid.push(block);
+						}
+					}
+					
+					this.select_upcoming();
+					this.set_falling();
+				};
+				
+				this.reset = function()
+				{
+					this.grid = [];
+					this.falling_blocks = [];
+					this.falling_x = -1;
+					this.falling_y = -1;
+					this.falling_type = '';
+
+					this.ghost_on = false;
+				
+					this.upcoming_list = [];
+					this.upcoming_config = 0;
+					this.upcoming_config_type = '';
+					
+					this.rows_soft_dropped = 0;
+					
+					this.game_over = false;
+					
+					if( this.lock_timer != 0 )
+					{
+						clearInterval(this.lock_timer);
+						this.lock_timer = 0;
+					}
+					
+				
+					var block;
+					for(var i = 0; i < this.height; i++)
+					{
+						for(var j = 0; j < this.width; j++)
+						{
+							block = new Block(j,i);
+							//block.background_color = colors[Math.floor(Math.random() * 5)];
+							this.grid.push(block);
+						}
+					}
+					
+					this.select_upcoming();
+					this.set_falling();
+				}
+
+				this.render = function()
+				{
+					// do not start rendering blocks until all textures are finished loading
+					if( !this.config_texture_ready ) { return; }
+					
+					var x;
+					var y;
+
+					// clear the rendering areas
+					this.preview_context.clearRect(0, 0, this.preview_canvas[0].width, this.preview_canvas[0].height);
+					this.grid_context.clearRect(0, 0, this.grid_canvas[0].width, this.grid_canvas[0].height);
+
+					// start at first visible row
+					for(var i = this.hidden_rows * this.width; i < this.grid.length; i++)
+					{
+						if( this.grid[i].is_empty_block ) { continue; }
+
+						y = Math.floor(i/this.width);
+						x = i - (y * this.width);
+
+						Renderer.rect(this.grid_context, 
+								(x * this.block_width), 
+								((y - this.hidden_rows) * this.block_height), // adjustment for hidden rows 
+								this.block_width,
+								this.block_height,
+								this.grid[i].background_color);
+						
+						Renderer.texture(
+								this.grid_context, 
+								(x * this.block_width), 
+								((y - this.hidden_rows) * this.block_height),
+								this.block_width,
+								this.block_height,
+								this.config_texture);
+					}
+
+
+					// render ghost, if turned on
+					if( this.ghost_on )
+					{
+						var valid_fall_dist = -1;
+						for(var i = 0; i < (this.height - this.falling_y); i++ )
+						{
+							if( this.can_fall(i) )
+							{
+								valid_fall_dist = i;
+							}
+							else
+							{
+								break;
+							}
+						}
+						if( valid_fall_dist > 0 )
+						{
+							var config_width = this.falling_blocks[0];
+							var config_height = this.falling_blocks[1];
+							for(var i = 2; i < this.falling_blocks.length; i++)
+							{
+								// skip empty blocks
+								if( this.falling_blocks[i].is_empty_block )
+								{
+									continue;
+								}
+
+								y = Math.floor((i-2)/config_width);
+								x = (i - 2) - (y * config_width);
+
+								Renderer.rect(this.grid_context, 
+										((x + this.falling_x) * this.block_width), 
+										((y + this.falling_y - this.hidden_rows + valid_fall_dist) * this.block_height),
+										this.block_width,
+										this.block_height,
+										'#dddddd');
+						
+								Renderer.texture(
+										this.grid_context, 
+										((x + this.falling_x) * this.block_width), 
+										((y + this.falling_y - this.hidden_rows + valid_fall_dist) * this.block_height),
+										this.block_width,
+										this.block_height,
+										this.config_texture);
+							}
+						}
+					}
+
+
+					// render current block
+					var config_width = this.falling_blocks[0];
+					var config_height = this.falling_blocks[1];
+					for(var i = 2; i < this.falling_blocks.length; i++)
+					{
+						// skip empty blocks
+						if( this.falling_blocks[i].is_empty_block )
+						{
+							continue;
+						}
+
+						y = Math.floor((i-2)/config_width);
+						x = (i - 2) - (y * config_width);
+
+						Renderer.rect(this.grid_context, 
+								((x + this.falling_x) * this.block_width), 
+								((y + this.falling_y - this.hidden_rows) * this.block_height),
+								this.block_width,
+								this.block_height,
+								this.falling_blocks[i].background_color);
+						
+						Renderer.texture(
+								this.grid_context, 
+								((x + this.falling_x) * this.block_width), 
+								((y + this.falling_y - this.hidden_rows) * this.block_height),
+								this.block_width,
+								this.block_height,
+								this.config_texture);
+					}
+
+
+					// render upcoming block in the preview canvas
+					var config_width = this.upcoming_config[0];
+					var config_height = this.upcoming_config[1];
+					// calculate offsets to center the block configuration in the preview
+					//	window -- 'I' is a special case since it starts on the second line
+					//	of the block config, instead of the first.
+					var offset_x = (this.preview_canvas[0].width - (config_width * this.block_width)) / 2;
+					var offset_y = (this.preview_canvas[0].height - (2 * this.block_height)) / 2;
+					if( this.upcoming_config_type == 'I' )
+					{
+						offset_y = offset_y - (this.block_height / 2);
+					}
+					for(var i = 2; i < this.upcoming_config.length; i++)
+					{
+						if( this.upcoming_config[i].is_empty_block ) { continue; }
+					
+						y = Math.floor((i-2)/config_width);
+						x = (i - 2) - (y * config_width);
+
+						Renderer.rect(this.preview_context, 
+								(x * this.block_width) + offset_x, 
+								(y * this.block_height) + offset_y, 
+								this.block_width,
+								this.block_height,
+								this.upcoming_config[i].background_color);
+						
+						Renderer.texture(
+								this.preview_context, 
+								(x * this.block_width) + offset_x, 
+								(y * this.block_height) + offset_y, 
+								this.block_width,
+								this.block_height,
+								this.config_texture);
+					}
+					
+
+					if( !this.started && this.start_text_visible )
+					{
+						Renderer.text(
+								this.grid_context,
+								"Press 'enter' to start",
+								(((this.width * this.block_width) / 2) - 75),
+								(((this.height * this.block_height) / 2) + 15),
+								'#000000');
+					}
+					
+					if( this.started && this.game_over )
+					{
+						Renderer.text(
+							this.grid_context,
+							"GAME OVER",
+							(((this.width * this.block_width) / 2) - 30),
+							(((this.height * this.block_height) / 2) + 15),
+							'#000000');							
+					}
+				};
+				
+				this.rotate = function()
+				{
+					var that = this;
+					return function()
+					{
+						$('#output').html('rotate');
+
+						if( !that.can_rotate(that.falling_blocks, 1 ) ) { return; }
+						
+						var height = that.falling_blocks[1];
+						var width = that.falling_blocks[0];
+
+						var index;
+						var x, y, newindex;
+						var new_falling_blocks = [width, height];
+						for(var i = 2; i < that.falling_blocks.length; i++)
+						{
+							index = i - 2;
+							x = index % width;
+							y = Math.floor(index / width);
+							newindex = (x * height) + (width - y) - 1;
+
+							// interesting note: if I want to rotate counter clockwise, just
+							//	switch the positions of newindex and index in the below line
+							new_falling_blocks[newindex + 2] = that.falling_blocks[index + 2];
+						}
+
+						that.falling_blocks = new_falling_blocks;
+						
+						// if the block config, after the rotation, can fall 1 drop, then destroy
+						//	the lock timer if it exists
+						if( that.can_fall(1) && that.lock_timer != 0 )
+						{
+							clearInterval(that.lock_timer);
+							that.lock_timer = 0;
+						}
+					};
+				};
+				
+				this.soft_drop_down = function()
+				{
+					$('#output').html('soft drop down');
+					
+					var that = this;
+					return function()
+					{
+						if( !GO.drop.soft_drop_active )
+						{
+							GO.drop.soft_drop_active = true;
+						}
+					};
+				};
+				
+				this.soft_drop_up = function()
+				{
+					var that = this;
+					return function()
+					{
+						$('#output').html('soft drop up');
+					
+						if( GO.drop.soft_drop_active )
+						{
+							GO.drop.soft_drop_active = false;
+						}
+					};
+				};
+				
+				this.left = function()
+				{
+					var that = this;
+					return function()
+					{
+						$('#output').html('left');
+
+						if( that.can_move_left(1) )
+						{
+							that.falling_x--;
+							
+							// if the block config, after the move, can fall 1 drop, then destroy
+							//	the lock timer if it exists
+							if( that.can_fall(1) && that.lock_timer != 0 )
+							{
+								clearInterval(that.lock_timer);
+								that.lock_timer = 0;
+							}
+						}
+					};
+				};
+				
+				this.right = function()
+				{
+					var that = this;
+					return function()
+					{
+						$('#output').html('right');
+
+						if( that.can_move_right(1) )
+						{
+							that.falling_x++;
+							
+							// if the block config, after the move, can fall 1 drop, then destroy
+							//	the lock timer if it exists
+							if( that.can_fall(1) && that.lock_timer != 0 )
+							{
+								clearInterval(that.lock_timer);
+								that.lock_timer = 0;
+							}
+						}
+					};
+				};
+				
+				this.swap = function()
+				{
+					var that = this;
+					return function()
+					{					
+						$('#output').html('swap');
+
+						// can't swap with the new set. can only swap within the set.
+						if( that.upcoming_list.length >= (that.possible_configs.length - 1) )
+						{
+							return;
+						}
+
+						// make sure any lock is cleared
+						if( that.lock_timer != 0 ) 
+						{ 
+							clearInterval(that.lock_timer);
+							that.lock_timer = 0;
+						}
+
+						var tmptype = that.falling_type;
+						var tmpconfig = that.falling_blocks;
+
+						that.set_falling(that.upcoming_config, that.upcoming_config_type);
+						that.upcoming_config = tmpconfig;
+						that.upcoming_config_type = tmptype;
+					};
+				};
+
+				this.toggle_ghost = function()
+				{
+					var that = this;
+					return function()
+					{
+						$('#output').html('toggle ghost');
+
+						that.ghost_on = !that.ghost_on;
+					}
+				};
+			
+
+
+				this.drop = function()
+				{
+					// do not start droping blocks until all textures are finished loading
+					if( !this.config_texture_ready ) { return; }
+					
+					// swap visibility on the start text during the drop timer...
+					if( !this.started ) { this.start_text_visible = !this.start_text_visible; }
+				
+					if( this.can_fall(1) )
+					{
+						this.falling_y++;
+						
+						if( GO.drop.soft_drop_active )
+						{
+							this.rows_soft_dropped++;
+						}
+					}
+					else
+					{
+						// if the block can't fall 1 and still has the global y coordinate of 0,
+						//	it means that the game should be over.
+						if( this.falling_y > 0 )
+						{
+							// since the config can't drop, it needs to lock into place 1/3 of a second
+							//	after it can no longer drop.
+							if( this.lock_timer == 0 )
+							{
+								this.lock_timer = setInterval(this.lock, (1000/3));
+							}
+						}
+						else
+						{
+							this.set_game_over();
+						}
+					}
+				};
+
+				this.lock = function()
+				{
+					var height = GO.board.falling_blocks[1];
+					var width = GO.board.falling_blocks[0];
+					
+					var x, y, global_x, global_y, global_index;
+					for(var i = GO.board.falling_blocks.length - 1; i >= 2 ; i--)
+					{
+						if( GO.board.falling_blocks[i].is_empty_block )
+						{
+							continue;
+						}
+
+						x = (i-2) % width;
+						y = Math.floor((i - 2) / width);
+					
+						global_x = GO.board.falling_x + x;
+						global_y = GO.board.falling_y + y;
+
+						global_index = global_y * GO.board.width + global_x;
+
+						GO.board.grid[global_index] = GO.board.falling_blocks[i];
+					}
+					
+					GO.board.handle_breakables();
+
+					GO.board.set_falling();
+					
+					clearInterval(GO.board.lock_timer);
+					GO.board.lock_timer = 0;
+				};
+				
+				this.handle_breakables = function()
+				{
+					GO.drop.stop();
+
+					var rows_to_destroy = [];
+					var all_filled;
+
+					for(var i = GO.board.grid.length - 1; i >= 2; i -= GO.board.width)
+					{
+						all_filled = true;
+						for(var j = 0; j < GO.board.width; j++)
+						{
+							if( GO.board.grid[i-j].is_empty_block )
+							{
+								all_filled = false
+								break;
+							}
+						}
+						
+						if(all_filled)
+						{
+							rows_to_destroy.push(Math.floor(i/GO.board.width));
+						}
+					}
+
+					var points = 0;
+					var level = Math.floor(GO.score/GO.ppl);
+					switch( rows_to_destroy.length )
+					{
+						case 1 :
+							points = (40 * (level + 1)) + this.rows_soft_dropped;
+							break;
+						case 2 :
+							points = (100 * (level + 1)) + this.rows_soft_dropped;
+							break;
+						case 3 :
+							points = (300 * (level + 1)) + this.rows_soft_dropped;
+							break;
+						case 4 :
+							points = (1200 * (level + 1)) + this.rows_soft_dropped;
+							break;
+						default :
+							points = 0;
+					}
+					
+					// destroy the lines
+					for(var i = rows_to_destroy.length - 1; i >= 0; i--)
+					{
+						this.destroy_line(rows_to_destroy[i]);
+					}
+					
+					// add up the points won and clear counters
+					if( points > 0 )
+					{
+						// if a new level has been obtained, then increment the speed
+						if( Math.floor((GO.score + points) / GO.ppl) > Math.floor(GO.score / GO.ppl) )
+						{
+							GO.drop.rps += GO.drop.rps_increment;
+						}
+						GO.add_to_score( points );
+					}
+					
+					GO.drop.reset();
+				};
+
+				this.select_upcoming = function()
+				{
+					if( this.upcoming_list.length <= 0 )
+					{
+						this.upcoming_list = this.possible_configs.slice(0);
+					}
+
+					var nextindex = Math.floor(Math.random() * (this.upcoming_list.length - 1));
+					this.upcoming_config_type = this.upcoming_list[nextindex];
+					this.upcoming_config = BlockConfigurations[this.upcoming_config_type]();
+					this.upcoming_list.splice(nextindex, 1);
+				};
+
+				// this function can be passed the following arguments, in the order they are listed here.
+				//
+				// blockConfig : this is a config to use instead of the upcoming config
+				// configType : this is the type of block shape that blockConfig is
+				this.set_falling = function()
+				{
+					var ctype = this.upcoming_config_type;
+					if( arguments.length == 2 )
+					{
+						this.falling_blocks = arguments[0];
+						ctype = arguments[1];
+					}
+					else
+					{
+						this.falling_blocks = this.upcoming_config;
+					}
+					
+					this.falling_y = 0;
+					
+					if(ctype == 'O' )
+					{
+						this.falling_x = 4;
+					}
+					else
+					{
+						this.falling_x = 3;
+					}
+					
+					this.falling_type = ctype;
+
+					if( arguments.length != 2 )
+					{
+						this.select_upcoming();
+					}
+				};
+				
+				this.set_game_over = function()
+				{
+					this.game_over = true;
+				};
+
+
+
+				// config : the block configuration to test rotation on
+				// blocknum : this value is the number of times to test rotation,
+				//				ie, a value of 1 would check to see if the block config could
+				//				rotate clockwise 1 time. A value of 2 would check to
+				//				see if the block config could rotate 1 time and then
+				//				a second time.
+				this.can_rotate = function(config, blocknum)
+				{	
+					// the config can't fall if 2 rows are in the hidden zone
+					if( this.falling_y <= 0 ) { return 0; }
+							
+					var height = config[1];
+					var width = config[0];
+
+					var index;
+					var x, y, newindex;
+					var new_config = [width, height];
+					for(var i = 2; i < config.length; i++)
+					{
+						index = i - 2;
+						x = index % width;
+						y = Math.floor(index / width);
+						newindex = (x * height) + (width - y) - 1;
+
+						// interesting note: if I want to rotate counter clockwise, just
+						//	switch the positions of newindex and index in the below line
+						new_config[newindex + 2] = config[index + 2];
+					}
+
+					if( !this.can_fall(0, new_config, this.falling_x, this.falling_y) ) { return false; }
+					if( !this.can_move_left(0, new_config, this.falling_x, this.falling_y) ) { return false; }
+					if( !this.can_move_right(0, new_config, this.falling_x, this.falling_y) ) { return false; }
+					
+					if( blocknum > 1 ) { return this.can_rotate(new_config, (blocknum - 1)); }
+					
+					return true;
+				};
+
+				// blocknum : this value is added to the current global y position
+				//				before the check is made to see if the config is
+				//				out of bounds. Set as 0 if no look-ahead is wanted.
+				// if testing of an arbitrary config at an arbitrary global position is
+				//	desired, then use the following parameters, in order:
+				//	1. blocknum : same
+				//	2. config : the configuration you would like to test
+				//	3. gx : the global x coordinate of the upper left block in the config
+				//	4. gy : the global y coordinate of the upper right block in the config
+				this.can_fall = function(blocknum)
+				{
+					var config, gx, gy;
+					
+					if( arguments.length <= 1 )
+					{
+						config = this.falling_blocks;
+						gx = this.falling_x;
+						gy = this.falling_y;
+					}
+					else
+					{
+						config = arguments[1];
+						gx = arguments[2];
+						gy = arguments[3];
+					}
+					
+					var height = config[1];
+					var width = config[0];
+					
+					var x, y, global_x, global_y, global_index;
+					for(var i = config.length - 1; i >= 2 ; i--)
+					{
+						if( config[i].is_empty_block )
+						{
+							continue;
+						}
+
+						x = (i-2) % width;
+						y = Math.floor((i - 2) / width);
+						
+						global_x = gx + x;
+						global_y = gy + y + blocknum;
+
+						if( global_y > (this.height - 1) )
+						{
+							return false;
+						}
+
+						global_index = global_y * this.width + global_x;
+						if( !this.grid[global_index].is_empty_block )
+						{
+							return false;
+						}
+					}
+					
+					return true;
+				};
+				
+				
+				// blocknum : this value is subtracted to the current global x position
+				//				before the check is made to see if the config is
+				//				out of bounds. Set as 0 if no look-ahead is wanted.
+				// if testing of an arbitrary config at an arbitrary global position is
+				//	desired, then use the following parameters, in order:
+				//	1. blocknum : same
+				//	2. config : the configuration you would like to test
+				//	3. gx : the global x coordinate of the upper left block in the config
+				//	4. gy : the global y coordinate of the upper right block in the config
+				this.can_move_left = function(blocknum)
+				{
+					var config, gx, gy;
+					
+					if( arguments.length <= 1 )
+					{
+						config = this.falling_blocks;
+						gx = this.falling_x;
+						gy = this.falling_y;
+					}
+					else
+					{
+						config = arguments[1];
+						gx = arguments[2];
+						gy = arguments[3];
+					}
+					
+					var height = config[1];
+					var width = config[0];
+					
+					var x, y, global_x, global_y, global_index;
+					for(var i = config.length - 1; i >= 2 ; i--)
+					{
+						if( config[i].is_empty_block )
+						{
+							continue;
+						}
+
+						x = (i-2) % width;
+						y = Math.floor((i - 2) / width);
+						
+						global_x = gx + x - blocknum;
+						global_y = gy + y;
+
+						if( global_x < 0 )
+						{
+							return false;
+						}
+
+						global_index = global_y * this.width + global_x;
+						if( !this.grid[global_index].is_empty_block )
+						{
+							return false;
+						}
+					}
+					
+					return true;
+				};
+				
+				// blocknum : this value is added to the current global x position
+				//				before the check is made to see if the config is
+				//				out of bounds. Set as 0 if no look-ahead is wanted.
+				// if testing of an arbitrary config at an arbitrary global position is
+				//	desired, then use the following parameters, in order:
+				//	1. blocknum : same
+				//	2. config : the configuration you would like to test
+				//	3. gx : the global x coordinate of the upper left block in the config
+				//	4. gy : the global y coordinate of the upper right block in the config
+				this.can_move_right = function(blocknum)
+				{
+					var config, gx, gy;
+					
+					if( arguments.length <= 1 )
+					{
+						config = this.falling_blocks;
+						gx = this.falling_x;
+						gy = this.falling_y;
+					}
+					else
+					{
+						config = arguments[1];
+						gx = arguments[2];
+						gy = arguments[3];
+					}
+					
+					var height = config[1];
+					var width = config[0];
+					
+					var x, y, global_x, global_y, global_index;
+					for(var i = config.length - 1; i >= 2 ; i--)
+					{
+						if( config[i].is_empty_block )
+						{
+							continue;
+						}
+
+						x = (i-2) % width;
+						y = Math.floor((i - 2) / width);
+						
+						global_x = gx + x + blocknum;
+						global_y = gy + y;
+
+						if( global_x > (this.width - 1) )
+						{
+							return false;
+						}
+
+						global_index = global_y * this.width + global_x;
+						if( !this.grid[global_index].is_empty_block )
+						{
+							return false;
+						}
+					}
+					
+					return true;
+				};
+				
+				this.destroy_line = function( y )
+				{
+					if( y < 0 || y >= this.height ) { return; }
+					
+					// remove the line
+					this.grid.splice( (y * this.width), this.width );
+					
+					// re-add an empty row to the beginning of the grid
+					for(var i = 0; i < this.width; i++)
+					{
+						this.grid.splice( 0, 0, new Block() );
+					}
+				};
+			}; 
+
+			// GO == Game Object
+			var GO = {
+				fps : {
+					target : 60,
+					ticks : 0,
+					timer : 0,
+					interval : 1000, // in milliseconds
+					output : 0,
+
+					init : function() {
+						GO.fps.output = $('#fps');
+						GO.fps.timer = setInterval(GO.fps.update, GO.fps.interval);
+					},
+
+					update : function() {
+						GO.fps.output.html( (GO.fps.ticks /  (GO.fps.interval / 1000)).toFixed(2) + ' fps' );
+						GO.fps.ticks = 0;
+					}
+				},
+				
+				drop : {
+					timer : 0,
+					soft_timer : 0,
+					interval : 0,		// regular drop interval
+					soft_interval : 0,	// "soft" drop interval
+					soft_drop_active : false,
+					
+					rps : 1, // rows per second
+					soft_drop_rps_increase : 20, // number of blocks the soft drop increases the rps
+					rps_increment : 0.5, // value to add to rps when new level is attained
+					
+					init : function() {
+						GO.drop.interval = 1000 / GO.drop.rps; // in milliseconds
+						GO.drop.soft_interval = 1000 / (GO.drop.rps + GO.drop.soft_drop_rps_increase); // in milliseconds
+					
+						GO.drop.timer = setInterval(GO.drop.update, GO.drop.interval);
+						GO.drop.soft_timer = setInterval(GO.drop.soft_update, GO.drop.soft_interval);
+					},
+					
+					update : function() {
+						if( GO.board.game_over )
+						{
+							GO.game_over();
+							return;
+						}
+						
+						if( GO.drop.soft_drop_active ) { return; }
+						
+						GO.board.drop();
+					},
+
+					soft_update : function() {
+						if( GO.board.game_over )
+						{
+							GO.game_over();
+							return;
+						}
+						
+						if( !GO.drop.soft_drop_active ) { return; }
+						
+						GO.board.drop()
+					},
+
+					reset : function() {
+						GO.drop.interval = 1000 / GO.drop.rps; // in milliseconds
+						GO.drop.soft_interval = 1000 / (GO.drop.rps + GO.drop.soft_drop_rps_increase); // in milliseconds
+						
+						clearInterval(GO.drop.timer);
+						clearInterval(GO.drop.soft_timer);
+
+						GO.drop.timer = setInterval(GO.drop.update, GO.drop.interval);
+						GO.drop.soft_timer = setInterval(GO.drop.soft_update, GO.drop.soft_interval);
+						
+						//GO.drop.soft_drop_active = false;
+					},
+					
+					stop : function() {
+						clearInterval(GO.drop.timer);
+						clearInterval(GO.drop.soft_timer);
+						GO.drop.timer = 0;
+						GO.drop.soft_timer = 0;
+					},
+				},
+				
+				start_time : 0,
+				timer : 0,
+				board : 0,
+				
+				keyboard : 0,
+				
+				score : 0,
+				ppl : 10000, // points per level
+				
+				side_init_timer : 0,
+				side_timer : 0,
+				side_timer_interval : 33,
+				
+				
+				init : function() {
+					GO.start_time = (new Date()).getTime();	
+				
+					GO.board = new Board();
+					GO.board.init();
+
+					KeyManager.init();
+					KeyManager.start_events.push(GO.start);
+				
+					GO.fps.init();
+					
+					var interval = 1000 / GO.fps.target;
+					GO.timer = setInterval(GO.loop, interval);
+					
+					GO.drop.init();
+				},
+				
+				create_side_move_timer : function() {
+					GO.side_timer = setInterval(GO.side_move, GO.side_timer_interval);
+					GO.side_init_timer = 0;
+				},
+				
+				side_move : function() {
+					if( GO.side_timer == 0 || (!KeyManager.left_held && !KeyManager.right_held) )
+					{
+						clearInterval(GO.side_timer);
+						GO.side_timer = 0;
+						return;
+					}
+
+					if( KeyManager.left_held ) { (GO.board.left())(); }
+					if( KeyManager.right_held ) { (GO.board.right())(); }
+				},
+
+				loop : function() {
+					GO.board.render();
+
+					GO.fps.ticks++;
+				},
+				
+				start : function() {
+					$('#output').html('start');
+
+					if( arguments.length == 1 )
+					{
+						GO.board.started = arguments[0];
+					}
+					else
+					{
+						GO.board.started = true;
+					}
+					
+					if( GO.board.started )
+					{
+						KeyManager.rotate_events = [];
+						KeyManager.soft_drop_events_down = [];
+						KeyManager.soft_drop_events_up = [];
+						KeyManager.left_events = [];
+						KeyManager.right_events = [];
+						KeyManager.swap_events = [];
+						KeyManager.toggle_ghost_events = [];
+					
+						KeyManager.rotate_events.push(GO.board.rotate());
+						KeyManager.soft_drop_events_down.push(GO.board.soft_drop_down());
+						KeyManager.soft_drop_events_up.push(GO.board.soft_drop_up());
+						KeyManager.left_events.push(GO.board.left());
+						KeyManager.right_events.push(GO.board.right());
+						KeyManager.swap_events.push(GO.board.swap());
+						KeyManager.toggle_ghost_events.push(GO.board.toggle_ghost());
+					}
+					
+					// reset the score
+					GO.add_to_score((-1 * GO.score));
+					
+					GO.board.reset();
+					
+					GO.drop.stop();
+					GO.drop.reset();
+				},
+				
+				
+				add_to_score : function(points) {
+					GO.score += points;
+					$('#score_value').html(GO.score);
+					$('#level_value').html(Math.floor(GO.score / GO.ppl));
+				},
+				
+				game_over : function() {
+					GO.drop.stop();
+					
+					KeyManager.rotate_events = [];
+					KeyManager.soft_drop_events_down = [];
+					KeyManager.soft_drop_events_up = [];
+					KeyManager.left_events = [];
+					KeyManager.right_events = [];
+					KeyManager.swap_events = [];
+					KeyManager.toggle_ghost_events = [];
+					
+					if( !GO.board.started )
+					{
+						GO.start(false);
+					}
+				},
+			};
+
+			GO.init();
+		
+			// turn on the touch interface
+            //
+            // It's imperfect, so I'm just disabling it
+			/*$(document).click(function(){
+				$('#touch_interface').css('display', 'block');
+				$('#touch_interface').focus();
+			});*/
+		</script>
+	</body>
+</html>

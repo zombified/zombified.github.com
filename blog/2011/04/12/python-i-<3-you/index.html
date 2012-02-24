@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    
+    <title>happy bubble</title>
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/blog/feed" />
+<link rel="alternate" type="application/atom+xml" title="Atom 1.0"
+href="/blog/feed/atom" />
+<link rel='stylesheet' href='/css/pygments_murphy.css' type='text/css' />
+
+<style type='text/css'>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0b1 | 201101 
+NOTE: WORK IN PROGRESS
+USE WITH CAUTION AND TEST WITH ABANDON */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+
+/* remember to define visible focus styles! 
+:focus {
+outline: ?????;
+} */
+
+/* remember to highlight inserts somehow! */
+ins {
+text-decoration: none;
+}
+del {
+text-decoration: line-through;
+}
+
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+
+
+
+body {background-color:#999;}
+
+p {margin:10px 0; line-height:120%;}
+
+a:link      {text-decoration:none; color:#C40F4F;}
+a:visited   {text-decoration:none;}
+a:hover     {text-decoration:underline;}
+a:active    {text-decoration:underline;}
+
+h1 a:link      {text-decoration:none; color:#92CD4D;}
+h1 a:visited   {text-decoration:none;}
+h1 a:hover     {text-decoration:underline;}
+h1 a:active    {text-decoration:underline;}
+
+h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
+h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
+
+.wrapper
+{
+    width: 790px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 5px;
+}
+
+.bpost {margin-top:1.8em;}
+.bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.6em;}
+
+.footer {margin-top:1.8em; background-color: #ddd; padding: 5px; color: #777;}
+
+.postwrap {width:500px;}
+
+.homenavigation {width:270px; float:right; text-align:center; border-left:1px solid #ddd;}
+.homenavigation ul {padding-bottom:.4em;}
+.homenavigation li {padding-top:.2em;}
+
+.homenavigation h3 {margin-top:20px; font-style:italic;}
+</style>
+
+
+</head>
+<body>
+<div class='wrapper'>
+    <div class='header'>
+        
+    <h1 class='siteheader'><a href="/">happy bubble</a></h1>
+
+
+    </div>
+    <div class='content'>
+        
+
+<div class="bpost">
+  <a name="python-i-<3-you"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/04/12/python-i-<3-you" rel="bookmark" title="Permanent Link to Python I <3 You">Python I <3 You</a></h2>
+    <div class="post_prose">
+    
+  <p>It's amazing this thing called Python.</p>
+<p>I integrated <a href="http://identi.ca">identi.ca</a> into this site in about 10 minutes over my lunch break. Amazing.</p>
+<p>I used the <a href="http://code.google.com/p/python-twitter/">python-twitter</a> module, and it took a whole of 3 lines!</p>
+<pre><code>import twitter
+api = twitter.Api(base_url='http://identi.ca/api')
+statuses = api.GetUserTimeline('jkyl')
+</code></pre>
+<p>Which then produces a list of objects that contain a 'text' property that I can use to display the actual statuses.</p>
+
+  </div>
+    <div class='foot'>April 12, 2011 | categories: 
+    
+    <a href='/blog/category/uncategorized'>Uncategorized</a></div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_url = "http://zombified.github.com/blog/2011/04/12/python-i-<3-you";
+</script>
+
+    </div>
+    <div class='footer'>
+        
+    <p id="credits">
+Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
+<br/>
+RSS feeds for <a href="/blog/feed">Entries</a>
+<br>
+</p>
+
+
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+

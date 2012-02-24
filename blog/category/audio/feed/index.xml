@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     >
+  <channel>
+    <title>happy bubble</title>
+    <link>http://zombified.github.com/blog</link>
+    <description>Joel Kleier's blog about anything.</description>
+    <pubDate>Fri, 24 Feb 2012 17:53:27 GMT</pubDate>
+    <generator>Blogofile</generator>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <item>
+      <title>Ping.4</title>
+      <link>http://zombified.github.com/blog/2011/09/30/ping.4</link>
+      <pubDate>Fri, 30 Sep 2011 00:00:00 CDT</pubDate>
+      <category><![CDATA[Ping]]></category>
+      <category><![CDATA[audio]]></category>
+      <category><![CDATA[gamedev]]></category>
+      <category><![CDATA[html5]]></category>
+      <guid isPermaLink="true">http://zombified.github.com/blog/2011/09/30/ping.4</guid>
+      <description>Ping.4</description>
+      <content:encoded><![CDATA[<p>Switching tactics on creating this lovely Pong-like game, I present you with a possible (partial) solution to the audio woes of the Audio spec for "HTML5".</p>
+<p>Found at <a href="http://www.storiesinflight.com/html5/audio.html">Stories in Flight</a>, the solution is basically to pre-load your sounds, then to load each sound into a new audio object (channel) every time you want to play a sound. This method rely's on the browser caching the audio to not perform multiple requests for the audio source from the server. It's not perfect, but I think it's more than sufficient for my current needs.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

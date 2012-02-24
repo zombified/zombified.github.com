@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     >
+  <channel>
+    <title>happy bubble</title>
+    <link>http://zombified.github.com/blog</link>
+    <description>Joel Kleier's blog about anything.</description>
+    <pubDate>Fri, 24 Feb 2012 17:53:27 GMT</pubDate>
+    <generator>Blogofile</generator>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <item>
+      <title>The Bob Compiler</title>
+      <link>http://zombified.github.com/blog/2012/01/27/the-bob-compiler</link>
+      <pubDate>Fri, 27 Jan 2012 00:00:00 CST</pubDate>
+      <category><![CDATA[code]]></category>
+      <category><![CDATA[compilers]]></category>
+      <guid isPermaLink="true">http://zombified.github.com/blog/2012/01/27/the-bob-compiler</guid>
+      <description>The Bob Compiler</description>
+      <content:encoded><![CDATA[<p>Check out one of my old college projects I recently dug up: <a href="https://github.com/zombified/bobcompiler">the bob compiler</a>.</p>
+<p>My first real big Python program made over the span of a semester in 2007, for a compiler course.</p>
+<p>It's hardly commented, horribly designed, and poorly coded, but I'm still proud of how much effor I put into this little project. As I recall we were only ever intended to create a single-pass compiler that simply interpreted tokens as it read them, and spit out assembly as soon as possible.</p>
+<p>Instead, I chose to make primitive parser, lexer, semantic analyzer, and translator components. Eventually I was planning on adding optimization options, but I never got to it.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>
