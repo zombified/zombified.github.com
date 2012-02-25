@@ -10,7 +10,7 @@
     <title>happy bubble</title>
     <link>http://zombified.github.com/blog</link>
     <description>Joel Kleier's blog about anything.</description>
-    <pubDate>Sat, 25 Feb 2012 03:25:24 GMT</pubDate>
+    <pubDate>Sat, 25 Feb 2012 03:48:09 GMT</pubDate>
     <generator>Blogofile</generator>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
@@ -36,14 +36,14 @@
 <li>index.html</li>
 <li>js/PlayScreen.js</li>
 </ol>
-<h2><a href="https://github.com/zombified/minefield/blob/a6b40e8ec2d495d6589ccfc9166d2e65649647ac/index.html">index.html</a></h2>
+<h3><a href="https://github.com/zombified/minefield/blob/a6b40e8ec2d495d6589ccfc9166d2e65649647ac/index.html">index.html</a></h3>
 <p>This is where most of the magic happens for the base structure needed for the game.</p>
 <p>Check out the source, the code is fairly small, and all the important sections have comments.</p>
 <p>The one line that I'd like to make a note about is:</p>
 <pre><code>&lt;div id="app"&gt;&lt;/div&gt;
 </code></pre>
-<p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to <code>me.video.init</code>.</p>
-<h2>PlayScreen.js</h2>
+<p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to "<code>me.video.init</code>".</p>
+<h3>PlayScreen.js</h3>
 <p>For now, this is just an empty object. We will be using this object to build up our PLAY state later on.</p>]]></content:encoded>
     </item>
     <item>

@@ -81,7 +81,14 @@ border-spacing: 0;
 
 body {background-color:#999;}
 
-p {margin:10px 0; line-height:120%;}
+p {margin:10px 5px; line-height:120%;}
+
+pre {margin:30px;}
+code {font-family:mono;}
+
+ul, ol {margin:10px 0px 20px 50px;}
+ul li {list-style:disc;}
+ol li {list-style:decimal;}
 
 a:link      {text-decoration:none; color:#C40F4F;}
 a:visited   {text-decoration:none;}
@@ -95,6 +102,7 @@ h1 a:active    {text-decoration:underline;}
 
 h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
 h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
+h3 {font-size:1.2em; font-weight:bold; margin:.2em 0;}
 
 .wrapper
 {
@@ -105,15 +113,15 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
 }
 
 .bpost {margin-top:1.8em;}
-.bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.6em;}
+.bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.9em; border-bottom: 2px solid #666; padding-bottom:5px;}
 
 .footer {margin-top:1.8em; background-color: #ddd; padding: 5px; color: #777;}
 
 .postwrap {width:500px;}
 
 .homenavigation {width:270px; float:right; text-align:center; border-left:1px solid #ddd;}
-.homenavigation ul {padding-bottom:.4em;}
-.homenavigation li {padding-top:.2em;}
+.homenavigation ul {padding-bottom:.4em; margin:0;}
+.homenavigation li {padding-top:.2em; list-style:none;}
 
 .homenavigation h3 {margin-top:20px; font-style:italic;}
 </style>
@@ -149,14 +157,14 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
 <li>index.html</li>
 <li>js/PlayScreen.js</li>
 </ol>
-<h2><a href="https://github.com/zombified/minefield/blob/a6b40e8ec2d495d6589ccfc9166d2e65649647ac/index.html">index.html</a></h2>
+<h3><a href="https://github.com/zombified/minefield/blob/a6b40e8ec2d495d6589ccfc9166d2e65649647ac/index.html">index.html</a></h3>
 <p>This is where most of the magic happens for the base structure needed for the game.</p>
 <p>Check out the source, the code is fairly small, and all the important sections have comments.</p>
 <p>The one line that I'd like to make a note about is:</p>
 <pre><code>&lt;div id="app"&gt;&lt;/div&gt;
 </code></pre>
-<p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to <code>me.video.init</code>.</p>
-<h2>PlayScreen.js</h2>
+<p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to "<code>me.video.init</code>".</p>
+<h3>PlayScreen.js</h3>
 <p>For now, this is just an empty object. We will be using this object to build up our PLAY state later on.</p>
 
   </div>
