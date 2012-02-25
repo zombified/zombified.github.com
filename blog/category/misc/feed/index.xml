@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     >
+  <channel>
+    <title>happy bubble</title>
+    <link>http://zombified.github.com/blog</link>
+    <description>Joel Kleier's blog about anything.</description>
+    <pubDate>Sat, 25 Feb 2012 01:24:19 GMT</pubDate>
+    <generator>Blogofile</generator>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <item>
+      <title>Updates</title>
+      <link>http://zombified.github.com/blog/2012/02/24/updates</link>
+      <pubDate>Fri, 24 Feb 2012 00:00:00 CST</pubDate>
+      <category><![CDATA[misc]]></category>
+      <guid isPermaLink="true">http://zombified.github.com/blog/2012/02/24/updates</guid>
+      <description>Updates</description>
+      <content:encoded><![CDATA[<p>I Decided to sit down and design a new theme, which is still rough and in development. </p>
+<p>I also decided it was time to move my website over to github. This is for a couple of reasons... so I don't have all my eggs in one basket (Google), and so I don't have to do as much maintenance.</p>
+<p>Basically the appengine tools are tools that I only use for updating my website/blog. Why not replace those tools with a single tool that I use for other stuff to?</p>
+<p>Now I just need to use git, which I don't have to manually update and setup since it's in my OS's package repositories! Woohoo, less work for me!</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

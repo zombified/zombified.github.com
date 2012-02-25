@@ -132,6 +132,35 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
         
   
 <div class="bpost">
+  <a name="bd2-p4"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/10/20/bd2-p4" rel="bookmark" title="Permanent Link to BD2 p4">BD2 p4</a></h2>
+    <div class="post_prose">
+    
+  <p><em>What I've Done</em></p>
+<ul>
+<li>Wow, really spent a lot of time studying collision detection (I discovered my previous utilities just weren't going to cut it). Found out that I'm a bit rusty on some math concepts, so I did a little review as well.</li>
+<li>Finished implementing the Separating Axis Theorem for Circle to AABB shapes (and also AABB to AABB) -- <a href="http://www.metanetsoftware.com/technique/tutorialA.html">N Tutorial A by Metanet Software Inc</a> was probably THE most helpful resource on this subject.</li>
+<li>Also decided to implement the library and a small test program in python + pygame. Why? I have less experience with Lua, and I'm finding that I can work faster in Python because of it (duh) -- basically I've just decided to use tools I know rather than experiment. I <em>LOVE</em> <a href="http://love2d.org">love2d</a>, but I don't think a sweet api is enough for me, right now. Tech switches are dangerous when just trying to get something done, but I feel like I prototyped in love2d/lua, and now I'm actually building the game.</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-20 Screenshot" src="/pics/bd2_screen20111020.png" title="BD2 2011-10-20 Screenshot" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Implement gamestate management system</li>
+<li>Get a menu up and working</li>
+</ul>
+
+  </div>
+    <div class='foot'>October 20, 2011 | categories: 
+    
+    <a href='/blog/category/python'>python</a>, <a href='/blog/category/gamedev'>gamedev</a>, <a href='/blog/category/pygame'>pygame</a>, <a href='/blog/category/bd2'>BD2</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
   <a name="bd2-p3"></a>
   <h2 class="blog_post_title"><a href="/blog/2011/10/16/bd2-p3" rel="bookmark" title="Permanent Link to BD2 p3">BD2 p3</a></h2>
     <div class="post_prose">
@@ -237,24 +266,6 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
     <div class='foot'>October 11, 2011 | categories: 
     
     <a href='/blog/category/ping'>Ping</a>, <a href='/blog/category/gamedev'>gamedev</a>, <a href='/blog/category/html5'>html5</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="ping.4"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/09/30/ping.4" rel="bookmark" title="Permanent Link to Ping.4">Ping.4</a></h2>
-    <div class="post_prose">
-    
-  <p>Switching tactics on creating this lovely Pong-like game, I present you with a possible (partial) solution to the audio woes of the Audio spec for "HTML5".</p>
-<p>Found at <a href="http://www.storiesinflight.com/html5/audio.html">Stories in Flight</a>, the solution is basically to pre-load your sounds, then to load each sound into a new audio object (channel) every time you want to play a sound. This method rely's on the browser caching the audio to not perform multiple requests for the audio source from the server. It's not perfect, but I think it's more than sufficient for my current needs.</p>
-
-  </div>
-    <div class='foot'>September 30, 2011 | categories: 
-    
-    <a href='/blog/category/ping'>Ping</a>, <a href='/blog/category/audio'>audio</a>, <a href='/blog/category/gamedev'>gamedev</a>, <a href='/blog/category/html5'>html5</a></div>
 </div>
 
 

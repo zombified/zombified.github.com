@@ -7,12 +7,29 @@
   <title type="text">happy bubble</title>
   <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
 
-  <updated>2012-02-24T17:53:27Z</updated>
+  <updated>2012-02-25T01:24:19Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
   <id>http://zombified.github.com/blog/feed/atom/</id>
   <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[Updates]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/02/24/updates" />
+    <id>http://zombified.github.com/blog/2012/02/24/updates</id>
+    <updated>2012-02-24T00:00:00Z</updated>
+    <published>2012-02-24T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="misc" />
+    <summary type="html"><![CDATA[Updates]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2012/02/24/updates"><![CDATA[<p>I Decided to sit down and design a new theme, which is still rough and in development. </p>
+<p>I also decided it was time to move my website over to github. This is for a couple of reasons... so I don't have all my eggs in one basket (Google), and so I don't have to do as much maintenance.</p>
+<p>Basically the appengine tools are tools that I only use for updating my website/blog. Why not replace those tools with a single tool that I use for other stuff to?</p>
+<p>Now I just need to use git, which I don't have to manually update and setup since it's in my OS's package repositories! Woohoo, less work for me!</p>]]></content>
+  </entry>
   <entry>
     <author>
       <name></name>
@@ -253,35 +270,6 @@
 <li>Add mouse events to game state manager</li>
 <li>Get a menu up and working</li>
 <li>Get timing information (delta to pass into update method for a gamestate)</li>
-</ul>]]></content>
-  </entry>
-  <entry>
-    <author>
-      <name></name>
-      <uri>http://zombified.github.com/blog</uri>
-    </author>
-    <title type="html"><![CDATA[BD2 p4]]></title>
-    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/20/bd2-p4" />
-    <id>http://zombified.github.com/blog/2011/10/20/bd2-p4</id>
-    <updated>2011-10-20T00:00:00Z</updated>
-    <published>2011-10-20T00:00:00Z</published>
-    <category scheme="http://zombified.github.com/blog" term="python" />
-    <category scheme="http://zombified.github.com/blog" term="gamedev" />
-    <category scheme="http://zombified.github.com/blog" term="pygame" />
-    <category scheme="http://zombified.github.com/blog" term="BD2" />
-    <summary type="html"><![CDATA[BD2 p4]]></summary>
-    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/20/bd2-p4"><![CDATA[<p><em>What I've Done</em></p>
-<ul>
-<li>Wow, really spent a lot of time studying collision detection (I discovered my previous utilities just weren't going to cut it). Found out that I'm a bit rusty on some math concepts, so I did a little review as well.</li>
-<li>Finished implementing the Separating Axis Theorem for Circle to AABB shapes (and also AABB to AABB) -- <a href="http://www.metanetsoftware.com/technique/tutorialA.html">N Tutorial A by Metanet Software Inc</a> was probably THE most helpful resource on this subject.</li>
-<li>Also decided to implement the library and a small test program in python + pygame. Why? I have less experience with Lua, and I'm finding that I can work faster in Python because of it (duh) -- basically I've just decided to use tools I know rather than experiment. I <em>LOVE</em> <a href="http://love2d.org">love2d</a>, but I don't think a sweet api is enough for me, right now. Tech switches are dangerous when just trying to get something done, but I feel like I prototyped in love2d/lua, and now I'm actually building the game.</li>
-</ul>
-<p><em>Screen Shot (s)</em></p>
-<p><img alt="BD2 2011-10-20 Screenshot" src="/pics/bd2_screen20111020.png" title="BD2 2011-10-20 Screenshot" /></p>
-<p><em>Near Future TODO</em></p>
-<ul>
-<li>Implement gamestate management system</li>
-<li>Get a menu up and working</li>
 </ul>]]></content>
   </entry>
 </feed>
