@@ -7,12 +7,49 @@
   <title type="text">happy bubble</title>
   <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
 
-  <updated>2012-02-25T01:24:19Z</updated>
+  <updated>2012-02-25T03:25:24Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
   <id>http://zombified.github.com/blog/feed/atom/</id>
   <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[MelonJS pt 1]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/02/24/melonjs-pt-1" />
+    <id>http://zombified.github.com/blog/2012/02/24/melonjs-pt-1</id>
+    <updated>2012-02-24T21:00:00Z</updated>
+    <published>2012-02-24T21:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="melonJS" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="minefield" />
+    <summary type="html"><![CDATA[MelonJS pt 1]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2012/02/24/melonjs-pt-1"><![CDATA[<p>Last December I <a href="http://www.ludumdare.com/compo/ludum-dare-22/?action=preview&amp;uid=7263">participated</a> in the <a href="http://ludumdare.com">Ludum Dare</a> (#22), and ultimately used <a href="http://www.melonjs.org">melonJS</a> as my framework of choice.</p>
+<p>The next Ludum Dare is coming up, and this time it's the 10th anniversary of the competition!</p>
+<p>I need to be prepared.</p>
+<p>Therefore, I have decided to do a short series, for my benefit, on how to make a melonJS game.</p>
+<p>The game I will be developing is going to be called <em>Minefield</em>, and is based off of the <em>Doger</em> game from <a href="http://inventwithpython.com/chapter20.html">Invent With Python</a>.</p>
+<p>The full source code will be found on <a href="http://github.com">github</a> under my <a href="https://github.com/zombified/minefield">minefield</a> project. Specifically, the code in this post can be found at <a href="https://github.com/zombified/minefield/tree/a6b40e8ec2d495d6589ccfc9166d2e65649647ac">this commit</a>.</p>
+<hr />
+<p>All required files to make this app work are stored in the repository. The <code>libs</code> directory contains all libraries used that aren't specifically created for this project.</p>
+<p>There are only 2 significant files (outside of melonJS) in the repo so far:</p>
+<ol>
+<li>index.html</li>
+<li>js/PlayScreen.js</li>
+</ol>
+<h2><a href="https://github.com/zombified/minefield/blob/a6b40e8ec2d495d6589ccfc9166d2e65649647ac/index.html">index.html</a></h2>
+<p>This is where most of the magic happens for the base structure needed for the game.</p>
+<p>Check out the source, the code is fairly small, and all the important sections have comments.</p>
+<p>The one line that I'd like to make a note about is:</p>
+<pre><code>&lt;div id="app"&gt;&lt;/div&gt;
+</code></pre>
+<p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to <code>me.video.init</code>.</p>
+<h2>PlayScreen.js</h2>
+<p>For now, this is just an empty object. We will be using this object to build up our PLAY state later on.</p>]]></content>
+  </entry>
   <entry>
     <author>
       <name></name>
@@ -242,34 +279,6 @@
 <li>Add mouse events to game state manager</li>
 <li>Get timing information (delta to pass into update method for a gamestate)</li>
 <li>Implent selection indicator triangle on start menu</li>
-</ul>]]></content>
-  </entry>
-  <entry>
-    <author>
-      <name></name>
-      <uri>http://zombified.github.com/blog</uri>
-    </author>
-    <title type="html"><![CDATA[BD2 p5]]></title>
-    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/21/bd2-p5" />
-    <id>http://zombified.github.com/blog/2011/10/21/bd2-p5</id>
-    <updated>2011-10-21T00:00:00Z</updated>
-    <published>2011-10-21T00:00:00Z</published>
-    <category scheme="http://zombified.github.com/blog" term="python" />
-    <category scheme="http://zombified.github.com/blog" term="gamedev" />
-    <category scheme="http://zombified.github.com/blog" term="pygame" />
-    <category scheme="http://zombified.github.com/blog" term="BD2" />
-    <summary type="html"><![CDATA[BD2 p5]]></summary>
-    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/21/bd2-p5"><![CDATA[<p><em>What I've Done</em></p>
-<ul>
-<li>Implemented a basic game state management library -- need to finish hooking menu buttons into the main program, but otherwise all methods should be called. The switch between states seems to work flawlessly.</li>
-</ul>
-<p><em>Screen Shot (s)</em></p>
-<p>None today, sorry!</p>
-<p><em>Near Future TODO</em></p>
-<ul>
-<li>Add mouse events to game state manager</li>
-<li>Get a menu up and working</li>
-<li>Get timing information (delta to pass into update method for a gamestate)</li>
 </ul>]]></content>
   </entry>
 </feed>

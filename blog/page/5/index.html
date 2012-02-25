@@ -132,6 +132,36 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
         
   
 <div class="bpost">
+  <a name="fighting-with-my-system-and-myself"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/08/02/fighting-with-my-system-and-myself" rel="bookmark" title="Permanent Link to Fighting with my system and myself">Fighting with my system and myself</a></h2>
+    <div class="post_prose">
+    
+  <p>Inspired by (Manic Digger)[http://manicdigger.sourceforge.net/news/], I decided to do some Mono experimentation.</p>
+<p>For my experiments, I decided to use OpenTK -- the same as used in ManicDigger.</p>
+<p>I am using monodevelop, but I did not realize it doesn't behave like VS in it's build actions -- it does not copy the assemblies required by your application into it's target directory. So I was getting "The entry point method could not be loaded" error messages, but I could not see the rest of the very helpful message, an issue with the setup I was using. I'm not sure if the message was just being clipped, or what.</p>
+<p>After a lot of reconfiguring, poking, and googling, my dumb self finally switched to a different setup and saw the rest of the error message:</p>
+<pre><code>** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: The following assembly referenced from &lt;project directory&gt;/bin/Debug/bd2cs.exe could not be loaded:
+     Assembly:   OpenTK    (assemblyref_index=0)
+     Version:    1.0.0.0
+     Public Key: bad199fe84eb3df4
+The assembly was not found in the Global Assembly Cache, a path listed in the MONO_PATH environment variable, or in the location of the executing assembly (&lt;project directory&gt;/bin/Debug/).
+
+** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: Could not load file or assembly 'OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4' or one of its dependencies.
+The entry point method could not be loaded
+</code></pre>
+<p>The mono runtime can't find the OpenTK.dll assembly. Simple enough -- just setup a command to execute after the project is built to copy the OpenTK.dll file into the target directory!</p>
+
+  </div>
+    <div class='foot'>August 02, 2011 | categories: 
+    
+    <a href='/blog/category/mono'>mono</a>, <a href='/blog/category/dev'>dev</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
   <a name="ping.3"></a>
   <h2 class="blog_post_title"><a href="/blog/2011/07/13/ping.3" rel="bookmark" title="Permanent Link to Ping.3">Ping.3</a></h2>
     <div class="post_prose">
@@ -220,34 +250,6 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
 
   </div>
     <div class='foot'>May 21, 2011 | categories: 
-    
-    <a href='/blog/category/uncategorized'>Uncategorized</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="python-+-twisted-+-irc"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/04/14/python-+-twisted-+-irc" rel="bookmark" title="Permanent Link to Python + Twisted + IRC">Python + Twisted + IRC</a></h2>
-    <div class="post_prose">
-    
-  <p>This was my first experience with the twisted library, and I have to say that it turned out pretty nice for creating an IRC bot.</p>
-<p>For the most part, it's follows the design presented in the <a href="http://twistedmatrix.com/documents/current/core/howto/clients.html">Writing Clients</a> tutorial found on <a href="http://twistedmatrix.com">twistedmatrix.com</a>.</p>
-<p>The only thing of note is how I was able to implement events not explicitly defined in the <a href="http://twistedmatrix.com/documents/10.2.0/api/twisted.words.protocols.irc.IRCClient.html">twisted.words.protocols.irc.IRCClient</a> class. It took me some digging (probably because I don't really understand Twisted very well), but I found that if the IRCClient sees an unknown IRC command, it will call a function in the form of <em>irc_COMMAND</em></p>
-<p>So, for instance, I needed to get the name list of everyone on a channel. I ended up writing the following code:</p>
-<pre><code>def irc_RPL_NAMREPLY(self, *nargs):
-    print ""
-
-def irc_RPL_ENDOFNAMES(self, *nargs):
-    pass
-    #print "END OF NAMES"
-</code></pre>
-<p>Now my bot will handle the RPL_NAMREPLY and RPL_ENDOFNAMES commands.</p>
-
-  </div>
-    <div class='foot'>April 14, 2011 | categories: 
     
     <a href='/blog/category/uncategorized'>Uncategorized</a></div>
 </div>

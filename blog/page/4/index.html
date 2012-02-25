@@ -132,6 +132,28 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
         
   
 <div class="bpost">
+  <a name="ping.5"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/10/11/ping.5" rel="bookmark" title="Permanent Link to Ping.5">Ping.5</a></h2>
+    <div class="post_prose">
+    
+  <p>I've uploaded a semi playable version, <a href="/projects/ping/">play it here</a>!</p>
+<p>I'm definitely not done with it, I still have a start screen, pause screen, win/loss screen, better AI, font tweaks, game play tweaks, and a lot of testing to do.</p>
+<p>However, I want to move onto "Blocks of Desctruction 2", a break-out like game, which was originally going to be a follow-up to my tetris like game, <a href="/projects/bd/bd.html">Blocks of Destruction</a>.</p>
+<p>I started experimenting with various platforms and used Pong as a problem to solve. My intention was never to create a full featured pong game, all I wanted was an easy(ish) problem to solve while tinkering!</p>
+<p>Ultimately, I need to stop tinkering and experimenting. So now <a href="/projects/ping/">Ping</a> will be put on hold, perhaps indefinitely, and I will start working on "Blocks of Descruction 2".</p>
+<p>I will be posting something each and every day that I work on the game, so, stay tuned imaginary internet people!</p>
+
+  </div>
+    <div class='foot'>October 11, 2011 | categories: 
+    
+    <a href='/blog/category/ping'>Ping</a>, <a href='/blog/category/gamedev'>gamedev</a>, <a href='/blog/category/html5'>html5</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
   <a name="ping.4"></a>
   <h2 class="blog_post_title"><a href="/blog/2011/09/30/ping.4" rel="bookmark" title="Permanent Link to Ping.4">Ping.4</a></h2>
     <div class="post_prose">
@@ -208,36 +230,6 @@ h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
     <div class='foot'>August 29, 2011 | categories: 
     
     <a href='/blog/category/fsharp'>fsharp</a>, <a href='/blog/category/clojure'>clojure</a>, <a href='/blog/category/dev'>dev</a>, <a href='/blog/category/scala'>scala</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="fighting-with-my-system-and-myself"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/08/02/fighting-with-my-system-and-myself" rel="bookmark" title="Permanent Link to Fighting with my system and myself">Fighting with my system and myself</a></h2>
-    <div class="post_prose">
-    
-  <p>Inspired by (Manic Digger)[http://manicdigger.sourceforge.net/news/], I decided to do some Mono experimentation.</p>
-<p>For my experiments, I decided to use OpenTK -- the same as used in ManicDigger.</p>
-<p>I am using monodevelop, but I did not realize it doesn't behave like VS in it's build actions -- it does not copy the assemblies required by your application into it's target directory. So I was getting "The entry point method could not be loaded" error messages, but I could not see the rest of the very helpful message, an issue with the setup I was using. I'm not sure if the message was just being clipped, or what.</p>
-<p>After a lot of reconfiguring, poking, and googling, my dumb self finally switched to a different setup and saw the rest of the error message:</p>
-<pre><code>** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: The following assembly referenced from &lt;project directory&gt;/bin/Debug/bd2cs.exe could not be loaded:
-     Assembly:   OpenTK    (assemblyref_index=0)
-     Version:    1.0.0.0
-     Public Key: bad199fe84eb3df4
-The assembly was not found in the Global Assembly Cache, a path listed in the MONO_PATH environment variable, or in the location of the executing assembly (&lt;project directory&gt;/bin/Debug/).
-
-** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: Could not load file or assembly 'OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4' or one of its dependencies.
-The entry point method could not be loaded
-</code></pre>
-<p>The mono runtime can't find the OpenTK.dll assembly. Simple enough -- just setup a command to execute after the project is built to copy the OpenTK.dll file into the target directory!</p>
-
-  </div>
-    <div class='foot'>August 02, 2011 | categories: 
-    
-    <a href='/blog/category/mono'>mono</a>, <a href='/blog/category/dev'>dev</a></div>
 </div>
 
 
