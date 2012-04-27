@@ -10,10 +10,22 @@
     <title>happy bubble</title>
     <link>http://zombified.github.com/blog</link>
     <description>Joel Kleier's blog about anything.</description>
-    <pubDate>Sat, 25 Feb 2012 03:50:14 GMT</pubDate>
+    <pubDate>Fri, 27 Apr 2012 02:54:30 GMT</pubDate>
     <generator>Blogofile</generator>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
+    <item>
+      <title>I'm Not Dead Yet!</title>
+      <link>http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</link>
+      <pubDate>Thu, 26 Apr 2012 00:00:00 CDT</pubDate>
+      <category><![CDATA[misc]]></category>
+      <guid isPermaLink="true">http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</guid>
+      <description>I'm Not Dead Yet!</description>
+      <content:encoded><![CDATA[<p>The last several months have been quite eventful for me, and this poor excuse for a blog has been low on my list of priorities -- but no longer!. Well, maybe it's moved up a notch or two.</p>
+<p>I will probably continue my declare 'MelonJS' articles soon, but for now I am on to other things.</p>
+<p>First up is my <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263">ludum dare #23 entry</a>, a text adventure called 'The Tiny World'. It's not fancy, and it's built from scratch (I know, I know -- I probably should have just gone with inform7). Play it if you like, it's probably mediocre at best!</p>
+<p>Second up, my new job is a lot about Python and, more specifically, Plone, so expect to see some posts on those things.</p>]]></content:encoded>
+    </item>
     <item>
       <title>MelonJS pt 1</title>
       <link>http://zombified.github.com/blog/2012/02/24/melonjs-pt-1</link>
@@ -201,32 +213,6 @@
 <p><img alt="BD2 2011-10-23 Screenshot" src="/pics/bd2_screen20111023.png" title="BD2 2011-10-23 Screenshot" /></p>
 <p><em>Near Future TODO</em></p>
 <ul>
-<li>Add mouse events to game state manager</li>
-<li>Get timing information (delta to pass into update method for a gamestate)</li>
-<li>Implent selection indicator triangle on start menu</li>
-</ul>]]></content:encoded>
-    </item>
-    <item>
-      <title>BD2 p6</title>
-      <link>http://zombified.github.com/blog/2011/10/22/bd2-p6</link>
-      <pubDate>Sat, 22 Oct 2011 00:00:00 CDT</pubDate>
-      <category><![CDATA[python]]></category>
-      <category><![CDATA[gamedev]]></category>
-      <category><![CDATA[pygame]]></category>
-      <category><![CDATA[BD2]]></category>
-      <guid isPermaLink="true">http://zombified.github.com/blog/2011/10/22/bd2-p6</guid>
-      <description>BD2 p6</description>
-      <content:encoded><![CDATA[<p><em>What I've Done</em></p>
-<ul>
-<li>Finished implementing the startmenu with placeholder graphics, and excepting the selection indicator triangle</li>
-<li>Put up the board, and got a ball colliding with the bricks -- the collision detection definitely works well this time around.</li>
-<li>Started to work on a physics utility function to determine the direction and magnatude of a bounce, which shouldn't be to much to finish tomorrow</li>
-</ul>
-<p><em>Screen Shot (s)</em></p>
-<p>None today, sorry! Next time, I swear!</p>
-<p><em>Near Future TODO</em></p>
-<ul>
-<li>Finish the physics utility function to determine direction and magnatude of a bounce</li>
 <li>Add mouse events to game state manager</li>
 <li>Get timing information (delta to pass into update method for a gamestate)</li>
 <li>Implent selection indicator triangle on start menu</li>

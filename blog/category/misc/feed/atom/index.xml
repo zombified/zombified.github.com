@@ -7,12 +7,29 @@
   <title type="text">happy bubble</title>
   <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
 
-  <updated>2012-02-25T03:50:14Z</updated>
+  <updated>2012-04-27T02:54:30Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
   <id>http://zombified.github.com/blog/feed/atom/</id>
   <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[I'm Not Dead Yet!]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!" />
+    <id>http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</id>
+    <updated>2012-04-26T00:00:00Z</updated>
+    <published>2012-04-26T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="misc" />
+    <summary type="html"><![CDATA[I'm Not Dead Yet!]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!"><![CDATA[<p>The last several months have been quite eventful for me, and this poor excuse for a blog has been low on my list of priorities -- but no longer!. Well, maybe it's moved up a notch or two.</p>
+<p>I will probably continue my declare 'MelonJS' articles soon, but for now I am on to other things.</p>
+<p>First up is my <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263">ludum dare #23 entry</a>, a text adventure called 'The Tiny World'. It's not fancy, and it's built from scratch (I know, I know -- I probably should have just gone with inform7). Play it if you like, it's probably mediocre at best!</p>
+<p>Second up, my new job is a lot about Python and, more specifically, Plone, so expect to see some posts on those things.</p>]]></content>
+  </entry>
   <entry>
     <author>
       <name></name>

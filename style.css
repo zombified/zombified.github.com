@@ -81,9 +81,9 @@ a:hover     {text-decoration:underline;}
 a:active    {text-decoration:underline;}
 
 h1 a:link      {text-decoration:none; color:#92CD4D;}
-h1 a:visited   {text-decoration:none;}
-h1 a:hover     {text-decoration:underline;}
-h1 a:active    {text-decoration:underline;}
+h1 a:visited   {text-decoration:none; color:#92CD4D;}
+h1 a:hover     {text-decoration:underline; color:#92CD4D;}
+h1 a:active    {text-decoration:underline; color:#92CD4D;}
 
 h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
 h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}

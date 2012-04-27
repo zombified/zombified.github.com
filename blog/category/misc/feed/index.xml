@@ -10,10 +10,22 @@
     <title>happy bubble</title>
     <link>http://zombified.github.com/blog</link>
     <description>Joel Kleier's blog about anything.</description>
-    <pubDate>Sat, 25 Feb 2012 03:50:14 GMT</pubDate>
+    <pubDate>Fri, 27 Apr 2012 02:54:30 GMT</pubDate>
     <generator>Blogofile</generator>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
+    <item>
+      <title>I'm Not Dead Yet!</title>
+      <link>http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</link>
+      <pubDate>Thu, 26 Apr 2012 00:00:00 CDT</pubDate>
+      <category><![CDATA[misc]]></category>
+      <guid isPermaLink="true">http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</guid>
+      <description>I'm Not Dead Yet!</description>
+      <content:encoded><![CDATA[<p>The last several months have been quite eventful for me, and this poor excuse for a blog has been low on my list of priorities -- but no longer!. Well, maybe it's moved up a notch or two.</p>
+<p>I will probably continue my declare 'MelonJS' articles soon, but for now I am on to other things.</p>
+<p>First up is my <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263">ludum dare #23 entry</a>, a text adventure called 'The Tiny World'. It's not fancy, and it's built from scratch (I know, I know -- I probably should have just gone with inform7). Play it if you like, it's probably mediocre at best!</p>
+<p>Second up, my new job is a lot about Python and, more specifically, Plone, so expect to see some posts on those things.</p>]]></content:encoded>
+    </item>
     <item>
       <title>Updates</title>
       <link>http://zombified.github.com/blog/2012/02/24/updates</link>
