@@ -28,6 +28,42 @@ href="/blog/feed/atom" />
         
   
 <div class="bpost">
+  <a name="creating-a-dexterity-type-with-dynamic-fields"></a>
+  <h2 class="blog_post_title"><a href="/blog/2012/04/27/creating-a-dexterity-type-with-dynamic-fields" rel="bookmark" title="Permanent Link to Creating a Dexterity Type with Dynamic Fields">Creating a Dexterity Type with Dynamic Fields</a></h2>
+    <div class="post_prose">
+    
+  <p>Currently I'm working on a product to manage events (<a href="https://github.com/zombified/collective.eventmanager">collective.eventmanager</a>) for <a href="http://wildcardcorp.com/">Wildcard Corp.</a>. This event manager requires that people register for events -- but each event's registration form may contain different fields.</p>
+<p>So, working with <a href="http://www.nathanvangheem.com/">Nathan Van Gheem</a>, we figured out a way to make a dexterity type read in a list of field descriptions at runtime, then generate normal add and edit forms.</p>
+<p>I have to say, though, that Nathan did most of the figuring -- I was definitely going off on unworkable paths.</p>
+<p>Anyway, it turns out it's really quite simple.</p>
+<p>The meat of it is in <a href="https://github.com/zombified/collective.eventmanager/blob/cb28455a7e89fa0ed2821314a8e57a55414230b9/collective/eventmanager/registration.py">registration.py</a>.</p>
+<p>The <em>IRegistration</em> interface defines a few fields that will always be associated with a registration item, and is a regular interface used to define a zope schema for use with dexterity.</p>
+<p>To add other fields dynamically, the Edit and Add forms need to be customized, as seen with the <em>EditForm</em> and <em>AddForm</em> classes. In each of the classes, we override the <em>updateFields</em> method, but the call to the <em>addDynamicFields</em> method does most of the work:</p>
+<pre><code>def addDynamicFields(form, reg_fields):
+    for fielddata in reg_fields:
+        field = getattr(schema, fielddata['fieldtype'])(
+                    title=unicode(fielddata['name']),
+                    required=fielddata['required'])
+        field.__name__ = str(fielddata['name'])
+        field.interface = IRegistration
+        utils.add(form, field)
+</code></pre>
+<p>It, essentially, is taking a list of field definitions. We've chosen to only have a Name, Type, and Required attribute for each field dynamically created, so when we call <em>getattr</em>, we are creating a field based on the through-the-web (dynamic) values.</p>
+<p>The field is given a name, and, the most important part, we assign it's interface to be the <em>IRegistration</em> interface, which is used to define the Registration type through the normal dexterity process.</p>
+<p>The last line of the funciton calls the <em>utils.add</em> method located in <em>plone.z3cform.fieldsets</em> -- this adds the field to the form and correctly updates everything.</p>
+<p>Check out the code, it's pretty slick! Big thank you to Nathan for figuring a bunch of that stuff out!</p>
+
+  </div>
+    <div class='foot'>April 27, 2012 | categories: 
+    
+    <a href='/blog/category/dexterity'>dexterity</a>, <a href='/blog/category/plone'>plone</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
   <a name="i'm-not-dead-yet!"></a>
   <h2 class="blog_post_title"><a href="/blog/2012/04/26/i'm-not-dead-yet!" rel="bookmark" title="Permanent Link to I'm Not Dead Yet!">I'm Not Dead Yet!</a></h2>
     <div class="post_prose">
@@ -119,24 +155,6 @@ href="/blog/feed/atom" />
     <div class='foot'>January 27, 2012 | categories: 
     
     <a href='/blog/category/code'>code</a>, <a href='/blog/category/compilers'>compilers</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="website-stuff"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/12/07/website-stuff" rel="bookmark" title="Permanent Link to Website stuff">Website stuff</a></h2>
-    <div class="post_prose">
-    
-  <p>Spent a little time re-arranging my website. Nothing fancy, just a few tweaks. I kind of like it plain text... need to find the time to style it slightly though. The typeface is hurting my eyes a little.</p>
-<p>Also updated my twitter username! 'pbdiode'. Figured I'd stick with it since that's what I'm registered at <a href="http://ludumdare.com">ld48</a> with. It's time for a change I think.</p>
-
-  </div>
-    <div class='foot'>December 07, 2011 | categories: 
-    
-    <a href='/blog/category/ld48'>LD48</a>, <a href='/blog/category/gamedev'>gamedev</a></div>
 </div>
 
 
