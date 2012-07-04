@@ -7,63 +7,12 @@
   <title type="text">happy bubble</title>
   <subtitle type="text">Joel Kleier's blog about anything.</subtitle>
 
-  <updated>2012-04-28T15:08:38Z</updated>
+  <updated>2012-07-04T10:44:20Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://zombified.github.com/blog" />
   <id>http://zombified.github.com/blog/feed/atom/</id>
   <link rel="self" type="application/atom+xml" href="http://zombified.github.com/blog/feed/atom/" />
-  <entry>
-    <author>
-      <name></name>
-      <uri>http://zombified.github.com/blog</uri>
-    </author>
-    <title type="html"><![CDATA[Creating a Dexterity Type with Dynamic Fields]]></title>
-    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/04/27/creating-a-dexterity-type-with-dynamic-fields" />
-    <id>http://zombified.github.com/blog/2012/04/27/creating-a-dexterity-type-with-dynamic-fields</id>
-    <updated>2012-04-27T00:00:00Z</updated>
-    <published>2012-04-27T00:00:00Z</published>
-    <category scheme="http://zombified.github.com/blog" term="dexterity" />
-    <category scheme="http://zombified.github.com/blog" term="plone" />
-    <summary type="html"><![CDATA[Creating a Dexterity Type with Dynamic Fields]]></summary>
-    <content type="html" xml:base="http://zombified.github.com/blog/2012/04/27/creating-a-dexterity-type-with-dynamic-fields"><![CDATA[<p>Currently I'm working on a product to manage events (<a href="https://github.com/zombified/collective.eventmanager">collective.eventmanager</a>) for <a href="http://wildcardcorp.com/">Wildcard Corp.</a>. This event manager requires that people register for events -- but each event's registration form may contain different fields.</p>
-<p>So, working with <a href="http://www.nathanvangheem.com/">Nathan Van Gheem</a>, we figured out a way to make a dexterity type read in a list of field descriptions at runtime, then generate normal add and edit forms.</p>
-<p>I have to say, though, that Nathan did most of the figuring -- I was definitely going off on unworkable paths.</p>
-<p>Anyway, it turns out it's really quite simple.</p>
-<p>The meat of it is in <a href="https://github.com/zombified/collective.eventmanager/blob/cb28455a7e89fa0ed2821314a8e57a55414230b9/collective/eventmanager/registration.py">registration.py</a>.</p>
-<p>The <em>IRegistration</em> interface defines a few fields that will always be associated with a registration item, and is a regular interface used to define a zope schema for use with dexterity.</p>
-<p>To add other fields dynamically, the Edit and Add forms need to be customized, as seen with the <em>EditForm</em> and <em>AddForm</em> classes. In each of the classes, we override the <em>updateFields</em> method, but the call to the <em>addDynamicFields</em> method does most of the work:</p>
-<pre><code>def addDynamicFields(form, reg_fields):
-    for fielddata in reg_fields:
-        field = getattr(schema, fielddata['fieldtype'])(
-                    title=unicode(fielddata['name']),
-                    required=fielddata['required'])
-        field.__name__ = str(fielddata['name'])
-        field.interface = IRegistration
-        utils.add(form, field)
-</code></pre>
-<p>It, essentially, is taking a list of field definitions. We've chosen to only have a Name, Type, and Required attribute for each field dynamically created, so when we call <em>getattr</em>, we are creating a field based on the through-the-web (dynamic) values.</p>
-<p>The field is given a name, and, the most important part, we assign it's interface to be the <em>IRegistration</em> interface, which is used to define the Registration type through the normal dexterity process.</p>
-<p>The last line of the funciton calls the <em>utils.add</em> method located in <em>plone.z3cform.fieldsets</em> -- this adds the field to the form and correctly updates everything.</p>
-<p>Check out the code, it's pretty slick! Big thank you to Nathan for figuring a bunch of that stuff out!</p>]]></content>
-  </entry>
-  <entry>
-    <author>
-      <name></name>
-      <uri>http://zombified.github.com/blog</uri>
-    </author>
-    <title type="html"><![CDATA[I'm Not Dead Yet!]]></title>
-    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!" />
-    <id>http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!</id>
-    <updated>2012-04-26T00:00:00Z</updated>
-    <published>2012-04-26T00:00:00Z</published>
-    <category scheme="http://zombified.github.com/blog" term="misc" />
-    <summary type="html"><![CDATA[I'm Not Dead Yet!]]></summary>
-    <content type="html" xml:base="http://zombified.github.com/blog/2012/04/26/i'm-not-dead-yet!"><![CDATA[<p>The last several months have been quite eventful for me, and this poor excuse for a blog has been low on my list of priorities -- but no longer!. Well, maybe it's moved up a notch or two.</p>
-<p>I will probably continue my declare 'MelonJS' articles soon, but for now I am on to other things.</p>
-<p>First up is my <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263">ludum dare #23 entry</a>, a text adventure called 'The Tiny World'. It's not fancy, and it's built from scratch (I know, I know -- I probably should have just gone with inform7). Play it if you like, it's probably mediocre at best!</p>
-<p>Second up, my new job is a lot about Python and, more specifically, Plone, so expect to see some posts on those things.</p>]]></content>
-  </entry>
   <entry>
     <author>
       <name></name>
@@ -100,23 +49,6 @@
 <p>It provides a location for melonJS to create it's render surface. The ID is arbitrary, and is used in the call to "<code>me.video.init</code>".</p>
 <h3>PlayScreen.js</h3>
 <p>For now, this is just an empty object. We will be using this object to build up our PLAY state later on.</p>]]></content>
-  </entry>
-  <entry>
-    <author>
-      <name></name>
-      <uri>http://zombified.github.com/blog</uri>
-    </author>
-    <title type="html"><![CDATA[Updates]]></title>
-    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2012/02/24/updates" />
-    <id>http://zombified.github.com/blog/2012/02/24/updates</id>
-    <updated>2012-02-24T00:00:00Z</updated>
-    <published>2012-02-24T00:00:00Z</published>
-    <category scheme="http://zombified.github.com/blog" term="misc" />
-    <summary type="html"><![CDATA[Updates]]></summary>
-    <content type="html" xml:base="http://zombified.github.com/blog/2012/02/24/updates"><![CDATA[<p>I Decided to sit down and design a new theme, which is still rough and in development. </p>
-<p>I also decided it was time to move my website over to github. This is for a couple of reasons... so I don't have all my eggs in one basket (Google), and so I don't have to do as much maintenance.</p>
-<p>Basically the appengine tools are tools that I only use for updating my website/blog. Why not replace those tools with a single tool that I use for other stuff to?</p>
-<p>Now I just need to use git, which I don't have to manually update and setup since it's in my OS's package repositories! Woohoo, less work for me!</p>]]></content>
   </entry>
   <entry>
     <author>
@@ -269,6 +201,95 @@
 <li>Implement player lives</li>
 <li>Add texture for paddle and ball</li>
 <li>Start implementing a game-over state -- for now just show if player won or lost</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p7]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/23/bd2-p7" />
+    <id>http://zombified.github.com/blog/2011/10/23/bd2-p7</id>
+    <updated>2011-10-23T00:00:00Z</updated>
+    <published>2011-10-23T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p7]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/23/bd2-p7"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Finished the physics utility function</li>
+<li>Added paddle and paddle collision (it even shrinks when the first red brick gets destroyed!)</li>
+<li>Added score -- red are 7, orange are 5, green are 3, and yellow are 1</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p><img alt="BD2 2011-10-23 Screenshot" src="/pics/bd2_screen20111023.png" title="BD2 2011-10-23 Screenshot" /></p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Add mouse events to game state manager</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
+<li>Implent selection indicator triangle on start menu</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p6]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/22/bd2-p6" />
+    <id>http://zombified.github.com/blog/2011/10/22/bd2-p6</id>
+    <updated>2011-10-22T00:00:00Z</updated>
+    <published>2011-10-22T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p6]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/22/bd2-p6"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Finished implementing the startmenu with placeholder graphics, and excepting the selection indicator triangle</li>
+<li>Put up the board, and got a ball colliding with the bricks -- the collision detection definitely works well this time around.</li>
+<li>Started to work on a physics utility function to determine the direction and magnatude of a bounce, which shouldn't be to much to finish tomorrow</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p>None today, sorry! Next time, I swear!</p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Finish the physics utility function to determine direction and magnatude of a bounce</li>
+<li>Add mouse events to game state manager</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
+<li>Implent selection indicator triangle on start menu</li>
+</ul>]]></content>
+  </entry>
+  <entry>
+    <author>
+      <name></name>
+      <uri>http://zombified.github.com/blog</uri>
+    </author>
+    <title type="html"><![CDATA[BD2 p5]]></title>
+    <link rel="alternate" type="text/html" href="http://zombified.github.com/blog/2011/10/21/bd2-p5" />
+    <id>http://zombified.github.com/blog/2011/10/21/bd2-p5</id>
+    <updated>2011-10-21T00:00:00Z</updated>
+    <published>2011-10-21T00:00:00Z</published>
+    <category scheme="http://zombified.github.com/blog" term="python" />
+    <category scheme="http://zombified.github.com/blog" term="gamedev" />
+    <category scheme="http://zombified.github.com/blog" term="pygame" />
+    <category scheme="http://zombified.github.com/blog" term="BD2" />
+    <summary type="html"><![CDATA[BD2 p5]]></summary>
+    <content type="html" xml:base="http://zombified.github.com/blog/2011/10/21/bd2-p5"><![CDATA[<p><em>What I've Done</em></p>
+<ul>
+<li>Implemented a basic game state management library -- need to finish hooking menu buttons into the main program, but otherwise all methods should be called. The switch between states seems to work flawlessly.</li>
+</ul>
+<p><em>Screen Shot (s)</em></p>
+<p>None today, sorry!</p>
+<p><em>Near Future TODO</em></p>
+<ul>
+<li>Add mouse events to game state manager</li>
+<li>Get a menu up and working</li>
+<li>Get timing information (delta to pass into update method for a gamestate)</li>
 </ul>]]></content>
   </entry>
 </feed>

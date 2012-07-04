@@ -76,9 +76,9 @@ ul li {list-style:disc;}
 ol li {list-style:decimal;}
 
 a:link      {text-decoration:none; color:#C40F4F;}
-a:visited   {text-decoration:none;}
-a:hover     {text-decoration:underline;}
-a:active    {text-decoration:underline;}
+a:visited   {text-decoration:none; color:#C40F4F;}
+a:hover     {text-decoration:underline; color:#92CD4D;}
+a:active    {text-decoration:underline; color:#C40F4F;}
 
 h1 a:link      {text-decoration:none; color:#92CD4D;}
 h1 a:visited   {text-decoration:none; color:#92CD4D;}
@@ -89,15 +89,25 @@ h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
 h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
 h3 {font-size:1.2em; font-weight:bold; margin:.2em 0;}
 
-.wrapper
-{
-    width: 790px;
+.wrapper {
+    width: 806px;
     margin: 0 auto;
-    background-color: white;
-    padding: 5px;
+    background: #ddd url(images/contentbackground.png) repeat-y fixed top center;
+    padding: 0px 18px 5px 18px;
 }
 
-.bpost {margin-top:1.8em;}
+.wrapper .header {
+    background: white url(images/banner.png) no-repeat top center;
+    height: 280px;
+    margin: 0 5px;
+}
+
+.wrapper .header h1 { display: none; }
+
+.bpost {
+    margin-top: 1.8em;
+    margin-left: 10px;
+}
 .bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.9em; border-bottom: 2px solid #666; padding-bottom:5px;}
 
 .footer {margin-top:1.8em; background-color: #ddd; padding: 5px; color: #777;}

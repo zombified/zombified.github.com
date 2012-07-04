@@ -7,6 +7,8 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     
     <title>happy bubble</title>
+<link rel='shortcut icon' href='/favicon.png' />
+
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/blog/feed" />
 <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
 href="/blog/feed/atom" />
@@ -26,78 +28,6 @@ href="/blog/feed/atom" />
     </div>
     <div class='content'>
         
-  
-<div class="bpost">
-  <a name="debugging-webgl"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/09/09/debugging-webgl" rel="bookmark" title="Permanent Link to Debugging WebGL">Debugging WebGL</a></h2>
-    <div class="post_prose">
-    
-  <p>In experimenting with webgl, I've found the webgl-debug.js script (from the khronos group) extremely helpful.</p>
-<p>You can find it, and directions for using it, at: <a href="http://www.khronos.org/webgl/wiki/Debugging">www.khronos.org/webgl/wiki/Debugging</a></p>
-<p>You can also find a link to the WebGL Inspector there as well, which seems like it might be a really useful tool, but with my small experiments thus far, I haven't had the chance to make use of it.</p>
-<p>I also found this nice little utility from mrdoob: <a href="https://github.com/mrdoob/stats.js">stats.js</a> -- it provides FPS and Milliseconds-Per-Frame numbers (along with little charts) and can provide a memory size statistic too, but for that you need to pass special parameters into chrome/safari (at least at the time of this writing).</p>
-
-  </div>
-    <div class='foot'>September 09, 2011 | categories: 
-    
-    <a href='/blog/category/webgl'>webgl</a>, <a href='/blog/category/dev'>dev</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="more-experimentation"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/08/29/more-experimentation" rel="bookmark" title="Permanent Link to More experimentation">More experimentation</a></h2>
-    <div class="post_prose">
-    
-  <p>I've been doing a bit of experimentation with languages!</p>
-<ul>
-<li><em>Clojure</em> was interesting, I haven't done much with lisp before, so this was someone of an experience! I definitely enjoyed the absolute simplicity of the syntax and the idea that your code is just data. Fascinating stuff.</li>
-<li><em>Scala</em> was different... OO + Functional programming melded together to provide a language with a lot of syntax, but the power to be concise and as fast as any java application.</li>
-<li><em>F#</em> -- this one I'm just starting with. It's another OO + Functional language, apparently in the vein of OCaml (which I have zero experience with). So far, I'm rather liking it -- I may even stick with it for long enough to create something substantial with it!</li>
-</ul>
-
-  </div>
-    <div class='foot'>August 29, 2011 | categories: 
-    
-    <a href='/blog/category/fsharp'>fsharp</a>, <a href='/blog/category/clojure'>clojure</a>, <a href='/blog/category/dev'>dev</a>, <a href='/blog/category/scala'>scala</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
-  
-<div class="bpost">
-  <a name="fighting-with-my-system-and-myself"></a>
-  <h2 class="blog_post_title"><a href="/blog/2011/08/02/fighting-with-my-system-and-myself" rel="bookmark" title="Permanent Link to Fighting with my system and myself">Fighting with my system and myself</a></h2>
-    <div class="post_prose">
-    
-  <p>Inspired by (Manic Digger)[http://manicdigger.sourceforge.net/news/], I decided to do some Mono experimentation.</p>
-<p>For my experiments, I decided to use OpenTK -- the same as used in ManicDigger.</p>
-<p>I am using monodevelop, but I did not realize it doesn't behave like VS in it's build actions -- it does not copy the assemblies required by your application into it's target directory. So I was getting "The entry point method could not be loaded" error messages, but I could not see the rest of the very helpful message, an issue with the setup I was using. I'm not sure if the message was just being clipped, or what.</p>
-<p>After a lot of reconfiguring, poking, and googling, my dumb self finally switched to a different setup and saw the rest of the error message:</p>
-<pre><code>** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: The following assembly referenced from &lt;project directory&gt;/bin/Debug/bd2cs.exe could not be loaded:
-     Assembly:   OpenTK    (assemblyref_index=0)
-     Version:    1.0.0.0
-     Public Key: bad199fe84eb3df4
-The assembly was not found in the Global Assembly Cache, a path listed in the MONO_PATH environment variable, or in the location of the executing assembly (&lt;project directory&gt;/bin/Debug/).
-
-** (&lt;project directory&gt;/bin/Debug/bd2cs.exe:7982): WARNING **: Could not load file or assembly 'OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4' or one of its dependencies.
-The entry point method could not be loaded
-</code></pre>
-<p>The mono runtime can't find the OpenTK.dll assembly. Simple enough -- just setup a command to execute after the project is built to copy the OpenTK.dll file into the target directory!</p>
-
-  </div>
-    <div class='foot'>August 02, 2011 | categories: 
-    
-    <a href='/blog/category/mono'>mono</a>, <a href='/blog/category/dev'>dev</a></div>
-</div>
-
-
-
-  <hr class="interblog" />
   
 <div class="bpost">
   <a name="ping.3"></a>
@@ -133,6 +63,91 @@ The entry point method could not be loaded
     <div class='foot'>June 21, 2011 | categories: 
     
     <a href='/blog/category/ping'>Ping</a>, <a href='/blog/category/android'>android</a>, <a href='/blog/category/gamedev'>gamedev</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
+  <a name="ping.1"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/06/21/ping.1" rel="bookmark" title="Permanent Link to Ping.1">Ping.1</a></h2>
+    <div class="post_prose">
+    
+  <p>I've decided that it would be interesting to make a few games and put them out on the Android Market. Nothing fancy, just some fun little arcade games. I'm not planning on porting these games to other systems either, so I can focus on using the Java and the Android SDK. I'm also specifically targetting phones, no tablets or TV's, etc. I'm also only targetting devices that have Android 2.x on them, at least for now.</p>
+<p>The first game is going to be called 'Ping' -- not really all that original, but it will suffice. It is going to be a 'Pong' clone, and will not have any gameplay elements other than the original. It's just 2 paddles (AI vs Human), 2 'goals', 2 walls, 1 ball, and a score.</p>
+<p>My plan is to make the game as polished as I can -- I want smooth animations, crisp graphics, and as few bugs as possible.</p>
+<p>My plan is as follows:</p>
+<ol>
+<li>Install and prep Android SDK</li>
+<li>Compile sample 'hello world' app and push it to my (dev) phone to make sure everything works</li>
+<li>Create a bare-bones app that doesn't do anything except initialize a drawing surface of some kind</li>
+<li>Build on the previous app to add input -- input should be reconfigureable by the user (different phones have different inputs). There should be an entirely touch input method.</li>
+<li>Build on the previous app to add a background image -- should be reconfigurable by the user</li>
+<li>Build on the previous app to add bouncing ball -- there should be no goals yet</li>
+<li>Build on the previous app to add 2 paddles -- player should control one of them (which one should be configurable by user)</li>
+<li>Build on the previous app to add ball physics to the paddles -- IE, the ball bounces off the paddles</li>
+<li>Build on the previous app to add a score-board to the screen</li>
+<li>Build on the previous app to remove 2 walls and keep score -- this means tracking when the ball leaves the field, performing a score increment, and reseting the ball</li>
+<li>Build on the previous app to make the non-player paddle an ai -- the ai should be configurable as 'easy', 'medium', 'hard', 'impossible'</li>
+<li>Clean up the app</li>
+<li>Create webpage for it</li>
+<li>Publish to Android Market</li>
+</ol>
+<p>Definitely not comprhensive, but a good framework for me to work within. I've already done steps 1 and 2. My next entry will be about step 3, creating a bare-bones app that doesn't do anything except initialize a drawing surface of some kind.</p>
+
+  </div>
+    <div class='foot'>June 21, 2011 | categories: 
+    
+    <a href='/blog/category/ping'>Ping</a>, <a href='/blog/category/android'>android</a>, <a href='/blog/category/gamedev'>gamedev</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
+  <a name="a-new-host!"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/05/21/a-new-host!" rel="bookmark" title="Permanent Link to A New Host!">A New Host!</a></h2>
+    <div class="post_prose">
+    
+  <p>I decided to get off of Linode, and the first step is moving my website to a host of some sort. I decided that I didn't need all the features of a CMS or big framework (like drupal, plone, etc, etc), especially with the amount of embeddable web services out there!</p>
+<p>Instead, I'm opting to statically generate all my sites (more secure, smaller, and less complex). To do this, I use a really nice application by the name of <a href="http://blogofile.com">blogofile</a>. This allows me to template a site, then add content with a somewhat standard formatting language (like <a href="http://daringfireball.net/projects/markdown/">markdown</a>).</p>
+<p>Another upside to generating a static website is that I can host it pratically anywhere for <em>cheap</em>. The host I ended up picking was Google AppEngine. I picked the AppEngine because it allows me to host a static site (with some fiddling) and allows me to make certain bits of my site dynamic as I need to. It also allows me to host my stuff for free (up to certain quotas, which my site will likely never exceed), and provides a fast distributed system that I don't have to manage at all.</p>
+<p>Maybe in a future post I'll go into more detail about my setup, but for now I'm not done yet! I'm just getting started!</p>
+
+  </div>
+    <div class='foot'>May 21, 2011 | categories: 
+    
+    <a href='/blog/category/uncategorized'>Uncategorized</a></div>
+</div>
+
+
+
+  <hr class="interblog" />
+  
+<div class="bpost">
+  <a name="python-+-twisted-+-irc"></a>
+  <h2 class="blog_post_title"><a href="/blog/2011/04/14/python-+-twisted-+-irc" rel="bookmark" title="Permanent Link to Python + Twisted + IRC">Python + Twisted + IRC</a></h2>
+    <div class="post_prose">
+    
+  <p>This was my first experience with the twisted library, and I have to say that it turned out pretty nice for creating an IRC bot.</p>
+<p>For the most part, it's follows the design presented in the <a href="http://twistedmatrix.com/documents/current/core/howto/clients.html">Writing Clients</a> tutorial found on <a href="http://twistedmatrix.com">twistedmatrix.com</a>.</p>
+<p>The only thing of note is how I was able to implement events not explicitly defined in the <a href="http://twistedmatrix.com/documents/10.2.0/api/twisted.words.protocols.irc.IRCClient.html">twisted.words.protocols.irc.IRCClient</a> class. It took me some digging (probably because I don't really understand Twisted very well), but I found that if the IRCClient sees an unknown IRC command, it will call a function in the form of <em>irc_COMMAND</em></p>
+<p>So, for instance, I needed to get the name list of everyone on a channel. I ended up writing the following code:</p>
+<pre><code>def irc_RPL_NAMREPLY(self, *nargs):
+    print ""
+
+def irc_RPL_ENDOFNAMES(self, *nargs):
+    pass
+    #print "END OF NAMES"
+</code></pre>
+<p>Now my bot will handle the RPL_NAMREPLY and RPL_ENDOFNAMES commands.</p>
+
+  </div>
+    <div class='foot'>April 14, 2011 | categories: 
+    
+    <a href='/blog/category/uncategorized'>Uncategorized</a></div>
 </div>
 
 
