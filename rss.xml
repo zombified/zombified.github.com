@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+<title>Electric Froth</title>
+<link></link>
+<description>Just another blog, but this one's by Joel Kleier</description>
+<language>en-us</language>
+<pubDate>Tue, 21 Aug 2012 21:11:11 -0000</pubDate>
+<lastBuildDate>Tue, 21 Aug 2012 21:11:11 -0000</lastBuildDate>
+<docs>http://joelkleier.com</docs>
+<generator>Poole</generator>
+
+<item>
+    <title>Ludum Dare 24</title>
+    <link>/posts/2012/08/ld48-24.html</link>
+    <description>The Ludum Dare 48 hour competition is coming up fast, what am I doing to prepare?</description>
+    <pubDate>Tue, 21 Aug 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/08/ld48-24.html</guid>
+</item>
+
+</channel>
+</rss>

@@ -1,122 +1,82 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-v2.0b1 | 201101 
-NOTE: WORK IN PROGRESS
-USE WITH CAUTION AND TEST WITH ABANDON */
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-font-size: 100%;
-font: inherit;
-vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-display: block;
-}
-body {
-line-height: 1;
-}
-ol, ul {
-list-style: none;
-}
-blockquote, q {
-quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-content: '';
-content: none;
+html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* remember to define visible focus styles! 
-:focus {
-outline: ?????;
-} */
-
-/* remember to highlight inserts somehow! */
-ins {
-text-decoration: none;
-}
-del {
-text-decoration: line-through;
+h1 {
+    font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 3em;
+    font-weight: 100;
+    letter-spacing: 0.08em;
 }
 
-table {
-border-collapse: collapse;
-border-spacing: 0;
+h1 span {
+    margin-top: 1em;
+    display: inline-block;
+}
+
+h1 a:link {text-decoration: none; color: black;}
+h1 a:visited {}
+h1 a:hover {}
+h1 a:active {}
+
+h2 {
+    font-weight: 200;
+    letter-spacing: 0.08em;
+}
+
+h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: 0.08em;
 }
 
 
-
-
-body {background-color:#999;}
-
-p {margin:10px 5px; line-height:120%;}
-
-pre {margin:30px;}
-code {font-family:mono;}
-
-ul, ol {margin:10px 0px 20px 50px;}
-ul li {list-style:disc;}
-ol li {list-style:decimal;}
-
-a:link      {text-decoration:none; color:#C40F4F;}
-a:visited   {text-decoration:none; color:#C40F4F;}
-a:hover     {text-decoration:underline; color:#92CD4D;}
-a:active    {text-decoration:underline; color:#C40F4F;}
-
-h1 a:link      {text-decoration:none; color:#92CD4D;}
-h1 a:visited   {text-decoration:none; color:#92CD4D;}
-h1 a:hover     {text-decoration:underline; color:#92CD4D;}
-h1 a:active    {text-decoration:underline; color:#92CD4D;}
-
-h1 {font-size:2.4em; font-weight:bold; margin:.7em 0;}
-h2 {font-size:1.5em; font-weight:bold; margin:.3em 0;}
-h3 {font-size:1.2em; font-weight:bold; margin:.2em 0;}
-
-.wrapper {
-    width: 806px;
-    margin: 0 auto;
-    background: #ddd url(images/contentbackground.png) repeat-y fixed top center;
-    padding: 0px 18px 5px 18px;
+nav ul,
+nav li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.wrapper .header {
-    background: white url(images/banner.png) no-repeat top center;
-    height: 280px;
-    margin: 0 5px;
+nav ul li {
+    float: left;
+    margin: 0 .5em;
 }
 
-.wrapper .header h1 { display: none; }
+a:link {text-decoration: none;}
+a:visited {}
+a:hover {text-decoration: underline;}
+a:active {}
 
-.bpost {
-    margin-top: 1.8em;
-    margin-left: 10px;
+ul {
+    list-style-image: url('images/sword-bullet.png');
 }
-.bpost .foot {font-size:smaller; font-style:italic; color: #444; margin-top:.9em; border-bottom: 2px solid #666; padding-bottom:5px;}
 
-.footer {margin-top:1.8em; background-color: #ddd; padding: 5px; color: #777;}
+ul {
+    padding-left: 3.5em;
+}
 
-.postwrap {width:500px;}
+article#content {
+    clear: both;
+    margin-top: 4em;
+    margin-bottom: 2em;
+    margin-left: 1em;
+    max-width: 600px;
+}
 
-.homenavigation {width:270px; float:right; text-align:center; border-left:1px solid #ddd;}
-.homenavigation ul {padding-bottom:.4em; margin:0;}
-.homenavigation li {padding-top:.2em; list-style:none;}
+ul#bloglist li.first {
+    margin-top: 0;
+}
 
-.homenavigation h3 {margin-top:20px; font-style:italic;}
+ul#bloglist li {
+    margin-top: 1em;
+}
 
+ul#bloglist li .date {
+    font-style: italic;
+    font-size: .75em;
+}
+
+div#postdate {
+    font-style: italic;
+    font-size: .85em;
+}
