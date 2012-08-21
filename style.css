@@ -9,6 +9,10 @@ h1 {
     letter-spacing: 0.08em;
 }
 
+h1 img {
+    float: left;
+}
+
 h1 span {
     margin-top: 1em;
     display: inline-block;
