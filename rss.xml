@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Sun, 26 Aug 2012 18:03:38 -0000</pubDate>
-<lastBuildDate>Sun, 26 Aug 2012 18:03:38 -0000</lastBuildDate>
+<pubDate>Tue, 04 Sep 2012 13:42:55 -0000</pubDate>
+<lastBuildDate>Tue, 04 Sep 2012 13:42:55 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>Raspberry Pi!!!!</title>
+    <link>/posts/2012/09/raspberrypi.html</link>
+    <description>Just got my Raspberry Pi in the mail, check out the unboxing!</description>
+    <pubDate>Tue, 04 Sep 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/09/raspberrypi.html</guid>
+</item>
 
 <item>
     <title>And so it begins #LD48</title>
