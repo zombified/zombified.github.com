@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Tue, 04 Sep 2012 13:42:55 -0000</pubDate>
-<lastBuildDate>Tue, 04 Sep 2012 13:42:55 -0000</lastBuildDate>
+<pubDate>Sun, 09 Sep 2012 12:46:26 -0000</pubDate>
+<lastBuildDate>Sun, 09 Sep 2012 12:46:26 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>My First Mead</title>
+    <link>/posts/2012/09/myfirstmead.html</link>
+    <description>I've decided to experiment with brewing, and what better way than to start with a simple mead?</description>
+    <pubDate>Sun, 09 Sep 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/09/myfirstmead.html</guid>
+</item>
 
 <item>
     <title>Raspberry Pi!!!!</title>
@@ -16,6 +24,14 @@
     <description>Just got my Raspberry Pi in the mail, check out the unboxing!</description>
     <pubDate>Tue, 04 Sep 2012 17:00:00 -0000</pubDate>
     <guid>/posts/2012/09/raspberrypi.html</guid>
+</item>
+
+<item>
+    <title>tmux cheat sheet</title>
+    <link>/posts/2012/09/tmuxcheatsheet.html</link>
+    <description>Well, I like using tmux and thought it'd be nice to collect</description>
+    <pubDate>Tue, 04 Sep 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/09/tmuxcheatsheet.html</guid>
 </item>
 
 <item>

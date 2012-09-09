@@ -55,7 +55,7 @@ ul {
     list-style-image: url('images/sword-bullet.png');
 }
 
-ul {
+ul, ol {
     padding-left: 3.5em;
 }
 
