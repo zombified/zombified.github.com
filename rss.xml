@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Sun, 09 Sep 2012 12:46:26 -0000</pubDate>
-<lastBuildDate>Sun, 09 Sep 2012 12:46:26 -0000</lastBuildDate>
+<pubDate>Sat, 15 Sep 2012 17:46:05 -0000</pubDate>
+<lastBuildDate>Sat, 15 Sep 2012 17:46:05 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>0x0001 - Eggnog</title>
+    <link>/posts/2012/09/eggnog.html</link>
+    <description>Preparing some eggnog for the winter months!</description>
+    <pubDate>Sat, 15 Sep 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/09/eggnog.html</guid>
+</item>
 
 <item>
     <title>My First Mead</title>
