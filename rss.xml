@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Sat, 15 Sep 2012 17:46:05 -0000</pubDate>
-<lastBuildDate>Sat, 15 Sep 2012 17:46:05 -0000</lastBuildDate>
+<pubDate>Tue, 09 Oct 2012 12:41:46 -0000</pubDate>
+<lastBuildDate>Tue, 09 Oct 2012 12:41:46 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>LD48 #24 "And Thus She Spake" Post Mortem</title>
+    <link>/posts/2012/10/ld48-24-postmortem.html</link>
+    <description>A look back at what went right, what went wrong, and how I think I could improve</description>
+    <pubDate>Tue, 09 Oct 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/10/ld48-24-postmortem.html</guid>
+</item>
 
 <item>
     <title>0x0001 - Eggnog</title>
