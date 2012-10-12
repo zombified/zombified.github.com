@@ -84,3 +84,32 @@ div#postdate {
     font-style: italic;
     font-size: .85em;
 }
+
+
+@media handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px) 
+{ 
+    header h1 a img {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    article#content {
+        margin-left: auto;
+    }
+
+    ul, ol {
+        padding-left: 1.5em;
+    }
+
+    ul {
+        list-style-image: none;
+    }
+
+    h4, h5, h6 {
+        font-style: italic;
+    }
+}
+
