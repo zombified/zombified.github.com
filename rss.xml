@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Fri, 12 Oct 2012 15:28:00 -0000</pubDate>
-<lastBuildDate>Fri, 12 Oct 2012 15:28:00 -0000</lastBuildDate>
+<pubDate>Tue, 30 Oct 2012 04:33:33 -0000</pubDate>
+<lastBuildDate>Tue, 30 Oct 2012 04:33:33 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>Game-Off 2012 and some Haxe/NME+HaxePunk</title>
+    <link>/posts/2012/10/game-off-2012.html</link>
+    <description>Github is hosting a month long game making competition, and I want to share some code that describes how to do a simple tween w/ the HaxePunk Library</description>
+    <pubDate>Mon, 29 Oct 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/10/game-off-2012.html</guid>
+</item>
 
 <item>
     <title>LD48 #24 "And Thus She Spake" Post Mortem</title>
