@@ -5,10 +5,18 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Fri, 07 Dec 2012 05:40:35 -0000</pubDate>
-<lastBuildDate>Fri, 07 Dec 2012 05:40:35 -0000</lastBuildDate>
+<pubDate>Tue, 15 Jan 2013 05:07:19 -0000</pubDate>
+<lastBuildDate>Tue, 15 Jan 2013 05:07:19 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
+
+<item>
+    <title>'Apathy' post-mortem</title>
+    <link>/posts/2013/01/ludum-dare-25-postmortem.html</link>
+    <description>Post-mortem of my Ludum Dare #25 Game 'Apathy'</description>
+    <pubDate>Mon, 14 Jan 2013 18:00:00 -0000</pubDate>
+    <guid>/posts/2013/01/ludum-dare-25-postmortem.html</guid>
+</item>
 
 <item>
     <title>My first homebrew bottling experience</title>
