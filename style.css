@@ -59,6 +59,10 @@ ul, ol {
     padding-left: 3.5em;
 }
 
+code {
+    color: mediumvioletred;
+}
+
 article#content {
     clear: both;
     margin-top: 4em;
