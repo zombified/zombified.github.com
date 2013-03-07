@@ -5,17 +5,25 @@
 <link></link>
 <description>Just another blog, but this one's by Joel Kleier</description>
 <language>en-us</language>
-<pubDate>Sat, 02 Mar 2013 18:39:30 -0000</pubDate>
-<lastBuildDate>Sat, 02 Mar 2013 18:39:30 -0000</lastBuildDate>
+<pubDate>Thu, 07 Mar 2013 04:08:31 -0000</pubDate>
+<lastBuildDate>Thu, 07 Mar 2013 04:08:31 -0000</lastBuildDate>
 <docs>http://joelkleier.com</docs>
 <generator>Poole</generator>
 
 <item>
-    <title>HaxePunk [Part 1]</title>
-    <link>/posts/2013/03/haxepunk-pt1.html</link>
+    <title>Haxe Function Signatures</title>
+    <link>/posts/2013/03/haxe-func-sigs.html</link>
+    <description>A quick note about the use of `Dynamic` in Haxe function signatures</description>
+    <pubDate>Wed, 06 Mar 2013 18:00:00 -0000</pubDate>
+    <guid>/posts/2013/03/haxe-func-sigs.html</guid>
+</item>
+
+<item>
+    <title>Setting up a HaxePunk Project</title>
+    <link>/posts/2013/03/haxepunk-setup.html</link>
     <description>Some notes about setting up and using HaxePunk</description>
     <pubDate>Sat, 02 Mar 2013 18:00:00 -0000</pubDate>
-    <guid>/posts/2013/03/haxepunk-pt1.html</guid>
+    <guid>/posts/2013/03/haxepunk-setup.html</guid>
 </item>
 
 <item>
@@ -48,6 +56,14 @@
     <description>Github is hosting a month long game making competition, and I want to share some code that describes how to do a simple tween w/ the HaxePunk Library</description>
     <pubDate>Mon, 29 Oct 2012 17:00:00 -0000</pubDate>
     <guid>/posts/2012/10/game-off-2012.html</guid>
+</item>
+
+<item>
+    <title>HaxePunk LinearTween Example</title>
+    <link>/posts/2012/10/haxepunk-linearpath-tween.html</link>
+    <description>I want to share some example code that describes how to do a simple LinearPath tween w/ the HaxePunk Library</description>
+    <pubDate>Mon, 29 Oct 2012 17:00:00 -0000</pubDate>
+    <guid>/posts/2012/10/haxepunk-linearpath-tween.html</guid>
 </item>
 
 <item>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Electric Froth - Setting up a HaxePunk Project</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type='image/png' href="/favicon.png" />
+    <link rel="stylesheet" type='text/css' href="/style.css" />
+
+    <meta name='viewport' content='width=device-width; initial-scale=1, maximum-scale=1, user-scalable=0' />
+</head>
+<body>
+    <header>
+        <h1><a href='/'><img src='/images/electric-froth-logo.png' alt='Logo' /><span>Electric Froth</span></a></h1>
+        <h2>Setting up a HaxePunk Project</h2>
+        <nav>
+            <ul id='nav'>
+                <li><a href='/about.html'>About</a></li>
+                <li><a href='/index.html'>Blog</a> <a href='/rss.xml'><img src='/images/feed-icon-14x14.png' alt='RSS Feed' /></a></li>
+                <li><a href='/interesting-things.html'>Interesting Things</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id='content'>
+        <p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
+<h2>Setting up the development environment</h2>
+<ol>
+<li>Setup the editor or IDE, I use vim, so install
+     <a href="https://github.com/jdonaldson/vaxe">vaxe</a></li>
+<li>Go to <a href="http://www.nme.io/download/">www.nme.io/download/</a> and follow the
+     instructions</li>
+<li>Install HaxePunk: <code>haxelib install HaxePunk</code></li>
+</ol>
+<h2>Setting up the project</h2>
+<ol>
+<li>Create the project skeleton: <code>haxelib run HaxePunk new [project name]</code>,
+     replacing [project name] with the name of the folder to use for the project</li>
+<li>Edit <code>project.nmml</code> with your project specific details</li>
+<li>Add <code>src/worlds</code> folder to hold your world source files</li>
+<li>Add <code>src/entities</code> folder to hold your entity source files</li>
+</ol>
+<h2>Add some code to make a useable, but very basic HaxePunk project</h2>
+<p>Add this code to <code>src/worlds/Game.hx</code>, it can be used as a very basic jumping
+off point:</p>
+<pre><code>package worlds;
+
+import com.haxepunk.World;
+
+class Game extends World {
+
+    public function new() {
+        super();
+    }
+
+}
+</code></pre>
+<p>Then set HaxePunk to use that world as the active world by adding the following
+to the end of the <code>init</code> function in the <code>Main</code> class (<code>src/Main.hx</code>):</p>
+<pre><code>HXP.world = new worlds.Game();
+</code></pre>
+<h2>Building the project</h2>
+<p>I like using neko to do a lot of my testing and development. It has faster build
+times than for cpp, and I don't have to deal with flash (personal preference).</p>
+<p><code>nme test project.nmml neko</code></p>
+<p>The 'test' argument just tells nme to update (copy assets) and build the project,
+then to run what was built right away. You can do lots of other things with nme, see the
+nme documentation, or the command line help: <code>nme help</code></p>
+<h2>End thoughts</h2>
+<p>Nothing fancy, but it gets the project up and running. It should be noted that
+a lot of FlashPunk documentation and tutorials are useful when trying to learn
+HaxePunk -- they usually don't match perfectly, but the class and method names
+are mostly the same and available in both, so it's easy to pickup things in
+snippets.</p>
+    </article>
+    <footer id="footer">
+        Built with <a href="http://bitbucket.org/obensonne/poole">Poole</a>
+        &middot;
+        <a href="http://validator.w3.org/check?uri=referer">Validate This Site</a>
+        &middot;
+        &copy; Joel Kleier
+    </footer>
+</body>
+</html>

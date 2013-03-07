@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Electric Froth - Haxe Function Signatures</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type='image/png' href="/favicon.png" />
+    <link rel="stylesheet" type='text/css' href="/style.css" />
+
+    <meta name='viewport' content='width=device-width; initial-scale=1, maximum-scale=1, user-scalable=0' />
+</head>
+<body>
+    <header>
+        <h1><a href='/'><img src='/images/electric-froth-logo.png' alt='Logo' /><span>Electric Froth</span></a></h1>
+        <h2>Haxe Function Signatures</h2>
+        <nav>
+            <ul id='nav'>
+                <li><a href='/about.html'>About</a></li>
+                <li><a href='/index.html'>Blog</a> <a href='/rss.xml'><img src='/images/feed-icon-14x14.png' alt='RSS Feed' /></a></li>
+                <li><a href='/interesting-things.html'>Interesting Things</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id='content'>
+        <p>Just a quick note about this funciton signature:</p>
+<pre><code>Dynamic -&gt; Void
+</code></pre>
+<p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
+<p>For example, if you have this:</p>
+<pre><code>var func:Dynamic -&gt; Void;
+</code></pre>
+<p>You cannot assign func a function that has a void parameter list. It DOES require
+a parameter, but that parameter can be of any type.</p>
+<p>IE, this is <em>bad</em>:</p>
+<pre><code>function foo() {}
+
+// foo is of type Void -&gt; Void, not Dynamic -&gt; Void
+func = foo;
+</code></pre>
+<p>But this is good:</p>
+<pre><code>function foo(bar:Dynamic) {}
+
+func = foo;
+</code></pre>
+<p>It may seem kinda obvious, but I was tripped up on it because I thought <code>Dynamic</code>
+could represent any type of value, including a Void parameter list. Which, in
+hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
+<p><strong>NOTE</strong> This was written for Haxe 2.10</p>
+    </article>
+    <footer id="footer">
+        Built with <a href="http://bitbucket.org/obensonne/poole">Poole</a>
+        &middot;
+        <a href="http://validator.w3.org/check?uri=referer">Validate This Site</a>
+        &middot;
+        &copy; Joel Kleier
+    </footer>
+</body>
+</html>
