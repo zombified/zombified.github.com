@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Electric Froth</title>
-        <link>http://joelkleier.com/</link>
-        <description>This blog is mine. There are many like it, but this one is mine.</description>
-        <language>en</language>
-        <pubDate>Wed, 06 Mar 2013 05:00:00 GMT</pubDate>
-        <docs>http://joelkleier.com/rss.xml</docs>
-        <generator>acrylamid 0.7.6</generator>
-        
-            <item>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <author>
+        <name>Joel Kleier</name>
+        <uri>http://joelkleier.com/</uri>
+        <email>joel@kleier.us</email>
+    </author>
+    <title>Electric Froth</title>
+    <id>tag:joelkleier.com,2011-06-11:/atom.xml</id>
+    <link rel="alternate" type="text/html" href="http://joelkleier.com/" />
+    <link rel="self" type="application/atom+xml" href="http://joelkleier.com/atom.xml" />
+    <icon>http://joelkleier.com/favicon.ico</icon>
+    <logo>http://joelkleier.com/feed-logo.png</logo>
+    <updated>2013-03-06T05:00:00Z</updated>
+    <generator uri="https://github.com/posativ/acrylamid/" version="0.7.6">acrylamid</generator>
+        <entry>
         <title>Haxe Function Signatures</title>
-        <link>http://joelkleier.com/2013/03/haxe-function-signatures/</link>
-        <description>&lt;p&gt;Just a quick note about this function signature:&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/03/haxe-function-signatures/" />
+        <id>tag:joelkleier.com,2013-03-06:/2013/03/haxe-function-signatures</id>
+        <updated>2013-03-06T05:00:00Z</updated>
+        <category term="haxe" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;Just a quick note about this function signature:&lt;/p&gt;
 &lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;Dynamic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -48,15 +61,25 @@ a parameter, but that parameter can be of any type.&lt;/p&gt;
 &lt;p&gt;It may seem kinda obvious, but I was tripped up on it because I thought &lt;code&gt;Dynamic&lt;/code&gt;
 could represent any type of value, including a Void parameter list. Which, in
 hindsight, seems kind of ridiculous, but none-the-less, it happened.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt; This was written for Haxe 2.10&lt;/p&gt;</description>
-        <pubDate>Wed, 06 Mar 2013 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2013-03-06:/2013/03/haxe-function-signatures</guid>
-    </item>
-        
-            <item>
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt; This was written for Haxe 2.10&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Setting up a HaxePunk Project</title>
-        <link>http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/</link>
-        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; updated title to reflect the post a little better&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/" />
+        <id>tag:joelkleier.com,2013-03-02:/2013/03/setting-up-a-haxepunk-project</id>
+        <updated>2013-03-02T05:00:00Z</updated>
+        <category term="haxe" />
+        <category term="nme" />
+        <category term="haxepunk" />
+        <category term="gamedev" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; updated title to reflect the post a little better&lt;/p&gt;
 &lt;h4&gt;Setting up the development environment&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;Setup the editor or IDE, I use vim, so install
@@ -127,15 +150,23 @@ nme documentation, or the command line help:&lt;/p&gt;
 a lot of FlashPunk documentation and tutorials are useful when trying to learn
 HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
 are mostly the same and available in both, so it&#39;s easy to pickup things in
-snippets.&lt;/p&gt;</description>
-        <pubDate>Sat, 02 Mar 2013 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2013-03-02:/2013/03/setting-up-a-haxepunk-project</guid>
-    </item>
-        
-            <item>
+snippets.&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Apathy post-mortem</title>
-        <link>http://joelkleier.com/2013/01/apathy-post-mortem/</link>
-        <description>&lt;p&gt;Well, voting is over for the &lt;a href=&#34;http://ludumdare.com/compo&#34; title=&#34;Ludum Dare 48-hour Competition&#34;&gt;25th Ludum Dare 48-hour competition&lt;/a&gt; and my game &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;amp;uid=7263&#34; title=&#34;&#39;Apathy&#39; Ludum Dare Entry&#34;&gt;&#34;Apathy&#34;&lt;/a&gt; came in
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/01/apathy-post-mortem/" />
+        <id>tag:joelkleier.com,2013-01-14:/2013/01/apathy-post-mortem</id>
+        <updated>2013-01-14T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="ld48" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;Well, voting is over for the &lt;a href=&#34;http://ludumdare.com/compo&#34; title=&#34;Ludum Dare 48-hour Competition&#34;&gt;25th Ludum Dare 48-hour competition&lt;/a&gt; and my game &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;amp;uid=7263&#34; title=&#34;&#39;Apathy&#39; Ludum Dare Entry&#34;&gt;&#34;Apathy&#34;&lt;/a&gt; came in
 a solidly in the middle of the pack.&lt;/p&gt;
 &lt;p&gt;No ratings under 2.3, and I even had 1 rating over 3! Definitely better than my previous entries.&lt;/p&gt;
 &lt;p&gt;The selected theme this time around was &#34;You are the enemy.&#34;&lt;/p&gt;
@@ -168,15 +199,22 @@ hosted on github.&lt;/p&gt;
      none-the-less.&lt;/li&gt;
 &lt;li&gt;On a personal level, I need to develop some mental tools to help push through the feeling of apathy
      myself. It can be a tough enemy.&lt;/li&gt;
-&lt;/ol&gt;</description>
-        <pubDate>Mon, 14 Jan 2013 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2013-01-14:/2013/01/apathy-post-mortem</guid>
-    </item>
-        
-            <item>
+&lt;/ol&gt;</content>
+    </entry>
+    
+        <entry>
         <title>My first homebrew bottling experience</title>
-        <link>http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/</link>
-        <description>&lt;p&gt;It&#39;s been 8 weeks of waiting patiently to bottle some homebrewed booze!&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/" />
+        <id>tag:joelkleier.com,2012-12-06:/2012/12/my-first-homebrew-bottling-experience</id>
+        <updated>2012-12-06T05:00:00Z</updated>
+        <category term="homebrewing" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;It&#39;s been 8 weeks of waiting patiently to bottle some homebrewed booze!&lt;/p&gt;
 &lt;p&gt;I&#39;ve bottle some &lt;a href=&#34;http://joelkleier.com/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; and some hard cider (I didn&#39;t post the recipe for this yet, I&#39;ll get to that though!).&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://joelkleier.com/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; has been dubbed &lt;strong&gt;Dirty Snowman&lt;/strong&gt; under the label &lt;strong&gt;0x01&lt;/strong&gt;, check it out:&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;Dirty Snowman Label&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0001_dirty_snowman_3x4_300dpi.jpg&#34;/&gt;&lt;/p&gt;
@@ -194,15 +232,22 @@ and flavor, it turns out to be really tasty!&lt;/p&gt;
 &lt;p&gt;It has an ABV of aproximately 7.8%. I added some alt-sweetener as a back-sweetener, but stupid me... I did it
 on ALL of my bottles. I could smack myself. I think it was an okay amount, but... it
 might be to much and I can&#39;t experiment any more, or see how an unsweetened bottle might taste. Might have botched
-my first cider at the last moment! Ah well, we&#39;ll see. Live and learn, right?&lt;/p&gt;</description>
-        <pubDate>Thu, 06 Dec 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-12-06:/2012/12/my-first-homebrew-bottling-experience</guid>
-    </item>
-        
-            <item>
+my first cider at the last moment! Ah well, we&#39;ll see. Live and learn, right?&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Game-Off 2012 Followup</title>
-        <link>http://joelkleier.com/2012/11/game-off-2012-followup/</link>
-        <description>&lt;p&gt;&lt;a href=&#34;http://joelkleier.com/posts/2012/10/game-off-2012.html&#34;&gt;Last time&lt;/a&gt; I talked about getting into Github&#39;s game-off-2012 contest and I exclaimed
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/11/game-off-2012-followup/" />
+        <id>tag:joelkleier.com,2012-11-29:/2012/11/game-off-2012-followup</id>
+        <updated>2012-11-29T05:00:00Z</updated>
+        <category term="gamedev" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;&lt;a href=&#34;http://joelkleier.com/posts/2012/10/game-off-2012.html&#34;&gt;Last time&lt;/a&gt; I talked about getting into Github&#39;s game-off-2012 contest and I exclaimed
 how I would blog about my trials and tribulations. Well, it&#39;s been a month and there&#39;s been nothing
 but radio silence! I&#39;ll change that here.&lt;/p&gt;
 &lt;p&gt;A month is a long time to use to create a prototype, however, I did a few stupid things and won&#39;t
@@ -292,15 +337,23 @@ slightly more than that (I usually feel fine with between 6.5 and 7.5 hours).&lt
 &lt;p&gt;I&#39;ll be continuing this project even if I can&#39;t complete it for the contest. I think it
 has potential, and it has been quite enjoyable.&lt;/p&gt;
 &lt;p&gt;I have a lot more to do, so I&#39;m &lt;del&gt;sure&lt;/del&gt; hopeful that I&#39;ll be writing more posts about
-it in the future!&lt;/p&gt;</description>
-        <pubDate>Thu, 29 Nov 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-11-29:/2012/11/game-off-2012-followup</guid>
-    </item>
-        
-            <item>
+it in the future!&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Game-Off 2012 and some Haxe/NME+HaxePunk</title>
-        <link>http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/</link>
-        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; moved haxe related stuff to a &lt;a href=&#34;http://joelkleier.com/posts/2012/10/haxepunk-linearpath-tween.html&#34;&gt;different post&lt;/a&gt;&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/" />
+        <id>tag:joelkleier.com,2012-10-29:/2012/10/game-off-2012-and-some-haxe-nme+haxepunk</id>
+        <updated>2012-10-29T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="haxe" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; moved haxe related stuff to a &lt;a href=&#34;http://joelkleier.com/posts/2012/10/haxepunk-linearpath-tween.html&#34;&gt;different post&lt;/a&gt;&lt;/p&gt;
 &lt;h5&gt;Github Game-Off 2012&lt;/h5&gt;
 &lt;p&gt;&lt;a href=&#34;http://github.com&#34;&gt;Github&lt;/a&gt; is hosting a game making &lt;a href=&#34;http://github.com/github/game-off-2012&#34; title=&#34;Game-Off 2012 Repository&#34;&gt;competition&lt;/a&gt; through the month of November.&lt;/p&gt;
 &lt;p&gt;It needs to be playable in a web browser, and needs to have some relation to
@@ -343,15 +396,23 @@ about this project.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;My immediate goal for this next week is to get the basic game play prototyped out, IE,
 I want a map displaying with boundaries, and character movement, and combat. That&#39;s
-glossing over a lot of details, but it comes down to that.&lt;/p&gt;</description>
-        <pubDate>Mon, 29 Oct 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-10-29:/2012/10/game-off-2012-and-some-haxe-nme+haxepunk</guid>
-    </item>
-        
-            <item>
+glossing over a lot of details, but it comes down to that.&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>HaxePunk LinearTween Example</title>
-        <link>http://joelkleier.com/2012/10/haxepunk-lineartween-example/</link>
-        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; fixed signature for callback/event listener and move this to it&#39;s own post&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/haxepunk-lineartween-example/" />
+        <id>tag:joelkleier.com,2012-10-29:/2012/10/haxepunk-lineartween-example</id>
+        <updated>2012-10-29T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="haxe" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; fixed signature for callback/event listener and move this to it&#39;s own post&lt;/p&gt;
 &lt;h5&gt;HaxePunk Tweens&lt;/h5&gt;
 &lt;p&gt;While exploring &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt;, I discovered that sometimes documentation can be a
 little lacking. So I just wanted to write this down for future reference:&lt;/p&gt;
@@ -428,15 +489,23 @@ can use the &lt;em&gt;com.haxepunk.tweens.motion.LinearPath&lt;/em&gt; tween.&lt
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Hopefully this has given a little insight for someone (like my future self) on how to
-use HaxePunk tweens.&lt;/p&gt;</description>
-        <pubDate>Mon, 29 Oct 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-10-29:/2012/10/haxepunk-lineartween-example</guid>
-    </item>
-        
-            <item>
+use HaxePunk tweens.&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>LD48</title>
-        <link>http://joelkleier.com/2012/10/ld48/</link>
-        <description>&lt;p&gt;The 24th &lt;a href=&#34;http://www.ludumdare.com&#34; title=&#34;Ludum Dare&#34;&gt;Ludum Dare&lt;/a&gt; has come and gone, and now it&#39;s time for me to take a look back
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/ld48/" />
+        <id>tag:joelkleier.com,2012-10-09:/2012/10/ld48</id>
+        <updated>2012-10-09T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="ld48" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;The 24th &lt;a href=&#34;http://www.ludumdare.com&#34; title=&#34;Ludum Dare&#34;&gt;Ludum Dare&lt;/a&gt; has come and gone, and now it&#39;s time for me to take a look back
 and my entry &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-24/?action=preview&amp;amp;uid=7263&#34; title=&#34;And Thus She Spake Entry Page&#34;&gt;&#39;And Thus She Spake&#39;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://github.com/zombified/ld48_24&#34; title=&#34;And Thus She Spake Source Code&#34;&gt;source&lt;/a&gt; is on github, if you&#39;d like a look.&lt;/p&gt;
 &lt;h6&gt;What Went Right&lt;/h6&gt;
@@ -523,15 +592,23 @@ bug fixing.&lt;/p&gt;
 &lt;li&gt;Perhaps even work on the gameplay a little longer.&lt;/li&gt;
 &lt;li&gt;Have some basic things already lined up in libraries -- like code for menu UI and such.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Other than that, I think to get better, I just need to make more games :D&lt;/p&gt;</description>
-        <pubDate>Tue, 09 Oct 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-10-09:/2012/10/ld48</guid>
-    </item>
-        
-            <item>
+&lt;p&gt;Other than that, I think to get better, I just need to make more games :D&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>0x0001 - Eggnog</title>
-        <link>http://joelkleier.com/2012/09/0x0001-eggnog/</link>
-        <description>&lt;p&gt;The winter months are coming up quick, and what better way to prepare for them
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/0x0001-eggnog/" />
+        <id>tag:joelkleier.com,2012-09-15:/2012/09/0x0001-eggnog</id>
+        <updated>2012-09-15T05:00:00Z</updated>
+        <category term="brewing" />
+        <category term="recipes" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;The winter months are coming up quick, and what better way to prepare for them
 than to make some eggnog! This eggnog, though, isn&#39;t safe for children to
 drink without strict parental supervision.&lt;/p&gt;
 &lt;p&gt;This particular recipe is based on the &lt;a href=&#34;http://www.chow.com/recipes/10758-best-eggnog&#34; title=&#34;Best Eggnog Recipe by Jonathan Hunt on CHOW.com&#34;&gt;&#34;Best Eggnog Recipe&#34; By Jonathan Hunt&lt;/a&gt;.&lt;/p&gt;
@@ -571,15 +648,23 @@ drink without strict parental supervision.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I am only on step 5, but what I plan on doing is separating it out into small
     bottles and aging for, probably 2 or so months.&lt;/li&gt;
-&lt;/ul&gt;</description>
-        <pubDate>Sat, 15 Sep 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-09-15:/2012/09/0x0001-eggnog</guid>
-    </item>
-        
-            <item>
+&lt;/ul&gt;</content>
+    </entry>
+    
+        <entry>
         <title>My First Mead</title>
-        <link>http://joelkleier.com/2012/09/my-first-mead/</link>
-        <description>&lt;p&gt;Recently I&#39;ve gone to a few breweries (&lt;a href=&#34;https://leinie.com/AV.aspx?returnUrl=default.aspx&#34; title=&#34;Leinenkugel&#39;s&#34;&gt;Leinenkugel&#39;s&lt;/a&gt;, &lt;a href=&#34;http://www.newglarusbrewing.com/&#34; title=&#34;New Glarus Brewing Company&#34;&gt;New Glarus&lt;/a&gt;, and
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/my-first-mead/" />
+        <id>tag:joelkleier.com,2012-09-09:/2012/09/my-first-mead</id>
+        <updated>2012-09-09T05:00:00Z</updated>
+        <category term="brewing" />
+        <category term="recipes" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;Recently I&#39;ve gone to a few breweries (&lt;a href=&#34;https://leinie.com/AV.aspx?returnUrl=default.aspx&#34; title=&#34;Leinenkugel&#39;s&#34;&gt;Leinenkugel&#39;s&lt;/a&gt;, &lt;a href=&#34;http://www.newglarusbrewing.com/&#34; title=&#34;New Glarus Brewing Company&#34;&gt;New Glarus&lt;/a&gt;, and
 &lt;a href=&#34;http://www.summitbrewing.com/&#34; title=&#34;Summit Brewing&#34;&gt;Summit Brewing&lt;/a&gt;) and started to take a shine to the possibility of home brew.&lt;/p&gt;
 &lt;p&gt;I don&#39;t want to jump all in, though, so I&#39;m starting with a simple mead that needs
 almost no skill -- &lt;a href=&#34;http://www.gotmead.com/index.php?option=com_rapidrecipe&amp;amp;page=viewrecipe&amp;amp;Itemid=6&amp;amp;recipe_id=118&#34; title=&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&gt;&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&lt;/a&gt;&lt;/p&gt;
@@ -629,15 +714,22 @@ unintentional.&lt;/p&gt;
 &lt;li&gt;I&#39;d like to use a wine/beer yeast next time&lt;/li&gt;
 &lt;li&gt;It would have been easier to combine the water and honey while it was in the
     pot on the stove getting pasturized.&lt;/li&gt;
-&lt;/ul&gt;</description>
-        <pubDate>Sun, 09 Sep 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-09-09:/2012/09/my-first-mead</guid>
-    </item>
-        
-            <item>
+&lt;/ul&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Raspberry Pi!!!!</title>
-        <link>http://joelkleier.com/2012/09/raspberry-pi/</link>
-        <description>&lt;p&gt;I got my &lt;a href=&#34;http://www.raspberrypi.org/&#34; title=&#34;Raspberry Pi&#34;&gt;Raspberry Pi!&lt;/a&gt;! Don&#39;t have any specific plans at the moment, just a lot of possibilities. Next thing I need to do, though, is make a case for it!&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/raspberry-pi/" />
+        <id>tag:joelkleier.com,2012-09-04:/2012/09/raspberry-pi</id>
+        <updated>2012-09-04T05:00:00Z</updated>
+        <category term="raspberrypi" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;I got my &lt;a href=&#34;http://www.raspberrypi.org/&#34; title=&#34;Raspberry Pi&#34;&gt;Raspberry Pi!&lt;/a&gt;! Don&#39;t have any specific plans at the moment, just a lot of possibilities. Next thing I need to do, though, is make a case for it!&lt;/p&gt;
 &lt;p&gt;Here&#39;s the unboxing, in pictures:&lt;/p&gt;
 &lt;h6&gt;The box&lt;/h6&gt;
 &lt;p&gt;&lt;img alt=&#34;The box the RPi arrived in&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173300.jpg&#34; title=&#34;The box the RPi arrived in&#34;/&gt;&lt;/p&gt;
@@ -653,15 +745,23 @@ unintentional.&lt;/p&gt;
 &lt;h6&gt;The RPi on it&#39;s side&lt;/h6&gt;
 &lt;p&gt;&lt;img alt=&#34;The RPi on it&#39;s side&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173520.jpg&#34; title=&#34;The RPi on it&#39;s side&#34;/&gt;&lt;/p&gt;
 &lt;h6&gt;Running through an update for Arch Linux&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;Running through an update for Arch Linux&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_215748.jpg&#34; title=&#34;Running through an update for Arch Linux&#34;/&gt;&lt;/p&gt;</description>
-        <pubDate>Tue, 04 Sep 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-09-04:/2012/09/raspberry-pi</guid>
-    </item>
-        
-            <item>
+&lt;p&gt;&lt;img alt=&#34;Running through an update for Arch Linux&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_215748.jpg&#34; title=&#34;Running through an update for Arch Linux&#34;/&gt;&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>tmux cheat sheet</title>
-        <link>http://joelkleier.com/2012/09/tmux-cheat-sheet/</link>
-        <description>&lt;h5&gt;{{page.title}}&lt;/h5&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/tmux-cheat-sheet/" />
+        <id>tag:joelkleier.com,2012-09-04:/2012/09/tmux-cheat-sheet</id>
+        <updated>2012-09-04T05:00:00Z</updated>
+        <category term="cheatsheet" />
+        <category term="tmux" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;h5&gt;{{page.title}}&lt;/h5&gt;
 &lt;p&gt;This post will probably grow over time. Using it as a place where I can
 put commands I use reguarly.&lt;/p&gt;
 &lt;ul&gt;
@@ -673,15 +773,23 @@ put commands I use reguarly.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;^b p&lt;/strong&gt; Go to previous window&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;^b %&lt;/strong&gt; Split (vertically) into 2 panes&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;^b o&lt;/strong&gt; Next pane&lt;/li&gt;
-&lt;/ul&gt;</description>
-        <pubDate>Tue, 04 Sep 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-09-04:/2012/09/tmux-cheat-sheet</guid>
-    </item>
-        
-            <item>
+&lt;/ul&gt;</content>
+    </entry>
+    
+        <entry>
         <title>And so it begins LD48</title>
-        <link>http://joelkleier.com/2012/08/and-so-it-begins-ld48/</link>
-        <description>&lt;p&gt;Source can be found at &lt;a href=&#34;https://github.com/zombified/ld48-24&#34;&gt;github.com/zombified/ld48-24/&lt;/a&gt;&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/08/and-so-it-begins-ld48/" />
+        <id>tag:joelkleier.com,2012-08-24:/2012/08/and-so-it-begins-ld48</id>
+        <updated>2012-08-24T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="LD48" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;Source can be found at &lt;a href=&#34;https://github.com/zombified/ld48-24&#34;&gt;github.com/zombified/ld48-24/&lt;/a&gt;&lt;/p&gt;
 &lt;h6&gt;[20:00 August 24th]&lt;/h6&gt;
 &lt;p&gt;Evolution.&lt;/p&gt;
 &lt;p&gt;Let&#39;s see what I can do!&lt;/p&gt;
@@ -752,15 +860,23 @@ put commands I use reguarly.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Linux users will have to install LÖVE separately and run the &lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/And%20Thus%20She%20Spake.love&#34;&gt;LÖVE File&lt;/a&gt; as I am not familiar with bundling on those platforms, and there aren&#39;t any straight forward directions to follow to bundle for LÖVE.&lt;/p&gt;
 &lt;p&gt;And one last screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;And Thus She Spake, Screen Shot at 12:20 on 26 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_ANDTHUSSHESPAKE_201208261220.png&#34; title=&#34;And Thus She Spake, Final Screen-Shot&#34;/&gt;&lt;/p&gt;</description>
-        <pubDate>Fri, 24 Aug 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-08-24:/2012/08/and-so-it-begins-ld48</guid>
-    </item>
-        
-            <item>
+&lt;p&gt;&lt;img alt=&#34;And Thus She Spake, Screen Shot at 12:20 on 26 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_ANDTHUSSHESPAKE_201208261220.png&#34; title=&#34;And Thus She Spake, Final Screen-Shot&#34;/&gt;&lt;/p&gt;</content>
+    </entry>
+    
+        <entry>
         <title>Ludum Dare 24</title>
-        <link>http://joelkleier.com/2012/08/ludum-dare-24/</link>
-        <description>&lt;p&gt;Every 4 months, or so, the folks over at &lt;a href=&#34;http://ludumdare.com&#34;&gt;ludum dare&lt;/a&gt; (LD) hold a couple of contests, one for individuals and one for teams. The contest is all about creating a game in 48 (solo) or 72 (team) hours.&lt;/p&gt;
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/08/ludum-dare-24/" />
+        <id>tag:joelkleier.com,2012-08-21:/2012/08/ludum-dare-24</id>
+        <updated>2012-08-21T05:00:00Z</updated>
+        <category term="gamedev" />
+        <category term="LD48" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;Every 4 months, or so, the folks over at &lt;a href=&#34;http://ludumdare.com&#34;&gt;ludum dare&lt;/a&gt; (LD) hold a couple of contests, one for individuals and one for teams. The contest is all about creating a game in 48 (solo) or 72 (team) hours.&lt;/p&gt;
 &lt;p&gt;There is no prize for this contest, other than bragging rights and a prototype. Really the contest isn&#39;t about winning so much as it is about setting some time aside to do realize an idea or concept. But damnit, I want to get into the top 100 one of these times!&lt;/p&gt;
 &lt;p&gt;This contest is important to me because it gets my mind off of normal work and let&#39;s me focus on an idea for more than an hour or two at a time. A nice clear goal is handy too: get a game done in 48 hours, or else! This is fantastic motivation, especially since there are a thousand other people doing the same thing as you, at the same time.&lt;/p&gt;
 &lt;p&gt;So far, I&#39;ve entered two of the competitions -- the LD48 #22 and LD48 #23 -- and loved nearly every minute of both.&lt;/p&gt;
@@ -768,9 +884,6 @@ put commands I use reguarly.&lt;/p&gt;
 &lt;p&gt;For LD48 #23 I made a game called &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;amp;uid=7263&#34; title=&#34;LD48 #23 Entry, &#39;The Tiny World&#39;&#34;&gt;The Tiny World&lt;/a&gt;. It was an attempt at a text-based adventure game, again using javascript. This time I did everything from scratch, and while I was very familiar with the tools, even for a text adventure game, I spent a significant portion of time on developing the framework.&lt;/p&gt;
 &lt;p&gt;This time around I really need to use a framework that&#39;s built for prototyping, and that I&#39;m familiar with. While I LOVE javascript, and I want to pursue it more, I think I&#39;d like to take a step back for LD48 #24, and try out the &lt;a href=&#34;http://love2d.org&#34;&gt;LÖVE&lt;/a&gt; framework. I&#39;m fairly familiar with it, and it&#39;s built to prototype. My biggest issue will be getting around Lua -- I just don&#39;t use it that often, and I&#39;m not as familiar as I&#39;d like to be with some of the advanced features of the language. Heck, there&#39;s still several days until the competition, plenty of time to brush up, right?&lt;/p&gt;
 &lt;p&gt;Even if my next game still turns out to be complete shit, I&#39;m excited!&lt;/p&gt;
-&lt;p&gt;If you don&#39;t have any plans, &lt;a href=&#34;http://ludumdare.com&#34;&gt;give it a shot&lt;/a&gt;, what&#39;s the harm?&lt;/p&gt;</description>
-        <pubDate>Tue, 21 Aug 2012 05:00:00 GMT</pubDate>
-        <guid isPermaLink="false">tag:joelkleier.com,2012-08-21:/2012/08/ludum-dare-24</guid>
-    </item>
-        </channel>
-</rss>
+&lt;p&gt;If you don&#39;t have any plans, &lt;a href=&#34;http://ludumdare.com&#34;&gt;give it a shot&lt;/a&gt;, what&#39;s the harm?&lt;/p&gt;</content>
+    </entry>
+    </feed>

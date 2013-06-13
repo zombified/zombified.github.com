@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <title>Game-Off 2012 and some Haxe/NME+HaxePunk |Electric Froth
+</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link rel="stylesheet" href="/normalize.css" />
+    <link href='http://fonts.googleapis.com/css?family=Jura:600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css" />
+
+    <link href="/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap">
+    <link href="/" rel="home start" />
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="description" content="Github is hosting a month long game making competition, and I want to share some code that describes how to do a simple tween w/ the HaxePunk Library" />
+    <meta name="keywords" content="gamedev, haxe" />
+</head>
+<body>
+    <div id='page-wrap'>
+        <header id='page-header'>
+            <h1><a href='/' rel="home start"><span class='electric'>Electric</span><span class='froth'>Froth</span></a></h1>
+            <nav class='page-nav'>
+                <ul>
+                    <li><a href='/about/'>about</a></li>
+                    <li class='active'><a href='/' rel="alternate">blog</a></li>
+                    <li><a href='/interesting-things/'>Interesting things</a></li>
+                </ul>
+            </nav>
+        </header>
+    <section id='post'>
+        <article>
+            <header>
+                <h1>
+                    <a href="/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/" rel="bookmark canonical">Game-Off 2012 and some Haxe/NME+HaxePunk</a>
+                </h1>
+                <time class='date' datetime="2012-10-29">October 29, 2012</time>
+                <span class='description'>Github is hosting a month long game making competition, and I want to share some code that describes how to do a simple tween w/ the HaxePunk Library</span>
+            </header>
+            <p><strong>Edit (2013-03-06):</strong> moved haxe related stuff to a <a href="/posts/2012/10/haxepunk-linearpath-tween.html">different post</a></p>
+<h4>Github Game-Off 2012</h4>
+<p><a href="http://github.com">Github</a> is hosting a game making <a href="http://github.com/github/game-off-2012" title="Game-Off 2012 Repository">com&shy;pe&shy;ti&shy;tion</a> through the month of November.</p>
+<p>It needs to be playable in a web browser, and needs to have some relation to
+"branch&shy;ing", "forking", "cloning", "pushing", or "pulling".</p>
+<p>Sounds like fun, I think I'm in :)</p>
+<p>I'll blog about my trials and tribu&shy;la&shy;tions here, so expect to see more posts
+about this project.</p>
+<p>So far I've settled on a few things:</p>
+<ul>
+<li>The game is going to be heavily influenced by <a href="http://github.com">Hero Quest</a>, one of my
+    all-time favorite board games</li>
+<li>
+<p>The game will be broadly considered a "tactical rpg" with less of an emphasis
+    on some of the typical staples from RPG's that I tend to find tedious:</p>
+<ul>
+<li>There's no explicit traveling -- IE the goal of the game will be to finish
+    the level, for whatever goals the level has. Transition between levels will be
+    the purview of narrative occuring between levels.</li>
+<li>All equipment will be purchased through a between-level store mechanism</li>
+<li>There are 2 stats: Offense/Defense. Might end up calling them something else, 
+    but 'Offense' and 'Defense' describes their purpose fairly well. These stats
+    can be modified by equipment, and, very slowly, experience overtime.</li>
+<li>Experience is rewarded at the end of a mission -- each mission has a base
+    amount of experience to give to each character that survives, and then each
+    character gets a small amount of experience per enemy slain, chest opened,
+    secret found, and item retrieved.</li>
+<li>No equipment can be found in the levels. Anything found is es&shy;sen&shy;tial&shy;ly money
+    and experience.</li>
+<li>There will be no 'looting' -- IE the en&shy;vi&shy;ron&shy;ment will not contains barrels,
+    chests, etc, that are only their to smash or open. Chests will be special
+    and only contain rare items that can be converted to money at the end of the
+    mission.</li>
+</ul>
+</li>
+<li>
+<p>I'll be making the game in <a href="http://haxe.org">Haxe</a>/<a href="http://haxenme.org">NME</a>, and I'll be taking advantage of
+    <a href="http://haxepunk.com">HaxePunk</a>. Sadly, the html5 build for NME seems not to like how HaxePunk is
+    made, so I'll be putting out a flash version of the game for the com&shy;pe&shy;ti&shy;tion.</p>
+</li>
+</ul>
+<p>My immediate goal for this next week is to get the basic game play prototyped out, IE,
+I want a map displaying with boundaries, and character movement, and combat. That's
+glossing over a lot of details, but it comes down to that.</p>
+            <footer>
+                
+                    <p class='tagged'>tagged as
+                        <a href="/tag/gamedev/" rel="tag">gamedev</a>
+                            and
+                            
+                        <a href="/tag/haxe/" rel="tag">haxe</a>
+                        
+                    </p>
+                
+                <nav class='post-nav'>
+                    <ul>
+                
+                        <li>
+                            <a href="/2012/10/haxepunk-lineartween-example//">
+                                &laquo; HaxePunk LinearTween Example
+                            </a>
+                        </li>
+                
+                
+                        <li>
+                            <a href="/2012/11/game-off-2012-followup//">
+                                Game-Off 2012 Followup &raquo;
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </article>
+    </section>
+</div>
+    <footer id='page-footer'>
+        
+        <ul>
+            <li><a href='/rss.xml' rel="alternate">RSS</a></li>
+            <li>&middot; <a href='/atom.xml' rel="alternate">Atom</a></li>
+            <li>&middot; Built with <a href='http://posativ.org/acrylamid'>Acrylamid</a></li>
+            <li>&middot; <a href='http://validator.w3.org/check?uri=referer'>Validate this site</a></li>
+            <li>&middot; &copy; Joel Kleier</li>
+        </ul>
+        
+    </footer>
+</body>
+</html>
