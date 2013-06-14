@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Electric Froth</title>
+        <link>http://joelkleier.com/</link>
+        <description>This blog is mine. There are many like it, but this one is mine.</description>
+        <language>en</language>
+        <pubDate>Thu, 06 Dec 2012 05:00:00 GMT</pubDate>
+        <docs>http://joelkleier.com/tag/homebrewing/rss.xml</docs>
+        <generator>acrylamid 0.7.6</generator>
+        
+            <item>
+        <title>My first homebrew bottling experience</title>
+        <link>http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/</link>
+        <description>&lt;p&gt;It&#39;s been 8 weeks of waiting patiently to bottle some homebrewed booze!&lt;/p&gt;
+&lt;p&gt;I&#39;ve bottle some &lt;a href=&#34;/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; and some hard cider (I didn&#39;t post the recipe for this yet, I&#39;ll get to that though!).&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; has been dubbed &lt;strong&gt;Dirty Snowman&lt;/strong&gt; under the label &lt;strong&gt;0x01&lt;/strong&gt;, check it out:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Dirty Snowman Label&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0001_dirty_snowman_3x4_300dpi.jpg&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;It definitly smells of whiskey, but drinking it has a different character. It&#39;s smooth -- and
+I mean there is almost zero harsh biting at the throat. You do feel that warmth flow from your
+throat to your stomach though :)&lt;/p&gt;
+&lt;p&gt;It&#39;s really meant as a base for eggnog -- get some heavy whipping cream and egg whites all
+frothed and foamed up, then fold those (separately) into a bowl of the eggnog. Wasn&#39;t really
+able to test that to it&#39;s fullest, but I suspect that will go far to tone down the immediate
+flavor of the whiskey, brandy, and rum.&lt;/p&gt;
+&lt;p&gt;My cider has been dubbed &#34;Delta 88&#34; under the label &#34;0x02&#34;, check it out:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Delta 88 Label&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0002_delta_88_3x4_300dpi.jpg&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;It&#39;s a very dry cider. Definitely could use some more aging. BUT combined with a little apple juice for sweetness
+and flavor, it turns out to be really tasty!&lt;/p&gt;
+&lt;p&gt;It has an ABV of aproximately 7.8%. I added some alt-sweetener as a back-sweetener, but stupid me... I did it
+on ALL of my bottles. I could smack myself. I think it was an okay amount, but... it
+might be to much and I can&#39;t experiment any more, or see how an unsweetened bottle might taste. Might have botched
+my first cider at the last moment! Ah well, we&#39;ll see. Live and learn, right?&lt;/p&gt;</description>
+        <pubDate>Thu, 06 Dec 2012 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2012-12-06:/2012/12/my-first-homebrew-bottling-experience</guid>
+    </item>
+        </channel>
+</rss>

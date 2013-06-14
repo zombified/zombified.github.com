@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <author>
+        <name>Joel Kleier</name>
+        <uri>http://joelkleier.com/</uri>
+        <email>joel@kleier.us</email>
+    </author>
+    <title>Electric Froth</title>
+    <id>tag:joelkleier.com,2011-06-11:/tag/raspberrypi/atom.xml</id>
+    <link rel="alternate" type="text/html" href="http://joelkleier.com/" />
+    <link rel="self" type="application/atom+xml" href="http://joelkleier.com/tag/raspberrypi/atom.xml" />
+    <icon>http://joelkleier.com/favicon.ico</icon>
+    <logo>http://joelkleier.com/feed-logo.png</logo>
+    <updated>2012-09-04T05:00:00Z</updated>
+    <generator uri="https://github.com/posativ/acrylamid/" version="0.7.6">acrylamid</generator>
+        <entry>
+        <title>Raspberry Pi!!!!</title>
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/raspberry-pi/" />
+        <id>tag:joelkleier.com,2012-09-04:/2012/09/raspberry-pi</id>
+        <updated>2012-09-04T05:00:00Z</updated>
+        <category term="raspberrypi" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;I got my &lt;a href=&#34;http://www.raspberrypi.org/&#34; title=&#34;Raspberry Pi&#34;&gt;Raspberry Pi!&lt;/a&gt;! Don&#39;t have any specific plans at the moment, just a lot of possibilities. Next thing I need to do, though, is make a case for it!&lt;/p&gt;
+&lt;p&gt;Here&#39;s the unboxing, in pictures:&lt;/p&gt;
+&lt;h6&gt;The box&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The box the RPi arrived in&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173300.jpg&#34; title=&#34;The box the RPi arrived in&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;The contents of the box&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The contents of the box all layed out&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173342.jpg&#34; title=&#34;The contents of the box all layed out&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Another pic of the contents&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173350.jpg&#34; title=&#34;Another pic of the contents&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;The top of the RPi&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The top of the RPi&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173414.jpg&#34; title=&#34;The top of the RPi&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;The backside of the RPi&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The backside of the RPi&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173425.jpg&#34; title=&#34;The backside of the RPi&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;The RPi in my hand&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The RPi in my hand&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173442.jpg&#34; title=&#34;The RPi in my hand&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;The RPi on it&#39;s side&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;The RPi on it&#39;s side&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173520.jpg&#34; title=&#34;The RPi on it&#39;s side&#34;/&gt;&lt;/p&gt;
+&lt;h6&gt;Running through an update for Arch Linux&lt;/h6&gt;
+&lt;p&gt;&lt;img alt=&#34;Running through an update for Arch Linux&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_215748.jpg&#34; title=&#34;Running through an update for Arch Linux&#34;/&gt;&lt;/p&gt;</content>
+    </entry>
+    </feed>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Electric Froth</title>
+        <link>http://joelkleier.com/</link>
+        <description>This blog is mine. There are many like it, but this one is mine.</description>
+        <language>en</language>
+        <pubDate>Wed, 06 Mar 2013 05:00:00 GMT</pubDate>
+        <docs>http://joelkleier.com/tag/haxe/rss.xml</docs>
+        <generator>acrylamid 0.7.6</generator>
+        
+            <item>
+        <title>Haxe Function Signatures</title>
+        <link>http://joelkleier.com/2013/03/haxe-function-signatures/</link>
+        <description>&lt;p&gt;Just a quick note about this function signature:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;Dynamic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Dynamic generally means &lt;em&gt;any&lt;/em&gt; type in Haxe. However, it does not mean &lt;code&gt;Void&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For example, if you have this:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Dynamic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;You cannot assign func a function that has a void parameter list. It DOES require
+a parameter, but that parameter can be of any type.&lt;/p&gt;
+&lt;p&gt;IE, this is &lt;em&gt;bad&lt;/em&gt;:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// foo is of type Void -&amp;gt; Void, not Dynamic -&amp;gt; Void&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;But this is good:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dynamic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;It may seem kinda obvious, but I was tripped up on it because I thought &lt;code&gt;Dynamic&lt;/code&gt;
+could represent any type of value, including a Void parameter list. Which, in
+hindsight, seems kind of ridiculous, but none-the-less, it happened.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt; This was written for Haxe 2.10&lt;/p&gt;</description>
+        <pubDate>Wed, 06 Mar 2013 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2013-03-06:/2013/03/haxe-function-signatures</guid>
+    </item>
+        
+            <item>
+        <title>Setting up a HaxePunk Project</title>
+        <link>http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/</link>
+        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; updated title to reflect the post a little better&lt;/p&gt;
+&lt;h4&gt;Setting up the development environment&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Setup the editor or IDE, I use vim, so install
+     &lt;a href=&#34;https://github.com/jdonaldson/vaxe&#34;&gt;vaxe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Go to &lt;a href=&#34;http://www.nme.io/download/&#34;&gt;www.nme.io/download/&lt;/a&gt; and follow the
+     instructions&lt;/li&gt;
+&lt;li&gt;Install HaxePunk: &lt;code&gt;haxelib install HaxePunk&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Setting up the project&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create the project skeleton: &lt;code&gt;haxelib run HaxePunk new [project name]&lt;/code&gt;,
+     replacing [project name] with the name of the folder to use for the project&lt;/li&gt;
+&lt;li&gt;Edit &lt;code&gt;project.nmml&lt;/code&gt; with your project specific details&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;src/worlds&lt;/code&gt; folder to hold your world source files&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;src/entities&lt;/code&gt; folder to hold your entity source files&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Add some code to make a useable, but very basic HaxePunk project&lt;/h4&gt;
+&lt;p&gt;Add this code to &lt;code&gt;src/worlds/Game.hx&lt;/code&gt;, it can be used as a very basic jumping
+off point:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kr&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;haxepunk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Game&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kr&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Then set HaxePunk to use that world as the active world by adding the following
+to the end of the &lt;code&gt;init&lt;/code&gt; function in the &lt;code&gt;Main&lt;/code&gt; class (&lt;code&gt;src/Main.hx&lt;/code&gt;):&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;HXP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;world&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Game&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h4&gt;Building the project&lt;/h4&gt;
+&lt;p&gt;I like using neko to do a lot of my testing and development. It has faster build
+times than for cpp, and I don&#39;t have to deal with flash (personal preference).&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;test &lt;/span&gt;project.nmml neko
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;The &#39;test&#39; argument just tells nme to update (copy assets) and build the project,
+then to run what was built right away. You can do lots of other things with nme, see the
+nme documentation, or the command line help:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h4&gt;End thoughts&lt;/h4&gt;
+&lt;p&gt;Nothing fancy, but it gets the project up and running. It should be noted that
+a lot of FlashPunk documentation and tutorials are useful when trying to learn
+HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
+are mostly the same and available in both, so it&#39;s easy to pickup things in
+snippets.&lt;/p&gt;</description>
+        <pubDate>Sat, 02 Mar 2013 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2013-03-02:/2013/03/setting-up-a-haxepunk-project</guid>
+    </item>
+        
+            <item>
+        <title>Game-Off 2012 and some Haxe/NME+HaxePunk</title>
+        <link>http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/</link>
+        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; moved haxe related stuff to a &lt;a href=&#34;/posts/2012/10/haxepunk-linearpath-tween.html&#34;&gt;different post&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;Github Game-Off 2012&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;http://github.com&#34;&gt;Github&lt;/a&gt; is hosting a game making &lt;a href=&#34;http://github.com/github/game-off-2012&#34; title=&#34;Game-Off 2012 Repository&#34;&gt;competition&lt;/a&gt; through the month of November.&lt;/p&gt;
+&lt;p&gt;It needs to be playable in a web browser, and needs to have some relation to
+&#34;branching&#34;, &#34;forking&#34;, &#34;cloning&#34;, &#34;pushing&#34;, or &#34;pulling&#34;.&lt;/p&gt;
+&lt;p&gt;Sounds like fun, I think I&#39;m in :)&lt;/p&gt;
+&lt;p&gt;I&#39;ll blog about my trials and tribulations here, so expect to see more posts
+about this project.&lt;/p&gt;
+&lt;p&gt;So far I&#39;ve settled on a few things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The game is going to be heavily influenced by &lt;a href=&#34;http://github.com&#34;&gt;Hero Quest&lt;/a&gt;, one of my
+    all-time favorite board games&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The game will be broadly considered a &#34;tactical rpg&#34; with less of an emphasis
+    on some of the typical staples from RPG&#39;s that I tend to find tedious:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There&#39;s no explicit traveling -- IE the goal of the game will be to finish
+    the level, for whatever goals the level has. Transition between levels will be
+    the purview of narrative occuring between levels.&lt;/li&gt;
+&lt;li&gt;All equipment will be purchased through a between-level store mechanism&lt;/li&gt;
+&lt;li&gt;There are 2 stats: Offense/Defense. Might end up calling them something else, 
+    but &#39;Offense&#39; and &#39;Defense&#39; describes their purpose fairly well. These stats
+    can be modified by equipment, and, very slowly, experience overtime.&lt;/li&gt;
+&lt;li&gt;Experience is rewarded at the end of a mission -- each mission has a base
+    amount of experience to give to each character that survives, and then each
+    character gets a small amount of experience per enemy slain, chest opened,
+    secret found, and item retrieved.&lt;/li&gt;
+&lt;li&gt;No equipment can be found in the levels. Anything found is essentially money
+    and experience.&lt;/li&gt;
+&lt;li&gt;There will be no &#39;looting&#39; -- IE the environment will not contains barrels,
+    chests, etc, that are only their to smash or open. Chests will be special
+    and only contain rare items that can be converted to money at the end of the
+    mission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I&#39;ll be making the game in &lt;a href=&#34;http://haxe.org&#34;&gt;Haxe&lt;/a&gt;/&lt;a href=&#34;http://haxenme.org&#34;&gt;NME&lt;/a&gt;, and I&#39;ll be taking advantage of
+    &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt;. Sadly, the html5 build for NME seems not to like how HaxePunk is
+    made, so I&#39;ll be putting out a flash version of the game for the competition.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My immediate goal for this next week is to get the basic game play prototyped out, IE,
+I want a map displaying with boundaries, and character movement, and combat. That&#39;s
+glossing over a lot of details, but it comes down to that.&lt;/p&gt;</description>
+        <pubDate>Mon, 29 Oct 2012 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2012-10-29:/2012/10/game-off-2012-and-some-haxe-nme+haxepunk</guid>
+    </item>
+        
+            <item>
+        <title>HaxePunk LinearTween Example</title>
+        <link>http://joelkleier.com/2012/10/haxepunk-lineartween-example/</link>
+        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; fixed signature for callback/event listener and move this to it&#39;s own post&lt;/p&gt;
+&lt;h5&gt;HaxePunk Tweens&lt;/h5&gt;
+&lt;p&gt;While exploring &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt;, I discovered that sometimes documentation can be a
+little lacking. So I just wanted to write this down for future reference:&lt;/p&gt;
+&lt;p&gt;Tweening is pretting simple. Each &lt;em&gt;com.haxepunk.World&lt;/em&gt; and &lt;em&gt;com.haxepunk.Entity&lt;/em&gt; is
+what is called a &lt;em&gt;Tweener&lt;/em&gt; (&lt;em&gt;com.haxepunk.Tweener&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;There are already a bunch of different tweens in the com.haxepunk.tweens.* namespace.&lt;/p&gt;
+&lt;p&gt;Specifically, if you want to do motion, based on a path a character has to take, you
+can use the &lt;em&gt;com.haxepunk.tweens.motion.LinearPath&lt;/em&gt; tween.&lt;/p&gt;
+&lt;p&gt;In the &lt;em&gt;begin()&lt;/em&gt; method of an Entity you can do something like this:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// assuming _movetween is defined elsewhere in the class, and&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// com.haxepunk.tweens.motion.LinearPath as been imported&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LinearPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tweenEnds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// starting point&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// left 32px&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// left 32px, up 32px, ending point&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setMotion&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// do this in .5 seconds&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addTween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;The &lt;em&gt;tweenEnds&lt;/em&gt; parameter is just a reference to a function called when the tween ends:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tweenEnds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;event&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dynamic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// set the final x/y values here since the update() method,&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// as detailed below, won&amp;#39;t set the final variables since the IDLE&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// state is being started&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;IDLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;To call this, you just put something like the following in an Entities &lt;em&gt;update()&lt;/em&gt; method:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;startmoving&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MOVING&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// reset the tween to the beginning and start running it&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// the tween will contain the x and y values that are desired at a particular&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// point in time during the tween, and remember, you don&amp;#39;t want to set the x&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// and y values immediately after calling start() on the tween -- it&amp;#39;ll give&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// you a &amp;quot;hiccup&amp;quot; where your Entity moves to the final spot, then jumps&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// back and progresses allong the LinearPath.&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Hopefully this has given a little insight for someone (like my future self) on how to
+use HaxePunk tweens.&lt;/p&gt;</description>
+        <pubDate>Mon, 29 Oct 2012 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2012-10-29:/2012/10/haxepunk-lineartween-example</guid>
+    </item>
+        </channel>
+</rss>

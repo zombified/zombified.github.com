@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Electric Froth</title>
+        <link>http://joelkleier.com/</link>
+        <description>This blog is mine. There are many like it, but this one is mine.</description>
+        <language>en</language>
+        <pubDate>Sat, 02 Mar 2013 05:00:00 GMT</pubDate>
+        <docs>http://joelkleier.com/tag/nme/rss.xml</docs>
+        <generator>acrylamid 0.7.6</generator>
+        
+            <item>
+        <title>Setting up a HaxePunk Project</title>
+        <link>http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/</link>
+        <description>&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; updated title to reflect the post a little better&lt;/p&gt;
+&lt;h4&gt;Setting up the development environment&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Setup the editor or IDE, I use vim, so install
+     &lt;a href=&#34;https://github.com/jdonaldson/vaxe&#34;&gt;vaxe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Go to &lt;a href=&#34;http://www.nme.io/download/&#34;&gt;www.nme.io/download/&lt;/a&gt; and follow the
+     instructions&lt;/li&gt;
+&lt;li&gt;Install HaxePunk: &lt;code&gt;haxelib install HaxePunk&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Setting up the project&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Create the project skeleton: &lt;code&gt;haxelib run HaxePunk new [project name]&lt;/code&gt;,
+     replacing [project name] with the name of the folder to use for the project&lt;/li&gt;
+&lt;li&gt;Edit &lt;code&gt;project.nmml&lt;/code&gt; with your project specific details&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;src/worlds&lt;/code&gt; folder to hold your world source files&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;src/entities&lt;/code&gt; folder to hold your entity source files&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Add some code to make a useable, but very basic HaxePunk project&lt;/h4&gt;
+&lt;p&gt;Add this code to &lt;code&gt;src/worlds/Game.hx&lt;/code&gt;, it can be used as a very basic jumping
+off point:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kr&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;haxepunk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Game&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kr&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Then set HaxePunk to use that world as the active world by adding the following
+to the end of the &lt;code&gt;init&lt;/code&gt; function in the &lt;code&gt;Main&lt;/code&gt; class (&lt;code&gt;src/Main.hx&lt;/code&gt;):&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;HXP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;world&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Game&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h4&gt;Building the project&lt;/h4&gt;
+&lt;p&gt;I like using neko to do a lot of my testing and development. It has faster build
+times than for cpp, and I don&#39;t have to deal with flash (personal preference).&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;test &lt;/span&gt;project.nmml neko
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;The &#39;test&#39; argument just tells nme to update (copy assets) and build the project,
+then to run what was built right away. You can do lots of other things with nme, see the
+nme documentation, or the command line help:&lt;/p&gt;
+&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h4&gt;End thoughts&lt;/h4&gt;
+&lt;p&gt;Nothing fancy, but it gets the project up and running. It should be noted that
+a lot of FlashPunk documentation and tutorials are useful when trying to learn
+HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
+are mostly the same and available in both, so it&#39;s easy to pickup things in
+snippets.&lt;/p&gt;</description>
+        <pubDate>Sat, 02 Mar 2013 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2013-03-02:/2013/03/setting-up-a-haxepunk-project</guid>
+    </item>
+        </channel>
+</rss>

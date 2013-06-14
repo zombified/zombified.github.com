@@ -64,6 +64,12 @@ a:active {}
 
 /* -- Page/Post/Post Listing -- */
 
+#post-list .tagrss {
+    font-size: smaller;
+    font-style: italic;
+    color: #aaa;
+}
+
 #post-list, #post, #page-content {
     margin-left: 2em;
 }
