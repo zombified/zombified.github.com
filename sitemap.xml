@@ -116,7 +116,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/atom.xml</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -138,7 +138,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/rss.xml</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -149,13 +149,19 @@
   </url>
   <url>
     <loc>http://joelkleier.com/2013/03/haxe-function-signatures/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/08/ludum-dare-24/</loc>
     <lastmod>2013-06-13</lastmod>
+    <changefreq>never</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/2013/06/0x0005-dandelion-wine/</loc>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
@@ -167,7 +173,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/articles/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
