@@ -7,6 +7,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>http://joelkleier.com/tag/homebrewing/rss.xml</loc>
+    <lastmod>2013-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>http://joelkleier.com/tag/cheatsheet/atom.xml</loc>
     <lastmod>2013-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -86,15 +91,16 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/2012/09/my-first-mead/</loc>
+    <loc>http://joelkleier.com/about/</loc>
     <lastmod>2013-06-15</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/homebrewing/rss.xml</loc>
+    <loc>http://joelkleier.com/2012/09/tmux-cheat-sheet/</loc>
     <lastmod>2013-06-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>never</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/raspberrypi/</loc>
@@ -128,9 +134,15 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/haxepunk/atom.xml</loc>
+    <loc>http://joelkleier.com/tag/haxe/rss.xml</loc>
     <lastmod>2013-06-15</lastmod>
     <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/2013/06/0x0004-mr-beer/</loc>
+    <lastmod>2013-06-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/</loc>
@@ -185,11 +197,6 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/haxe/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
     <loc>http://joelkleier.com/</loc>
     <lastmod>2013-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -222,10 +229,9 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/about/</loc>
+    <loc>http://joelkleier.com/tag/haxepunk/atom.xml</loc>
     <lastmod>2013-06-15</lastmod>
-    <changefreq>never</changefreq>
-    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxepunk/rss.xml</loc>
@@ -258,7 +264,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/2012/09/tmux-cheat-sheet/</loc>
+    <loc>http://joelkleier.com/2012/09/my-first-mead/</loc>
     <lastmod>2013-06-15</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
