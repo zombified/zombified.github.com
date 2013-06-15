@@ -11,8 +11,58 @@
     <link rel="self" type="application/atom+xml" href="http://joelkleier.com/atom.xml" />
     <icon>http://joelkleier.com/favicon.ico</icon>
     <logo>http://joelkleier.com/feed-logo.png</logo>
-    <updated>2013-06-13T05:00:00Z</updated>
+    <updated>2013-06-14T05:00:00Z</updated>
     <generator uri="https://github.com/posativ/acrylamid/" version="0.7.6">acrylamid</generator>
+        <entry>
+        <title>0x0002 - Hard Cider (Better Late Than Never)</title>
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0002-hard-cider-better-late-than-never/" />
+        <id>tag:joelkleier.com,2013-06-14:/2013/06/0x0002-hard-cider-better-late-than-never</id>
+        <updated>2013-06-14T05:00:00Z</updated>
+        <category term="brewing" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;h4&gt;The Recipe&lt;/h4&gt;
+&lt;p&gt;Based on the recipe presented in &lt;a href=&#34;http://brewingtv.com/episodes/2012/9/7/brewing-tv-episode-67-how-to-make-hard-cider.html&#34;&gt;BrewingTV ep. 67&lt;/a&gt;, but modified a bit.&lt;/p&gt;
+&lt;h5&gt;Ingredients&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;1 gallon of Roundy&#39;s 100% apple cider&lt;/li&gt;
+&lt;li&gt;1 Cup pure Florida cane sugar&lt;/li&gt;
+&lt;li&gt;1 gram Red Star &#34;Cote des Blancs&#34; active dry wine yeast&lt;/li&gt;
+&lt;li&gt;1/2 tsp yeast energizer&lt;/li&gt;
+&lt;li&gt;2 tsp yeast nutrient&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Yield&lt;/h5&gt;
+&lt;p&gt;About 1 gallon&lt;/p&gt;
+&lt;h5&gt;Process&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;Add yeast to warm water to activate it&lt;/li&gt;
+&lt;li&gt;Add 1/2 of yeast nutrient, energizer and sugar to 1 gallon of cider&lt;/li&gt;
+&lt;li&gt;Add yeast and gently mix&lt;/li&gt;
+&lt;li&gt;Cap the jug with and airlock and store for 24 hours&lt;/li&gt;
+&lt;li&gt;Add rest of yeast nutrient and put back in storage to let ferment for
+     about a week (until there is no more activity)&lt;/li&gt;
+&lt;li&gt;Rack to secondary for aging and clarifying&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;Notes&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Cider was a little cold so I had to get it warmed up to room temp -- remember
+    to always take out your juice from the refridgerator (if you put it in there
+    in the first place...)&lt;/li&gt;
+&lt;li&gt;Need to mix sugar a little more maybe -- I think there might have been a
+    little not dissolved&lt;/li&gt;
+&lt;li&gt;I put the nutrient and energizer in late (forgot to do it, duh!) -- 6 days
+    late, to be exact. There was a violent reaction :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Pictures and Progress!&lt;/h5&gt;
+&lt;p&gt;Sorry, forgot to take pictures!&lt;/p&gt;
+&lt;p&gt;But, the OG was 1.060, and came down to 1.002 at bottling -- putting the numbers
+into a calculator, it comes out to about 7.6% ABV and 202 calories per 12oz.&lt;/p&gt;</content>
+    </entry>
+    
         <entry>
         <title>0x0005 - Dandelion Wine</title>
         <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0005-dandelion-wine/" />
@@ -670,7 +720,6 @@ bug fixing.&lt;/p&gt;
         <id>tag:joelkleier.com,2012-09-15:/2012/09/0x0001-eggnog</id>
         <updated>2012-09-15T05:00:00Z</updated>
         <category term="brewing" />
-        <category term="recipes" />
         
         <author>
             <name>Joel Kleier</name>
@@ -726,7 +775,6 @@ drink without strict parental supervision.&lt;/p&gt;
         <id>tag:joelkleier.com,2012-09-09:/2012/09/my-first-mead</id>
         <updated>2012-09-09T05:00:00Z</updated>
         <category term="brewing" />
-        <category term="recipes" />
         
         <author>
             <name>Joel Kleier</name>

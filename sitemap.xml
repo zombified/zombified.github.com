@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/2012/11/game-off-2012-followup/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
@@ -65,7 +65,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/0x0001-eggnog/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
@@ -87,7 +87,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/my-first-mead/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/</loc>
-    <lastmod>2013-06-13</lastmod>
+    <lastmod>2013-06-14</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
@@ -203,6 +203,12 @@
     <loc>http://joelkleier.com/atom.xml</loc>
     <lastmod>2013-06-14</lastmod>
     <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/2013/06/0x0002-hard-cider-better-late-than-never/</loc>
+    <lastmod>2013-06-14</lastmod>
+    <changefreq>never</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/</loc>
