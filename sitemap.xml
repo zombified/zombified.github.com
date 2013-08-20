@@ -2,311 +2,347 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://joelkleier.com/2012/08/and-so-it-begins-ld48/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/homebrewing/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/cheatsheet/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/recipes/atom.xml</loc>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/06/0x0006-root-beer-from-extract/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/homebrewing/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/11/game-off-2012-followup/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/ld48/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/tmux/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/gamedev/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>http://joelkleier.com/tag/nme/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>http://joelkleier.com/tag/cheatsheet/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <loc>http://joelkleier.com/2013/08/documentation/</loc>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>http://joelkleier.com/tag/coding/rss.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/gamedev/atom.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/nme/rss.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/cheatsheet/rss.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>never</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/documentation/</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>http://joelkleier.com/tag/cheatsheet/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxe/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/0x0001-eggnog/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/brewing/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/10/ld48/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/brewing/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/about/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/tmux-cheat-sheet/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/raspberrypi/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/page/2/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/ld48/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <loc>http://joelkleier.com/tag/coding/atom.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/documentation/atom.xml</loc>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/tmux/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>http://joelkleier.com/tag/recipes/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <loc>http://joelkleier.com/tag/coding/</loc>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/interesting-things/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxe/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>http://joelkleier.com/tag/ld48/rss.xml</loc>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/06/0x0004-mr-beer/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/recipes/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/01/apathy-post-mortem/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxe/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/nme/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/ld48/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/nme/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/brewing/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/tmux/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/homebrewing/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/gamedev/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/06/0x0002-hard-cider-better-late-than-never/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/raspberrypi/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxepunk/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxepunk/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/gamedev/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/recipes/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/raspberrypi/atom.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/tag/haxepunk/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/rss.xml</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/my-first-mead/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2013/03/haxe-function-signatures/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/08/ludum-dare-24/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>http://joelkleier.com/tag/documentation/rss.xml</loc>
+    <lastmod>2013-08-20</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>http://joelkleier.com/2013/06/0x0005-dandelion-wine/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/09/raspberry-pi/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://joelkleier.com/articles/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>http://joelkleier.com/2012/10/haxepunk-lineartween-example/</loc>
-    <lastmod>2013-06-15</lastmod>
+    <lastmod>2013-08-20</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>

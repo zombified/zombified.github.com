@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <author>
+        <name>Joel Kleier</name>
+        <uri>http://joelkleier.com/</uri>
+        <email>joel@kleier.us</email>
+    </author>
+    <title>Electric Froth</title>
+    <id>tag:joelkleier.com,2011-06-11:/tag/documentation/atom.xml</id>
+    <link rel="alternate" type="text/html" href="http://joelkleier.com/" />
+    <link rel="self" type="application/atom+xml" href="http://joelkleier.com/tag/documentation/atom.xml" />
+    <icon>http://joelkleier.com/favicon.ico</icon>
+    <logo>http://joelkleier.com/feed-logo.png</logo>
+    <updated>2013-08-20T05:00:00Z</updated>
+    <generator uri="https://github.com/posativ/acrylamid/" version="0.7.6">acrylamid</generator>
+        <entry>
+        <title>Documentation</title>
+        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/08/documentation/" />
+        <id>tag:joelkleier.com,2013-08-20:/2013/08/documentation</id>
+        <updated>2013-08-20T05:00:00Z</updated>
+        <category term="coding" />
+        <category term="documentation" />
+        
+        <author>
+            <name>Joel Kleier</name>
+            <uri>http://joelkleier.com/</uri>
+            <email>joel@kleier.us</email>
+        </author>
+        <content type="html">&lt;p&gt;I think there are, primarily, four broad categories that developers fit into when
+they become users of a library or framework:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Beginner&lt;/li&gt;
+&lt;li&gt;Intermediate&lt;/li&gt;
+&lt;li&gt;Experienced&lt;/li&gt;
+&lt;li&gt;&#39;Master&#39;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These four areas broadly define some important aspects that any set of
+documentation really needs to hit on to be considered &#34;good.&#34;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Beginner&#39;s&lt;/em&gt; are developers who&#39;ve bought into using a library or framework, and
+now need some direction in how to use it. Tutorials, walk-throughs, pod/video-casts,
+&#39;hello world&#39; apps, etc, are all tools that the beginner will find really useful.
+Documentation at this level really needs to be about guiding the individual in
+the uses of the library/framework without letting them bump into any sharp
+corners.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Intermediate&lt;/em&gt; level developers are those who&#39;ve read the beginner material, or
+are at least familiar with the system in question. The training wheels are off,
+and these individuals need documentation that covers the most common pitfalls
+and some more of the common, but, perhaps, complex, configuration situations that
+come up. They also need comprehensive documentation on the API or framework itself,
+so when a situation comes up that isn&#39;t documented directly, they have the tools
+to figure out some of the simpler pitfalls.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Experienced&lt;/em&gt; level developers are those who&#39;ve bumped into their fair share of
+sharp corners, and have had to really dig into the framework or API documentation.
+They may have also dug into the code to figure out their problems. These
+developers/users might also have committed a fix or two.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&#39;Master&#39;&lt;/em&gt; level developers are those who really understand the ins-and-outs of
+the system in question. They may not be familiar with every aspect of the code,
+but they&#39;re familiar enough that they have an intuition about problems that
+arise, and how to get around them. If the problem can&#39;t be worked around, these
+are the people that really know how the system should be altered to accommodate
+their situation.&lt;/p&gt;
+&lt;p&gt;Now, of course this is an arbitrary categorization, and many times people that would
+fit into one category could also fit in another.&lt;/p&gt;
+&lt;p&gt;Also, this whole idea presumes that developers are &lt;em&gt;users&lt;/em&gt; of a piece of software
+first. To get a task done, they don&#39;t immediately want to jump into
+every library or framework and become intimately familiar with how it&#39;s coded
+up. Sometimes getting shit done means taking a leap of faith that they can depend
+on some library or framework to do what it advertises, without getting into the
+sticky details.&lt;/p&gt;
+&lt;p&gt;With that in mind, working with Plone, Django, Pyramid/Pylons, and a host of other
+Python related libraries and frameworks tends to frustrate the crap out of me,
+at least in terms of their documentation strategies.&lt;/p&gt;
+&lt;p&gt;On the one hand, there is &lt;em&gt;lots&lt;/em&gt; and &lt;em&gt;lots&lt;/em&gt; of documentation out there, but often
+times it&#39;s not really all that &#39;good&#39; (for my definition of good, anyway). Many
+times these pieces of software have decent beginner documentation -- plenty of
+&#39;hello world&#39; examples, and, usually, enough descriptive text to explain what
+the example is all about. Often times they have some sort of API documentation,
+which is usually auto-generated, and in varing states of usefulness.&lt;/p&gt;
+&lt;p&gt;On the other hand, they &lt;strong&gt;tend&lt;/strong&gt; to lack in more of the intermediate-level
+documentation -- documentation that more clearly explains some of the concepts
+of the advanced features, and gives some solutions to common situations/pitfalls.
+While they do often have API documentation, the API documentation often has gaps
+because it&#39;s someone didn&#39;t actually comment the code (or, maybe, comment it
+very well), because, you know, it&#39;s &lt;em&gt;obvious&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Often, for any kind of documentation other than the very basic &#39;hello world&#39;
+example(s), it&#39;s &#34;visit IRC&#34;, &#34;visit the list&#34;, or &#34;read the code.&#34;&lt;/p&gt;
+&lt;p&gt;Yes, having a way to communicate with the community around a piece of software
+can be an awesome thing to behold! It can be very
+useful... except when people keep coming and asking the same general things.
+Then the people that tend to stick around and help either don&#39;t continue to
+stick around, or stop helping people with the same questions they&#39;ve answered
+many times before. Then it becomes &#39;search the archives&#39;, &#39;RTFM, stupid&#39;, or a
+question just goes unanswered.&lt;/p&gt;
+&lt;p&gt;Certainly, this doesn&#39;t always happen, but it happens a lot more than maybe it
+should. I feel like this is the result of a lack &#39;good&#39; documentation.&lt;/p&gt;
+&lt;p&gt;There are two more things that irrationally irritate me when it comes to
+documentation:&lt;/p&gt;
+&lt;p&gt;First, pointing to another projects documentation, but not explaining
+&lt;em&gt;how&lt;/em&gt; the current project uses it! I mean, come on. Just saying that a
+piece of software is based off another doesn&#39;t mean that it was integrated
+and is used exactly like the original project intends and documents it.&lt;/p&gt;
+&lt;p&gt;Second, documentation location(s) -- seriously, don&#39;t have more than one location
+where you&#39;re documentation is accessed from. And while we&#39;re at it, when you have
+a lot of different versions of your applications, make sure google, etc, aren&#39;t
+pointing to old documentation versions. If they do, make sure there&#39;s an updated
+version of the documentation that is linked to from the old documentation.&lt;/p&gt;
+&lt;p&gt;I&#39;m sure there&#39;s a lot more that I could complain about in regards to documentation,
+but this post is already long enough.&lt;/p&gt;
+&lt;p&gt;I guess I leave my opinions for some hand-wavy solutions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Get the beginner docs solid&lt;/li&gt;
+&lt;li&gt;Explain &lt;em&gt;how&lt;/em&gt; a dependant, but external, library is used and configured
+    when you need to refer a user to that library&#39;s own documentation&lt;/li&gt;
+&lt;li&gt;Everytime the community answers a question, it might be a good idea to
+    publish the problem and result to the primary documentation source -- perhaps
+    even expanding on it&lt;/li&gt;
+&lt;li&gt;When autogenerating the API, make sure to have comments on everything
+    explaining the how&#39;s and why&#39;s of each little piece, even if it seems like
+    it should be completely obvious&lt;/li&gt;
+&lt;li&gt;Don&#39;t ever expect people to want to become intimately knowledgable with
+    a library, and write your documentation accordingly -- most people probably
+    just want to use it and move on with their lives&lt;/li&gt;
+&lt;li&gt;Keep documentation centralized and well versioned, including links in old
+    documentation to newer documentation&lt;/li&gt;
+&lt;/ul&gt;</content>
+    </entry>
+    </feed>
