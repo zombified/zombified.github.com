@@ -26,15 +26,15 @@
             <uri>http://joelkleier.com/</uri>
             <email>joel@kleier.us</email>
         </author>
-        <content type="html">&lt;p&gt;For the 27th [Ludum Dare][0] 48-hour game making competition, I created an
+        <content type="html">&lt;p&gt;For the 27th &lt;a href=&#34;http://ludumdare.com&#34;&gt;Ludum Dare&lt;/a&gt; 48-hour game making competition, I created an
 entry called &lt;em&gt;Grid Ten&lt;/em&gt;. It was my 6th entry into the competition, and needed
 to be based around the theme &#39;10 Seconds&#39;. The competition voting isn&#39;t quite
 over at the time of this writing, but here are my thoughts on how my game turned
 out.&lt;/p&gt;
 &lt;h4&gt;Timeline&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;Pre- theme annoucement:&lt;/strong&gt; I had planed to use [Inform 7][1] or [Twine][2] for
-creating a text adventure, but I had also considered [Haxe][3] with [HaxeFlixel][4]
-or [HaxePunk][5] as a fall-back if I didn&#39;t want to do a text adventure. Other
+&lt;p&gt;&lt;strong&gt;Pre- theme annoucement:&lt;/strong&gt; I had planed to use &lt;a href=&#34;http://inform7.com&#34;&gt;Inform 7&lt;/a&gt; or &lt;a href=&#34;http://www.gimcrackd.com/etc/src/&#34;&gt;Twine&lt;/a&gt; for
+creating a text adventure, but I had also considered &lt;a href=&#34;http://haxe.org/&#34;&gt;Haxe&lt;/a&gt; with &lt;a href=&#34;http://haxeflixel.com/&#34;&gt;HaxeFlixel&lt;/a&gt;
+or &lt;a href=&#34;http://haxepunk.com/&#34;&gt;HaxePunk&lt;/a&gt; as a fall-back if I didn&#39;t want to do a text adventure. Other
 than that, I went into the competition with no substantial ideas for the direction
 I wanted to go.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Theme Announcement:&lt;/strong&gt; The IRC chat room was full of hate for &#39;10 Seconds&#39;, and
@@ -104,18 +104,11 @@ to code the game isn&#39;t sustainable I think... growing the project much large
 would hurt, especially adding some of the mechanics into it that I have ideas
 for. I don&#39;t know that I&#39;ll have to write every piece of code from scratch, but
 good chunks of it for sure.&lt;/p&gt;
-&lt;p&gt;Otherwise, I think I&#39;ve gotten some fairly positive comments on my [entry page][6],
+&lt;p&gt;Otherwise, I think I&#39;ve gotten some fairly positive comments on my &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;amp;uid=7263&#34;&gt;entry page&lt;/a&gt;,
 and I got around a 2.5 out of 5, which is about where I was expecting this time
 around. If there were more mechanics and more polish, then I think I would have
 absolutely nailed it.&lt;/p&gt;
-&lt;p&gt;Next time!&lt;/p&gt;
-&lt;p&gt;[0] http://ludumdare.com
-[1] http://inform7.com
-[2] http://www.gimcrackd.com/etc/src/
-[3] http://haxe.org/
-[4] http://haxeflixel.com/
-[5] http://haxepunk.com/
-[6] http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;amp;uid=7263&lt;/p&gt;</content>
+&lt;p&gt;Next time!&lt;/p&gt;</content>
     </entry>
     
         <entry>
