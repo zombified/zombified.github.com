@@ -5,9 +5,106 @@
         <link>http://joelkleier.com/</link>
         <description>This blog is mine. There are many like it, but this one is mine.</description>
         <language>en</language>
-        <pubDate>Mon, 14 Jan 2013 05:00:00 GMT</pubDate>
+        <pubDate>Sun, 29 Sep 2013 05:00:00 GMT</pubDate>
         <docs>http://joelkleier.com/tag/ld48/rss.xml</docs>
         <generator>acrylamid 0.7.6</generator>
+        
+            <item>
+        <title>Postmortem for &#39;Grid Ten&#39;, my LD48#27 entry</title>
+        <link>http://joelkleier.com/2013/09/postmortem-for-grid-ten-my-ld48-27-entry/</link>
+        <description>&lt;p&gt;For the 27th [Ludum Dare][0] 48-hour game making competition, I created an
+entry called &lt;em&gt;Grid Ten&lt;/em&gt;. It was my 6th entry into the competition, and needed
+to be based around the theme &#39;10 Seconds&#39;. The competition voting isn&#39;t quite
+over at the time of this writing, but here are my thoughts on how my game turned
+out.&lt;/p&gt;
+&lt;h4&gt;Timeline&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Pre- theme annoucement:&lt;/strong&gt; I had planed to use [Inform 7][1] or [Twine][2] for
+creating a text adventure, but I had also considered [Haxe][3] with [HaxeFlixel][4]
+or [HaxePunk][5] as a fall-back if I didn&#39;t want to do a text adventure. Other
+than that, I went into the competition with no substantial ideas for the direction
+I wanted to go.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Theme Announcement:&lt;/strong&gt; The IRC chat room was full of hate for &#39;10 Seconds&#39;, and
+I just knew this was the theme going to be picked. So, when it was announced,
+I was already thinking about what I could do. Initially I started drafting some
+sort of story that would revolve around using &#39;10 seconds&#39; in the context of a
+lat/long coordinate. I actually spent a good 4 hours working on this concept
+before going to bed for the night.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The next morning:&lt;/strong&gt; With the announcement happening only 4 or so hours before
+I went to bed, it gave my subconcious a good chance to mull over what I had worked
+on the night before. When I woke up, I started having doubts about my ideas from
+the night before -- none of them were really &#39;gelling&#39; with me. So after about
+2 hours, I came upon the core idea for what turned into &lt;em&gt;Grid Ten&lt;/em&gt;, which was
+definitely not a text-adventure.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The rest of the first day:&lt;/strong&gt; After getting the core concept for &lt;em&gt;Grid Ten&lt;/em&gt;
+fleshed out a bit more, I decided to forgo Haxe, etc, and just work directly
+with html/css/javascript. It&#39;s a toolset I&#39;m really familiar with, and my
+concept would work very well with programmatically generated textures that I
+thought would be easier to do with the canvas element than with HaxeFlixel or
+HaxePunk. I also decided I didn&#39;t want a compile step in my development, nor
+did I want to deal with flash. The majority of the work went really smooth,
+I was really able to focus in on just the minimum code necessary -- I actually
+had some code to implement tails for the enemies, but then I quickly saw that
+that code would just bloat the game unnecessarily. It got cut out pretty quick,
+I didn&#39;t just comment it out, I completely removed it. I didn&#39;t want anything
+that would distract my focus. At the end of the day, I had the mechanics that
+I was shooting for pretty well fleshed out. There was still a LOT to add to the
+game, but the very core was in place!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Day 2:&lt;/strong&gt; I spent a good 7 hours polishing everything up -- I added some
+primitive animations, another &#39;block&#39; the player could place, I also did some
+optimizations and improved the &#39;intelligence&#39; of the enemies and added a menu,
+and a end-game screen. Generally, I polished the thing up quit a bit. I did
+stop early, around 3pm, to start the process of packaging and releasing. I&#39;ll
+talk about this a bit more later, but I should have definitely kept at it for
+at least another 2 or 3 hours.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Post- competition end:&lt;/strong&gt; I ended up fixing a bug whereby user placed blocks
+would stick around after a reset. Small, and easily fixed, but I should have
+totally caught that before submission!&lt;/p&gt;
+&lt;h4&gt;The GOOD&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;I leveraged a platform that I know fairly well&lt;/li&gt;
+&lt;li&gt;I stuck really well to a plan for absolute minimum viable product -- I didn&#39;t
+    put a lot of extra cruft into the game that I didn&#39;t think significantly
+    improved the experience. Take, for example, the start and end screens -- I
+    put a large &#39;bouncing&#39; text on both screens which didn&#39;t add anything to
+    game-play, but it made the start and end screens much less boring to look
+    at, which is important for first impressions I think.&lt;/li&gt;
+&lt;li&gt;I got plenty of sleep and food (always important!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;The BAD&lt;/h4&gt;
+&lt;p&gt;There are really only three things I think were really bad this time around:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I basically scratched and restarted what I was doing after about 6 hours
+    total of development time. This hurt -- but, to be fair, I wasn&#39;t &#39;feeling&#39;
+    the text-adventure I started with, and it was probably good for my sanity
+    to restart with the game I did.&lt;/li&gt;
+&lt;li&gt;I quit 2 or 3 hours earlier than I really should have, and in that time I
+    probably could have done quite a lot of polishing.&lt;/li&gt;
+&lt;li&gt;I used mostly original code -- I used zero game related engines/frameworks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;The UGLY&lt;/h4&gt;
+&lt;p&gt;Overall I&#39;m really happy with the project, and I think the core concept has a
+lot of potential. I see a few ways that it could grow and change, and I&#39;m
+actually pretty excited to continue working on this game in my down time.&lt;/p&gt;
+&lt;p&gt;However, I think I&#39;ll probably end up re-writing most of it. The style I used
+to code the game isn&#39;t sustainable I think... growing the project much larger
+would hurt, especially adding some of the mechanics into it that I have ideas
+for. I don&#39;t know that I&#39;ll have to write every piece of code from scratch, but
+good chunks of it for sure.&lt;/p&gt;
+&lt;p&gt;Otherwise, I think I&#39;ve gotten some fairly positive comments on my [entry page][6],
+and I got around a 2.5 out of 5, which is about where I was expecting this time
+around. If there were more mechanics and more polish, then I think I would have
+absolutely nailed it.&lt;/p&gt;
+&lt;p&gt;Next time!&lt;/p&gt;
+&lt;p&gt;[0] http://ludumdare.com
+[1] http://inform7.com
+[2] http://www.gimcrackd.com/etc/src/
+[3] http://haxe.org/
+[4] http://haxeflixel.com/
+[5] http://haxepunk.com/
+[6] http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;amp;uid=7263&lt;/p&gt;</description>
+        <pubDate>Sun, 29 Sep 2013 05:00:00 GMT</pubDate>
+        <guid isPermaLink="false">tag:joelkleier.com,2013-09-29:/2013/09/postmortem-for-grid-ten-my-ld48-27-entry</guid>
+    </item>
         
             <item>
         <title>Apathy post-mortem</title>

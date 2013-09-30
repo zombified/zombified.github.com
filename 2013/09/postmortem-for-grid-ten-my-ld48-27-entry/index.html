@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <title>Postmortem for 'Grid Ten', my LD48#27 entry |Electric Froth
+</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link rel="stylesheet" href="/normalize.css" />
+    <link href='http://fonts.googleapis.com/css?family=Jura:600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css" />
+
+    <link href="/sitemap.xml" type="application/xml" rel="sitemap" title="Sitemap">
+    <link href="/" rel="home start" />
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="description" content="The good, the bad, and the ugly about my experience during my 6th attempt at the Ludum Dare 48-hour game making competition." />
+    <meta name="keywords" content="gamedev, ld48" />
+</head>
+<body>
+    <div id='page-wrap'>
+        <header id='page-header'>
+            <h1><a href='/' rel="home start"><span class='electric'>Electric</span><span class='froth'>Froth</span></a></h1>
+            <nav class='page-nav'>
+                <ul>
+                    <li><a href='/about/'>about</a></li>
+                    <li class='active'><a href='/' rel="alternate">blog</a></li>
+                    <li><a href='/interesting-things/'>Interesting things</a></li>
+                </ul>
+            </nav>
+        </header>
+    <section id='post'>
+        <article>
+            <header>
+                <h1>
+                    <a href="/2013/09/postmortem-for-grid-ten-my-ld48-27-entry/" rel="bookmark canonical">Postmortem for 'Grid Ten', my LD48#27 entry</a>
+                </h1>
+                <time class='date' datetime="2013-09-29">September 29, 2013</time>
+                <span class='description'>The good, the bad, and the ugly about my experience during my 6th attempt at the Ludum Dare 48-hour game making competition.</span>
+            </header>
+            <p>For the 27th [Ludum Dare][0] 48-hour game making com&shy;pe&shy;ti&shy;tion, I created an
+entry called <em>Grid Ten</em>. It was my 6th entry into the com&shy;pe&shy;ti&shy;tion, and needed
+to be based around the theme '10 Seconds'. The com&shy;pe&shy;ti&shy;tion voting isn't quite
+over at the time of this writing, but here are my thoughts on how my game turned
+out.</p>
+<h3>Timeline</h3>
+<p><strong>Pre- theme an&shy;nouce&shy;ment:</strong> I had planed to use [Inform 7][1] or [Twine][2] for
+creating a text adventure, but I had also considered [Haxe][3] with [Hax&shy;e&shy;Flix&shy;el][4]
+or [Hax&shy;ePunk][5] as a fall-back if I didn't want to do a text adventure. Other
+than that, I went into the com&shy;pe&shy;ti&shy;tion with no sub&shy;stan&shy;tial ideas for the direction
+I wanted to go.</p>
+<p><strong>Theme An&shy;nounce&shy;ment:</strong> The IRC chat room was full of hate for '10 Seconds', and
+I just knew this was the theme going to be picked. So, when it was announced,
+I was already thinking about what I could do. Initially I started drafting some
+sort of story that would revolve around using '10 seconds' in the context of a
+lat/long coordinate. I actually spent a good 4 hours working on this concept
+before going to bed for the night.</p>
+<p><strong>The next morning:</strong> With the an&shy;nounce&shy;ment happening only 4 or so hours before
+I went to bed, it gave my sub&shy;con&shy;cious a good chance to mull over what I had worked
+on the night before. When I woke up, I started having doubts about my ideas from
+the night before -- none of them were really 'gelling' with me. So after about
+2 hours, I came upon the core idea for what turned into <em>Grid Ten</em>, which was
+definitely not a text-adventure.</p>
+<p><strong>The rest of the first day:</strong> After getting the core concept for <em>Grid Ten</em>
+fleshed out a bit more, I decided to forgo Haxe, etc, and just work directly
+with html/css/javascript. It's a toolset I'm really familiar with, and my
+concept would work very well with pro&shy;gram&shy;mat&shy;i&shy;cal&shy;ly generated textures that I
+thought would be easier to do with the canvas element than with HaxeFlixel or
+HaxePunk. I also decided I didn't want a compile step in my de&shy;vel&shy;op&shy;ment, nor
+did I want to deal with flash. The majority of the work went really smooth,
+I was really able to focus in on just the minimum code necessary -- I actually
+had some code to implement tails for the enemies, but then I quickly saw that
+that code would just bloat the game un&shy;nec&shy;es&shy;sar&shy;i&shy;ly. It got cut out pretty quick,
+I didn't just comment it out, I completely removed it. I didn't want anything
+that would distract my focus. At the end of the day, I had the mechanics that
+I was shooting for pretty well fleshed out. There was still a LOT to add to the
+game, but the very core was in place!</p>
+<p><strong>Day 2:</strong> I spent a good 7 hours polishing everything up -- I added some
+primitive animations, another 'block' the player could place, I also did some
+op&shy;ti&shy;miza&shy;tions and improved the 'in&shy;tel&shy;li&shy;gence' of the enemies and added a menu,
+and a end-game screen. Generally, I polished the thing up quit a bit. I did
+stop early, around 3pm, to start the process of packaging and releasing. I'll
+talk about this a bit more later, but I should have definitely kept at it for
+at least another 2 or 3 hours.</p>
+<p><strong>Post- com&shy;pe&shy;ti&shy;tion end:</strong> I ended up fixing a bug whereby user placed blocks
+would stick around after a reset. Small, and easily fixed, but I should have
+totally caught that before submission!</p>
+<h3>The GOOD</h3>
+<ul>
+<li>I leveraged a platform that I know fairly well</li>
+<li>I stuck really well to a plan for absolute minimum viable product -- I didn't
+    put a lot of extra cruft into the game that I didn't think sig&shy;nif&shy;i&shy;cant&shy;ly
+    improved the experience. Take, for example, the start and end screens -- I
+    put a large 'bouncing' text on both screens which didn't add anything to
+    game-play, but it made the start and end screens much less boring to look
+    at, which is important for first im&shy;pres&shy;sions I think.</li>
+<li>I got plenty of sleep and food (always important!)</li>
+</ul>
+<h3>The BAD</h3>
+<p>There are really only three things I think were really bad this time around:</p>
+<ul>
+<li>I basically scratched and restarted what I was doing after about 6 hours
+    total of de&shy;vel&shy;op&shy;ment time. This hurt -- but, to be fair, I wasn't 'feeling'
+    the text-adventure I started with, and it was probably good for my sanity
+    to restart with the game I did.</li>
+<li>I quit 2 or 3 hours earlier than I really should have, and in that time I
+    probably could have done quite a lot of polishing.</li>
+<li>I used mostly original code -- I used zero game related engines/frameworks</li>
+</ul>
+<h3>The UGLY</h3>
+<p>Overall I'm really happy with the project, and I think the core concept has a
+lot of potential. I see a few ways that it could grow and change, and I'm
+actually pretty excited to continue working on this game in my down time.</p>
+<p>However, I think I'll probably end up re-writing most of it. The style I used
+to code the game isn't sus&shy;tain&shy;able I think... growing the project much larger
+would hurt, especially adding some of the mechanics into it that I have ideas
+for. I don't know that I'll have to write every piece of code from scratch, but
+good chunks of it for sure.</p>
+<p>Otherwise, I think I've gotten some fairly positive comments on my [entry page][6],
+and I got around a 2.5 out of 5, which is about where I was expecting this time
+around. If there were more mechanics and more polish, then I think I would have
+absolutely nailed it.</p>
+<p>Next time!</p>
+<p>[0] http://ludumdare.com
+[1] http://inform7.com
+[2] http://www.gimcrackd.com/etc/src/
+[3] http://haxe.org/
+[4] http://haxeflixel.com/
+[5] http://haxepunk.com/
+[6] http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;uid=7263</p>
+            <footer>
+                
+                    <p class='tagged'>tagged as
+                        <a href="/tag/gamedev/" rel="tag">gamedev</a>
+                            and
+                            
+                        <a href="/tag/ld48/" rel="tag">ld48</a>
+                        
+                    </p>
+                
+                <nav class='post-nav'>
+                    <ul>
+                
+                        <li>
+                            <a href="/2013/08/documentation//">
+                                &laquo; Documentation
+                            </a>
+                        </li>
+                
+                
+                    </ul>
+                </nav>
+            </footer>
+        </article>
+    </section>
+</div>
+    <footer id='page-footer'>
+        
+        <ul>
+            <li><a href='/rss.xml' rel="alternate">RSS</a></li>
+            <li>&middot; <a href='/atom.xml' rel="alternate">Atom</a></li>
+            <li>&middot; Built with <a href='http://posativ.org/acrylamid'>Acrylamid</a></li>
+            <li>&middot; <a href='http://validator.w3.org/check?uri=referer'>Validate this site</a></li>
+            <li>&middot; &copy; Joel Kleier</li>
+        </ul>
+        
+    </footer>
+</body>
+</html>

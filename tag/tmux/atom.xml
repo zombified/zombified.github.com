@@ -38,6 +38,7 @@ put commands I use reguarly.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;^b p&lt;/strong&gt; Go to previous window&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;^b %&lt;/strong&gt; Split (vertically) into 2 panes&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;^b o&lt;/strong&gt; Next pane&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;^b [&lt;/strong&gt; Go into scroll mode (&#39;q&#39; to get out of scroll mode)&lt;/li&gt;
 &lt;/ul&gt;</content>
     </entry>
     </feed>
