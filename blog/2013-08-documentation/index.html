@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Documentation | Electric Froth</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="/" rel="home start" />
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        <link rel='stylesheet' href='/theme/style.css' />
+        </head>
+<body>
+    <div class='page'>
+        <header class='site-header'>
+            <h1>Documentation</h1>
+                        <div class='site-menu'>
+                                        <ul>
+                                            <li class='first'><a href='/'>index</a></li>
+                                            <li><a href='/blog/tag/brewlog/'>brewlog</a></li>
+                                            <li><a href='/blog/archive/'>archive</a></li>
+                                            <li class='last'><a href='/interesting-things/'>interesting things</a></li>
+                                        </ul>
+                                    </div>
+                                </header>
+        <article class='content'>
+            <p>I think there are, primarily, four broad categories that developers fit into when they become users of a library or framework:</p>
+            <ol type="1">
+            <li>Beginner</li>
+            <li>Intermediate</li>
+            <li>Experienced</li>
+            <li>'Master'</li>
+            </ol>
+            <p>These four areas broadly define some important aspects that any set of documentation really needs to hit on to be considered &quot;good.&quot;</p>
+            <p><em>Beginner's</em> are developers who've bought into using a library or framework, and now need some direction in how to use it. Tutorials, walk-throughs, pod/video-casts, 'hello world' apps, etc, are all tools that the beginner will find really useful. Documentation at this level really needs to be about guiding the individual in the uses of the library/framework without letting them bump into any sharp corners.</p>
+            <p><em>Intermediate</em> level developers are those who've read the beginner material, or are at least familiar with the system in question. The training wheels are off, and these individuals need documentation that covers the most common pitfalls and some more of the common, but, perhaps, complex, configuration situations that come up. They also need comprehensive documentation on the API or framework itself, so when a situation comes up that isn't documented directly, they have the tools to figure out some of the simpler pitfalls.</p>
+            <p><em>Experienced</em> level developers are those who've bumped into their fair share of sharp corners, and have had to really dig into the framework or API documentation. They may have also dug into the code to figure out their problems. These developers/users might also have committed a fix or two.</p>
+            <p><em>'Master'</em> level developers are those who really understand the ins-and-outs of the system in question. They may not be familiar with every aspect of the code, but they're familiar enough that they have an intuition about problems that arise, and how to get around them. If the problem can't be worked around, these are the people that really know how the system should be altered to accommodate their situation.</p>
+            <p>Now, of course this is an arbitrary categorization, and many times people that would fit into one category could also fit in another.</p>
+            <p>Also, this whole idea presumes that developers are <em>users</em> of a piece of software first. To get a task done, they don't immediately want to jump into every library or framework and become intimately familiar with how it's coded up. Sometimes getting shit done means taking a leap of faith that they can depend on some library or framework to do what it advertises, without getting into the sticky details.</p>
+            <p>With that in mind, working with Plone, Django, Pyramid/Pylons, and a host of other Python related libraries and frameworks tends to frustrate the crap out of me, at least in terms of their documentation strategies.</p>
+            <p>On the one hand, there is <em>lots</em> and <em>lots</em> of documentation out there, but often times it's not really all that 'good' (for my definition of good, anyway). Many times these pieces of software have decent beginner documentation -- plenty of 'hello world' examples, and, usually, enough descriptive text to explain what the example is all about. Often times they have some sort of API documentation, which is usually auto-generated, and in varing states of usefulness.</p>
+            <p>On the other hand, they <strong>tend</strong> to lack in more of the intermediate-level documentation -- documentation that more clearly explains some of the concepts of the advanced features, and gives some solutions to common situations/pitfalls. While they do often have API documentation, the API documentation often has gaps because it's someone didn't actually comment the code (or, maybe, comment it very well), because, you know, it's <em>obvious</em>.</p>
+            <p>Often, for any kind of documentation other than the very basic 'hello world' example(s), it's &quot;visit IRC&quot;, &quot;visit the list&quot;, or &quot;read the code.&quot;</p>
+            <p>Yes, having a way to communicate with the community around a piece of software can be an awesome thing to behold! It can be very useful... except when people keep coming and asking the same general things. Then the people that tend to stick around and help either don't continue to stick around, or stop helping people with the same questions they've answered many times before. Then it becomes 'search the archives', 'RTFM, stupid', or a question just goes unanswered.</p>
+            <p>Certainly, this doesn't always happen, but it happens a lot more than maybe it should. I feel like this is the result of a lack 'good' documentation.</p>
+            <p>There are two more things that irrationally irritate me when it comes to documentation:</p>
+            <p>First, pointing to another projects documentation, but not explaining <em>how</em> the current project uses it! I mean, come on. Just saying that a piece of software is based off another doesn't mean that it was integrated and is used exactly like the original project intends and documents it.</p>
+            <p>Second, documentation location(s) -- seriously, don't have more than one location where you're documentation is accessed from. And while we're at it, when you have a lot of different versions of your applications, make sure google, etc, aren't pointing to old documentation versions. If they do, make sure there's an updated version of the documentation that is linked to from the old documentation.</p>
+            <p>I'm sure there's a lot more that I could complain about in regards to documentation, but this post is already long enough.</p>
+            <p>I guess I leave my opinions for some hand-wavy solutions:</p>
+            <ul>
+            <li>Get the beginner docs solid</li>
+            <li>Explain <em>how</em> a dependant, but external, library is used and configured when you need to refer a user to that library's own documentation</li>
+            <li>Everytime the community answers a question, it might be a good idea to publish the problem and result to the primary documentation source -- perhaps even expanding on it</li>
+            <li>When autogenerating the API, make sure to have comments on everything explaining the how's and why's of each little piece, even if it seems like it should be completely obvious</li>
+            <li>Don't ever expect people to want to become intimately knowledgable with a library, and write your documentation accordingly -- most people probably just want to use it and move on with their lives</li>
+            <li>Keep documentation centralized and well versioned, including links in old documentation to newer documentation</li>
+            </ul>
+        </article>
+    </div>
+    <footer class='site-footer'>
+        <div class='content'>
+                        <div><a href='/rss.xml'>RSS</a> &middot; <a href='/atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
+                                    <div class='contact-info'>
+                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+                                        &middot;
+                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+                                        &middot;
+                                        <a href='https://github.com/zombified'>github</a>
+                                        &middot;
+                                        <a href='https://facebook.com/joelkleier'>facebook</a>
+                                        &middot;
+                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+                                        &middot;
+                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+                                    </div>
+                                    
+                                </div>
+    </footer>
+</body>
+</html>

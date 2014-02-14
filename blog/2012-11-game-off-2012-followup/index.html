@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Game-Off 2012 Followup | Electric Froth</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="/" rel="home start" />
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        <link rel='stylesheet' href='/theme/style.css' />
+        </head>
+<body>
+    <div class='page'>
+        <header class='site-header'>
+            <h1>Game-Off 2012 Followup</h1>
+                        <div class='site-menu'>
+                                        <ul>
+                                            <li class='first'><a href='/'>index</a></li>
+                                            <li><a href='/blog/tag/brewlog/'>brewlog</a></li>
+                                            <li><a href='/blog/archive/'>archive</a></li>
+                                            <li class='last'><a href='/interesting-things/'>interesting things</a></li>
+                                        </ul>
+                                    </div>
+                                </header>
+        <article class='content'>
+            <p><a href="http://joelkleier.com/posts/2012/10/game-off-2012.html">Last time</a> I talked about getting into Github's game-off-2012 contest and I exclaimed how I would blog about my trials and tribulations. Well, it's been a month and there's been nothing but radio silence! I'll change that here.</p>
+            <p>A month is a long time to use to create a prototype, however, I did a few stupid things and won't be able to enter the contest.</p>
+            <h2 id="what-went-right">What Went Right</h2>
+            <h3 id="effort">Effort</h3>
+            <p>I was able to dedicate a lot of my spare time to this project and didn't alienate my friends, family, or significant other. I think the key take away for me is that I was able to use the time I set aside for this project wisely. The rest of my life didn't suffer because I was able to fully concentrate on what I needed to do in 2-3 hour uninterrupted blocks.</p>
+            <p>The only thing that suffered a little is my sleeping habbits, but more on that when I discuss what went wrong.</p>
+            <h3 id="pretty-solid-start">Pretty solid start</h3>
+            <p>When all is said and done, I have a pretty solid starting point to a finished game.</p>
+            <p>There is a good rule of thumb out there, &quot;don't make an engine, make a game&quot;. While I did suffer from putting a lot of my effort into switching languages and libraries in the beginning, I never put effort into designing an engine, it was all very specific for the game. The way I coded, I put some thought into where I might be able to refactor things later, but I never let it expand to a more general case.</p>
+            <p>In the end, I created a component/entity framework in the vein of <a href="http://craftyjs.com/" title="Crafty.js">Crafty</a>. I didn't stick with crafty because I didn't like some of the projects design decisions, like focusing on both DOM and Canvas rendering techniques and trying to be a general case for a wide range of browsers.</p>
+            <p>Really, at this point, I want to target the latest stable of just Chrome and Firefox, and I want to focus on using the canvas to display all game content.</p>
+            <p>Now, when I say &quot;component/entity framework&quot; I really mean that I created about 100 lines of javascript containing 3 things:</p>
+            <ol type="1">
+            <li>A function for registering a component</li>
+            <li>A function for creating an entity from a list of components</li>
+            <li>A method that implements a publish/subscribe pattern for all entities (and a global game object)</li>
+            </ol>
+            <p>Perhaps I'll write more about it in the future, it probably deserves it's own post.</p>
+            <h2 id="what-went-wrong">What Went Wrong</h2>
+            <h3 id="technology-switching">Technology Switching</h3>
+            <p>This was my biggest setback.</p>
+            <p>I started off strong, using Haxe+Haxepunk. By November 1st, I found that I did not enjoy developing in haxe -- I do not know AS3, I do not know the flash libs, I do not use windows, and I don't really have a feel for the community.</p>
+            <p>Great stuff, I got quite a bit done. However, when I hit a wall, I was quickly discouraged and switched gears to my old friend, javascript.</p>
+            <p>I started off messing with <a href="http://craftyjs.com/" title="Crafty.js">Crafty.js</a>, a really spiffy little component-entity based engine. I think I could have got a lot done with it, but there were a few things I ran into that made me want to switch off of it:</p>
+            <ol type="1">
+            <li>More a matter of taste: I wasn't planning on ever doing DOM based rendering and I felt like there were to many concessions to trying to handle both DOM and canvas.</li>
+            <li>I didn't like how their module system tried to make you use hosted files. Easily worked around, and still a matter of taste, but I didn't like it.</li>
+            <li>Assets: only a handful of image and audio formats are covered by the asset manager, and there's no way to really extend the main code from your own project without jumping through hoops that you really shouldn't need to.</li>
+            <li>The documentation sucks, there's a bunch of pages that don't show anything, and the documentation for the framework itself didn't really explain much sometimes.</li>
+            <li>Demo's are not of a quality that I would expect.</li>
+            </ol>
+            <p>So, after working through that for a bit, I thought I might fall back to <a href="http://www.melonjs.org/" title="melonJS">melonJS</a>, which I've used before and enjoyed. I didn't get very far into using this library though. The time waster here was that I considered it at all.</p>
+            <p>After working with the good bits of Crafty, going to melonJS felt like I was going backwards a bit. Let me say, melonJS is a great framework that provides great support for <a href="http://www.mapeditor.org/" title="Tiled">Tiled</a>/TMX maps and has pretty much everything you need to make a solid javascript based game. Crafty, at its core, just felt like a better way to design a game in javascript.</p>
+            <p>This is when I decided that I could probably create a core like Crafty's fairly quickly, and I could probaby convert most of the audio, asset, scene, input, etc, code I've already written for other projects into this sort of design.</p>
+            <p>I was right about that, but my timeline suffered, and then some life stuff popped up, and I stopped working on the game for almost a week. Bam. Out of the contest.</p>
+            <p>If I had started from the beginning with what I have now? Probably would be polishing a prototype by now.</p>
+            <h3 id="rewriting-core-code">Rewriting Core Code</h3>
+            <p>The second biggest setback was doing rewrites of portions of the core of my code. Avoidable? Maybe, but the rewrites were inevitable, and they really did prevent a lot of time and pain spent on things that would get changed later anyway.</p>
+            <h3 id="not-enough-up-front-design">Not enough up-front design</h3>
+            <p>I think I could have put together a better design doc for the game itself. With no clear path, and so much time on my hands, I tended to focus more on the techical side of the game, and less on the visuals, interaction, and general game design.</p>
+            <h3 id="sleep">Sleep</h3>
+            <p>While I was able to put a lot of spare-time effort into this game, and was able to avoid alienating anyone in my life, my sleep schedule suffered for it. This made me rely on caffinated and sugary drinks to stay alert and active, which did nothing good for my health.</p>
+            <p>I'm happy to say there was never a point where I was sleep deprived -- I never got less than between 5 or 6 hours of sleep. But that takes a toll when you're body likes having even just slightly more than that (I usually feel fine with between 6.5 and 7.5 hours).</p>
+            <h2 id="where-to-go-from-here">Where to go from here</h2>
+            <p>I'll be continuing this project even if I can't complete it for the contest. I think it has potential, and it has been quite enjoyable.</p>
+            <p>I have a lot more to do, so I'm <del>sure</del> hopeful that I'll be writing more posts about it in the future!</p>
+        </article>
+    </div>
+    <footer class='site-footer'>
+        <div class='content'>
+                        <div><a href='/rss.xml'>RSS</a> &middot; <a href='/atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
+                                    <div class='contact-info'>
+                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+                                        &middot;
+                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+                                        &middot;
+                                        <a href='https://github.com/zombified'>github</a>
+                                        &middot;
+                                        <a href='https://facebook.com/joelkleier'>facebook</a>
+                                        &middot;
+                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+                                        &middot;
+                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+                                    </div>
+                                    
+                                </div>
+    </footer>
+</body>
+</html>

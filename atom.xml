@@ -1,1322 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-    <author>
-        <name>Joel Kleier</name>
-        <uri>http://joelkleier.com/</uri>
-        <email>joel@kleier.us</email>
-    </author>
+<feed xmlns="http://www.w3.org/2005/Atom">
     <title>Electric Froth</title>
-    <id>tag:joelkleier.com,2011-06-11:/atom.xml</id>
-    <link rel="alternate" type="text/html" href="http://joelkleier.com/" />
-    <link rel="self" type="application/atom+xml" href="http://joelkleier.com/atom.xml" />
-    <icon>http://joelkleier.com/favicon.ico</icon>
-    <logo>http://joelkleier.com/feed-logo.png</logo>
-    <updated>2013-09-29T05:00:00Z</updated>
-    <generator uri="https://github.com/posativ/acrylamid/" version="0.7.6">acrylamid</generator>
-        <entry>
-        <title>Postmortem for &#39;Grid Ten&#39;, my LD48#27 entry</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/09/postmortem-for-grid-ten-my-ld48-27-entry/" />
-        <id>tag:joelkleier.com,2013-09-29:/2013/09/postmortem-for-grid-ten-my-ld48-27-entry</id>
-        <updated>2013-09-29T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="ld48" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;For the 27th &lt;a href=&#34;http://ludumdare.com&#34;&gt;Ludum Dare&lt;/a&gt; 48-hour game making competition, I created an
-entry called &lt;em&gt;Grid Ten&lt;/em&gt;. It was my 6th entry into the competition, and needed
-to be based around the theme &#39;10 Seconds&#39;. The competition voting isn&#39;t quite
-over at the time of this writing, but here are my thoughts on how my game turned
-out.&lt;/p&gt;
-&lt;h4&gt;Timeline&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;Pre- theme annoucement:&lt;/strong&gt; I had planned to use &lt;a href=&#34;http://inform7.com&#34;&gt;Inform 7&lt;/a&gt; or &lt;a href=&#34;http://www.gimcrackd.com/etc/src/&#34;&gt;Twine&lt;/a&gt; for
-creating a text adventure, but I had also considered &lt;a href=&#34;http://haxe.org/&#34;&gt;Haxe&lt;/a&gt; with &lt;a href=&#34;http://haxeflixel.com/&#34;&gt;HaxeFlixel&lt;/a&gt;
-or &lt;a href=&#34;http://haxepunk.com/&#34;&gt;HaxePunk&lt;/a&gt; as a fall-back if I didn&#39;t want to do a text adventure. Other
-than that, I went into the competition with no substantial ideas for the direction
-I wanted to go.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Theme Announcement:&lt;/strong&gt; The IRC chat room was full of hate for &#39;10 Seconds&#39;, and
-I just knew this was the theme going to be picked. So, when it was announced,
-I was already thinking about what I could do. Initially I started drafting some
-sort of story that would revolve around using &#39;10 seconds&#39; in the context of a
-lat/long coordinate. I actually spent a good 4 hours working on this concept
-before going to bed for the night.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The next morning:&lt;/strong&gt; With the announcement happening only 4 or so hours before
-I went to bed, it gave my subconcious a good chance to mull over what I had worked
-on the night before. When I woke up, I started having doubts about my ideas from
-the night before -- none of them were really &#39;gelling&#39; with me. So after about
-2 hours, I came upon the core idea for what turned into &lt;em&gt;Grid Ten&lt;/em&gt;, which was
-definitely not a text-adventure.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The rest of the first day:&lt;/strong&gt; After getting the core concept for &lt;em&gt;Grid Ten&lt;/em&gt;
-fleshed out a bit more, I decided to forgo Haxe, etc, and just work directly
-with html/css/javascript. It&#39;s a toolset I&#39;m really familiar with, and my
-concept would work very well with programmatically generated textures that I
-thought would be easier to do with the canvas element than with HaxeFlixel or
-HaxePunk. I also decided I didn&#39;t want a compile step in my development, nor
-did I want to deal with flash. The majority of the work went really smooth,
-I was really able to focus in on just the minimum code necessary -- I actually
-had some code to implement tails for the enemies, but then I quickly saw that
-that code would just bloat the game unnecessarily. It got cut out pretty quick,
-I didn&#39;t just comment it out, I completely removed it. I didn&#39;t want anything
-that would distract my focus. At the end of the day, I had the mechanics that
-I was shooting for pretty well fleshed out. There was still a LOT to add to the
-game, but the very core was in place!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Day 2:&lt;/strong&gt; I spent a good 7 hours polishing everything up -- I added some
-primitive animations, another &#39;block&#39; the player could place, I also did some
-optimizations and improved the &#39;intelligence&#39; of the enemies and added a menu,
-and a end-game screen. Generally, I polished the thing up quit a bit. I did
-stop early, around 3pm, to start the process of packaging and releasing. I&#39;ll
-talk about this a bit more later, but I should have definitely kept at it for
-at least another 2 or 3 hours.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Post- competition end:&lt;/strong&gt; I ended up fixing a bug whereby user placed blocks
-would stick around after a reset. Small, and easily fixed, but I should have
-totally caught that before submission!&lt;/p&gt;
-&lt;h4&gt;The GOOD&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;I leveraged a platform that I know fairly well&lt;/li&gt;
-&lt;li&gt;I stuck really well to a plan for absolute minimum viable product -- I didn&#39;t
-    put a lot of extra cruft into the game that I didn&#39;t think significantly
-    improved the experience. Take, for example, the start and end screens -- I
-    put a large &#39;bouncing&#39; text on both screens which didn&#39;t add anything to
-    game-play, but it made the start and end screens much less boring to look
-    at, which is important for first impressions I think.&lt;/li&gt;
-&lt;li&gt;I got plenty of sleep and food (always important!)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;The BAD&lt;/h4&gt;
-&lt;p&gt;There are really only three things I think were really bad this time around:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I basically scratched and restarted what I was doing after about 6 hours
-    total of development time. This hurt -- but, to be fair, I wasn&#39;t &#39;feeling&#39;
-    the text-adventure I started with, and it was probably good for my sanity
-    to restart with the game I did.&lt;/li&gt;
-&lt;li&gt;I quit 2 or 3 hours earlier than I really should have, and in that time I
-    probably could have done quite a lot of polishing.&lt;/li&gt;
-&lt;li&gt;I used mostly original code -- I used zero game related engines/frameworks&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;The UGLY&lt;/h4&gt;
-&lt;p&gt;Overall I&#39;m really happy with the project, and I think the core concept has a
-lot of potential. I see a few ways that it could grow and change, and I&#39;m
-actually pretty excited to continue working on this game in my down time.&lt;/p&gt;
-&lt;p&gt;However, I think I&#39;ll probably end up re-writing most of it. The style I used
-to code the game isn&#39;t sustainable I think... growing the project much larger
-would hurt, especially adding some of the mechanics into it that I have ideas
-for. I don&#39;t know that I&#39;ll have to write every piece of code from scratch, but
-good chunks of it for sure.&lt;/p&gt;
-&lt;p&gt;Otherwise, I think I&#39;ve gotten some fairly positive comments on my &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;amp;uid=7263&#34;&gt;entry page&lt;/a&gt;,
-and I got around a 2.5 out of 5, which is about where I was expecting this time
-around. If there were more mechanics and more polish, then I think I would have
-absolutely nailed it.&lt;/p&gt;
-&lt;p&gt;Next time!&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Documentation</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/08/documentation/" />
-        <id>tag:joelkleier.com,2013-08-20:/2013/08/documentation</id>
-        <updated>2013-08-20T05:00:00Z</updated>
-        <category term="coding" />
-        <category term="documentation" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;I think there are, primarily, four broad categories that developers fit into when
-they become users of a library or framework:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Beginner&lt;/li&gt;
-&lt;li&gt;Intermediate&lt;/li&gt;
-&lt;li&gt;Experienced&lt;/li&gt;
-&lt;li&gt;&#39;Master&#39;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;These four areas broadly define some important aspects that any set of
-documentation really needs to hit on to be considered &#34;good.&#34;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Beginner&#39;s&lt;/em&gt; are developers who&#39;ve bought into using a library or framework, and
-now need some direction in how to use it. Tutorials, walk-throughs, pod/video-casts,
-&#39;hello world&#39; apps, etc, are all tools that the beginner will find really useful.
-Documentation at this level really needs to be about guiding the individual in
-the uses of the library/framework without letting them bump into any sharp
-corners.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Intermediate&lt;/em&gt; level developers are those who&#39;ve read the beginner material, or
-are at least familiar with the system in question. The training wheels are off,
-and these individuals need documentation that covers the most common pitfalls
-and some more of the common, but, perhaps, complex, configuration situations that
-come up. They also need comprehensive documentation on the API or framework itself,
-so when a situation comes up that isn&#39;t documented directly, they have the tools
-to figure out some of the simpler pitfalls.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Experienced&lt;/em&gt; level developers are those who&#39;ve bumped into their fair share of
-sharp corners, and have had to really dig into the framework or API documentation.
-They may have also dug into the code to figure out their problems. These
-developers/users might also have committed a fix or two.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&#39;Master&#39;&lt;/em&gt; level developers are those who really understand the ins-and-outs of
-the system in question. They may not be familiar with every aspect of the code,
-but they&#39;re familiar enough that they have an intuition about problems that
-arise, and how to get around them. If the problem can&#39;t be worked around, these
-are the people that really know how the system should be altered to accommodate
-their situation.&lt;/p&gt;
-&lt;p&gt;Now, of course this is an arbitrary categorization, and many times people that would
-fit into one category could also fit in another.&lt;/p&gt;
-&lt;p&gt;Also, this whole idea presumes that developers are &lt;em&gt;users&lt;/em&gt; of a piece of software
-first. To get a task done, they don&#39;t immediately want to jump into
-every library or framework and become intimately familiar with how it&#39;s coded
-up. Sometimes getting shit done means taking a leap of faith that they can depend
-on some library or framework to do what it advertises, without getting into the
-sticky details.&lt;/p&gt;
-&lt;p&gt;With that in mind, working with Plone, Django, Pyramid/Pylons, and a host of other
-Python related libraries and frameworks tends to frustrate the crap out of me,
-at least in terms of their documentation strategies.&lt;/p&gt;
-&lt;p&gt;On the one hand, there is &lt;em&gt;lots&lt;/em&gt; and &lt;em&gt;lots&lt;/em&gt; of documentation out there, but often
-times it&#39;s not really all that &#39;good&#39; (for my definition of good, anyway). Many
-times these pieces of software have decent beginner documentation -- plenty of
-&#39;hello world&#39; examples, and, usually, enough descriptive text to explain what
-the example is all about. Often times they have some sort of API documentation,
-which is usually auto-generated, and in varing states of usefulness.&lt;/p&gt;
-&lt;p&gt;On the other hand, they &lt;strong&gt;tend&lt;/strong&gt; to lack in more of the intermediate-level
-documentation -- documentation that more clearly explains some of the concepts
-of the advanced features, and gives some solutions to common situations/pitfalls.
-While they do often have API documentation, the API documentation often has gaps
-because it&#39;s someone didn&#39;t actually comment the code (or, maybe, comment it
-very well), because, you know, it&#39;s &lt;em&gt;obvious&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Often, for any kind of documentation other than the very basic &#39;hello world&#39;
-example(s), it&#39;s &#34;visit IRC&#34;, &#34;visit the list&#34;, or &#34;read the code.&#34;&lt;/p&gt;
-&lt;p&gt;Yes, having a way to communicate with the community around a piece of software
-can be an awesome thing to behold! It can be very
-useful... except when people keep coming and asking the same general things.
-Then the people that tend to stick around and help either don&#39;t continue to
-stick around, or stop helping people with the same questions they&#39;ve answered
-many times before. Then it becomes &#39;search the archives&#39;, &#39;RTFM, stupid&#39;, or a
-question just goes unanswered.&lt;/p&gt;
-&lt;p&gt;Certainly, this doesn&#39;t always happen, but it happens a lot more than maybe it
-should. I feel like this is the result of a lack &#39;good&#39; documentation.&lt;/p&gt;
-&lt;p&gt;There are two more things that irrationally irritate me when it comes to
-documentation:&lt;/p&gt;
-&lt;p&gt;First, pointing to another projects documentation, but not explaining
-&lt;em&gt;how&lt;/em&gt; the current project uses it! I mean, come on. Just saying that a
-piece of software is based off another doesn&#39;t mean that it was integrated
-and is used exactly like the original project intends and documents it.&lt;/p&gt;
-&lt;p&gt;Second, documentation location(s) -- seriously, don&#39;t have more than one location
-where you&#39;re documentation is accessed from. And while we&#39;re at it, when you have
-a lot of different versions of your applications, make sure google, etc, aren&#39;t
-pointing to old documentation versions. If they do, make sure there&#39;s an updated
-version of the documentation that is linked to from the old documentation.&lt;/p&gt;
-&lt;p&gt;I&#39;m sure there&#39;s a lot more that I could complain about in regards to documentation,
-but this post is already long enough.&lt;/p&gt;
-&lt;p&gt;I guess I leave my opinions for some hand-wavy solutions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Get the beginner docs solid&lt;/li&gt;
-&lt;li&gt;Explain &lt;em&gt;how&lt;/em&gt; a dependant, but external, library is used and configured
-    when you need to refer a user to that library&#39;s own documentation&lt;/li&gt;
-&lt;li&gt;Everytime the community answers a question, it might be a good idea to
-    publish the problem and result to the primary documentation source -- perhaps
-    even expanding on it&lt;/li&gt;
-&lt;li&gt;When autogenerating the API, make sure to have comments on everything
-    explaining the how&#39;s and why&#39;s of each little piece, even if it seems like
-    it should be completely obvious&lt;/li&gt;
-&lt;li&gt;Don&#39;t ever expect people to want to become intimately knowledgable with
-    a library, and write your documentation accordingly -- most people probably
-    just want to use it and move on with their lives&lt;/li&gt;
-&lt;li&gt;Keep documentation centralized and well versioned, including links in old
-    documentation to newer documentation&lt;/li&gt;
-&lt;/ul&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>0x0004 - Mr. Beer</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0004-mr-beer/" />
-        <id>tag:joelkleier.com,2013-06-15:/2013/06/0x0004-mr-beer</id>
-        <updated>2013-06-15T05:00:00Z</updated>
-        <category term="brewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;h4&gt;The Recipe&lt;/h4&gt;
-&lt;p&gt;My family-in-law bought me a Mr. Beer kit for my birthday this year, it came
-with an American Light HME (Hopped Malt Extract). It was a pretty simple simple
-and quick process all told.&lt;/p&gt;
-&lt;h5&gt;Ingredients&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Can of the American Light HME&lt;/li&gt;
-&lt;li&gt;Packet of yeast that came with the HME&lt;/li&gt;
-&lt;li&gt;About 2 Gallons of water&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Yield&lt;/h5&gt;
-&lt;p&gt;About 2 gallons.&lt;/p&gt;
-&lt;h5&gt;Process&lt;/h5&gt;
-&lt;p&gt;Followed the Mr. Beer instructions pretty much to the letter -- except I
-sanitized everything a little more thoroughly, and made sure the water I used
-was free of bad little organisms (with campden tablets).&lt;/p&gt;
-&lt;p&gt;Basically:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Boil water&lt;/li&gt;
-&lt;li&gt;Add HME to water, making sure to thoroughly mix it up&lt;/li&gt;
-&lt;li&gt;Add mixture to 1 gallon of water in keg&lt;/li&gt;
-&lt;li&gt;Pitch yeast, and let it sit for 2 weeks&lt;/li&gt;
-&lt;li&gt;Bottle, adding a little sugar for carbonation, and wait/drink!&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Notes&lt;/h5&gt;
-&lt;p&gt;Nothing really exciting. I didn&#39;t take any specific gravity readings, so I
-don&#39;t know about how much ABV is it.&lt;/p&gt;
-&lt;h5&gt;Pictures and Progress!&lt;/h5&gt;
-&lt;p&gt;No pictures here! Got lazy and didn&#39;t make any... perhaps for my next batch!&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>0x0006 - Root Beer From Extract</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0006-root-beer-from-extract/" />
-        <id>tag:joelkleier.com,2013-06-15:/2013/06/0x0006-root-beer-from-extract</id>
-        <updated>2013-06-15T05:00:00Z</updated>
-        <category term="brewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;h4&gt;The Recipe&lt;/h4&gt;
-&lt;p&gt;I followed, for the most part, the process outlined on the bottle of extract
-I used. The extract was &lt;em&gt;Stoltzfus Root Beer Extract&lt;/em&gt;.&lt;/p&gt;
-&lt;h5&gt;Ingredients&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;4oz Bottle of Stolzfus Root Beer Extract&lt;/li&gt;
-&lt;li&gt;8 Cups sugar (I used 7 cups of Florida cane sugar, and 1 cup of brown)&lt;/li&gt;
-&lt;li&gt;1/2 tsp yeast (I used Red Star &#39;Premier Cuvee&#39;)&lt;/li&gt;
-&lt;li&gt;5 gallons of luke-warm watter&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Yield&lt;/h5&gt;
-&lt;p&gt;About 5 gallons -- which turned out to be around 53 beer bottles!&lt;/p&gt;
-&lt;h5&gt;Process&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Mix sugar &amp;amp; yeast well (dry)&lt;/li&gt;
-&lt;li&gt;Add 5 gal water to root beer extract, mixing well&lt;/li&gt;
-&lt;li&gt;Bottle immediatly, filling to within 1/2 inch of the cap&lt;/li&gt;
-&lt;li&gt;Place bottles in warm (70-80&amp;deg;F) area for 2 days&lt;/li&gt;
-&lt;li&gt;After 2 days, keep chilled in fridge&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Notes&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;I boiled all the water used first, and had to let it cool to a luke-warm temp&lt;/li&gt;
-&lt;li&gt;About 1/2 the bottles were not stored at a cold enough temperature, and I
-    lost about 10 of those to over-carbonation and bottle bursting. The others
-    I had to uncap, and recap in order to save them. The ones I recapped came
-    out a little over-carbed still, but definitely drinkable!&lt;/li&gt;
-&lt;li&gt;I used old 12oz glass beer bottles for the bottling. Definitely would be
-    nice to have a better device than just a hose to fill each bottle.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5&gt;Pictures and Progress!&lt;/h5&gt;
-&lt;p&gt;Bottles being stored after sanitization:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Sanitized Bottles&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0089.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Sanitized Bottles 2&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0090.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;Brewing being done! This is after I added the extract to the luke warm water:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Brewing Being Done -- BBD&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0094.JPG&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;And the bottled results (a few might be missing from the picture)&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;The bottled results&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0095.JPG&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;The results tasted really good, especially with some New York Vanilla. Mmmm.&lt;/p&gt;
-&lt;p&gt;Can&#39;t wait to try a second batch, hopefully with more root-beer punch!&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>0x0002 - Hard Cider (Better Late Than Never)</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0002-hard-cider-better-late-than-never/" />
-        <id>tag:joelkleier.com,2013-06-14:/2013/06/0x0002-hard-cider-better-late-than-never</id>
-        <updated>2013-06-14T05:00:00Z</updated>
-        <category term="brewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;h4&gt;The Recipe&lt;/h4&gt;
-&lt;p&gt;Based on the recipe presented in &lt;a href=&#34;http://brewingtv.com/episodes/2012/9/7/brewing-tv-episode-67-how-to-make-hard-cider.html&#34;&gt;BrewingTV ep. 67&lt;/a&gt;, but modified a bit.&lt;/p&gt;
-&lt;h5&gt;Ingredients&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;1 gallon of Roundy&#39;s 100% apple cider&lt;/li&gt;
-&lt;li&gt;1 Cup pure Florida cane sugar&lt;/li&gt;
-&lt;li&gt;1 gram Red Star &#34;Cote des Blancs&#34; active dry wine yeast&lt;/li&gt;
-&lt;li&gt;1/2 tsp yeast energizer&lt;/li&gt;
-&lt;li&gt;2 tsp yeast nutrient&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5&gt;Yield&lt;/h5&gt;
-&lt;p&gt;About 1 gallon&lt;/p&gt;
-&lt;h5&gt;Process&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Add yeast to warm water to activate it&lt;/li&gt;
-&lt;li&gt;Add 1/2 of yeast nutrient, energizer and sugar to 1 gallon of cider&lt;/li&gt;
-&lt;li&gt;Add yeast and gently mix&lt;/li&gt;
-&lt;li&gt;Cap the jug with and airlock and store for 24 hours&lt;/li&gt;
-&lt;li&gt;Add rest of yeast nutrient and put back in storage to let ferment for
-     about a week (until there is no more activity)&lt;/li&gt;
-&lt;li&gt;Rack to secondary for aging and clarifying&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Notes&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Cider was a little cold so I had to get it warmed up to room temp -- remember
-    to always take out your juice from the refridgerator (if you put it in there
-    in the first place...)&lt;/li&gt;
-&lt;li&gt;Need to mix sugar a little more maybe -- I think there might have been a
-    little not dissolved&lt;/li&gt;
-&lt;li&gt;I put the nutrient and energizer in late (forgot to do it, duh!) -- 6 days
-    late, to be exact. There was a violent reaction :)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5&gt;Pictures and Progress!&lt;/h5&gt;
-&lt;p&gt;Sorry, forgot to take pictures!&lt;/p&gt;
-&lt;p&gt;But, the OG was 1.060, and came down to 1.002 at bottling -- putting the numbers
-into a calculator, it comes out to about 7.6% ABV and 202 calories per 12oz.&lt;/p&gt;
-&lt;p&gt;I actually did a second batch of this (0x0003) -- changed the yeast to
-&#39;Pasteur Champagne&#39; Red Star, and used Apple Valley apple cider (hand pressed
-at a local orchard).&lt;/p&gt;
-&lt;p&gt;I also decided to test out back-sweetening -- I back-sweetened 3 bottles with
-Old Orchard Apple Raspberry frozen concentrate (about 2 tbsp worth), and left
-one bottle unsweetened.&lt;/p&gt;
-&lt;p&gt;The sweetened ones tasted fantastic -- nice and carbed. No pictures of that
-batch either!&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>0x0005 - Dandelion Wine</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/06/0x0005-dandelion-wine/" />
-        <id>tag:joelkleier.com,2013-06-13:/2013/06/0x0005-dandelion-wine</id>
-        <updated>2013-06-13T05:00:00Z</updated>
-        <category term="brewing" />
-        <category term="recipes" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;It&#39;s spring, and what better way to celebrate it than to make some Dandelion
-Wine? Doesn&#39;t that sound at least a little tasty?&lt;/p&gt;
-&lt;h4&gt;The Recipe&lt;/h4&gt;
-&lt;p&gt;Based on a &lt;a href=&#34;http://thriftygardening.blogspot.co.uk/2013/05/homemade-dandelion-wine.html&#34;&gt;Thrifty Gardening article&lt;/a&gt;, with few alterations.&lt;/p&gt;
-&lt;h5&gt;Ingredients&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;About 1/2 Gallon of Yellow Dandelion Bits&lt;/li&gt;
-&lt;li&gt;1 Gallon Water&lt;/li&gt;
-&lt;li&gt;3 Oranges&lt;/li&gt;
-&lt;li&gt;2 Lemons&lt;/li&gt;
-&lt;li&gt;About 2.65 lb of Sugar&lt;/li&gt;
-&lt;li&gt;Some Wine Yeast&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5&gt;Yield&lt;/h5&gt;
-&lt;p&gt;About 1 gallon.&lt;/p&gt;
-&lt;h5&gt;Process&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;Pick dandelions and separate yellow bits&lt;/li&gt;
-&lt;li&gt;Bring 1 gallon of water to boil&lt;/li&gt;
-&lt;li&gt;Pour water over dandelion yellow bits, cover with a cloth, and let sit for
-     2 days to steep -- like a tea!&lt;/li&gt;
-&lt;li&gt;Add sugar and citrus zest&lt;/li&gt;
-&lt;li&gt;Boil the mixture for 10 minutes&lt;/li&gt;
-&lt;li&gt;Let cool to room temperature&lt;/li&gt;
-&lt;li&gt;Pour into a gallon jug&lt;/li&gt;
-&lt;li&gt;Pour citrus juice into jug&lt;/li&gt;
-&lt;li&gt;Pour yeast into jug&lt;/li&gt;
-&lt;li&gt;Put an airlock on the jug and let sit until fermentation is done and
-      liquid has cleared&lt;/li&gt;
-&lt;li&gt;Bottle and age for at least 6 months, 1 year or more preferred&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Notes&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;I didn&#39;t spend a whole lot of time getting ALL of the green bits separated
-     from the yellow bits, but I don&#39;t think it&#39;ll affect flavor to much in the
-     end. I hope.&lt;/li&gt;
-&lt;li&gt;There&#39;s a &lt;a href=&#34;http://www.showmenow.com/files/SMN_NEW_DandelionWineMAY10.gif&#34;&gt;diagram&lt;/a&gt; that shows mostly the same process with pictures! yay!&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5&gt;Pictures and Progress!&lt;/h5&gt;
-&lt;p&gt;First, I picked the dandelion bits (with Jess&#39; help), and tried to separate the
-yellow bits from the green bits... but I still had a lot of green!&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Step 1: Pick the Dandelion Yellow Bits (mostly)&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0087.JPG&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;Next, I boiled the dandelion (mostly) yellow bits.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Step 2: Boil those bits!&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0088.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;And then, the dandelion bits steeped for 2 days.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Step 3: Steep those bits!&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0092.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;Then, the steeped mixture had the sugar and citrus added, it was boiled for 10
-minutes, cooled to room temp (somewhere around 76&amp;deg;F), then strained and poured
-into the gallon jug. The citrus juice and yeast were pitched, and then the
-airlock was added:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Step 4: A bunch of stuff!&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0093.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;And 3 weeks later, fermetation has mostly stopped, and now I wait to let it
-settle a bit before bottling it, and then age it for a year.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Step 5: 3 weeks in the bottle&#34; src=&#34;https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0137.jpg&#34;/&gt;&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Haxe Function Signatures</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/03/haxe-function-signatures/" />
-        <id>tag:joelkleier.com,2013-03-06:/2013/03/haxe-function-signatures</id>
-        <updated>2013-03-06T05:00:00Z</updated>
-        <category term="haxe" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;Just a quick note about this function signature:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;Dynamic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+    <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
+    <link rel="self">http://joelkleier.com/atom.xml</link>
+    <link>http://joelkleier.com</link>
+<updated>Fri, 14 Feb 2014 06:34:50 CST</updated><entry><title><![CDATA[Bash Fun]]></title><link>http://joelkleier.com/blog/2014-02-bash-fun/</link><summary><![CDATA[<p>I decided to create my own custom site-generator for a couple of reasons:</p>
+<ul>
+<li>My site is so simple, a lot of existing generators make designing it and building it overly complex.</li>
+<li>The simple generators that already exist don't really organize things the way I want</li>
+<li>From a user perspective, a shell script doesn't require any special considerations, except for maybe the version of core utilities and other command-line programs required</li>
+<li>I thought it'd be nice to learn a little more about bash and some linux core utils</li>
+</ul>
+<p>Sorry to anyone that subscribes to this site via rss/atom... the guids and file paths have all changed, so your readers are probably going to think all my content is new!</p>
+<p>If you'd like to checkout how this site was made, you can look at the <a href="https://github.com/zombified/ef.sh">ef.sh repository on github</a>.</p>]]></summary><updated>Fri, 14 Feb 2014 00:00:00 CST</updated><id>86948566315f2fc9a7a64defee02362b</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[Postmortem for 'Grid Ten', my LD48#27 entry]]></title><link>http://joelkleier.com/blog/2013-09-ld48_27_grid_ten/</link><summary><![CDATA[<p>For the 27th <a href="http://ludumdare.com">Ludum Dare</a> 48-hour game making competition, I created an entry called <em>Grid Ten</em>. It was my 6th entry into the competition, and needed to be based around the theme '10 Seconds'. The competition voting isn't quite over at the time of this writing, but here are my thoughts on how my game turned out.</p>
+<h2 id="timeline">Timeline</h2>
+<p><strong>Pre- theme annoucement:</strong> I had planned to use <a href="http://inform7.com">Inform 7</a> or <a href="http://www.gimcrackd.com/etc/src/">Twine</a> for creating a text adventure, but I had also considered <a href="http://haxe.org/">Haxe</a> with <a href="http://haxeflixel.com/">HaxeFlixel</a> or <a href="http://haxepunk.com/">HaxePunk</a> as a fall-back if I didn't want to do a text adventure. Other than that, I went into the competition with no substantial ideas for the direction I wanted to go.</p>
+<p><strong>Theme Announcement:</strong> The IRC chat room was full of hate for '10 Seconds', and I just knew this was the theme going to be picked. So, when it was announced, I was already thinking about what I could do. Initially I started drafting some sort of story that would revolve around using '10 seconds' in the context of a lat/long coordinate. I actually spent a good 4 hours working on this concept before going to bed for the night.</p>
+<p><strong>The next morning:</strong> With the announcement happening only 4 or so hours before I went to bed, it gave my subconcious a good chance to mull over what I had worked on the night before. When I woke up, I started having doubts about my ideas from the night before -- none of them were really 'gelling' with me. So after about 2 hours, I came upon the core idea for what turned into <em>Grid Ten</em>, which was definitely not a text-adventure.</p>
+<p><strong>The rest of the first day:</strong> After getting the core concept for <em>Grid Ten</em> fleshed out a bit more, I decided to forgo Haxe, etc, and just work directly with html/css/javascript. It's a toolset I'm really familiar with, and my concept would work very well with programmatically generated textures that I thought would be easier to do with the canvas element than with HaxeFlixel or HaxePunk. I also decided I didn't want a compile step in my development, nor did I want to deal with flash. The majority of the work went really smooth, I was really able to focus in on just the minimum code necessary -- I actually had some code to implement tails for the enemies, but then I quickly saw that that code would just bloat the game unnecessarily. It got cut out pretty quick, I didn't just comment it out, I completely removed it. I didn't want anything that would distract my focus. At the end of the day, I had the mechanics that I was shooting for pretty well fleshed out. There was still a LOT to add to the game, but the very core was in place!</p>
+<p><strong>Day 2:</strong> I spent a good 7 hours polishing everything up -- I added some primitive animations, another 'block' the player could place, I also did some optimizations and improved the 'intelligence' of the enemies and added a menu, and a end-game screen. Generally, I polished the thing up quit a bit. I did stop early, around 3pm, to start the process of packaging and releasing. I'll talk about this a bit more later, but I should have definitely kept at it for at least another 2 or 3 hours.</p>
+<p><strong>Post- competition end:</strong> I ended up fixing a bug whereby user placed blocks would stick around after a reset. Small, and easily fixed, but I should have totally caught that before submission!</p>
+<h2 id="the-good">The GOOD</h2>
+<ul>
+<li>I leveraged a platform that I know fairly well</li>
+<li>I stuck really well to a plan for absolute minimum viable product -- I didn't put a lot of extra cruft into the game that I didn't think significantly improved the experience. Take, for example, the start and end screens -- I put a large 'bouncing' text on both screens which didn't add anything to game-play, but it made the start and end screens much less boring to look at, which is important for first impressions I think.</li>
+<li>I got plenty of sleep and food (always important!)</li>
+</ul>
+<h2 id="the-bad">The BAD</h2>
+<p>There are really only three things I think were really bad this time around:</p>
+<ul>
+<li>I basically scratched and restarted what I was doing after about 6 hours total of development time. This hurt -- but, to be fair, I wasn't 'feeling' the text-adventure I started with, and it was probably good for my sanity to restart with the game I did.</li>
+<li>I quit 2 or 3 hours earlier than I really should have, and in that time I probably could have done quite a lot of polishing.</li>
+<li>I used mostly original code -- I used zero game related engines/frameworks</li>
+</ul>
+<h2 id="the-ugly">The UGLY</h2>
+<p>Overall I'm really happy with the project, and I think the core concept has a lot of potential. I see a few ways that it could grow and change, and I'm actually pretty excited to continue working on this game in my down time.</p>
+<p>However, I think I'll probably end up re-writing most of it. The style I used to code the game isn't sustainable I think... growing the project much larger would hurt, especially adding some of the mechanics into it that I have ideas for. I don't know that I'll have to write every piece of code from scratch, but good chunks of it for sure.</p>
+<p>Otherwise, I think I've gotten some fairly positive comments on my <a href="http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&amp;uid=7263">entry page</a>, and I got around a 2.5 out of 5, which is about where I was expecting this time around. If there were more mechanics and more polish, then I think I would have absolutely nailed it.</p>
+<p>Next time!</p>]]></summary><updated>Sun, 29 Sep 2013 00:00:00 CDT</updated><id>201be813d79f2b90e3c66c8324b9123b</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[Documentation]]></title><link>http://joelkleier.com/blog/2013-08-documentation/</link><summary><![CDATA[<p>I think there are, primarily, four broad categories that developers fit into when they become users of a library or framework:</p>
+<ol type="1">
+<li>Beginner</li>
+<li>Intermediate</li>
+<li>Experienced</li>
+<li>'Master'</li>
+</ol>
+<p>These four areas broadly define some important aspects that any set of documentation really needs to hit on to be considered &quot;good.&quot;</p>
+<p><em>Beginner's</em> are developers who've bought into using a library or framework, and now need some direction in how to use it. Tutorials, walk-throughs, pod/video-casts, 'hello world' apps, etc, are all tools that the beginner will find really useful. Documentation at this level really needs to be about guiding the individual in the uses of the library/framework without letting them bump into any sharp corners.</p>
+<p><em>Intermediate</em> level developers are those who've read the beginner material, or are at least familiar with the system in question. The training wheels are off, and these individuals need documentation that covers the most common pitfalls and some more of the common, but, perhaps, complex, configuration situations that come up. They also need comprehensive documentation on the API or framework itself, so when a situation comes up that isn't documented directly, they have the tools to figure out some of the simpler pitfalls.</p>
+<p><em>Experienced</em> level developers are those who've bumped into their fair share of sharp corners, and have had to really dig into the framework or API documentation. They may have also dug into the code to figure out their problems. These developers/users might also have committed a fix or two.</p>
+<p><em>'Master'</em> level developers are those who really understand the ins-and-outs of the system in question. They may not be familiar with every aspect of the code, but they're familiar enough that they have an intuition about problems that arise, and how to get around them. If the problem can't be worked around, these are the people that really know how the system should be altered to accommodate their situation.</p>
+<p>Now, of course this is an arbitrary categorization, and many times people that would fit into one category could also fit in another.</p>
+<p>Also, this whole idea presumes that developers are <em>users</em> of a piece of software first. To get a task done, they don't immediately want to jump into every library or framework and become intimately familiar with how it's coded up. Sometimes getting shit done means taking a leap of faith that they can depend on some library or framework to do what it advertises, without getting into the sticky details.</p>
+<p>With that in mind, working with Plone, Django, Pyramid/Pylons, and a host of other Python related libraries and frameworks tends to frustrate the crap out of me, at least in terms of their documentation strategies.</p>
+<p>On the one hand, there is <em>lots</em> and <em>lots</em> of documentation out there, but often times it's not really all that 'good' (for my definition of good, anyway). Many times these pieces of software have decent beginner documentation -- plenty of 'hello world' examples, and, usually, enough descriptive text to explain what the example is all about. Often times they have some sort of API documentation, which is usually auto-generated, and in varing states of usefulness.</p>
+<p>On the other hand, they <strong>tend</strong> to lack in more of the intermediate-level documentation -- documentation that more clearly explains some of the concepts of the advanced features, and gives some solutions to common situations/pitfalls. While they do often have API documentation, the API documentation often has gaps because it's someone didn't actually comment the code (or, maybe, comment it very well), because, you know, it's <em>obvious</em>.</p>
+<p>Often, for any kind of documentation other than the very basic 'hello world' example(s), it's &quot;visit IRC&quot;, &quot;visit the list&quot;, or &quot;read the code.&quot;</p>
+<p>Yes, having a way to communicate with the community around a piece of software can be an awesome thing to behold! It can be very useful... except when people keep coming and asking the same general things. Then the people that tend to stick around and help either don't continue to stick around, or stop helping people with the same questions they've answered many times before. Then it becomes 'search the archives', 'RTFM, stupid', or a question just goes unanswered.</p>
+<p>Certainly, this doesn't always happen, but it happens a lot more than maybe it should. I feel like this is the result of a lack 'good' documentation.</p>
+<p>There are two more things that irrationally irritate me when it comes to documentation:</p>
+<p>First, pointing to another projects documentation, but not explaining <em>how</em> the current project uses it! I mean, come on. Just saying that a piece of software is based off another doesn't mean that it was integrated and is used exactly like the original project intends and documents it.</p>
+<p>Second, documentation location(s) -- seriously, don't have more than one location where you're documentation is accessed from. And while we're at it, when you have a lot of different versions of your applications, make sure google, etc, aren't pointing to old documentation versions. If they do, make sure there's an updated version of the documentation that is linked to from the old documentation.</p>
+<p>I'm sure there's a lot more that I could complain about in regards to documentation, but this post is already long enough.</p>
+<p>I guess I leave my opinions for some hand-wavy solutions:</p>
+<ul>
+<li>Get the beginner docs solid</li>
+<li>Explain <em>how</em> a dependant, but external, library is used and configured when you need to refer a user to that library's own documentation</li>
+<li>Everytime the community answers a question, it might be a good idea to publish the problem and result to the primary documentation source -- perhaps even expanding on it</li>
+<li>When autogenerating the API, make sure to have comments on everything explaining the how's and why's of each little piece, even if it seems like it should be completely obvious</li>
+<li>Don't ever expect people to want to become intimately knowledgable with a library, and write your documentation accordingly -- most people probably just want to use it and move on with their lives</li>
+<li>Keep documentation centralized and well versioned, including links in old documentation to newer documentation</li>
+</ul>]]></summary><updated>Tue, 20 Aug 2013 00:00:00 CDT</updated><id>e761c894975dfda5106e8dd3ecac8f09</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[0x0004 - Mr. Beer]]></title><link>http://joelkleier.com/blog/2013-06-0x0004-mr-beer/</link><summary><![CDATA[<h2 id="the-recipe">The Recipe</h2>
+<p>My family-in-law bought me a Mr. Beer kit for my birthday this year, it came with an American Light HME (Hopped Malt Extract). It was a pretty simple simple and quick process all told.</p>
+<h3 id="ingredients">Ingredients</h3>
+<ol type="1">
+<li>Can of the American Light HME</li>
+<li>Packet of yeast that came with the HME</li>
+<li>About 2 Gallons of water</li>
+</ol>
+<h3 id="yield">Yield</h3>
+<p>About 2 gallons.</p>
+<h3 id="process">Process</h3>
+<p>Followed the Mr. Beer instructions pretty much to the letter -- except I sanitized everything a little more thoroughly, and made sure the water I used was free of bad little organisms (with campden tablets).</p>
+<p>Basically:</p>
+<ol type="1">
+<li>Boil water</li>
+<li>Add HME to water, making sure to thoroughly mix it up</li>
+<li>Add mixture to 1 gallon of water in keg</li>
+<li>Pitch yeast, and let it sit for 2 weeks</li>
+<li>Bottle, adding a little sugar for carbonation, and wait/drink!</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<p>Nothing really exciting. I didn't take any specific gravity readings, so I don't know about how much ABV is it.</p>
+<h3 id="pictures-and-progress">Pictures and Progress!</h3>
+<p>No pictures here! Got lazy and didn't make any... perhaps for my next batch!</p>]]></summary><updated>Sat, 15 Jun 2013 00:00:00 CDT</updated><id>f6b7eca12941d7923eba7cc00d58b200</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[0x0006 - Root Beer From Extract]]></title><link>http://joelkleier.com/blog/2013-06-0x0006-root-beer-from-extract/</link><summary><![CDATA[<h2 id="the-recipe">The Recipe</h2>
+<p>I followed, for the most part, the process outlined on the bottle of extract I used. The extract was <em>Stoltzfus Root Beer Extract</em>.</p>
+<h3 id="ingredients">Ingredients</h3>
+<ol type="1">
+<li>4oz Bottle of Stolzfus Root Beer Extract</li>
+<li>8 Cups sugar (I used 7 cups of Florida cane sugar, and 1 cup of brown)</li>
+<li>1/2 tsp yeast (I used Red Star 'Premier Cuvee')</li>
+<li>5 gallons of luke-warm watter</li>
+</ol>
+<h3 id="yield">Yield</h3>
+<p>About 5 gallons -- which turned out to be around 53 beer bottles!</p>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li>Mix sugar &amp; yeast well (dry)</li>
+<li>Add 5 gal water to root beer extract, mixing well</li>
+<li>Bottle immediatly, filling to within 1/2 inch of the cap</li>
+<li>Place bottles in warm (70-80°F) area for 2 days</li>
+<li>After 2 days, keep chilled in fridge</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>I boiled all the water used first, and had to let it cool to a luke-warm temp</li>
+<li>About 1/2 the bottles were not stored at a cold enough temperature, and I lost about 10 of those to over-carbonation and bottle bursting. The others I had to uncap, and recap in order to save them. The ones I recapped came out a little over-carbed still, but definitely drinkable!</li>
+<li>I used old 12oz glass beer bottles for the bottling. Definitely would be nice to have a better device than just a hose to fill each bottle.</li>
+</ul>
+<h3 id="pictures-and-progress">Pictures and Progress!</h3>
+<p>Bottles being stored after sanitization:</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0089.jpg" alt="Sanitized Bottles"><figcaption>Sanitized Bottles</figcaption>
+</figure>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0090.jpg" alt="Sanitized Bottles 2"><figcaption>Sanitized Bottles 2</figcaption>
+</figure>
+<p>Brewing being done! This is after I added the extract to the luke warm water:</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0094.JPG" alt="Brewing Being Done -- BBD"><figcaption>Brewing Being Done -- BBD</figcaption>
+</figure>
+<p>And the bottled results (a few might be missing from the picture)</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0006/IMG_0095.JPG" alt="The bottled results"><figcaption>The bottled results</figcaption>
+</figure>
+<p>The results tasted really good, especially with some New York Vanilla. Mmmm.</p>
+<p>Can't wait to try a second batch, hopefully with more root-beer punch!</p>]]></summary><updated>Sat, 15 Jun 2013 00:00:00 CDT</updated><id>04cb2d9c680ea557206f20ac17cbcd02</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[0x0002 - Hard Cider (Better Late Than Never)]]></title><link>http://joelkleier.com/blog/2013-06-0x0002-hard-cider/</link><summary><![CDATA[<h2 id="the-recipe">The Recipe</h2>
+<p>Based on the recipe presented in <a href="http://brewingtv.com/episodes/2012/9/7/brewing-tv-episode-67-how-to-make-hard-cider.html">BrewingTV ep. 67</a>, but modified a bit.</p>
+<h3 id="ingredients">Ingredients</h3>
+<ul>
+<li>1 gallon of Roundy's 100% apple cider</li>
+<li>1 Cup pure Florida cane sugar</li>
+<li>1 gram Red Star &quot;Cote des Blancs&quot; active dry wine yeast</li>
+<li>1/2 tsp yeast energizer</li>
+<li>2 tsp yeast nutrient</li>
+</ul>
+<h3 id="yield">Yield</h3>
+<p>About 1 gallon</p>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li>Add yeast to warm water to activate it</li>
+<li>Add 1/2 of yeast nutrient, energizer and sugar to 1 gallon of cider</li>
+<li>Add yeast and gently mix</li>
+<li>Cap the jug with and airlock and store for 24 hours</li>
+<li>Add rest of yeast nutrient and put back in storage to let ferment for about a week (until there is no more activity)</li>
+<li>Rack to secondary for aging and clarifying</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>Cider was a little cold so I had to get it warmed up to room temp -- remember to always take out your juice from the refridgerator (if you put it in there in the first place...)</li>
+<li>Need to mix sugar a little more maybe -- I think there might have been a little not dissolved</li>
+<li>I put the nutrient and energizer in late (forgot to do it, duh!) -- 6 days late, to be exact. There was a violent reaction :)</li>
+</ul>
+<h3 id="pictures-and-progress">Pictures and Progress!</h3>
+<p>Sorry, forgot to take pictures!</p>
+<p>But, the OG was 1.060, and came down to 1.002 at bottling -- putting the numbers into a calculator, it comes out to about 7.6% ABV and 202 calories per 12oz.</p>
+<p>I actually did a second batch of this (0x0003) -- changed the yeast to 'Pasteur Champagne' Red Star, and used Apple Valley apple cider (hand pressed at a local orchard).</p>
+<p>I also decided to test out back-sweetening -- I back-sweetened 3 bottles with Old Orchard Apple Raspberry frozen concentrate (about 2 tbsp worth), and left one bottle unsweetened.</p>
+<p>The sweetened ones tasted fantastic -- nice and carbed. No pictures of that batch either!</p>]]></summary><updated>Fri, 14 Jun 2013 00:00:00 CDT</updated><id>fcdda3a1b67da0cc04388a5a66011d95</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[0x0005 - Dandelion Wine]]></title><link>http://joelkleier.com/blog/2013-06-0x0005/</link><summary><![CDATA[<p>It's spring, and what better way to celebrate it than to make some Dandelion Wine? Doesn't that sound at least a little tasty?</p>
+<h2 id="the-recipe">The Recipe</h2>
+<p>Based on a <a href="http://thriftygardening.blogspot.co.uk/2013/05/homemade-dandelion-wine.html">Thrifty Gardening article</a>, with few alterations.</p>
+<h3 id="ingredients">Ingredients</h3>
+<ul>
+<li>About 1/2 Gallon of Yellow Dandelion Bits</li>
+<li>1 Gallon Water</li>
+<li>3 Oranges</li>
+<li>2 Lemons</li>
+<li>About 2.65 lb of Sugar</li>
+<li>Some Wine Yeast</li>
+</ul>
+<h3 id="yield">Yield</h3>
+<p>About 1 gallon.</p>
+<h3 id="process">Process</h3>
+<ol type="1">
+<li>Pick dandelions and separate yellow bits</li>
+<li>Bring 1 gallon of water to boil</li>
+<li>Pour water over dandelion yellow bits, cover with a cloth, and let sit for 2 days to steep -- like a tea!</li>
+<li>Add sugar and citrus zest</li>
+<li>Boil the mixture for 10 minutes</li>
+<li>Let cool to room temperature</li>
+<li>Pour into a gallon jug</li>
+<li>Pour citrus juice into jug</li>
+<li>Pour yeast into jug</li>
+<li>Put an airlock on the jug and let sit until fermentation is done and liquid has cleared</li>
+<li>Bottle and age for at least 6 months, 1 year or more preferred</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol type="1">
+<li>I didn't spend a whole lot of time getting ALL of the green bits separated from the yellow bits, but I don't think it'll affect flavor to much in the end. I hope.</li>
+<li>There's a <a href="http://www.showmenow.com/files/SMN_NEW_DandelionWineMAY10.gif">diagram</a> that shows mostly the same process with pictures! yay!</li>
+</ol>
+<h3 id="pictures-and-progress">Pictures and Progress!</h3>
+<p>First, I picked the dandelion bits (with Jess' help), and tried to separate the yellow bits from the green bits... but I still had a lot of green!</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0087.JPG" alt="Step 1: Pick the Dandelion Yellow Bits (mostly)"><figcaption>Step 1: Pick the Dandelion Yellow Bits (mostly)</figcaption>
+</figure>
+<p>Next, I boiled the dandelion (mostly) yellow bits.</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0088.jpg" alt="Step 2: Boil those bits!"><figcaption>Step 2: Boil those bits!</figcaption>
+</figure>
+<p>And then, the dandelion bits steeped for 2 days.</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0092.jpg" alt="Step 3: Steep those bits!"><figcaption>Step 3: Steep those bits!</figcaption>
+</figure>
+<p>Then, the steeped mixture had the sugar and citrus added, it was boiled for 10 minutes, cooled to room temp (somewhere around 76°F), then strained and poured into the gallon jug. The citrus juice and yeast were pitched, and then the airlock was added:</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0093.jpg" alt="Step 4: A bunch of stuff!"><figcaption>Step 4: A bunch of stuff!</figcaption>
+</figure>
+<p>And 3 weeks later, fermetation has mostly stopped, and now I wait to let it settle a bit before bottling it, and then age it for a year.</p>
+<figure>
+<img src="https://dl.dropboxusercontent.com/u/48144436/Brewing/0x0005/IMG_0137.jpg" alt="Step 5: 3 weeks in the bottle"><figcaption>Step 5: 3 weeks in the bottle</figcaption>
+</figure>]]></summary><updated>Thu, 13 Jun 2013 00:00:00 CDT</updated><id>88d22cc5e1e5faa73eb966e9ea309a31</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[Haxe Function Signatures]]></title><link>http://joelkleier.com/blog/2013-03-haxe-func-sigs/</link><summary><![CDATA[<p>Just a quick note about this function signature:</p>
+<pre><code>#!haxe
+Dynamic -&gt; Void</code></pre>
+<p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
+<p>For example, if you have this:</p>
+<pre><code>#!haxe
+var func:Dynamic -&gt; Void;</code></pre>
+<p>You cannot assign func a function that has a void parameter list. It DOES require a parameter, but that parameter can be of any type.</p>
+<p>IE, this is <em>bad</em>:</p>
+<pre><code>#!haxe
+function foo() {}
 
-&lt;p&gt;Dynamic generally means &lt;em&gt;any&lt;/em&gt; type in Haxe. However, it does not mean &lt;code&gt;Void&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;For example, if you have this:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Dynamic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+// foo is of type Void -&gt; Void, not Dynamic -&gt; Void
+func = foo;</code></pre>
+<p>But this is good:</p>
+<pre><code>#!haxe
+function foo(bar:Dynamic) {}
 
-&lt;p&gt;You cannot assign func a function that has a void parameter list. It DOES require
-a parameter, but that parameter can be of any type.&lt;/p&gt;
-&lt;p&gt;IE, this is &lt;em&gt;bad&lt;/em&gt;:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
-2
-3
-4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+func = foo;</code></pre>
+<p>It may seem kinda obvious, but I was tripped up on it because I thought <code>Dynamic</code> could represent any type of value, including a Void parameter list. Which, in hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
+<p><strong>NOTE</strong> This was written for Haxe 2.10</p>]]></summary><updated>Wed, 06 Mar 2013 00:00:00 CST</updated><id>b49064fffc1d8f5d0c50b2d22c24a895</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[Setting up a HaxePunk Project]]></title><link>http://joelkleier.com/blog/2013-03-haxepunk-setup/</link><summary><![CDATA[<p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
+<h2 id="setting-up-the-development-environment">Setting up the development environment</h2>
+<ol type="1">
+<li>Setup the editor or IDE, I use vim, so install <a href="https://github.com/jdonaldson/vaxe">vaxe</a></li>
+<li>Go to <a href="http://www.nme.io/download/">www.nme.io/download/</a> and follow the instructions</li>
+<li>Install HaxePunk: <code>haxelib install HaxePunk</code></li>
+</ol>
+<h2 id="setting-up-the-project">Setting up the project</h2>
+<ol type="1">
+<li>Create the project skeleton: <code>haxelib run HaxePunk new [project name]</code>, replacing [project name] with the name of the folder to use for the project</li>
+<li>Edit <code>project.nmml</code> with your project specific details</li>
+<li>Add <code>src/worlds</code> folder to hold your world source files</li>
+<li>Add <code>src/entities</code> folder to hold your entity source files</li>
+</ol>
+<h2 id="add-some-code-to-make-a-useable-but-very-basic-haxepunk-project">Add some code to make a useable, but very basic HaxePunk project</h2>
+<p>Add this code to <code>src/worlds/Game.hx</code>, it can be used as a very basic jumping off point:</p>
+<pre><code>#!haxe
+package worlds;
 
-&lt;span class=&#34;c1&#34;&gt;// foo is of type Void -&amp;gt; Void, not Dynamic -&amp;gt; Void&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;But this is good:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
-2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dynamic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-
-&lt;span class=&#34;nx&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;It may seem kinda obvious, but I was tripped up on it because I thought &lt;code&gt;Dynamic&lt;/code&gt;
-could represent any type of value, including a Void parameter list. Which, in
-hindsight, seems kind of ridiculous, but none-the-less, it happened.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt; This was written for Haxe 2.10&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Setting up a HaxePunk Project</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/03/setting-up-a-haxepunk-project/" />
-        <id>tag:joelkleier.com,2013-03-02:/2013/03/setting-up-a-haxepunk-project</id>
-        <updated>2013-03-02T05:00:00Z</updated>
-        <category term="haxe" />
-        <category term="nme" />
-        <category term="haxepunk" />
-        <category term="gamedev" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; updated title to reflect the post a little better&lt;/p&gt;
-&lt;h4&gt;Setting up the development environment&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;Setup the editor or IDE, I use vim, so install
-     &lt;a href=&#34;https://github.com/jdonaldson/vaxe&#34;&gt;vaxe&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Go to &lt;a href=&#34;http://www.nme.io/download/&#34;&gt;www.nme.io/download/&lt;/a&gt; and follow the
-     instructions&lt;/li&gt;
-&lt;li&gt;Install HaxePunk: &lt;code&gt;haxelib install HaxePunk&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4&gt;Setting up the project&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;Create the project skeleton: &lt;code&gt;haxelib run HaxePunk new [project name]&lt;/code&gt;,
-     replacing [project name] with the name of the folder to use for the project&lt;/li&gt;
-&lt;li&gt;Edit &lt;code&gt;project.nmml&lt;/code&gt; with your project specific details&lt;/li&gt;
-&lt;li&gt;Add &lt;code&gt;src/worlds&lt;/code&gt; folder to hold your world source files&lt;/li&gt;
-&lt;li&gt;Add &lt;code&gt;src/entities&lt;/code&gt; folder to hold your entity source files&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4&gt;Add some code to make a useable, but very basic HaxePunk project&lt;/h4&gt;
-&lt;p&gt;Add this code to &lt;code&gt;src/worlds/Game.hx&lt;/code&gt;, it can be used as a very basic jumping
-off point:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt; 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kr&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;haxepunk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+import com.haxepunk.World;
 
 
-&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Game&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+class Game extends World {
 
-    &lt;span class=&#34;kr&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;kr&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    public function new() {
+        super();
+    }
 
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;Then set HaxePunk to use that world as the active world by adding the following
-to the end of the &lt;code&gt;init&lt;/code&gt; function in the &lt;code&gt;Main&lt;/code&gt; class (&lt;code&gt;src/Main.hx&lt;/code&gt;):&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;HXP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;world&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;worlds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Game&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;h4&gt;Building the project&lt;/h4&gt;
-&lt;p&gt;I like using neko to do a lot of my testing and development. It has faster build
-times than for cpp, and I don&#39;t have to deal with flash (personal preference).&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;test &lt;/span&gt;project.nmml neko
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;The &#39;test&#39; argument just tells nme to update (copy assets) and build the project,
-then to run what was built right away. You can do lots of other things with nme, see the
-nme documentation, or the command line help:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nv&#34;&gt;$ &lt;/span&gt;nme &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;h4&gt;End thoughts&lt;/h4&gt;
-&lt;p&gt;Nothing fancy, but it gets the project up and running. It should be noted that
-a lot of FlashPunk documentation and tutorials are useful when trying to learn
-HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
-are mostly the same and available in both, so it&#39;s easy to pickup things in
-snippets.&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Apathy post-mortem</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2013/01/apathy-post-mortem/" />
-        <id>tag:joelkleier.com,2013-01-14:/2013/01/apathy-post-mortem</id>
-        <updated>2013-01-14T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="ld48" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;Well, voting is over for the &lt;a href=&#34;http://ludumdare.com/compo&#34; title=&#34;Ludum Dare 48-hour Competition&#34;&gt;25th Ludum Dare 48-hour competition&lt;/a&gt; and my game &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;amp;uid=7263&#34; title=&#34;&#39;Apathy&#39; Ludum Dare Entry&#34;&gt;&#34;Apathy&#34;&lt;/a&gt; came in
-a solidly in the middle of the pack.&lt;/p&gt;
-&lt;p&gt;No ratings under 2.3, and I even had 1 rating over 3! Definitely better than my previous entries.&lt;/p&gt;
-&lt;p&gt;The selected theme this time around was &#34;You are the enemy.&#34;&lt;/p&gt;
-&lt;p&gt;I used &lt;a href=&#34;http://haxe.org&#34;&gt;Haxe&lt;/a&gt;/&lt;a href=&#34;http://haxenme.org&#34;&gt;NME&lt;/a&gt; + &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt; to write a Flash game. If you&#39;re interested, the &lt;a href=&#34;https://github.com/zombified/ld48-25&#34; title=&#34;&#39;Apathy&#39; source code hosted on Github&#34;&gt;source&lt;/a&gt; is
-hosted on github.&lt;/p&gt;
-&lt;h4&gt;What went wrong?&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;The subject matter of my game came to life for me. I was definitely struggling with some depressive
-     and apathetic feelings. Never a good place to be. This sucked up a lot of my time and energy, which,
-     I think, led to a stunted experience.&lt;/li&gt;
-&lt;li&gt;What the win condition represented was, perhaps, a little to abstract or vague for many of the players to
-     understand. The player was a manifestation of apathy -- if the player moved around and tried to &#34;play&#34;,
-     they would be engaged, and not apathetic. Since the player is a manifestation of apathy, though, this
-     means the player is losing. The win condition was not to care, and to simply not play. After a time,
-     apathy wins out because the player didn&#39;t care.&lt;/li&gt;
-&lt;li&gt;Not enough shiny.&lt;/li&gt;
-&lt;li&gt;Sound and music could have been improved.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4&gt;What went right?&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;I came up with a pretty simple concept fairly quickly&lt;/li&gt;
-&lt;li&gt;I used some pretty spiffy libs that I had some prior experience with&lt;/li&gt;
-&lt;li&gt;Good sleep + good food + good communication with the people in my life&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4&gt;What can I do better?&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;I need to learn how to make some music, or find a better source for music. The tool I&#39;m using (autotracker-bu)
-     is starting to sound the same and get a little old. It&#39;s output also doesn&#39;t really fit with the
-     concept of some of the games I want to make. However, I do have to say it is an awesome little utility
-     none-the-less.&lt;/li&gt;
-&lt;li&gt;On a personal level, I need to develop some mental tools to help push through the feeling of apathy
-     myself. It can be a tough enemy.&lt;/li&gt;
-&lt;/ol&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>My first homebrew bottling experience</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/12/my-first-homebrew-bottling-experience/" />
-        <id>tag:joelkleier.com,2012-12-06:/2012/12/my-first-homebrew-bottling-experience</id>
-        <updated>2012-12-06T05:00:00Z</updated>
-        <category term="homebrewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;It&#39;s been 8 weeks of waiting patiently to bottle some homebrewed booze!&lt;/p&gt;
-&lt;p&gt;I&#39;ve bottle some &lt;a href=&#34;http://joelkleier.com/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; and some hard cider (I didn&#39;t post the recipe for this yet, I&#39;ll get to that though!).&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;http://joelkleier.com/posts/2012/09/eggnog.html&#34; title=&#34;0x0001 - Recipe for Eggnog&#34;&gt;eggnog&lt;/a&gt; has been dubbed &lt;strong&gt;Dirty Snowman&lt;/strong&gt; under the label &lt;strong&gt;0x01&lt;/strong&gt;, check it out:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Dirty Snowman Label&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0001_dirty_snowman_3x4_300dpi.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;It definitly smells of whiskey, but drinking it has a different character. It&#39;s smooth -- and
-I mean there is almost zero harsh biting at the throat. You do feel that warmth flow from your
-throat to your stomach though :)&lt;/p&gt;
-&lt;p&gt;It&#39;s really meant as a base for eggnog -- get some heavy whipping cream and egg whites all
-frothed and foamed up, then fold those (separately) into a bowl of the eggnog. Wasn&#39;t really
-able to test that to it&#39;s fullest, but I suspect that will go far to tone down the immediate
-flavor of the whiskey, brandy, and rum.&lt;/p&gt;
-&lt;p&gt;My cider has been dubbed &#34;Delta 88&#34; under the label &#34;0x02&#34;, check it out:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Delta 88 Label&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0002_delta_88_3x4_300dpi.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;It&#39;s a very dry cider. Definitely could use some more aging. BUT combined with a little apple juice for sweetness
-and flavor, it turns out to be really tasty!&lt;/p&gt;
-&lt;p&gt;It has an ABV of aproximately 7.8%. I added some alt-sweetener as a back-sweetener, but stupid me... I did it
-on ALL of my bottles. I could smack myself. I think it was an okay amount, but... it
-might be to much and I can&#39;t experiment any more, or see how an unsweetened bottle might taste. Might have botched
-my first cider at the last moment! Ah well, we&#39;ll see. Live and learn, right?&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Game-Off 2012 Followup</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/11/game-off-2012-followup/" />
-        <id>tag:joelkleier.com,2012-11-29:/2012/11/game-off-2012-followup</id>
-        <updated>2012-11-29T05:00:00Z</updated>
-        <category term="gamedev" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;&lt;a href=&#34;http://joelkleier.com/posts/2012/10/game-off-2012.html&#34;&gt;Last time&lt;/a&gt; I talked about getting into Github&#39;s game-off-2012 contest and I exclaimed
-how I would blog about my trials and tribulations. Well, it&#39;s been a month and there&#39;s been nothing
-but radio silence! I&#39;ll change that here.&lt;/p&gt;
-&lt;p&gt;A month is a long time to use to create a prototype, however, I did a few stupid things and won&#39;t
-be able to enter the contest.&lt;/p&gt;
-&lt;h4&gt;What Went Right&lt;/h4&gt;
-&lt;h5&gt;Effort&lt;/h5&gt;
-&lt;p&gt;I was able to dedicate a lot of my spare time to this project and didn&#39;t alienate my friends,
-family, or significant other. I think the key take away for me is that I was able to use the
-time I set aside for this project wisely. The rest of my life didn&#39;t suffer because I was able
-to fully concentrate on what I needed to do in 2-3 hour uninterrupted blocks.&lt;/p&gt;
-&lt;p&gt;The only thing that suffered a little is my sleeping habbits, but more on that when I discuss
-what went wrong.&lt;/p&gt;
-&lt;h5&gt;Pretty solid start&lt;/h5&gt;
-&lt;p&gt;When all is said and done, I have a pretty solid starting point to a finished game.&lt;/p&gt;
-&lt;p&gt;There is a good rule of thumb out there, &#34;don&#39;t make an engine, make a game&#34;. While I did suffer
-from putting a lot of my effort into switching languages and libraries in the beginning, I never
-put effort into designing an engine, it was all very specific for the game. The way I coded,
-I put some thought into where I might be able to refactor things later, but I never let it
-expand to a more general case.&lt;/p&gt;
-&lt;p&gt;In the end, I created a component/entity framework in the vein of &lt;a href=&#34;http://craftyjs.com/&#34; title=&#34;Crafty.js&#34;&gt;Crafty&lt;/a&gt;. I didn&#39;t stick
-with crafty because I didn&#39;t like some of the projects design decisions, like focusing on both
-DOM and Canvas rendering techniques and trying to be a general case for a wide range of browsers.&lt;/p&gt;
-&lt;p&gt;Really, at this point, I want to target the latest stable of just Chrome and Firefox, and I want
-to focus on using the canvas to display all game content.&lt;/p&gt;
-&lt;p&gt;Now, when I say &#34;component/entity framework&#34; I really mean that I created about 100 lines of
-javascript containing 3 things:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;A function for registering a component&lt;/li&gt;
-&lt;li&gt;A function for creating an entity from a list of components&lt;/li&gt;
-&lt;li&gt;A method that implements a publish/subscribe pattern for all entities (and a global game object)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Perhaps I&#39;ll write more about it in the future, it probably deserves it&#39;s own post.&lt;/p&gt;
-&lt;h4&gt;What Went Wrong&lt;/h4&gt;
-&lt;h5&gt;Technology Switching&lt;/h5&gt;
-&lt;p&gt;This was my biggest setback.&lt;/p&gt;
-&lt;p&gt;I started off strong, using Haxe+Haxepunk. By November 1st, I found
-that I did not enjoy developing in haxe -- I do not know AS3, I do not know the flash libs,
-I do not use windows, and I don&#39;t really have a feel for the community.&lt;/p&gt;
-&lt;p&gt;Great stuff, I got quite a bit done. However, when I hit a wall, I was quickly discouraged
-and switched gears to my old friend, javascript.&lt;/p&gt;
-&lt;p&gt;I started off messing with &lt;a href=&#34;http://craftyjs.com/&#34; title=&#34;Crafty.js&#34;&gt;Crafty.js&lt;/a&gt;, a really spiffy little component-entity based
-engine. I think I could have got a lot done with it, but there were a few things I ran into
-that made me want to switch off of it:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;More a matter of taste: I wasn&#39;t planning on ever doing DOM based rendering
-     and I felt like there were to many concessions to trying to handle both DOM
-     and canvas.&lt;/li&gt;
-&lt;li&gt;I didn&#39;t like how their module system tried to make you use hosted files. Easily
-     worked around, and still a matter of taste, but I didn&#39;t like it.&lt;/li&gt;
-&lt;li&gt;Assets: only a handful of image and audio formats are covered by the asset manager,
-     and there&#39;s no way to really extend the main code from your own project without
-     jumping through hoops that you really shouldn&#39;t need to.&lt;/li&gt;
-&lt;li&gt;The documentation sucks, there&#39;s a bunch of pages that don&#39;t show anything, and the
-     documentation for the framework itself didn&#39;t really explain much sometimes.&lt;/li&gt;
-&lt;li&gt;Demo&#39;s are not of a quality that I would expect.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;So, after working through that for a bit, I thought I might fall back to &lt;a href=&#34;http://www.melonjs.org/&#34; title=&#34;melonJS&#34;&gt;melonJS&lt;/a&gt;,
-which I&#39;ve used before and enjoyed. I didn&#39;t get very far into using this library though.
-The time waster here was that I considered it at all.&lt;/p&gt;
-&lt;p&gt;After working with the good bits of Crafty, going to melonJS felt like I was going
-backwards a bit. Let me say, melonJS is a great framework that provides great support
-for &lt;a href=&#34;http://www.mapeditor.org/&#34; title=&#34;Tiled&#34;&gt;Tiled&lt;/a&gt;/TMX maps and has pretty much everything you need to make a solid javascript
-based game. Crafty, at its core, just felt like a better way to design a game in javascript.&lt;/p&gt;
-&lt;p&gt;This is when I decided that I could probably create a core like Crafty&#39;s fairly quickly,
-and I could probaby convert most of the audio, asset, scene, input, etc, code I&#39;ve already
-written for other projects into this sort of design.&lt;/p&gt;
-&lt;p&gt;I was right about that, but my timeline suffered, and then some life stuff popped up, and
-I stopped working on the game for almost a week. Bam. Out of the contest.&lt;/p&gt;
-&lt;p&gt;If I had started from the beginning with what I have now? Probably would be polishing
-a prototype by now.&lt;/p&gt;
-&lt;h5&gt;Rewriting Core Code&lt;/h5&gt;
-&lt;p&gt;The second biggest setback was doing rewrites of portions of the core of my code. Avoidable?
-Maybe, but the rewrites were inevitable, and they really did prevent a lot of time and pain
-spent on things that would get changed later anyway.&lt;/p&gt;
-&lt;h5&gt;Not enough up-front design&lt;/h5&gt;
-&lt;p&gt;I think I could have put together a better design doc for the game itself. With no clear
-path, and so much time on my hands, I tended to focus more on the techical side of the
-game, and less on the visuals, interaction, and general game design.&lt;/p&gt;
-&lt;h5&gt;Sleep&lt;/h5&gt;
-&lt;p&gt;While I was able to put a lot of spare-time effort into this game, and was able to avoid
-alienating anyone in my life, my sleep schedule suffered for it. This made me rely on
-caffinated and sugary drinks to stay alert and active, which did nothing good for my health.&lt;/p&gt;
-&lt;p&gt;I&#39;m happy to say there was never a point where I was sleep deprived -- I never got less than
-between 5 or 6 hours of sleep. But that takes a toll when you&#39;re body likes having even just
-slightly more than that (I usually feel fine with between 6.5 and 7.5 hours).&lt;/p&gt;
-&lt;h4&gt;Where to go from here&lt;/h4&gt;
-&lt;p&gt;I&#39;ll be continuing this project even if I can&#39;t complete it for the contest. I think it
-has potential, and it has been quite enjoyable.&lt;/p&gt;
-&lt;p&gt;I have a lot more to do, so I&#39;m &lt;del&gt;sure&lt;/del&gt; hopeful that I&#39;ll be writing more posts about
-it in the future!&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Game-Off 2012 and some Haxe/NME+HaxePunk</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/game-off-2012-and-some-haxe-nme+haxepunk/" />
-        <id>tag:joelkleier.com,2012-10-29:/2012/10/game-off-2012-and-some-haxe-nme+haxepunk</id>
-        <updated>2012-10-29T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="haxe" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; moved haxe related stuff to a &lt;a href=&#34;http://joelkleier.com/posts/2012/10/haxepunk-linearpath-tween.html&#34;&gt;different post&lt;/a&gt;&lt;/p&gt;
-&lt;h5&gt;Github Game-Off 2012&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&#34;http://github.com&#34;&gt;Github&lt;/a&gt; is hosting a game making &lt;a href=&#34;http://github.com/github/game-off-2012&#34; title=&#34;Game-Off 2012 Repository&#34;&gt;competition&lt;/a&gt; through the month of November.&lt;/p&gt;
-&lt;p&gt;It needs to be playable in a web browser, and needs to have some relation to
-&#34;branching&#34;, &#34;forking&#34;, &#34;cloning&#34;, &#34;pushing&#34;, or &#34;pulling&#34;.&lt;/p&gt;
-&lt;p&gt;Sounds like fun, I think I&#39;m in :)&lt;/p&gt;
-&lt;p&gt;I&#39;ll blog about my trials and tribulations here, so expect to see more posts
-about this project.&lt;/p&gt;
-&lt;p&gt;So far I&#39;ve settled on a few things:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The game is going to be heavily influenced by &lt;a href=&#34;http://github.com&#34;&gt;Hero Quest&lt;/a&gt;, one of my
-    all-time favorite board games&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The game will be broadly considered a &#34;tactical rpg&#34; with less of an emphasis
-    on some of the typical staples from RPG&#39;s that I tend to find tedious:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;There&#39;s no explicit traveling -- IE the goal of the game will be to finish
-    the level, for whatever goals the level has. Transition between levels will be
-    the purview of narrative occuring between levels.&lt;/li&gt;
-&lt;li&gt;All equipment will be purchased through a between-level store mechanism&lt;/li&gt;
-&lt;li&gt;There are 2 stats: Offense/Defense. Might end up calling them something else, 
-    but &#39;Offense&#39; and &#39;Defense&#39; describes their purpose fairly well. These stats
-    can be modified by equipment, and, very slowly, experience overtime.&lt;/li&gt;
-&lt;li&gt;Experience is rewarded at the end of a mission -- each mission has a base
-    amount of experience to give to each character that survives, and then each
-    character gets a small amount of experience per enemy slain, chest opened,
-    secret found, and item retrieved.&lt;/li&gt;
-&lt;li&gt;No equipment can be found in the levels. Anything found is essentially money
-    and experience.&lt;/li&gt;
-&lt;li&gt;There will be no &#39;looting&#39; -- IE the environment will not contains barrels,
-    chests, etc, that are only their to smash or open. Chests will be special
-    and only contain rare items that can be converted to money at the end of the
-    mission.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;I&#39;ll be making the game in &lt;a href=&#34;http://haxe.org&#34;&gt;Haxe&lt;/a&gt;/&lt;a href=&#34;http://haxenme.org&#34;&gt;NME&lt;/a&gt;, and I&#39;ll be taking advantage of
-    &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt;. Sadly, the html5 build for NME seems not to like how HaxePunk is
-    made, so I&#39;ll be putting out a flash version of the game for the competition.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My immediate goal for this next week is to get the basic game play prototyped out, IE,
-I want a map displaying with boundaries, and character movement, and combat. That&#39;s
-glossing over a lot of details, but it comes down to that.&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>HaxePunk LinearTween Example</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/haxepunk-lineartween-example/" />
-        <id>tag:joelkleier.com,2012-10-29:/2012/10/haxepunk-lineartween-example</id>
-        <updated>2012-10-29T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="haxe" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;&lt;strong&gt;Edit (2013-03-06):&lt;/strong&gt; fixed signature for callback/event listener and move this to it&#39;s own post&lt;/p&gt;
-&lt;h5&gt;HaxePunk Tweens&lt;/h5&gt;
-&lt;p&gt;While exploring &lt;a href=&#34;http://haxepunk.com&#34;&gt;HaxePunk&lt;/a&gt;, I discovered that sometimes documentation can be a
-little lacking. So I just wanted to write this down for future reference:&lt;/p&gt;
-&lt;p&gt;Tweening is pretting simple. Each &lt;em&gt;com.haxepunk.World&lt;/em&gt; and &lt;em&gt;com.haxepunk.Entity&lt;/em&gt; is
-what is called a &lt;em&gt;Tweener&lt;/em&gt; (&lt;em&gt;com.haxepunk.Tweener&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;There are already a bunch of different tweens in the com.haxepunk.tweens.* namespace.&lt;/p&gt;
-&lt;p&gt;Specifically, if you want to do motion, based on a path a character has to take, you
-can use the &lt;em&gt;com.haxepunk.tweens.motion.LinearPath&lt;/em&gt; tween.&lt;/p&gt;
-&lt;p&gt;In the &lt;em&gt;begin()&lt;/em&gt; method of an Entity you can do something like this:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
-2
-3
-4
-5
-6
-7
-8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// assuming _movetween is defined elsewhere in the class, and&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;// com.haxepunk.tweens.motion.LinearPath as been imported&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LinearPath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tweenEnds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// starting point&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// left 32px&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addPoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// left 32px, up 32px, ending point&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setMotion&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// do this in .5 seconds&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;addTween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;The &lt;em&gt;tweenEnds&lt;/em&gt; parameter is just a reference to a function called when the tween ends:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt;1
-2
-3
-4
-5
-6
-7
-8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tweenEnds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;event&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dynamic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// set the final x/y values here since the update() method,&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// as detailed below, won&amp;#39;t set the final variables since the IDLE&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// state is being started&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;IDLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;To call this, you just put something like the following in an Entities &lt;em&gt;update()&lt;/em&gt; method:&lt;/p&gt;
-&lt;table class=&#34;highlighttable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;linenos&#34;&gt;&lt;div class=&#34;linenodiv&#34;&gt;&lt;pre&gt; 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;startmoving&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MOVING&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// reset the tween to the beginning and start running it&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// the tween will contain the x and y values that are desired at a particular&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// point in time during the tween, and remember, you don&amp;#39;t want to set the x&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// and y values immediately after calling start() on the tween -- it&amp;#39;ll give&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// you a &amp;quot;hiccup&amp;quot; where your Entity moves to the final spot, then jumps&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// back and progresses allong the LinearPath.&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;_movetween&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;p&gt;Hopefully this has given a little insight for someone (like my future self) on how to
-use HaxePunk tweens.&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>LD48</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/10/ld48/" />
-        <id>tag:joelkleier.com,2012-10-09:/2012/10/ld48</id>
-        <updated>2012-10-09T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="ld48" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;The 24th &lt;a href=&#34;http://www.ludumdare.com&#34; title=&#34;Ludum Dare&#34;&gt;Ludum Dare&lt;/a&gt; has come and gone, and now it&#39;s time for me to take a look back
-and my entry &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-24/?action=preview&amp;amp;uid=7263&#34; title=&#34;And Thus She Spake Entry Page&#34;&gt;&#39;And Thus She Spake&#39;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;http://github.com/zombified/ld48_24&#34; title=&#34;And Thus She Spake Source Code&#34;&gt;source&lt;/a&gt; is on github, if you&#39;d like a look.&lt;/p&gt;
-&lt;h6&gt;What Went Right&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;I used tech I was, at the least, familiar with:&lt;ul&gt;
-&lt;li&gt;Sublime Text 2&lt;/li&gt;
-&lt;li&gt;LOVE&lt;/li&gt;
-&lt;li&gt;bfxr&lt;/li&gt;
-&lt;li&gt;Audacity&lt;/li&gt;
-&lt;li&gt;autotracker-bu.py&lt;/li&gt;
-&lt;li&gt;Schism Tracker&lt;/li&gt;
-&lt;li&gt;GIMP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Preparation!&lt;/li&gt;
-&lt;li&gt;I spent the time up front to get solid gameplay up and running&lt;/li&gt;
-&lt;li&gt;I slept and ate normally&lt;/li&gt;
-&lt;li&gt;No personal-life catastrophe&#39;s!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I think this was my best LD48 game yet. I ended up picking and sticking with a tech stack that I knew --
-granted, I don&#39;t know every piece all that &lt;em&gt;well&lt;/em&gt;, but I was familiar with everything. I had used it
-all before, and was very comfortable with all the documentation there is.&lt;/p&gt;
-&lt;p&gt;Even though I was familiar with the stack, I still prepared by building small programs focusing on
-certain aspects I was less familiar with -- like audio. LOVE (because of SDL) has an issue with audio
-clips bogging down the game when a lot are played. Eventually the sound cuts out all together. Because
-I was making little test programs, I discoverred this issue and was able to work around it before
-I was under the stress of the competition. Saved a couple hours of tinkering and reading.&lt;/p&gt;
-&lt;p&gt;It took me a while to figure out the kind of game I wanted to make, but more on that later. After I
-figured out a direction I wanted to go, instead of making a menu and adding in all the overhead right
-away, I started immediately on the gameplay. I started just thinking that a game like Osmos would
-be cool, but instead of trying to become the biggest on the map, you wanted to survive for the longest.
-To do so, you would need to grow and shrink. I figured that just bigger and smaller circles would work
-well for this -- you could get bigger by eating smaller circles, and get smaller by bumping larger
-circles.&lt;/p&gt;
-&lt;p&gt;I quickly discovered that it was kinda boring -- there was no real challenge. Once you got big enough,
-you&#39;d fill the screen.&lt;/p&gt;
-&lt;p&gt;This is when I thought of the concept of a circle that &lt;em&gt;always&lt;/em&gt; made you shrink, and grew in proportion
-to your shrinkage. This introduced an obstacle that the player needs to avoid, which makes the game
-a lot more challenging.&lt;/p&gt;
-&lt;p&gt;Once I got all the sizes, speeds, and randomization tweaked, I was basically done with the gameplay,
-and I felt that all the rest of my time could be spent on making the game look and sound good.&lt;/p&gt;
-&lt;p&gt;During this whole process I was able to follow my normal routines, which felt great. Less stress from
-staying up until 3am and eating like shit.&lt;/p&gt;
-&lt;h6&gt;What Went Wrong (or, at least, not as good as it could have gone)&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;Not a whole lot of polish and shine&lt;/li&gt;
-&lt;li&gt;Rules were maybe a little two abstracted in terms of presentation to the user&lt;/li&gt;
-&lt;li&gt;The game starts a little to hard, or perhaps it was too random&lt;/li&gt;
-&lt;li&gt;It took me the better part of 5 hours to come up with an idea for a direction that I wanted to go&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To be honest with myself, I spent an inordinate amount of time creating and tweaking the font, and
-I&#39;m happy with it, overall. I concentrated on the font, but then became kind of lax on making textures
-for the circles, and coming up with a better game board. Overall, I spent almost no time on polishing
-the UI, except for the fonts.&lt;/p&gt;
-&lt;p&gt;I put each of the rules in a short quote from a fictional character (the &#34;She&#34; in &#34;And Thus She Spake&#34;),
-but I suspect they ended up getting ignored, as most people just typed a name and jumped in to play. I
-thought they were clever (maybe the low-side of clever, but at least a &lt;em&gt;little&lt;/em&gt; clever), but in
-retrospect, they were just to abstract for the audience. And to be honest, I think I could have maybe
-drawn in the reader a little more by forcing the player to read the text first in an intro sequence.&lt;/p&gt;
-&lt;p&gt;But, easier might be to just be more straight forward with the rules. I dunno though, on the one
-hand I think the abstraction of the rules makes it fun to figure out, on the otherhand, they weren&#39;t
-really useful.&lt;/p&gt;
-&lt;p&gt;Everything in the game is random, but it&#39;s randomized all at once, and in one lump group. There are
-no stages and there is no proggression. There could still be randomization with stages/progression,
-and I think it would have help players learn how to play a lot faster. Not sure if it would have
-helped much though. I feel like it would have given the game a different flavor -- right now I think
-it&#39;s a fast game you can pickup and get into really quick once you figure things out. There are no
-levels, there&#39;s no progression, except your score. You, as a player, never need to feel like you
-need to get anywhere in the game to have fun. The player has the same experience at the start of the
-game as the end of the game.&lt;/p&gt;
-&lt;p&gt;Perhaps a bigger barrier to entry, but a lot less cruft for experienced players.&lt;/p&gt;
-&lt;p&gt;The worst part of the compentition was coming up with a concept for &#34;Evolution&#34;. I had lots of
-ideas, but, honestly, I&#39;m not intimately familiar with genetic algorithims and AI, so everything
-I thought of would be made x10 harder since I would have needed to spend a lot of time reading and
-bug fixing.&lt;/p&gt;
-&lt;h6&gt;What can I do to get better?&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;Next time, I think I will push myself a little harder to spend more time on polish. If I&#39;m honest,
-    I did have around 6-8 hours that I could have used to do more polish. My only excuse is that
-    I needed to do some errands.&lt;/li&gt;
-&lt;li&gt;To reduce the 5 hours it took to even think of a topic, I think maybe I should have a sketchbook
-    ready in front of me ready to use. Perhaps not stop thumbnailing and drawing until the creative
-    side of my brain figures something else.&lt;/li&gt;
-&lt;li&gt;Perhaps even work on the gameplay a little longer.&lt;/li&gt;
-&lt;li&gt;Have some basic things already lined up in libraries -- like code for menu UI and such.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Other than that, I think to get better, I just need to make more games :D&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>0x0001 - Eggnog</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/0x0001-eggnog/" />
-        <id>tag:joelkleier.com,2012-09-15:/2012/09/0x0001-eggnog</id>
-        <updated>2012-09-15T05:00:00Z</updated>
-        <category term="brewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;The winter months are coming up quick, and what better way to prepare for them
-than to make some eggnog! This eggnog, though, isn&#39;t safe for children to
-drink without strict parental supervision.&lt;/p&gt;
-&lt;p&gt;This particular recipe is based on the &lt;a href=&#34;http://www.chow.com/recipes/10758-best-eggnog&#34; title=&#34;Best Eggnog Recipe by Jonathan Hunt on CHOW.com&#34;&gt;&#34;Best Eggnog Recipe&#34; By Jonathan Hunt&lt;/a&gt;.&lt;/p&gt;
-&lt;h6&gt;Ingredients&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;12 Large Eggs&lt;/li&gt;
-&lt;li&gt;2 Cups Granulated Sugar (Florida Crystals Pure Florida Cane Sugar)&lt;/li&gt;
-&lt;li&gt;1 Cup Heavy Cream&lt;/li&gt;
-&lt;li&gt;4 Cups Whole Milk&lt;/li&gt;
-&lt;li&gt;1 Liter Bourbon (Jim Beam)&lt;/li&gt;
-&lt;li&gt;1/2 Cup Myers Dark Rum&lt;/li&gt;
-&lt;li&gt;1 Cup Brandy (Paul Masson &#34;Grande Amber&#34; 3yo oak aged)&lt;/li&gt;
-&lt;li&gt;Pinch of some smoked salt&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;For Serving:&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;10 Egg Whites&lt;/li&gt;
-&lt;li&gt;1 1/2 Cups Heavy Cream&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h6&gt;Process&lt;/h6&gt;
-&lt;ol&gt;
-&lt;li&gt;Separate yolks and whites&lt;/li&gt;
-&lt;li&gt;Combine sugar and yolks, whisk until creamy and smooth&lt;/li&gt;
-&lt;li&gt;Add heavy cream, milk, bourbon, rum, brandy, and salt&lt;/li&gt;
-&lt;li&gt;Stir until well combined&lt;/li&gt;
-&lt;li&gt;Pour into 1 gallon milk jug and wrap it in tinfoil&lt;/li&gt;
-&lt;li&gt;Age for 3 weeks, transfer to bottles, and store in fridge or other cold dark place&lt;/li&gt;
-&lt;li&gt;Let age for at least 3 more weeks, or up to a year, in a cold dark place&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;When Serving (assuming whole batch is being used):&lt;/em&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Whip 10 Egg Whites and and 1 1/2 Cups Heavy Cream in separate bowls to soft peeks&lt;/li&gt;
-&lt;li&gt;Fold cream and egg whites into punch bowl full of egg nog&lt;/li&gt;
-&lt;li&gt;Garnish each serving with freshly ground nutmeg&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h6&gt;Notes:&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;I am only on step 5, but what I plan on doing is separating it out into small
-    bottles and aging for, probably 2 or so months.&lt;/li&gt;
-&lt;/ul&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>My First Mead</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/my-first-mead/" />
-        <id>tag:joelkleier.com,2012-09-09:/2012/09/my-first-mead</id>
-        <updated>2012-09-09T05:00:00Z</updated>
-        <category term="brewing" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;Recently I&#39;ve gone to a few breweries (&lt;a href=&#34;https://leinie.com/AV.aspx?returnUrl=default.aspx&#34; title=&#34;Leinenkugel&#39;s&#34;&gt;Leinenkugel&#39;s&lt;/a&gt;, &lt;a href=&#34;http://www.newglarusbrewing.com/&#34; title=&#34;New Glarus Brewing Company&#34;&gt;New Glarus&lt;/a&gt;, and
-&lt;a href=&#34;http://www.summitbrewing.com/&#34; title=&#34;Summit Brewing&#34;&gt;Summit Brewing&lt;/a&gt;) and started to take a shine to the possibility of home brew.&lt;/p&gt;
-&lt;p&gt;I don&#39;t want to jump all in, though, so I&#39;m starting with a simple mead that needs
-almost no skill -- &lt;a href=&#34;http://www.gotmead.com/index.php?option=com_rapidrecipe&amp;amp;page=viewrecipe&amp;amp;Itemid=6&amp;amp;recipe_id=118&#34; title=&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&gt;&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Right now my first batch is firmenting, and won&#39;t be ready for tasting/aging until
-late September.&lt;/p&gt;
-&lt;p&gt;Here&#39;s a pic of it doing it&#39;s thing:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;&#34;My First Mead Firmenting&#34;&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/brewing/0x0000.jpg&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;I&#39;m calling it &lt;strong&gt;&#34;0x0000&#34;&lt;/strong&gt;. I think for each of my brews, I give them a 32-bit
-hex designation. Why? Because I can.&lt;/p&gt;
-&lt;h6&gt;My Recipe And Process for 0x0000&lt;/h6&gt;
-&lt;p&gt;Even though I&#39;m using &lt;a href=&#34;http://www.gotmead.com/index.php?option=com_rapidrecipe&amp;amp;page=viewrecipe&amp;amp;Itemid=6&amp;amp;recipe_id=118&#34; title=&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&gt;&#34;Joe&#39;s Ancient Orange Cinnamon Clove Mead&#34;&lt;/a&gt; recipe, I still
-have done a few things differently, for good or bad. Mostly the differences were
-unintentional.&lt;/p&gt;
-&lt;h6&gt;Ingredients&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;3.5lb Clover Honey&lt;/li&gt;
-&lt;li&gt;147g of Navel Orange Fruit and Zest (approx 1 medium/large navel orange with rind removed)&lt;/li&gt;
-&lt;li&gt;14g of Roundy&#39;s Natural Sweet Raisins (chopped)&lt;/li&gt;
-&lt;li&gt;1 Galon of Tap Water (approx)&lt;/li&gt;
-&lt;li&gt;1/4oz Red Star Instant Dry Yeast (for bread making)&lt;/li&gt;
-&lt;li&gt;1 stick Cinamon&lt;/li&gt;
-&lt;li&gt;2 Cloves&lt;/li&gt;
-&lt;li&gt;Pinch of Nutmeg&lt;/li&gt;
-&lt;li&gt;Pinch of All Spice&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h6&gt;Process&lt;/h6&gt;
-&lt;ol&gt;
-&lt;li&gt;Santize equipment&lt;/li&gt;
-&lt;li&gt;Bring water to 168&amp;deg;F&lt;/li&gt;
-&lt;li&gt;Warm Honey separately&lt;/li&gt;
-&lt;li&gt;Combine Honey &amp;amp; Water in Jug &amp;amp; shake for 3-4 minutes&lt;/li&gt;
-&lt;li&gt;Add cinamon, cloves, nutmeg, allspice, orange fruit, orange zest, and raisins&lt;/li&gt;
-&lt;li&gt;Add a little cool water to raise level of contents&lt;/li&gt;
-&lt;li&gt;Shake for 2 minutes&lt;/li&gt;
-&lt;li&gt;Cool to 73&amp;amp;degF (or whatever room temperature is)&lt;/li&gt;
-&lt;li&gt;Add yeast, shake gently&lt;/li&gt;
-&lt;li&gt;Fill airlock with vodka and stopper jug with drilled bung and airlock&lt;/li&gt;
-&lt;li&gt;Ferment at (approx) 66.6&amp;deg;F&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h6&gt;Notes:&lt;/h6&gt;
-&lt;ul&gt;
-&lt;li&gt;I do need to update this recipe more after it&#39;s done firmenting&lt;/li&gt;
-&lt;li&gt;66.6&amp;deg;F might be to cold for the yeast, but it seems to be bubbling away, I
-    suspect it might just be a longer firmentation than originally expected.&lt;/li&gt;
-&lt;li&gt;When pasturizing water, it should be kept at 180&amp;deg;F for around a half-hour,
-    not 168&amp;deg;F.&lt;/li&gt;
-&lt;li&gt;I&#39;d like to use a wine/beer yeast next time&lt;/li&gt;
-&lt;li&gt;It would have been easier to combine the water and honey while it was in the
-    pot on the stove getting pasturized.&lt;/li&gt;
-&lt;/ul&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Raspberry Pi!!!!</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/raspberry-pi/" />
-        <id>tag:joelkleier.com,2012-09-04:/2012/09/raspberry-pi</id>
-        <updated>2012-09-04T05:00:00Z</updated>
-        <category term="raspberrypi" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;I got my &lt;a href=&#34;http://www.raspberrypi.org/&#34; title=&#34;Raspberry Pi&#34;&gt;Raspberry Pi!&lt;/a&gt;! Don&#39;t have any specific plans at the moment, just a lot of possibilities. Next thing I need to do, though, is make a case for it!&lt;/p&gt;
-&lt;p&gt;Here&#39;s the unboxing, in pictures:&lt;/p&gt;
-&lt;h6&gt;The box&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The box the RPi arrived in&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173300.jpg&#34; title=&#34;The box the RPi arrived in&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;The contents of the box&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The contents of the box all layed out&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173342.jpg&#34; title=&#34;The contents of the box all layed out&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Another pic of the contents&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173350.jpg&#34; title=&#34;Another pic of the contents&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;The top of the RPi&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The top of the RPi&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173414.jpg&#34; title=&#34;The top of the RPi&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;The backside of the RPi&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The backside of the RPi&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173425.jpg&#34; title=&#34;The backside of the RPi&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;The RPi in my hand&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The RPi in my hand&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173442.jpg&#34; title=&#34;The RPi in my hand&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;The RPi on it&#39;s side&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;The RPi on it&#39;s side&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_173520.jpg&#34; title=&#34;The RPi on it&#39;s side&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;Running through an update for Arch Linux&lt;/h6&gt;
-&lt;p&gt;&lt;img alt=&#34;Running through an update for Arch Linux&#34; src=&#34;https://dl.dropbox.com/u/48144436/ScreenShots/raspberrypi/unboxing/IMG_20120830_215748.jpg&#34; title=&#34;Running through an update for Arch Linux&#34;/&gt;&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>tmux cheat sheet</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/09/tmux-cheat-sheet/" />
-        <id>tag:joelkleier.com,2012-09-04:/2012/09/tmux-cheat-sheet</id>
-        <updated>2012-09-04T05:00:00Z</updated>
-        <category term="cheatsheet" />
-        <category term="tmux" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;h5&gt;{{page.title}}&lt;/h5&gt;
-&lt;p&gt;This post will probably grow over time. Using it as a place where I can
-put commands I use reguarly.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;^b c&lt;/strong&gt; New Window&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b ,&lt;/strong&gt; Rename Window&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b [0-9]&lt;/strong&gt; Go to window [0-9]&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b l&lt;/strong&gt; Go to last active window&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b n&lt;/strong&gt; Go to next window&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b p&lt;/strong&gt; Go to previous window&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b %&lt;/strong&gt; Split (vertically) into 2 panes&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b o&lt;/strong&gt; Next pane&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;^b [&lt;/strong&gt; Go into scroll mode (&#39;q&#39; to get out of scroll mode)&lt;/li&gt;
-&lt;/ul&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>And so it begins LD48</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/08/and-so-it-begins-ld48/" />
-        <id>tag:joelkleier.com,2012-08-24:/2012/08/and-so-it-begins-ld48</id>
-        <updated>2012-08-24T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="LD48" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;Source can be found at &lt;a href=&#34;https://github.com/zombified/ld48-24&#34;&gt;github.com/zombified/ld48-24/&lt;/a&gt;&lt;/p&gt;
-&lt;h6&gt;[20:00 August 24th]&lt;/h6&gt;
-&lt;p&gt;Evolution.&lt;/p&gt;
-&lt;p&gt;Let&#39;s see what I can do!&lt;/p&gt;
-&lt;h6&gt;[23:38 August 24th]&lt;/h6&gt;
-&lt;p&gt;Well, after a few hours of racking my brain, possibly a short nap, and some down time with the missus, I have an idea. Not a very complicated or original one, but one that I think has some potential.&lt;/p&gt;
-&lt;p&gt;Here&#39;s a first look at it:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 23:38 on 24 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_201208242338.png&#34; title=&#34;FLOW&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;Not much to see, and not much to do in it, but it&#39;s a start!&lt;/p&gt;
-&lt;p&gt;Time for bed.&lt;/p&gt;
-&lt;h6&gt;[6:45 August 25th]&lt;/h6&gt;
-&lt;p&gt;Rested, and ready to go!&lt;/p&gt;
-&lt;p&gt;My goal for today is to have the entirety of gameplay done:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Eat small blobs, grow bigger&lt;/li&gt;
-&lt;li&gt;Get hit by bigger blobs, grow smaller&lt;/li&gt;
-&lt;li&gt;Start overlay&lt;/li&gt;
-&lt;li&gt;Dead/End overlay&lt;/li&gt;
-&lt;li&gt;Pause overlay&lt;/li&gt;
-&lt;li&gt;Sounds&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My goal for tomorrow:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Fix up the UI&lt;/li&gt;
-&lt;li&gt;Add some animations&lt;/li&gt;
-&lt;li&gt;Fancy shit up&lt;/li&gt;
-&lt;li&gt;Add bonus and penalty blobs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I&#39;m certain that my plans will change, but here goes nothing!&lt;/p&gt;
-&lt;h6&gt;[7:30 August 25th]&lt;/h6&gt;
-&lt;p&gt;Refactored some of my code a little, and added in some basic collision detection.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 7:28 on 25 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_20120825728.png&#34; title=&#34;Basic Collision Detection&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;Now it&#39;s time for a shower and breakfast. Let&#39;s start this day off right!&lt;/p&gt;
-&lt;h6&gt;[11:46 August 25th]&lt;/h6&gt;
-&lt;p&gt;The game mechanics are shaping up nicely! I think there&#39;s a little more tweaking I want to do before I start on the menu&#39;s and sounds, but it&#39;s (IMO) quite enjoyable for a quick 5 minutes of play.&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 11:48 on 25 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_201208251148.png&#34; title=&#34;You must survive!&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;[14:04 August 25th]&lt;/h6&gt;
-&lt;p&gt;I&#39;ve got the start and end screens functioning the way I want them, and I&#39;ve pretty much stopped tweaking the mechanic. I think it is good enough the more I play it. There&#39;s lots of things that I could add in to it... like a blob that would keep you the same size, an ability to push or pull all the blobs aound the mouse and such.&lt;/p&gt;
-&lt;p&gt;I&#39;ve also come to think that the game is an analogy for life, so I&#39;m rolling with it.&lt;/p&gt;
-&lt;p&gt;I do need to come up with a better name than &#39;FLOW&#39; though, as it&#39;s just my working title.&lt;/p&gt;
-&lt;p&gt;Here&#39;s the death screen:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 14:03 on 25 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_201208251403.png&#34; title=&#34;Shit, you&#39;re dead.&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;[18:13 August 25th]&lt;/h6&gt;
-&lt;p&gt;Quick update before I eat dinner. I was going kinda slow this afternoon, but the &#34;high scores&#34; are displaying and the player can ether their name.&lt;/p&gt;
-&lt;p&gt;I&#39;m going to work on a easter egg next... :)&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 18:12 on 25 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_201208251812.png&#34; title=&#34;The start screen&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;[21:58 August 25th]&lt;/h6&gt;
-&lt;p&gt;Added the easter egg! Not going to say what it is or post a screenshot of it, of course!&lt;/p&gt;
-&lt;p&gt;Also added music. I am by no means a music guy, so it shouldn&#39;t surprise you that it&#39;s nothing fancy. Might add a little more tomorrow before I submit the game, but, honestly, I don&#39;t know.&lt;/p&gt;
-&lt;p&gt;Since I spent most of my time on sound stuff, don&#39;t really have a screen shot!&lt;/p&gt;
-&lt;p&gt;Next, I have a little intro text to put on the start screen, then we have to rename the project to something official like.&lt;/p&gt;
-&lt;h6&gt;[0:28 August 26th]&lt;/h6&gt;
-&lt;p&gt;Still going strong, decided to create a custom fixed-width font for more alignment!&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;FLOW, Screen Shot at 0:27 on 26 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_FLOW_201208260027.png&#34; title=&#34;A New Font&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;[9:33 August 26th]&lt;/h6&gt;
-&lt;p&gt;Woke up refreshed, had some eggs, and started digging into more polish!&lt;/p&gt;
-&lt;p&gt;I added a death sound, made the text a little more readable, added an instruction on how to quit the game (which is probably error prone -- not really sure how to detect OSs/Window Managers well, so the arrow and message may be on the wrong side of the screen for releases like Kubuntu), and changed the title! It is now called &#34;And Thus She Spake&#34;.&lt;/p&gt;
-&lt;p&gt;Here&#39;s a screen shot, you can see some of the updated text and the new title:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;And Thus She Spake, Screen Shot at 9:32 on 26 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_ANDTHUSSHESPAKE_201208260932.png&#34; title=&#34;And Thus She Spake&#34;/&gt;&lt;/p&gt;
-&lt;h6&gt;[12:53 August 26th]&lt;/h6&gt;
-&lt;p&gt;Well, with around 7 hours to go I&#39;ve finished bundling and releasing to the extent that I&#39;m going to do.&lt;/p&gt;
-&lt;p&gt;Here&#39;s a link to the entry (just the preview, not the voting page): &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-24/?action=preview&amp;amp;uid=7263&#34;&gt;And Thus She Spake&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Here&#39;s my releases:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/And%20Thus%20She%20Spake.love&#34;&gt;LÖVE File&lt;/a&gt; (Make sure to install [LÖVE] separatly)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/AndThusSheSpake-osx.zip&#34;&gt;OS/X&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/AndThusSheSpake-win-x86.zip&#34;&gt;Win 32-bit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/AndThusSheSpake-win-x64.zip&#34;&gt;Win 64-bit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Linux users will have to install LÖVE separately and run the &lt;a href=&#34;https://dl.dropbox.com/u/48144436/LD48/24/And%20Thus%20She%20Spake.love&#34;&gt;LÖVE File&lt;/a&gt; as I am not familiar with bundling on those platforms, and there aren&#39;t any straight forward directions to follow to bundle for LÖVE.&lt;/p&gt;
-&lt;p&gt;And one last screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;And Thus She Spake, Screen Shot at 12:20 on 26 August 2012&#34; src=&#34;http://joelkleier.com/pics/LD48_24_ANDTHUSSHESPAKE_201208261220.png&#34; title=&#34;And Thus She Spake, Final Screen-Shot&#34;/&gt;&lt;/p&gt;</content>
-    </entry>
-    
-        <entry>
-        <title>Ludum Dare 24</title>
-        <link rel="alternate" type="text/html" href="http://joelkleier.com/2012/08/ludum-dare-24/" />
-        <id>tag:joelkleier.com,2012-08-21:/2012/08/ludum-dare-24</id>
-        <updated>2012-08-21T05:00:00Z</updated>
-        <category term="gamedev" />
-        <category term="LD48" />
-        
-        <author>
-            <name>Joel Kleier</name>
-            <uri>http://joelkleier.com/</uri>
-            <email>joel@kleier.us</email>
-        </author>
-        <content type="html">&lt;p&gt;Every 4 months, or so, the folks over at &lt;a href=&#34;http://ludumdare.com&#34;&gt;ludum dare&lt;/a&gt; (LD) hold a couple of contests, one for individuals and one for teams. The contest is all about creating a game in 48 (solo) or 72 (team) hours.&lt;/p&gt;
-&lt;p&gt;There is no prize for this contest, other than bragging rights and a prototype. Really the contest isn&#39;t about winning so much as it is about setting some time aside to do realize an idea or concept. But damnit, I want to get into the top 100 one of these times!&lt;/p&gt;
-&lt;p&gt;This contest is important to me because it gets my mind off of normal work and let&#39;s me focus on an idea for more than an hour or two at a time. A nice clear goal is handy too: get a game done in 48 hours, or else! This is fantastic motivation, especially since there are a thousand other people doing the same thing as you, at the same time.&lt;/p&gt;
-&lt;p&gt;So far, I&#39;ve entered two of the competitions -- the LD48 #22 and LD48 #23 -- and loved nearly every minute of both.&lt;/p&gt;
-&lt;p&gt;For LD48 #22 I made a game called &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-22/?action=preview&amp;amp;uid=7263&#34; title=&#34;LD48 #22 Entry, &#39;ALONE with K.I.T.T.I.&#39;&#34;&gt;ALONE with K.I.T.T.I.&lt;/a&gt;. It was an attempt at a pseudo-rogue-like game using javascript. I used &lt;a href=&#34;http://melonjs.org&#34;&gt;melonjs&lt;/a&gt; for most of the heavy lifting, but I hadn&#39;t ever used it before the competition (except going through some of the code in the tutorial). I spent a lot of my time fighting with everything I didn&#39;t know about the framework.&lt;/p&gt;
-&lt;p&gt;For LD48 #23 I made a game called &lt;a href=&#34;http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;amp;uid=7263&#34; title=&#34;LD48 #23 Entry, &#39;The Tiny World&#39;&#34;&gt;The Tiny World&lt;/a&gt;. It was an attempt at a text-based adventure game, again using javascript. This time I did everything from scratch, and while I was very familiar with the tools, even for a text adventure game, I spent a significant portion of time on developing the framework.&lt;/p&gt;
-&lt;p&gt;This time around I really need to use a framework that&#39;s built for prototyping, and that I&#39;m familiar with. While I LOVE javascript, and I want to pursue it more, I think I&#39;d like to take a step back for LD48 #24, and try out the &lt;a href=&#34;http://love2d.org&#34;&gt;LÖVE&lt;/a&gt; framework. I&#39;m fairly familiar with it, and it&#39;s built to prototype. My biggest issue will be getting around Lua -- I just don&#39;t use it that often, and I&#39;m not as familiar as I&#39;d like to be with some of the advanced features of the language. Heck, there&#39;s still several days until the competition, plenty of time to brush up, right?&lt;/p&gt;
-&lt;p&gt;Even if my next game still turns out to be complete shit, I&#39;m excited!&lt;/p&gt;
-&lt;p&gt;If you don&#39;t have any plans, &lt;a href=&#34;http://ludumdare.com&#34;&gt;give it a shot&lt;/a&gt;, what&#39;s the harm?&lt;/p&gt;</content>
-    </entry>
-    </feed>
+}</code></pre>
+<p>Then set HaxePunk to use that world as the active world by adding the following to the end of the <code>init</code> function in the <code>Main</code> class (<code>src/Main.hx</code>):</p>
+<pre><code>#!haxe
+HXP.world = new worlds.Game();</code></pre>
+<h2 id="building-the-project">Building the project</h2>
+<p>I like using neko to do a lot of my testing and development. It has faster build times than for cpp, and I don't have to deal with flash (personal preference).</p>
+<pre><code>#!bash
+$ nme test project.nmml neko</code></pre>
+<p>The 'test' argument just tells nme to update (copy assets) and build the project, then to run what was built right away. You can do lots of other things with nme, see the nme documentation, or the command line help:</p>
+<pre><code>#!bash
+$ nme help</code></pre>
+<h2 id="end-thoughts">End thoughts</h2>
+<p>Nothing fancy, but it gets the project up and running. It should be noted that a lot of FlashPunk documentation and tutorials are useful when trying to learn HaxePunk -- they usually don't match perfectly, but the class and method names are mostly the same and available in both, so it's easy to pickup things in snippets.</p>]]></summary><updated>Sat, 02 Mar 2013 00:00:00 CST</updated><id>38859ce10eea8323b27cbfdec56eaf80</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+<entry><title><![CDATA[Apathy post-mortem]]></title><link>http://joelkleier.com/blog/2013-01-ludum-dare-25-postmortem/</link><summary><![CDATA[<p>Well, voting is over for the <a href="http://ludumdare.com/compo" title="Ludum Dare 48-hour Competition">25th Ludum Dare 48-hour competition</a> and my game <a href="http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;uid=7263" title="&#39;Apathy&#39; Ludum Dare Entry">&quot;Apathy&quot;</a> came in a solidly in the middle of the pack.</p>
+<p>No ratings under 2.3, and I even had 1 rating over 3! Definitely better than my previous entries.</p>
+<p>The selected theme this time around was &quot;You are the enemy.&quot;</p>
+<p>I used <a href="http://haxe.org">Haxe</a>/<a href="http://haxenme.org">NME</a> + <a href="http://haxepunk.com">HaxePunk</a> to write a Flash game. If you're interested, the <a href="https://github.com/zombified/ld48-25" title="&#39;Apathy&#39; source code hosted on Github">source</a> is hosted on github.</p>
+<h2 id="what-went-wrong">What went wrong?</h2>
+<ol type="1">
+<li>The subject matter of my game came to life for me. I was definitely struggling with some depressive and apathetic feelings. Never a good place to be. This sucked up a lot of my time and energy, which, I think, led to a stunted experience.</li>
+<li>What the win condition represented was, perhaps, a little to abstract or vague for many of the players to understand. The player was a manifestation of apathy -- if the player moved around and tried to &quot;play&quot;, they would be engaged, and not apathetic. Since the player is a manifestation of apathy, though, this means the player is losing. The win condition was not to care, and to simply not play. After a time, apathy wins out because the player didn't care.</li>
+<li>Not enough shiny.</li>
+<li>Sound and music could have been improved.</li>
+</ol>
+<h2 id="what-went-right">What went right?</h2>
+<ol type="1">
+<li>I came up with a pretty simple concept fairly quickly</li>
+<li>I used some pretty spiffy libs that I had some prior experience with</li>
+<li>Good sleep + good food + good communication with the people in my life</li>
+</ol>
+<h2 id="what-can-i-do-better">What can I do better?</h2>
+<ol type="1">
+<li>I need to learn how to make some music, or find a better source for music. The tool I'm using (autotracker-bu) is starting to sound the same and get a little old. It's output also doesn't really fit with the concept of some of the games I want to make. However, I do have to say it is an awesome little utility none-the-less.</li>
+<li>On a personal level, I need to develop some mental tools to help push through the feeling of apathy myself. It can be a tough enemy.</li>
+</ol>]]></summary><updated>Mon, 14 Jan 2013 00:00:00 CST</updated><id>04a866349438f73559c74a2103ffb6bb</id><author><name>Joel Kleier</name><email>joel@kleier.us</email></author></entry>
+</feed>
