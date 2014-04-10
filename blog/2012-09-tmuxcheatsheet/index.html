@@ -33,7 +33,6 @@
                                     </div>
                                 </header>
         <article class='content'>
-            <h3 id="page.title">{{page.title}}</h3>
             <p>This post will probably grow over time. Using it as a place where I can put commands I use reguarly.</p>
             <ul>
             <li><strong>^b c</strong> New Window</li>
@@ -43,8 +42,22 @@
             <li><strong>^b n</strong> Go to next window</li>
             <li><strong>^b p</strong> Go to previous window</li>
             <li><strong>^b %</strong> Split (vertically) into 2 panes</li>
+            <li><strong>^b %</strong> Split (horizontall) into 2 panes</li>
             <li><strong>^b o</strong> Next pane</li>
             <li><strong>^b [</strong> Go into scroll mode ('q' to get out of scroll mode)</li>
+            <li><strong>^b :</strong> Go into command-mode, and issue commands like 'resize-pane -L 30'</li>
+            </ul>
+            <h3 id="force-256-color-display">Force 256 color display</h3>
+            <p>Most of the time, this should automatically get set, but I've run into issues w/ some VM configurations that I've only been able to get working correctly by forcing it.</p>
+            <p>Add</p>
+            <pre><code>set -g default-terminal &quot;screen-256color&quot;</code></pre>
+            <p>To</p>
+            <pre><code>~/.tmux.conf</code></pre>
+            <h3 id="changelog">Changelog</h3>
+            <p><strong>2014-04-10</strong></p>
+            <ul>
+            <li>added horizontal split, command-mode shortcuts</li>
+            <li>added note about forcing 256 color</li>
             </ul>
         </article>
     </div>
