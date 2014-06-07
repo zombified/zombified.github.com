@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>LD48 #24 'And Thus She Spake' Post Mortem | Electric Froth</title>
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
 
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link href="./" rel="home start" />
     <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
@@ -17,91 +33,158 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-        <base href="http://joelkleier.com/">
-    
-        <link rel='stylesheet' href='./theme/style.css' />
-        </head>
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
 <body>
-    <div class='page'>
-        <header class='site-header'>
-            <h1>LD48 #24 'And Thus She Spake' Post Mortem</h1>
-                        <div class='site-menu'>
-                                        <ul>
-                                            <li class='first'><a href='/'>index</a></li>
-                                            <li><a href='./blog/tag/brewlog/'>brewlog</a></li>
-                                            <li><a href='./blog/archive/'>archive</a></li>
-                                            <li class='last'><a href='./interesting-things/'>interesting things</a></li>
-                                        </ul>
-                                    </div>
-                                </header>
-        <article class='content'>
-            <p>The 24th <a href="http://www.ludumdare.com" title="Ludum Dare">Ludum Dare</a> has come and gone, and now it's time for me to take a look back and my entry <a href="http://www.ludumdare.com/compo/ludum-dare-24/?action=preview&amp;uid=7263" title="And Thus She Spake Entry Page">'And Thus She Spake'</a>.</p>
-            <p>The <a href="http://github.com/zombified/ld48_24" title="And Thus She Spake Source Code">source</a> is on github, if you'd like a look.</p>
-            <h4 id="what-went-right">What Went Right</h4>
-            <ul>
-            <li>I used tech I was, at the least, familiar with:
-            <ul>
-            <li>Sublime Text 2</li>
-            <li>LOVE</li>
-            <li>bfxr</li>
-            <li>Audacity</li>
-            <li>autotracker-bu.py</li>
-            <li>Schism Tracker</li>
-            <li>GIMP</li>
-            </ul></li>
-            <li>Preparation!</li>
-            <li>I spent the time up front to get solid gameplay up and running</li>
-            <li>I slept and ate normally</li>
-            <li>No personal-life catastrophe's!</li>
-            </ul>
-            <p>I think this was my best LD48 game yet. I ended up picking and sticking with a tech stack that I knew -- granted, I don't know every piece all that <em>well</em>, but I was familiar with everything. I had used it all before, and was very comfortable with all the documentation there is.</p>
-            <p>Even though I was familiar with the stack, I still prepared by building small programs focusing on certain aspects I was less familiar with -- like audio. LOVE (because of SDL) has an issue with audio clips bogging down the game when a lot are played. Eventually the sound cuts out all together. Because I was making little test programs, I discoverred this issue and was able to work around it before I was under the stress of the competition. Saved a couple hours of tinkering and reading.</p>
-            <p>It took me a while to figure out the kind of game I wanted to make, but more on that later. After I figured out a direction I wanted to go, instead of making a menu and adding in all the overhead right away, I started immediately on the gameplay. I started just thinking that a game like Osmos would be cool, but instead of trying to become the biggest on the map, you wanted to survive for the longest. To do so, you would need to grow and shrink. I figured that just bigger and smaller circles would work well for this -- you could get bigger by eating smaller circles, and get smaller by bumping larger circles.</p>
-            <p>I quickly discovered that it was kinda boring -- there was no real challenge. Once you got big enough, you'd fill the screen.</p>
-            <p>This is when I thought of the concept of a circle that <em>always</em> made you shrink, and grew in proportion to your shrinkage. This introduced an obstacle that the player needs to avoid, which makes the game a lot more challenging.</p>
-            <p>Once I got all the sizes, speeds, and randomization tweaked, I was basically done with the gameplay, and I felt that all the rest of my time could be spent on making the game look and sound good.</p>
-            <p>During this whole process I was able to follow my normal routines, which felt great. Less stress from staying up until 3am and eating like shit.</p>
-            <h4 id="what-went-wrong-or-at-least-not-as-good-as-it-could-have-gone">What Went Wrong (or, at least, not as good as it could have gone)</h4>
-            <ul>
-            <li>Not a whole lot of polish and shine</li>
-            <li>Rules were maybe a little two abstracted in terms of presentation to the user</li>
-            <li>The game starts a little to hard, or perhaps it was too random</li>
-            <li>It took me the better part of 5 hours to come up with an idea for a direction that I wanted to go</li>
-            </ul>
-            <p>To be honest with myself, I spent an inordinate amount of time creating and tweaking the font, and I'm happy with it, overall. I concentrated on the font, but then became kind of lax on making textures for the circles, and coming up with a better game board. Overall, I spent almost no time on polishing the UI, except for the fonts.</p>
-            <p>I put each of the rules in a short quote from a fictional character (the &quot;She&quot; in &quot;And Thus She Spake&quot;), but I suspect they ended up getting ignored, as most people just typed a name and jumped in to play. I thought they were clever (maybe the low-side of clever, but at least a <em>little</em> clever), but in retrospect, they were just to abstract for the audience. And to be honest, I think I could have maybe drawn in the reader a little more by forcing the player to read the text first in an intro sequence.</p>
-            <p>But, easier might be to just be more straight forward with the rules. I dunno though, on the one hand I think the abstraction of the rules makes it fun to figure out, on the otherhand, they weren't really useful.</p>
-            <p>Everything in the game is random, but it's randomized all at once, and in one lump group. There are no stages and there is no proggression. There could still be randomization with stages/progression, and I think it would have help players learn how to play a lot faster. Not sure if it would have helped much though. I feel like it would have given the game a different flavor -- right now I think it's a fast game you can pickup and get into really quick once you figure things out. There are no levels, there's no progression, except your score. You, as a player, never need to feel like you need to get anywhere in the game to have fun. The player has the same experience at the start of the game as the end of the game.</p>
-            <p>Perhaps a bigger barrier to entry, but a lot less cruft for experienced players.</p>
-            <p>The worst part of the compentition was coming up with a concept for &quot;Evolution&quot;. I had lots of ideas, but, honestly, I'm not intimately familiar with genetic algorithims and AI, so everything I thought of would be made x10 harder since I would have needed to spend a lot of time reading and bug fixing.</p>
-            <h4 id="what-can-i-do-to-get-better">What can I do to get better?</h4>
-            <ul>
-            <li>Next time, I think I will push myself a little harder to spend more time on polish. If I'm honest, I did have around 6-8 hours that I could have used to do more polish. My only excuse is that I needed to do some errands.</li>
-            <li>To reduce the 5 hours it took to even think of a topic, I think maybe I should have a sketchbook ready in front of me ready to use. Perhaps not stop thumbnailing and drawing until the creative side of my brain figures something else.</li>
-            <li>Perhaps even work on the gameplay a little longer.</li>
-            <li>Have some basic things already lined up in libraries -- like code for menu UI and such.</li>
-            </ul>
-            <p>Other than that, I think to get better, I just need to make more games :D</p>
-        </article>
-    </div>
-    <footer class='site-footer'>
-        <div class='content'>
-                        <div><a href='./rss.xml'>RSS</a> &middot; <a href='./atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
-                                    <div class='contact-info'>
-                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-                                        &middot;
-                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-                                        &middot;
-                                        <a href='https://github.com/zombified'>github</a>
-                                        &middot;
-                                        <a href='https://facebook.com/joelkleier'>facebook</a>
-                                        &middot;
-                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-                                        &middot;
-                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-                                    </div>
-                                    
-                                </div>
+
+    <h1 id='page-header'>LD48 <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+        <a id='index' href='/'>EF</a>
+        <a id='fullindex' href='/'>Electric Froth</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/archive'>Archive</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/brewlog'>Brewlog</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/interesting-things'>Interesting Things</a>
+    </nav>
+    <nav id='mobile-nav'>
+        <input type='checkbox' id='mobile-menu-input' />
+        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+        <div id='mobile-menu-items'>
+            <a class='navlink' href='/archive'>Archive</a>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <a class='navlink' href='/'>Interesting Things</a>
+        </div>
+    </nav>
+
+    <article id='page-content' class='post'>
+        <p>The 24th <a href="http://www.ludumdare.com" title="Ludum Dare">Ludum Dare</a> has come and gone, and now it&#39;s time for me to take a look back
+and my entry <a href="http://www.ludumdare.com/compo/ludum-dare-24/?action=preview&amp;uid=7263" title="And Thus She Spake Entry Page">&#39;And Thus She Spake&#39;</a>.</p>
+<p>The <a href="http://github.com/zombified/ld48_24" title="And Thus She Spake Source Code">source</a> is on github, if you&#39;d like a look.</p>
+<h4 id="what-went-right">What Went Right</h4>
+<ul>
+<li>I used tech I was, at the least, familiar with:<ul>
+<li>Sublime Text 2</li>
+<li>LOVE</li>
+<li>bfxr</li>
+<li>Audacity</li>
+<li>autotracker-bu.py</li>
+<li>Schism Tracker</li>
+<li>GIMP</li>
+</ul>
+</li>
+<li>Preparation!</li>
+<li>I spent the time up front to get solid gameplay up and running</li>
+<li>I slept and ate normally</li>
+<li>No personal-life catastrophe&#39;s!</li>
+</ul>
+<p>I think this was my best LD48 game yet. I ended up picking and sticking with a tech stack that I knew --
+granted, I don&#39;t know every piece all that <em>well</em>, but I was familiar with everything. I had used it
+all before, and was very comfortable with all the documentation there is.</p>
+<p>Even though I was familiar with the stack, I still prepared by building small programs focusing on
+certain aspects I was less familiar with -- like audio. LOVE (because of SDL) has an issue with audio
+clips bogging down the game when a lot are played. Eventually the sound cuts out all together. Because
+I was making little test programs, I discoverred this issue and was able to work around it before
+I was under the stress of the competition. Saved a couple hours of tinkering and reading.</p>
+<p>It took me a while to figure out the kind of game I wanted to make, but more on that later. After I
+figured out a direction I wanted to go, instead of making a menu and adding in all the overhead right
+away, I started immediately on the gameplay. I started just thinking that a game like Osmos would
+be cool, but instead of trying to become the biggest on the map, you wanted to survive for the longest.
+To do so, you would need to grow and shrink. I figured that just bigger and smaller circles would work
+well for this -- you could get bigger by eating smaller circles, and get smaller by bumping larger
+circles.</p>
+<p>I quickly discovered that it was kinda boring -- there was no real challenge. Once you got big enough,
+you&#39;d fill the screen.</p>
+<p>This is when I thought of the concept of a circle that <em>always</em> made you shrink, and grew in proportion
+to your shrinkage. This introduced an obstacle that the player needs to avoid, which makes the game
+a lot more challenging.</p>
+<p>Once I got all the sizes, speeds, and randomization tweaked, I was basically done with the gameplay,
+and I felt that all the rest of my time could be spent on making the game look and sound good.</p>
+<p>During this whole process I was able to follow my normal routines, which felt great. Less stress from
+staying up until 3am and eating like shit.</p>
+<h4 id="what-went-wrong-or-at-least-not-as-good-as-it-could-have-gone-">What Went Wrong (or, at least, not as good as it could have gone)</h4>
+<ul>
+<li>Not a whole lot of polish and shine</li>
+<li>Rules were maybe a little two abstracted in terms of presentation to the user</li>
+<li>The game starts a little to hard, or perhaps it was too random</li>
+<li>It took me the better part of 5 hours to come up with an idea for a direction that I wanted to go</li>
+</ul>
+<p>To be honest with myself, I spent an inordinate amount of time creating and tweaking the font, and
+I&#39;m happy with it, overall. I concentrated on the font, but then became kind of lax on making textures
+for the circles, and coming up with a better game board. Overall, I spent almost no time on polishing
+the UI, except for the fonts.</p>
+<p>I put each of the rules in a short quote from a fictional character (the &quot;She&quot; in &quot;And Thus She Spake&quot;),
+but I suspect they ended up getting ignored, as most people just typed a name and jumped in to play. I
+thought they were clever (maybe the low-side of clever, but at least a <em>little</em> clever), but in
+retrospect, they were just to abstract for the audience. And to be honest, I think I could have maybe
+drawn in the reader a little more by forcing the player to read the text first in an intro sequence.</p>
+<p>But, easier might be to just be more straight forward with the rules. I dunno though, on the one
+hand I think the abstraction of the rules makes it fun to figure out, on the otherhand, they weren&#39;t
+really useful.</p>
+<p>Everything in the game is random, but it&#39;s randomized all at once, and in one lump group. There are
+no stages and there is no proggression. There could still be randomization with stages/progression,
+and I think it would have help players learn how to play a lot faster. Not sure if it would have
+helped much though. I feel like it would have given the game a different flavor -- right now I think
+it&#39;s a fast game you can pickup and get into really quick once you figure things out. There are no
+levels, there&#39;s no progression, except your score. You, as a player, never need to feel like you
+need to get anywhere in the game to have fun. The player has the same experience at the start of the
+game as the end of the game.</p>
+<p>Perhaps a bigger barrier to entry, but a lot less cruft for experienced players.</p>
+<p>The worst part of the compentition was coming up with a concept for &quot;Evolution&quot;. I had lots of
+ideas, but, honestly, I&#39;m not intimately familiar with genetic algorithims and AI, so everything
+I thought of would be made x10 harder since I would have needed to spend a lot of time reading and
+bug fixing.</p>
+<h4 id="what-can-i-do-to-get-better-">What can I do to get better?</h4>
+<ul>
+<li>Next time, I think I will push myself a little harder to spend more time on polish. If I&#39;m honest,
+I did have around 6-8 hours that I could have used to do more polish. My only excuse is that
+I needed to do some errands.</li>
+<li>To reduce the 5 hours it took to even think of a topic, I think maybe I should have a sketchbook
+ready in front of me ready to use. Perhaps not stop thumbnailing and drawing until the creative
+side of my brain figures something else.</li>
+<li>Perhaps even work on the gameplay a little longer.</li>
+<li>Have some basic things already lined up in libraries -- like code for menu UI and such.</li>
+</ul>
+<p>Other than that, I think to get better, I just need to make more games :D</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Mon Oct 08 2012 19:00:00 GMT-0500 (CDT)">2012-10-08</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
     </footer>
 </body>
 </html>
+

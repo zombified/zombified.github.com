@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Ludum Dare 24 | Electric Froth</title>
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
 
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link href="./" rel="home start" />
     <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
@@ -17,53 +33,79 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-        <base href="http://joelkleier.com/">
-    
-        <link rel='stylesheet' href='./theme/style.css' />
-        </head>
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
 <body>
-    <div class='page'>
-        <header class='site-header'>
-            <h1>Ludum Dare 24</h1>
-                        <div class='site-menu'>
-                                        <ul>
-                                            <li class='first'><a href='/'>index</a></li>
-                                            <li><a href='./blog/tag/brewlog/'>brewlog</a></li>
-                                            <li><a href='./blog/archive/'>archive</a></li>
-                                            <li class='last'><a href='./interesting-things/'>interesting things</a></li>
-                                        </ul>
-                                    </div>
-                                </header>
-        <article class='content'>
-            <p>Every 4 months, or so, the folks over at <a href="http://ludumdare.com">ludum dare</a> (LD) hold a couple of contests, one for individuals and one for teams. The contest is all about creating a game in 48 (solo) or 72 (team) hours.</p>
-            <p>There is no prize for this contest, other than bragging rights and a prototype. Really the contest isn't about winning so much as it is about setting some time aside to do realize an idea or concept. But damnit, I want to get into the top 100 one of these times!</p>
-            <p>This contest is important to me because it gets my mind off of normal work and let's me focus on an idea for more than an hour or two at a time. A nice clear goal is handy too: get a game done in 48 hours, or else! This is fantastic motivation, especially since there are a thousand other people doing the same thing as you, at the same time.</p>
-            <p>So far, I've entered two of the competitions -- the LD48 #22 and LD48 #23 -- and loved nearly every minute of both.</p>
-            <p>For LD48 #22 I made a game called <a href="http://www.ludumdare.com/compo/ludum-dare-22/?action=preview&amp;uid=7263" title="LD48 #22 Entry, &#39;ALONE with K.I.T.T.I.&#39;">ALONE with K.I.T.T.I.</a>. It was an attempt at a pseudo-rogue-like game using javascript. I used <a href="http://melonjs.org">melonjs</a> for most of the heavy lifting, but I hadn't ever used it before the competition (except going through some of the code in the tutorial). I spent a lot of my time fighting with everything I didn't know about the framework.</p>
-            <p>For LD48 #23 I made a game called <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263" title="LD48 #23 Entry, &#39;The Tiny World&#39;">The Tiny World</a>. It was an attempt at a text-based adventure game, again using javascript. This time I did everything from scratch, and while I was very familiar with the tools, even for a text adventure game, I spent a significant portion of time on developing the framework.</p>
-            <p>This time around I really need to use a framework that's built for prototyping, and that I'm familiar with. While I LOVE javascript, and I want to pursue it more, I think I'd like to take a step back for LD48 #24, and try out the <a href="http://love2d.org">LÖVE</a> framework. I'm fairly familiar with it, and it's built to prototype. My biggest issue will be getting around Lua -- I just don't use it that often, and I'm not as familiar as I'd like to be with some of the advanced features of the language. Heck, there's still several days until the competition, plenty of time to brush up, right?</p>
-            <p>Even if my next game still turns out to be complete shit, I'm excited!</p>
-            <p>If you don't have any plans, <a href="http://ludumdare.com">give it a shot</a>, what's the harm?</p>
-        </article>
-    </div>
-    <footer class='site-footer'>
-        <div class='content'>
-                        <div><a href='./rss.xml'>RSS</a> &middot; <a href='./atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
-                                    <div class='contact-info'>
-                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-                                        &middot;
-                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-                                        &middot;
-                                        <a href='https://github.com/zombified'>github</a>
-                                        &middot;
-                                        <a href='https://facebook.com/joelkleier'>facebook</a>
-                                        &middot;
-                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-                                        &middot;
-                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-                                    </div>
-                                    
-                                </div>
+
+    <h1 id='page-header'>Ludum Dare 24 <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+        <a id='index' href='/'>EF</a>
+        <a id='fullindex' href='/'>Electric Froth</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/archive'>Archive</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/brewlog'>Brewlog</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/interesting-things'>Interesting Things</a>
+    </nav>
+    <nav id='mobile-nav'>
+        <input type='checkbox' id='mobile-menu-input' />
+        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+        <div id='mobile-menu-items'>
+            <a class='navlink' href='/archive'>Archive</a>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <a class='navlink' href='/'>Interesting Things</a>
+        </div>
+    </nav>
+
+    <article id='page-content' class='post'>
+        <p>Every 4 months, or so, the folks over at <a href="http://ludumdare.com">ludum dare</a> (LD) hold a couple of contests, one for individuals and one for teams. The contest is all about creating a game in 48 (solo) or 72 (team) hours.</p>
+<p>There is no prize for this contest, other than bragging rights and a prototype. Really the contest isn&#39;t about winning so much as it is about setting some time aside to do realize an idea or concept. But damnit, I want to get into the top 100 one of these times!</p>
+<p>This contest is important to me because it gets my mind off of normal work and let&#39;s me focus on an idea for more than an hour or two at a time. A nice clear goal is handy too: get a game done in 48 hours, or else! This is fantastic motivation, especially since there are a thousand other people doing the same thing as you, at the same time.</p>
+<p>So far, I&#39;ve entered two of the competitions -- the LD48 #22 and LD48 #23 -- and loved nearly every minute of both.</p>
+<p>For LD48 #22 I made a game called <a href="http://www.ludumdare.com/compo/ludum-dare-22/?action=preview&amp;uid=7263" title="LD48 #22 Entry, &#39;ALONE with K.I.T.T.I.&#39;">ALONE with K.I.T.T.I.</a>. It was an attempt at a pseudo-rogue-like game using javascript. I used <a href="http://melonjs.org">melonjs</a> for most of the heavy lifting, but I hadn&#39;t ever used it before the competition (except going through some of the code in the tutorial). I spent a lot of my time fighting with everything I didn&#39;t know about the framework.</p>
+<p>For LD48 #23 I made a game called <a href="http://www.ludumdare.com/compo/ludum-dare-23/?action=preview&amp;uid=7263" title="LD48 #23 Entry, &#39;The Tiny World&#39;">The Tiny World</a>. It was an attempt at a text-based adventure game, again using javascript. This time I did everything from scratch, and while I was very familiar with the tools, even for a text adventure game, I spent a significant portion of time on developing the framework.</p>
+<p>This time around I really need to use a framework that&#39;s built for prototyping, and that I&#39;m familiar with. While I LOVE javascript, and I want to pursue it more, I think I&#39;d like to take a step back for LD48 #24, and try out the <a href="http://love2d.org">LÖVE</a> framework. I&#39;m fairly familiar with it, and it&#39;s built to prototype. My biggest issue will be getting around Lua -- I just don&#39;t use it that often, and I&#39;m not as familiar as I&#39;d like to be with some of the advanced features of the language. Heck, there&#39;s still several days until the competition, plenty of time to brush up, right?</p>
+<p>Even if my next game still turns out to be complete shit, I&#39;m excited!</p>
+<p>If you don&#39;t have any plans, <a href="http://ludumdare.com">give it a shot</a>, what&#39;s the harm?</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Mon Aug 20 2012 19:00:00 GMT-0500 (CDT)">2012-08-20</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
     </footer>
 </body>
 </html>
+

@@ -1,0 +1,239 @@
+@font-face {
+    font-family:'fira_sanslight';
+    src:url('fonts/firasans-light-webfont.eot');
+    src:url('fonts/firasans-light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/firasans-light-webfont.woff') format('woff'),
+        url('fonts/firasans-light-webfont.ttf') format('truetype'),
+        url('fonts/firasans-light-webfont.svg#fira_sanslight') format('svg');
+    font-weight:normal;
+    font-style:normal;
+}
+
+body {
+    font-family:fira_sanslight;
+    margin:0;
+}
+
+pre {
+    background-color:#fdf6e3;
+    overflow-y:auto;
+}
+
+#nav,
+#mobile-nav,
+#page-header,
+#page-content,
+#page-footer {
+    min-width:300px;
+}
+
+a { font-weight:bold; text-decoration:none; border-bottom:1px solid blue; }
+a:visited { border-color:rgb(85, 26, 139); }
+a:hover { color:red; border-bottom:2px solid red; }
+
+#nav {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:36px;
+    background: rgb(143,200,0); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(143,200,0,1) 0%, rgba(208,237,135,1) 5%, rgba(208,237,135,1) 5%, rgba(226,255,153,1) 98%, rgba(156,175,105,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(143,200,0,1)), color-stop(5%,rgba(208,237,135,1)), color-stop(5%,rgba(208,237,135,1)), color-stop(98%,rgba(226,255,153,1)), color-stop(100%,rgba(156,175,105,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(143,200,0,1) 0%,rgba(208,237,135,1) 5%,rgba(208,237,135,1) 5%,rgba(226,255,153,1) 98%,rgba(156,175,105,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(143,200,0,1) 0%,rgba(208,237,135,1) 5%,rgba(208,237,135,1) 5%,rgba(226,255,153,1) 98%,rgba(156,175,105,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(143,200,0,1) 0%,rgba(208,237,135,1) 5%,rgba(208,237,135,1) 5%,rgba(226,255,153,1) 98%,rgba(156,175,105,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(143,200,0,1) 0%,rgba(208,237,135,1) 5%,rgba(208,237,135,1) 5%,rgba(226,255,153,1) 98%,rgba(156,175,105,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc800', endColorstr='#9caf69',GradientType=0 ); /* IE6-9 */
+}
+#nav a {
+    border:0 none;
+    color:green;
+    display:inline-block;
+    height:34px;
+    line-height:36px;
+    vertical-align:middle;
+    padding-top:2px;
+}
+#nav a:hover { color:black; }
+#nav a#index {
+    border:3px solid yellowgreen;
+    width:29px;
+    height:29px;
+    margin:0;
+    padding:0;
+    text-align:center;
+    line-height:30px;
+    font-family:monospace;
+    font-size:16px;
+}
+#nav a#index:hover {
+    border-color:green;
+}
+#nav a#fullindex {
+    margin-left:2px;
+    font-size:20px;
+}
+.navsep {
+    display:inline-block;
+    height:34px;
+    line-height:36px;
+    vertical-align:middle;
+    width:15px;
+    text-align:center;
+}
+#mobile-menu-button,
+#mobile-menu-input,
+#mobile-menu-items {
+    display:none;
+}
+
+#page-header,
+#page-content,
+#page-footer {
+    margin:5px;
+}
+
+h1#page-header.index {
+    margin-top:50px;
+}
+#page-header {
+    margin-top:70px;
+}
+#page-header .byline {
+    color:lightgrey;
+    font-size:x-small;
+    text-transform:uppercase;
+    font-style:italic;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+#page-content.post {
+    max-width:480px;
+    text-align:justify;
+}
+#page-content li a {
+    border:0 none;
+}
+#page-content.tags time {
+    color:lightgrey;
+    font-size:x-small;
+}
+#page-content.tags ul {
+    list-style-type:decimal;
+    color:lightgrey;
+}
+.post-summary {
+    position:relative;
+}
+.post-summary header {
+    margin-left:70px;
+}
+.post-summary header h1 {
+    margin-bottom:0;
+    padding-bottom:0;
+}
+.post-summary header a {
+    border:0 none;
+}
+.post-summary .date {
+    position:absolute;
+    top:7px;
+    left:0;
+    width:70px;
+    font-size:12px;
+    color:dimgrey;
+}
+.post-summary p {
+    margin-top:0;
+    font-style:italic;
+    font-size:small;
+    padding-left:10px;
+}
+.archive time {
+    color:lightgrey;
+    font-size:x-small;
+    font-weight:bold;
+}
+#page-meta {
+    color:lightgrey;
+}
+#page-meta .date {
+    font-weight:bold;
+}
+
+#page-footer {
+    margin-top:40px;
+    margin-bottom:30px;
+    color:lightgrey;
+    font-weight:bold;
+    font-size:x-small;
+}
+#page-footer a { color:grey; border-color:grey; }
+#page-footer a:visited { color:grey; border-color:grey; }
+#page-footer .contact-info {
+    margin-top:10px;
+}
+#page-footer .about-me {
+    margin-top:15px;
+    max-width:480px;
+}
+
+@media (min-width: 521px) {
+    body { padding-left:30px; }
+}
+
+@media (max-width: 521px) {
+    #page-header.index { display: none; }
+
+    .navsep { display:none; }
+    #nav a.navlink { display:none; }
+
+    #mobile-nav {
+        min-height:30px;
+    }
+    #mobile-menu-button input {
+        position:absolute;
+        top:-90000px
+    }
+    #mobile-menu-button {
+        border:1px solid green;
+        border-radius:5px;
+        padding:0 4px;
+        height:22px;
+        line-height:24px;
+        vertical-align:middle;
+        color:green;
+        display:block;
+        position:absolute;
+        top:6px;
+        right:20px;
+    }
+    #mobile-menu-items {
+        position:absolute;
+        right:0;
+        top:0;
+        z-index:1;
+    }
+    #mobile-menu-items a {
+        display:block;
+        border:0 none;
+        color:green;
+    }
+    #mobile-menu-items a:hover {
+        color:black;
+    }
+    input[type=checkbox]:checked ~ div#mobile-menu-items {
+        display:block;
+        margin-top:36px;
+        padding-top:10px;
+        border-bottom:2px double;
+        padding:10px;
+        background-color:whitesmoke;
+    }
+    input[type=checkbox]:checked ~ label#mobile-menu-button {
+        color:white;
+        background-color:green;
+    }
+}

@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Apathy post-mortem | Electric Froth</title>
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
 
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link href="./" rel="home start" />
     <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
@@ -17,66 +33,104 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-        <base href="http://joelkleier.com/">
-    
-        <link rel='stylesheet' href='./theme/style.css' />
-        </head>
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
 <body>
-    <div class='page'>
-        <header class='site-header'>
-            <h1>Apathy post-mortem</h1>
-                        <div class='site-menu'>
-                                        <ul>
-                                            <li class='first'><a href='/'>index</a></li>
-                                            <li><a href='./blog/tag/brewlog/'>brewlog</a></li>
-                                            <li><a href='./blog/archive/'>archive</a></li>
-                                            <li class='last'><a href='./interesting-things/'>interesting things</a></li>
-                                        </ul>
-                                    </div>
-                                </header>
-        <article class='content'>
-            <p>Well, voting is over for the <a href="http://ludumdare.com/compo" title="Ludum Dare 48-hour Competition">25th Ludum Dare 48-hour competition</a> and my game <a href="http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;uid=7263" title="&#39;Apathy&#39; Ludum Dare Entry">&quot;Apathy&quot;</a> came in a solidly in the middle of the pack.</p>
-            <p>No ratings under 2.3, and I even had 1 rating over 3! Definitely better than my previous entries.</p>
-            <p>The selected theme this time around was &quot;You are the enemy.&quot;</p>
-            <p>I used <a href="http://haxe.org">Haxe</a>/<a href="http://haxenme.org">NME</a> + <a href="http://haxepunk.com">HaxePunk</a> to write a Flash game. If you're interested, the <a href="https://github.com/zombified/ld48-25" title="&#39;Apathy&#39; source code hosted on Github">source</a> is hosted on github.</p>
-            <h2 id="what-went-wrong">What went wrong?</h2>
-            <ol type="1">
-            <li>The subject matter of my game came to life for me. I was definitely struggling with some depressive and apathetic feelings. Never a good place to be. This sucked up a lot of my time and energy, which, I think, led to a stunted experience.</li>
-            <li>What the win condition represented was, perhaps, a little to abstract or vague for many of the players to understand. The player was a manifestation of apathy -- if the player moved around and tried to &quot;play&quot;, they would be engaged, and not apathetic. Since the player is a manifestation of apathy, though, this means the player is losing. The win condition was not to care, and to simply not play. After a time, apathy wins out because the player didn't care.</li>
-            <li>Not enough shiny.</li>
-            <li>Sound and music could have been improved.</li>
-            </ol>
-            <h2 id="what-went-right">What went right?</h2>
-            <ol type="1">
-            <li>I came up with a pretty simple concept fairly quickly</li>
-            <li>I used some pretty spiffy libs that I had some prior experience with</li>
-            <li>Good sleep + good food + good communication with the people in my life</li>
-            </ol>
-            <h2 id="what-can-i-do-better">What can I do better?</h2>
-            <ol type="1">
-            <li>I need to learn how to make some music, or find a better source for music. The tool I'm using (autotracker-bu) is starting to sound the same and get a little old. It's output also doesn't really fit with the concept of some of the games I want to make. However, I do have to say it is an awesome little utility none-the-less.</li>
-            <li>On a personal level, I need to develop some mental tools to help push through the feeling of apathy myself. It can be a tough enemy.</li>
-            </ol>
-        </article>
-    </div>
-    <footer class='site-footer'>
-        <div class='content'>
-                        <div><a href='./rss.xml'>RSS</a> &middot; <a href='./atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
-                                    <div class='contact-info'>
-                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-                                        &middot;
-                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-                                        &middot;
-                                        <a href='https://github.com/zombified'>github</a>
-                                        &middot;
-                                        <a href='https://facebook.com/joelkleier'>facebook</a>
-                                        &middot;
-                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-                                        &middot;
-                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-                                    </div>
-                                    
-                                </div>
+
+    <h1 id='page-header'>Apathy post-mortem <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+        <a id='index' href='/'>EF</a>
+        <a id='fullindex' href='/'>Electric Froth</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/archive'>Archive</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/brewlog'>Brewlog</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/interesting-things'>Interesting Things</a>
+    </nav>
+    <nav id='mobile-nav'>
+        <input type='checkbox' id='mobile-menu-input' />
+        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+        <div id='mobile-menu-items'>
+            <a class='navlink' href='/archive'>Archive</a>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <a class='navlink' href='/'>Interesting Things</a>
+        </div>
+    </nav>
+
+    <article id='page-content' class='post'>
+        <p>Well, voting is over for the <a href="http://ludumdare.com/compo" title="Ludum Dare 48-hour Competition">25th Ludum Dare 48-hour competition</a> and my game <a href="http://www.ludumdare.com/compo/ludum-dare-25/?action=preview&amp;uid=7263" title="&#39;Apathy&#39; Ludum Dare Entry">&quot;Apathy&quot;</a> came in
+a solidly in the middle of the pack.</p>
+<p>No ratings under 2.3, and I even had 1 rating over 3! Definitely better than my previous entries.</p>
+<p>The selected theme this time around was &quot;You are the enemy.&quot;</p>
+<p>I used <a href="http://haxe.org">Haxe</a>/<a href="http://haxenme.org">NME</a> + <a href="http://haxepunk.com">HaxePunk</a> to write a Flash game. If you&#39;re interested, the <a href="https://github.com/zombified/ld48-25" title="&#39;Apathy&#39; source code hosted on Github">source</a> is
+hosted on github.</p>
+<h2 id="what-went-wrong-">What went wrong?</h2>
+<ol>
+<li>The subject matter of my game came to life for me. I was definitely struggling with some depressive
+and apathetic feelings. Never a good place to be. This sucked up a lot of my time and energy, which,
+I think, led to a stunted experience.</li>
+<li>What the win condition represented was, perhaps, a little to abstract or vague for many of the players to
+understand. The player was a manifestation of apathy -- if the player moved around and tried to &quot;play&quot;,
+they would be engaged, and not apathetic. Since the player is a manifestation of apathy, though, this
+means the player is losing. The win condition was not to care, and to simply not play. After a time,
+apathy wins out because the player didn&#39;t care.</li>
+<li>Not enough shiny.</li>
+<li>Sound and music could have been improved.</li>
+</ol>
+<h2 id="what-went-right-">What went right?</h2>
+<ol>
+<li>I came up with a pretty simple concept fairly quickly</li>
+<li>I used some pretty spiffy libs that I had some prior experience with</li>
+<li>Good sleep + good food + good communication with the people in my life</li>
+</ol>
+<h2 id="what-can-i-do-better-">What can I do better?</h2>
+<ol>
+<li>I need to learn how to make some music, or find a better source for music. The tool I&#39;m using (autotracker-bu)
+is starting to sound the same and get a little old. It&#39;s output also doesn&#39;t really fit with the
+concept of some of the games I want to make. However, I do have to say it is an awesome little utility
+none-the-less.</li>
+<li>On a personal level, I need to develop some mental tools to help push through the feeling of apathy
+myself. It can be a tough enemy.</li>
+</ol>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Sun Jan 13 2013 18:00:00 GMT-0600 (CST)">2013-01-13</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
     </footer>
 </body>
 </html>
+

@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Setting up a HaxePunk Project | Electric Froth</title>
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
 
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link href="./" rel="home start" />
     <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
@@ -17,85 +33,123 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-        <base href="http://joelkleier.com/">
-    
-        <link rel='stylesheet' href='./theme/style.css' />
-        </head>
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
 <body>
-    <div class='page'>
-        <header class='site-header'>
-            <h1>Setting up a HaxePunk Project</h1>
-                        <div class='site-menu'>
-                                        <ul>
-                                            <li class='first'><a href='/'>index</a></li>
-                                            <li><a href='./blog/tag/brewlog/'>brewlog</a></li>
-                                            <li><a href='./blog/archive/'>archive</a></li>
-                                            <li class='last'><a href='./interesting-things/'>interesting things</a></li>
-                                        </ul>
-                                    </div>
-                                </header>
-        <article class='content'>
-            <p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
-            <h2 id="setting-up-the-development-environment">Setting up the development environment</h2>
-            <ol type="1">
-            <li>Setup the editor or IDE, I use vim, so install <a href="https://github.com/jdonaldson/vaxe">vaxe</a></li>
-            <li>Go to <a href="http://www.nme.io/download/">www.nme.io/download/</a> and follow the instructions</li>
-            <li>Install HaxePunk: <code>haxelib install HaxePunk</code></li>
-            </ol>
-            <h2 id="setting-up-the-project">Setting up the project</h2>
-            <ol type="1">
-            <li>Create the project skeleton: <code>haxelib run HaxePunk new [project name]</code>, replacing [project name] with the name of the folder to use for the project</li>
-            <li>Edit <code>project.nmml</code> with your project specific details</li>
-            <li>Add <code>src/worlds</code> folder to hold your world source files</li>
-            <li>Add <code>src/entities</code> folder to hold your entity source files</li>
-            </ol>
-            <h2 id="add-some-code-to-make-a-useable-but-very-basic-haxepunk-project">Add some code to make a useable, but very basic HaxePunk project</h2>
-            <p>Add this code to <code>src/worlds/Game.hx</code>, it can be used as a very basic jumping off point:</p>
-            <pre><code>#!haxe
-            package worlds;
-            
-            import com.haxepunk.World;
-            
-            
-            class Game extends World {
-            
-                public function new() {
-                    super();
-                }
-            
-            }</code></pre>
-            <p>Then set HaxePunk to use that world as the active world by adding the following to the end of the <code>init</code> function in the <code>Main</code> class (<code>src/Main.hx</code>):</p>
-            <pre><code>#!haxe
-            HXP.world = new worlds.Game();</code></pre>
-            <h2 id="building-the-project">Building the project</h2>
-            <p>I like using neko to do a lot of my testing and development. It has faster build times than for cpp, and I don't have to deal with flash (personal preference).</p>
-            <pre><code>#!bash
-            $ nme test project.nmml neko</code></pre>
-            <p>The 'test' argument just tells nme to update (copy assets) and build the project, then to run what was built right away. You can do lots of other things with nme, see the nme documentation, or the command line help:</p>
-            <pre><code>#!bash
-            $ nme help</code></pre>
-            <h2 id="end-thoughts">End thoughts</h2>
-            <p>Nothing fancy, but it gets the project up and running. It should be noted that a lot of FlashPunk documentation and tutorials are useful when trying to learn HaxePunk -- they usually don't match perfectly, but the class and method names are mostly the same and available in both, so it's easy to pickup things in snippets.</p>
-        </article>
-    </div>
-    <footer class='site-footer'>
-        <div class='content'>
-                        <div><a href='./rss.xml'>RSS</a> &middot; <a href='./atom.xml'>Atom</a> &middot; Built with <a href='https://github.com/zombified/ef.sh'>ef.sh</a> &middot; &copy; Joel Kleier</div>
-                                    <div class='contact-info'>
-                                        <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-                                        &middot;
-                                        <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-                                        &middot;
-                                        <a href='https://github.com/zombified'>github</a>
-                                        &middot;
-                                        <a href='https://facebook.com/joelkleier'>facebook</a>
-                                        &middot;
-                                        <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-                                        &middot;
-                                        <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-                                    </div>
-                                    
-                                </div>
+
+    <h1 id='page-header'>Setting up a HaxePunk Project <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+        <a id='index' href='/'>EF</a>
+        <a id='fullindex' href='/'>Electric Froth</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/archive'>Archive</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/brewlog'>Brewlog</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/interesting-things'>Interesting Things</a>
+    </nav>
+    <nav id='mobile-nav'>
+        <input type='checkbox' id='mobile-menu-input' />
+        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+        <div id='mobile-menu-items'>
+            <a class='navlink' href='/archive'>Archive</a>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <a class='navlink' href='/'>Interesting Things</a>
+        </div>
+    </nav>
+
+    <article id='page-content' class='post'>
+        <p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
+<h2 id="setting-up-the-development-environment">Setting up the development environment</h2>
+<ol>
+<li>Setup the editor or IDE, I use vim, so install
+<a href="https://github.com/jdonaldson/vaxe">vaxe</a></li>
+<li>Go to <a href="http://www.nme.io/download/">www.nme.io/download/</a> and follow the
+instructions</li>
+<li>Install HaxePunk: <code>haxelib install HaxePunk</code></li>
+</ol>
+<h2 id="setting-up-the-project">Setting up the project</h2>
+<ol>
+<li>Create the project skeleton: <code>haxelib run HaxePunk new [project name]</code>,
+replacing [project name] with the name of the folder to use for the project</li>
+<li>Edit <code>project.nmml</code> with your project specific details</li>
+<li>Add <code>src/worlds</code> folder to hold your world source files</li>
+<li>Add <code>src/entities</code> folder to hold your entity source files</li>
+</ol>
+<h2 id="add-some-code-to-make-a-useable-but-very-basic-haxepunk-project">Add some code to make a useable, but very basic HaxePunk project</h2>
+<p>Add this code to <code>src/worlds/Game.hx</code>, it can be used as a very basic jumping
+off point:</p>
+<pre><code>#!haxe
+package worlds;
+
+import com.haxepunk.World;
+
+
+class Game extends World {
+
+    public function new() {
+        super();
+    }
+
+}
+</code></pre><p>Then set HaxePunk to use that world as the active world by adding the following
+to the end of the <code>init</code> function in the <code>Main</code> class (<code>src/Main.hx</code>):</p>
+<pre><code>#!haxe
+HXP.world = new worlds.Game();
+</code></pre><h2 id="building-the-project">Building the project</h2>
+<p>I like using neko to do a lot of my testing and development. It has faster build
+times than for cpp, and I don&#39;t have to deal with flash (personal preference).</p>
+<pre><code>#!bash
+$ nme test project.nmml neko
+</code></pre><p>The &#39;test&#39; argument just tells nme to update (copy assets) and build the project,
+then to run what was built right away. You can do lots of other things with nme, see the
+nme documentation, or the command line help:</p>
+<pre><code>#!bash
+$ nme help
+</code></pre><h2 id="end-thoughts">End thoughts</h2>
+<p>Nothing fancy, but it gets the project up and running. It should be noted that
+a lot of FlashPunk documentation and tutorials are useful when trying to learn
+HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
+are mostly the same and available in both, so it&#39;s easy to pickup things in
+snippets.</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Fri Mar 01 2013 18:00:00 GMT-0600 (CST)">2013-03-01</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
     </footer>
 </body>
 </html>
+

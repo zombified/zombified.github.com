@@ -40,7 +40,7 @@
 </head>
 <body>
 
-    <h1 id='page-header'>Haxe Function Signatures <span class='byline'>by Joel Kleier</span></h1>
+    <h1 id='page-header'>metalsmith <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
         <a id='index' href='/'>EF</a>
         <a id='fullindex' href='/'>Electric Froth</a>
@@ -62,34 +62,22 @@
     </nav>
 
     <article id='page-content' class='post'>
-        <p>Just a quick note about this function signature:</p>
-<pre><code>#!haxe
-Dynamic -&gt; Void
-</code></pre><p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
-<p>For example, if you have this:</p>
-<pre><code>#!haxe
-var func:Dynamic -&gt; Void;
-</code></pre><p>You cannot assign func a function that has a void parameter list. It DOES require
-a parameter, but that parameter can be of any type.</p>
-<p>IE, this is <em>bad</em>:</p>
-<pre><code>#!haxe
-function foo() {}
-
-// foo is of type Void -&gt; Void, not Dynamic -&gt; Void
-func = foo;
-</code></pre><p>But this is good:</p>
-<pre><code>#!haxe
-function foo(bar:Dynamic) {}
-
-func = foo;
-</code></pre><p>It may seem kinda obvious, but I was tripped up on it because I thought <code>Dynamic</code>
-could represent any type of value, including a Void parameter list. Which, in
-hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
-<p><strong>NOTE</strong> This was written for Haxe 2.10</p>
+        <p>While updating the look and feel of my site, I decided to explore some other
+static site generators, just to see what&#39;s out there. <a href="http://metalsmith.io">Metalsmith</a> caught
+my eye, and I had to play around with it.</p>
+<p>Turns out, it is <em>super</em> simple to setup, and very composable. I almost think
+it&#39;s simpler that <a href="http://github.com/zombified/ef.sh">ef.sh</a> in many ways, and it&#39;s faster, with more features!
+The only downside is that there <em>is</em> more setup involved, but not much.</p>
+<p>If you get a chance, I&#39;d recommend checking it out. Not perfect for all needs,
+and not the star student... but if it keeps being worked on, it has great
+potential. My one criticism is a general lack of great documentation! The code
+is pretty terse and easy to follow though, so there is that.</p>
+<p>Also, I&#39;m sorry for the id/uid/guid updates on the rss/atom feeds... I decided
+to just use permalinks. Simple, and a lot more portable going forward.</p>
 
         <div id='page-meta'>
             Published on
-            <time class='date' datetime="Tue Mar 05 2013 18:00:00 GMT-0600 (CST)">2013-03-05</time>
+            <time class='date' datetime="Fri Jun 06 2014 19:00:00 GMT-0500 (CDT)">2014-06-06</time>
         </div>
     </article>
     <footer id='page-footer'>

@@ -40,7 +40,7 @@
 </head>
 <body>
 
-    <h1 id='page-header'>Haxe Function Signatures <span class='byline'>by Joel Kleier</span></h1>
+    <h1 id='page-header'>Brewlog</h1>
         <nav id='nav'>
         <a id='index' href='/'>EF</a>
         <a id='fullindex' href='/'>Electric Froth</a>
@@ -61,36 +61,31 @@
         </div>
     </nav>
 
-    <article id='page-content' class='post'>
-        <p>Just a quick note about this function signature:</p>
-<pre><code>#!haxe
-Dynamic -&gt; Void
-</code></pre><p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
-<p>For example, if you have this:</p>
-<pre><code>#!haxe
-var func:Dynamic -&gt; Void;
-</code></pre><p>You cannot assign func a function that has a void parameter list. It DOES require
-a parameter, but that parameter can be of any type.</p>
-<p>IE, this is <em>bad</em>:</p>
-<pre><code>#!haxe
-function foo() {}
-
-// foo is of type Void -&gt; Void, not Dynamic -&gt; Void
-func = foo;
-</code></pre><p>But this is good:</p>
-<pre><code>#!haxe
-function foo(bar:Dynamic) {}
-
-func = foo;
-</code></pre><p>It may seem kinda obvious, but I was tripped up on it because I thought <code>Dynamic</code>
-could represent any type of value, including a Void parameter list. Which, in
-hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
-<p><strong>NOTE</strong> This was written for Haxe 2.10</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Tue Mar 05 2013 18:00:00 GMT-0600 (CST)">2013-03-05</time>
-        </div>
+    <article id='page-content' class='archive'>
+        <ul>
+        
+            <li><a href='/blog/2013-06-0x0006-root-beer-from-extract'>0x0006 - Root Beer From Extract</a>
+                <time class='date' datetime='Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)'>2013-06-14</time></li>
+        
+            <li><a href='/blog/2013-06-0x0004-mr-beer'>0x0004 - Mr. Beer</a>
+                <time class='date' datetime='Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)'>2013-06-14</time></li>
+        
+            <li><a href='/blog/2013-06-0x0002-hard-cider'>0x0002 - Hard Cider (Better Late Than Never)</a>
+                <time class='date' datetime='Thu Jun 13 2013 19:00:00 GMT-0500 (CDT)'>2013-06-13</time></li>
+        
+            <li><a href='/blog/2013-06-0x0005'>0x0005 - Dandelion Wine</a>
+                <time class='date' datetime='Wed Jun 12 2013 19:00:00 GMT-0500 (CDT)'>2013-06-12</time></li>
+        
+            <li><a href='/blog/2012-12-bottling'>My first homebrew bottling experience</a>
+                <time class='date' datetime='Wed Dec 05 2012 18:00:00 GMT-0600 (CST)'>2012-12-05</time></li>
+        
+            <li><a href='/blog/2012-09-eggnog'>0x0001 - Eggnog</a>
+                <time class='date' datetime='Fri Sep 14 2012 19:00:00 GMT-0500 (CDT)'>2012-09-14</time></li>
+        
+            <li><a href='/blog/2012-09-myfirstmead'>My First Mead</a>
+                <time class='date' datetime='Sat Sep 08 2012 19:00:00 GMT-0500 (CDT)'>2012-09-08</time></li>
+        
+        </ul>
     </article>
     <footer id='page-footer'>
         <div>
