@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+    <head>
+        <meta charset='UTF-8' />
+        <title>PING</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
+        <style type='text/css'>
+            @font-face {
+                font-family: Geo;
+                src: url(http://fonts.googleapis.com/css?family=Geo) format("truetype");
+            }  
+
+            #title
+            {
+                position: absolute;
+                top: 5px;
+                left: 50%;
+                margin-left: -100px;
+                margin-top: 0px;
+                width: 200px;
+                text-align: center;
+                font-family: Geo, Sans;
+                font-size: 48px;
+                z-index: 20;
+            }
+
+            #board
+            {
+                position: absolute;
+                top: 60px;
+                left: 50%;
+                margin-left: -320px;
+                z-index: 0;
+            }
+
+            #cscore, #pscore
+            {
+                font-family: Geo, Sans;
+                font-size: 28px;
+                
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                z-index: 10;
+
+                color: #888;
+            }
+
+            #cscore
+            {
+                margin-left: -350px;
+            }
+
+            #pscore
+            {
+                margin-left: 322px;
+            }
+
+            #background
+            {
+                position: absolute;
+                top: 60px;
+                left: 50%;
+                margin-left: -320px;
+            }
+        </style>
+    </head>
+    <body onkeydown="keydown (event)" onkeyup="keyup (event)">
+        <audio id='hit' src='resources/sounds/hit.wav' preload='preload'></audio>
+        <audio id='good-goal' src='resources/sounds/good-goal.wav' preload='preload'></audio>
+        <audio id='bad-goal' src='resources/sounds/bad-goal.wav' preload='preload'></audio>
+
+        <h1 id='title'>PING!</h1>
+
+        <div id='cscore'>00</div>
+        <div id='pscore'>00</div>
+        <img id='background' src='resources/textures/board-basic.png' />
+        <canvas id='board' width='640' height='480'></canvas>
+
+        <script type='text/javascript'>
+
+            var canvas = document.getElementById ('board');
+            var context = canvas.getContext('2d');
+            var keys = {};
+
+            window.requestAnimFrame = (function() {
+                return window.requestAnimationFrame
+                        || window.webkitRequestAnimationFrame
+                        || window.mozRequestAnimationFrame
+                        || window.oRequestAnimationFrame
+                        || window.msRequestAnimationFrame
+                        || function (callback, element) {
+                            window.setTimeout (callback, 1000/60);
+                        };
+            })();
+
+
+            var soundmgr = function () {
+                this.channel_max = 10;
+                this.channels = [];
+
+                for (var i = 0; i < this.channel_max; i++) {
+                    this.channels[i] = [];
+                    this.channels[i]['channel'] = new Audio ();
+                    this.channels[i]['finished'] = -1;
+                }
+            }
+            soundmgr.prototype.playsnd = function (id) {
+                var time;
+                var audel = document.getElementById (id);
+                for (var i = 0; i < this.channel_max; i++) {
+                   time = new Date ();
+                   if (this.channels[i]['finished'] < time.getTime ()) {
+                       this.channels[i]['finished'] = time.getTime () + (audel.duration * 1000);
+                       this.channels[i]['channel'].src = audel.src;
+                       this.channels[i]['channel'].load ();
+                       this.channels[i]['channel'].play ();
+                       
+                       return true;
+                   }
+                }
+
+                return false;
+            }
+
+            function Entity () {
+                this.x = 0;
+                this.y = 0;
+            }
+            Entity.prototype.collidedWith = function (e) {
+
+            }
+            Entity.prototype.move = function () {
+
+            }
+
+
+            function keydown (e) {
+                var keynum, keychar;
+                if (window.event) { // ie
+                    keynum = e.keyCode;
+                } else if (e.which) { // everything else
+                    keynum = e.which;
+                }
+
+                keys[keynum] = true;
+            }
+
+            function keyup (e) {
+                var keynum, keychar;
+                if (window.event) { // ie
+                    keynum = e.keyCode;
+                } else if (e.which) { // everything else
+                    keynum = e.which;
+                }
+
+                keys[keynum] = false;
+            }
+
+
+
+            var snd = new soundmgr ();
+            var playArea = {xoffset:1, yoffset:2, w:638, h:476};
+            var ball = {x:320, y:240, r:5, xspeed:2, yspeed:2};
+            var computerPaddle = {x:20, y:215, w:5, h:50, xspeed:0, yspeed:2};
+            var playerPaddle = {x:615, y:215, w:5, h:50, xspeed:0, yspeed:5};
+            var score = {c:0, p:0};
+
+            function drawPaddle (p) {
+                context.fillStyle = '#000';
+                context.fillRect (p.x, p.y, p.w, p.h);
+            }
+
+            function drawBall () {
+                context.beginPath ();
+                    context.arc (ball.x, ball.y, ball.r, 0, Math.PI * 2, false);
+                context.closePath ();
+                context.strokeStyle = '#000';
+                context.stroke ();
+            }
+
+            function setScore () {
+                var pel = document.getElementById ('pscore');
+                var cel = document.getElementById ('cscore');
+
+                if (score.p < 10) { pel.innerHTML = '0' + score.p; }
+                else { pel.innerHTML = score.p.toString (); }
+
+                if (score.c < 10) { cel.innerHTML = '0' + score.c; }
+                else { cel.innerHTML = score.c.toString (); }
+            }
+
+            function randomizeBallDirection () {
+                var risedirection = Math.floor(Math.random () * 2);
+                var rundirection = Math.floor(Math.random () * 2);
+
+                ball.yspeed = Math.abs (ball.yspeed);
+                if (risedirection !== 0) {
+                    ball.yspeed *= -1;
+                }
+
+                ball.xspeed = Math.abs (ball.xspeed);
+                if (rundirection !== 0) {
+                    ball.xspeed *= -1;
+                }
+            }
+
+            function updateBall () {
+                var hit = false;
+
+                var newx, newy; // where the ball is projected to be
+                newx = ball.x + ball.xspeed;
+                newy = ball.y + ball.yspeed;
+
+                var btop, bbottom, bleft, bright; // ball with an 80% smaller bounding box
+                btop = Math.floor (newy - (ball.r * .8));
+                bbottom = Math.floor (newy + (ball.r * .8));
+                bleft = Math.floor (newx - (ball.r * .8));
+                bright = Math.floor (newx + (ball.r * .8));
+
+                var ctop, cbottom, cleft, cright; // canvas/board
+                ctop = playArea.yoffset;
+                cbottom = playArea.yoffset + playArea.h;
+                cleft = playArea.xoffset;
+                cright = playArea.xoffset + playArea.w;
+
+                if (btop < ctop || bbottom > cbottom) {
+                    ball.yspeed *= -1;
+                    hit = true;
+                } else {
+                    ball.y = newy;
+                }
+
+                // off board
+                if (bleft < cleft || bright > cright) {
+                    ball.x = playArea.xoffset + (playArea.w / 2);
+                    ball.y = playArea.yoffset + (playArea.h / 2);
+
+                    randomizeBallDirection ();
+
+                    if (bleft < cleft) {
+                        score.p += 1;
+                        snd.playsnd ('good-goal');
+                    }
+                    else {
+                        score.c += 1;
+                        snd.playsnd ('bad-goal');
+                    }
+                    setScore ();
+
+                } else {
+                    ball.x = newx;
+                }
+
+                var cptop, cpbottom, cpleft, cpright; // computer paddle
+                cptop = computerPaddle.y;
+                cpbottom = computerPaddle.y + computerPaddle.h;
+                cpleft = computerPaddle.x;
+                cpright = computerPaddle.x + computerPaddle.w;
+
+                if (bleft < cpright && ((btop > cptop && btop < cpbottom) || (bbottom > cptop && bbottom < cpbottom))) {
+                    ball.xspeed *= -1;
+                    ball.x = ball.r + cpright;
+                    hit = true;
+                }
+
+                var pptop, ppbottom, pplef, ppright; // player paddle
+                pptop = playerPaddle.y;
+                ppbottom = playerPaddle.y + playerPaddle.h;
+                ppleft = playerPaddle.x;
+                ppright = playerPaddle.x + computerPaddle.w;
+
+                if (bright > ppleft && ((btop > pptop && btop < ppbottom) || (bbottom > pptop && bbottom < ppbottom))) {
+                    ball.xspeed *= -1;
+                    ball.x = ppleft - ball.r;
+                    hit = true;
+                }
+
+
+                if (hit) {
+                    snd.playsnd ('hit');
+                }
+            }
+
+            function updateComputer () {
+                if (ball.xspeed < 0 && ball.y > (computerPaddle.y + computerPaddle.h)) {
+                    if ((computerPaddle.y + computerPaddle.h) < 480) {
+                        computerPaddle.y += computerPaddle.yspeed;
+                    }
+                } else if (ball.xspeed < 0 && ball.y < computerPaddle.y) {
+                    if (computerPaddle.y > 0) {
+                        computerPaddle.y -= computerPaddle.yspeed;
+                    }
+                }
+            }
+
+            function updatePlayer () {
+                if (keys[38] && playerPaddle.y > 0) { // up
+                    playerPaddle.y -= playerPaddle.yspeed;
+                } else if (keys[40] && (playerPaddle.y + playerPaddle.h) < 480) { // down
+                    playerPaddle.y += playerPaddle.yspeed;
+                }
+            }
+
+
+            function init () {
+                randomizeBallDirection ();
+
+                window.requestAnimFrame (tick);
+            }
+
+            function tick () {
+                //context.fillStyle = 'rgba(1,1,1,0.0)';
+                //context.fillRect (0, 0, 640, 480);
+                context.clearRect (0, 0, 640, 480);
+
+                drawBall ();
+                updateBall ();
+
+                drawPaddle (computerPaddle);
+                drawPaddle (playerPaddle);
+
+                updateBall ();
+                updatePlayer ();
+                updateComputer ();
+
+                window.requestAnimFrame (tick);
+            }
+
+            init ();
+        </script>
+    </body>
+</html>
