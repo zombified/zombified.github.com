@@ -40,7 +40,7 @@
 </head>
 <body>
 
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>A couple AWS Tips &amp; Tricks <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
         <a id='index' href='/'>EF</a>
         <a id='fullindex' href='/'>Electric Froth</a>
@@ -61,38 +61,37 @@
         </div>
     </nav>
 
-    <article id='page-content'>
-        
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-aws-tips'>A couple AWS Tips &amp; Tricks</a></h1></header>
-            <time class='date' datetime='Wed Oct 22 2014 19:00:00 GMT-0500 (CDT)'>2014-10-22</time>
-            <p>Just a a couple tips/tricks for AWS</p>
-        </article>
-        
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-06-metalsmith'>metalsmith</a></h1></header>
-            <time class='date' datetime='Fri Jun 06 2014 19:00:00 GMT-0500 (CDT)'>2014-06-06</time>
-            <p>Switched static site generators again :D</p>
-        </article>
-        
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-03-rss2email'>rss2email</a></h1></header>
-            <time class='date' datetime='Tue Mar 25 2014 19:00:00 GMT-0500 (CDT)'>2014-03-25</time>
-            <p>My latest venture into rss readers</p>
-        </article>
-        
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-02-bash-fun'>Bash Fun</a></h1></header>
-            <time class='date' datetime='Thu Feb 13 2014 18:00:00 GMT-0600 (CST)'>2014-02-13</time>
-            <p>I created a (very) custom static site generator using Bash and Pandoc</p>
-        </article>
-        
-        <article class='post-summary'>
-            <header><h1><a href='blog/2013-09-ld48_27_grid_ten'>Postmortem for &#x27;Grid Ten&#x27;, my LD48#27 entry</a></h1></header>
-            <time class='date' datetime='Sat Sep 28 2013 19:00:00 GMT-0500 (CDT)'>2013-09-28</time>
-            <p>The good, the bad, and the ugly about my experience during my 6th attempt at the Ludum Dare 48-hour game making competition.</p>
-        </article>
-        
+    <article id='page-content' class='post'>
+        <p>Recently, I&#39;ve been playing around with AWS -- here are a couple of tips/tricks
+I found when I had to fix some problems. Hopefully they can help, but: your
+mileage may vary!</p>
+<h2 id="attaching-and-detaching-a-root-volume">Attaching and Detaching a root volume</h2>
+<p><em>Problem:</em> you didn&#39;t specify <code>nobootwait</code> as an option in fstab, and you detached
+the volume from an instance, BUT you still want to get back into that instance.</p>
+<ol>
+<li>Make sure the instance you want to get back into is shutdown (we&#39;ll call this &#39;old instance&#39;)</li>
+<li>Either create a new instance or use an existing instance (we&#39;ll call this &#39;new instance&#39;)</li>
+<li>Detach the root volume from the old instance, and attach it to the new instance</li>
+<li>Boot up new instance, and mount it temporarily with a command something like <code>mkdir -p /media/tmpmnt/ &amp;&amp; mount /dev/xdvf /media/tmpmnt/</code></li>
+<li>Modify the old instance fstab (<code>sudo vim /media/tmpmount/etc/fstab</code>) by commenting out, deleting, or modifying the offending line</li>
+<li>Unmount old instance root volume from new instance (<code>umount /media/tmpmnt/</code>)</li>
+<li>Attach to old instance root volume back to old instance -- <strong>NOTE:</strong> you will need to explicitly use the partiion number on the device to mount it is root, IE <code>/dev/sda1</code></li>
+<li>Boot up old instance, and it works!</li>
+</ol>
+<h2 id="enabling-or-disabling-public-ip-on-an-already-created-instance">Enabling or Disabling Public IP on an already created instance</h2>
+<p><em>Problem:</em> you want to switch the &#39;Automatically assign Public IP&#39; option for
+an instance... but you can&#39;t do this because it&#39;s already created.</p>
+<p>Basically, you need to detach the root volume on the
+old instance, create a new instance, detach the root volume on the new instance,
+attach the old root instance to the new instance as the root volume, then delete
+the new instances detached root volume.</p>
+<p>After you do that, you boot up the new instance and test it out, then delete the
+old instance as well.</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Wed Oct 22 2014 19:00:00 GMT-0500 (CDT)">2014-10-22</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>
