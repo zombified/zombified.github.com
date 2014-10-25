@@ -9,69 +9,7 @@
         <item>
             <title><![CDATA[PureScript]]></title>
             <link>http://joelkleier.com/blog/2014-10-purescript</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>PureScript <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>I&#39;ve always had a fondness for programming languages, and one that caught my eye
+            <description><![CDATA[<p>I&#39;ve always had a fondness for programming languages, and one that caught my eye
 recently is <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> -- a strongly and statically typed language in the
 vein of Haskell (which I&#39;ve never really learned proper, though I have it on
 the &#39;maybe someday&#39; list). <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a>, though, compiles to JavaScript
@@ -138,43 +76,6 @@ REPL.</li>
 </ul>
 <p>Hopefully I get some time soon to play with <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> some more! So far
 my impressions are very positive!</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)">2014-10-25</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-purescript</guid>
@@ -182,69 +83,7 @@ my impressions are very positive!</p>
         <item>
             <title><![CDATA[Recent Raspberry Pi Announcements]]></title>
             <link>http://joelkleier.com/blog/2014-10-rpi-display</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Recent Raspberry Pi Announcements <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>I <em>love</em> the Raspberry Pi: cheap, small, powerful (enough), and completely
+            <description><![CDATA[<p>I <em>love</em> the Raspberry Pi: cheap, small, powerful (enough), and completely
 programmable.</p>
 <p>Recently, <a href="http://www.raspberrypi.org/author/eben/">Eben Upton</a> gave a
 <a href="http://www.raspberrypi.org/eben-at-techcrunch-disrupt/">talk at TechCrunch Distrupt</a>.
@@ -252,43 +91,6 @@ He talked a little about the RPi, a really cool
 <a href="https://www.indiegogo.com/projects/pi-top-a-raspberry-pi-laptop-you-build-yourself">IndieGoGo Project (the PiTop)</a>,
 announced a 7-in WVGA capacitive touch display, and a new model (the A+) coming
 soon!</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)">2014-10-24</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-rpi-display</guid>
@@ -296,69 +98,7 @@ soon!</p>
         <item>
             <title><![CDATA[A couple AWS Tips &amp; Tricks]]></title>
             <link>http://joelkleier.com/blog/2014-10-aws-tips</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>A couple AWS Tips &amp; Tricks <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>Recently, I&#39;ve been playing around with AWS -- here are a couple of tips/tricks
+            <description><![CDATA[<p>Recently, I&#39;ve been playing around with AWS -- here are a couple of tips/tricks
 I found when I had to fix some problems. Hopefully they can help, but: your
 mileage may vary!</p>
 <h2 id="attaching-and-detaching-a-root-volume">Attaching and Detaching a root volume</h2>
@@ -383,43 +123,6 @@ attach the old root instance to the new instance as the root volume, then delete
 the new instances detached root volume.</p>
 <p>After you do that, you boot up the new instance and test it out, then delete the
 old instance as well.</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Thu Oct 23 2014 00:00:00 GMT-0500 (CDT)">2014-10-23</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Thu Oct 23 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-aws-tips</guid>
@@ -427,69 +130,7 @@ old instance as well.</p>
         <item>
             <title><![CDATA[metalsmith]]></title>
             <link>http://joelkleier.com/blog/2014-06-metalsmith</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>metalsmith <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>While updating the look and feel of my site, I decided to explore some other
+            <description><![CDATA[<p>While updating the look and feel of my site, I decided to explore some other
 static site generators, just to see what&#39;s out there. <a href="http://metalsmith.io">Metalsmith</a> caught
 my eye, and I had to play around with it.</p>
 <p>Turns out, it is <em>super</em> simple to setup, and very composable. I almost think
@@ -501,43 +142,6 @@ potential. My one criticism is a general lack of great documentation! The code
 is pretty terse and easy to follow though, so there is that.</p>
 <p>Also, I&#39;m sorry for the id/uid/guid updates on the rss/atom feeds... I decided
 to just use permalinks. Simple, and a lot more portable going forward.</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Sat Jun 07 2014 00:00:00 GMT-0500 (CDT)">2014-06-07</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Sat Jun 07 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-06-metalsmith</guid>
@@ -545,69 +149,7 @@ to just use permalinks. Simple, and a lot more portable going forward.</p>
         <item>
             <title><![CDATA[rss2email]]></title>
             <link>http://joelkleier.com/blog/2014-03-rss2email</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>rss2email <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>March 13, 2013 -- Google <a href="http://googlereader.blogspot.com/2013/03/powering-down-google-reader.html">announced</a> the shutdown of Google Reader. Honestly,
+            <description><![CDATA[<p>March 13, 2013 -- Google <a href="http://googlereader.blogspot.com/2013/03/powering-down-google-reader.html">announced</a> the shutdown of Google Reader. Honestly,
 I became a little pissed. I mean, I certainly didn&#39;t use Reader a lot, but it
 was <em>so</em> convenient to keep track of my podcasts and news, especially the ones
 that weren&#39;t updated often. It also, usually, gave me a pretty good history
@@ -647,43 +189,6 @@ flag/pin/star or save any particular articles I want to, and I can just delete
 the rest.</p>
 <p>Why I didn&#39;t do this sooner? Beats me. Now I just have a cron job that runs
 <code>r2e run</code> once a day, and then, when I want to, I can just check my email.</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)">2014-03-26</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-03-rss2email</guid>
@@ -691,69 +196,7 @@ the rest.</p>
         <item>
             <title><![CDATA[Bash Fun]]></title>
             <link>http://joelkleier.com/blog/2014-02-bash-fun</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Bash Fun <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>I decided to create my own custom site-generator for a couple of reasons:</p>
+            <description><![CDATA[<p>I decided to create my own custom site-generator for a couple of reasons:</p>
 <ul>
 <li>My site is so simple, a lot of existing generators make designing it and
 building it overly complex.</li>
@@ -770,43 +213,6 @@ file paths have all changed, so your readers are probably going to think all
 my content is new!</p>
 <p>If you&#39;d like to checkout how this site was made, you can look at the <a href="https://github.com/zombified/ef.sh">ef.sh
 repository on github</a>.</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Thu Feb 13 2014 23:00:00 GMT-0600 (CST)">2014-02-13</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Thu Feb 13 2014 23:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-02-bash-fun</guid>
@@ -814,69 +220,7 @@ repository on github</a>.</p>
         <item>
             <title><![CDATA[Postmortem for &#x27;Grid Ten&#x27;, my LD48#27 entry]]></title>
             <link>http://joelkleier.com/blog/2013-09-ld48_27_grid_ten</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Postmortem for &#x27;Grid Ten&#x27;, my LD48#27 entry <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>For the 27th <a href="http://ludumdare.com">Ludum Dare</a> 48-hour game making competition, I created an
+            <description><![CDATA[<p>For the 27th <a href="http://ludumdare.com">Ludum Dare</a> 48-hour game making competition, I created an
 entry called <em>Grid Ten</em>. It was my 6th entry into the competition, and needed
 to be based around the theme &#39;10 Seconds&#39;. The competition voting isn&#39;t quite
 over at the time of this writing, but here are my thoughts on how my game turned
@@ -959,43 +303,6 @@ and I got around a 2.5 out of 5, which is about where I was expecting this time
 around. If there were more mechanics and more polish, then I think I would have
 absolutely nailed it.</p>
 <p>Next time!</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Sun Sep 29 2013 00:00:00 GMT-0500 (CDT)">2013-09-29</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Sun Sep 29 2013 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2013-09-ld48_27_grid_ten</guid>
@@ -1003,69 +310,7 @@ absolutely nailed it.</p>
         <item>
             <title><![CDATA[Documentation]]></title>
             <link>http://joelkleier.com/blog/2013-08-documentation</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Documentation <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>I think there are, primarily, four broad categories that developers fit into when
+            <description><![CDATA[<p>I think there are, primarily, four broad categories that developers fit into when
 they become users of a library or framework:</p>
 <ol>
 <li>Beginner</li>
@@ -1162,43 +407,6 @@ just want to use it and move on with their lives</li>
 <li>Keep documentation centralized and well versioned, including links in old
 documentation to newer documentation</li>
 </ul>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Tue Aug 20 2013 00:00:00 GMT-0500 (CDT)">2013-08-20</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Tue Aug 20 2013 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2013-08-documentation</guid>
@@ -1206,69 +414,7 @@ documentation to newer documentation</li>
         <item>
             <title><![CDATA[Haxe Function Signatures]]></title>
             <link>http://joelkleier.com/blog/2013-03-haxe-func-sigs</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Haxe Function Signatures <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p>Just a quick note about this function signature:</p>
+            <description><![CDATA[<p>Just a quick note about this function signature:</p>
 <pre><code>#!haxe
 Dynamic -&gt; Void
 </code></pre><p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
@@ -1292,43 +438,6 @@ func = foo;
 could represent any type of value, including a Void parameter list. Which, in
 hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
 <p><strong>NOTE</strong> This was written for Haxe 2.10</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Tue Mar 05 2013 23:00:00 GMT-0600 (CST)">2013-03-05</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Tue Mar 05 2013 23:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2013-03-haxe-func-sigs</guid>
@@ -1336,69 +445,7 @@ hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
         <item>
             <title><![CDATA[Setting up a HaxePunk Project]]></title>
             <link>http://joelkleier.com/blog/2013-03-haxepunk-setup</link>
-            <description><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-    <h1 id='page-header'>Setting up a HaxePunk Project <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-            <a id='index' href='/'>EF</a>
-            <a id='fullindex' href='/'>Electric Froth</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/archive'>Archive</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <span class='navsep'>&middot;</span>
-            <a class='navlink' href='/interesting-things'>Interesting Things</a>
-        </nav>
-        <nav id='mobile-nav'>
-            <input type='checkbox' id='mobile-menu-input' />
-            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-            <div id='mobile-menu-items'>
-                <a class='navlink' href='/archive'>Archive</a>
-                <a class='navlink' href='/brewlog'>Brewlog</a>
-                <a class='navlink' href='/'>Interesting Things</a>
-            </div>
-        </nav>
-    <article id='page-content' class='post'>
-        <p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
+            <description><![CDATA[<p><strong>Edit (2013-03-06):</strong> updated title to reflect the post a little better</p>
 <h2 id="setting-up-the-development-environment">Setting up the development environment</h2>
 <ol>
 <li>Setup the editor or IDE, I use vim, so install
@@ -1451,43 +498,6 @@ a lot of FlashPunk documentation and tutorials are useful when trying to learn
 HaxePunk -- they usually don&#39;t match perfectly, but the class and method names
 are mostly the same and available in both, so it&#39;s easy to pickup things in
 snippets.</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Fri Mar 01 2013 23:00:00 GMT-0600 (CST)">2013-03-01</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
 ]]></description>
             <pubDate>Fri Mar 01 2013 23:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2013-03-haxepunk-setup</guid>
