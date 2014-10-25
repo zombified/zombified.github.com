@@ -4,8 +4,186 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Oct 24 2014 08:38:50 GMT-0500 (CDT)</updated>
+    <updated>Sat Oct 25 2014 09:39:36 GMT-0500 (CDT)</updated>
 
+    
+    <entry>
+        <title><![CDATA[PureScript]]></title>
+        <link>http://joelkleier.com/blog/2014-10-purescript</link>
+        <summary><![CDATA[<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+    <h1 id='page-header'>PureScript <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+        <a id='index' href='/'>EF</a>
+        <a id='fullindex' href='/'>Electric Froth</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/archive'>Archive</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/brewlog'>Brewlog</a>
+        <span class='navsep'>&middot;</span>
+        <a class='navlink' href='/interesting-things'>Interesting Things</a>
+    </nav>
+    <nav id='mobile-nav'>
+        <input type='checkbox' id='mobile-menu-input' />
+        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+        <div id='mobile-menu-items'>
+            <a class='navlink' href='/archive'>Archive</a>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <a class='navlink' href='/'>Interesting Things</a>
+        </div>
+    </nav>
+
+    <article id='page-content' class='post'>
+        <p>I&#39;ve always had a fondness for programming languages, and one that caught my eye
+recently is <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> -- a strongly and statically typed language in the
+vein of Haskell (which I&#39;ve never really learned proper, though I have it on
+the &#39;maybe someday&#39; list). <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a>, though, compiles to JavaScript
+-- which, despite it&#39;s warts, is a language that I think is the bees knees.</p>
+<p>There&#39;s a <a href="https://leanpub.com/purescript/" title="PureScript By Example">book</a> out there for it, available free to read online, so I thought
+I&#39;d just start going through it to check out the language.</p>
+<p>It has you install <a href="https://www.haskell.org/platform/" title="The Haskell Platform">The Haskell Platform</a> (for the actual compiler), <a href="http://nodejs.org/" title="node.js">node/npm</a>
+(for node based utilities and tools), <a href="http://bower.io/" title="Bower: A package manager for the web">Bower</a> (for all the <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a>
+packages), and then <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> (to automate builds and such).</p>
+<p>Well, that&#39;s a pretty big stack to install just to write some &quot;Hello World&quot;
+equivalent programs... but, I don&#39;t mind! Already had most of them installed
+anyway. However, their setup is not how I prefer to work (when I&#39;m working on
+my own projects at least).</p>
+<p>Here are my deviations from the books setup:</p>
+<ol>
+<li>I installed <a href="http://bower.io/" title="Bower: A package manager for the web">Bower</a> locally to the folder (I don&#39;t like polluting my global
+npm packages if I don&#39;t have to... and prefixing <code>./node_packages/.bin/bower</code>
+doesn&#39;t bother me since I&#39;m scripting my builds anyway).</li>
+<li>I Started using <a href="http://www.gnu.org/software/make/" title="GNU Make">GNU Make</a> instead of <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a>. Why? Sure, grunt is the
+new &#39;hot&#39; thing, but, for my purposes, it&#39;s clearly a reinvention of a
+wheel that works <em>really</em> well. I like <a href="http://www.gnu.org/software/make/" title="GNU Make">GNU Make</a>, and it will serve my
+purposes better than <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> (that&#39;s not to say <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> is useless,
+but in this instance I prefer to stick with the tried and true).</li>
+</ol>
+<p>So, my <code>Makefile</code> looks something like this:</p>
+<pre><code>BOWER_FILES=`find ./bower_components -regex &quot;.*/src/.*\.purs&quot;`
+CHAPTER2_FILES=src/Chapter2.purs
+PHONEBOOK_FILES=src/Data/PhoneBook.purs
+ALL_FILES=${BOWER_FILES} \
+          ${CHAPTER2_FILES} \
+          ${PHONEBOOK_FILES}
+
+
+all: Chapter2 PhoneBook
+
+bootstrap:
+    npm install bower
+    bower install purescript-math#0.1.0
+    bower install purescript-list
+
+psci:
+    psci ${ALL_FILES}
+
+Chapter2:
+    psc ${BOWER_FILES} \
+        ${CHAPTER2_FILES} \
+        --output dist/Chapter2-Main.js \
+        --module Chapter2 \
+        --main Chapter2
+</code></pre><p>Some explanations:</p>
+<ul>
+<li>The definition of <code>BOWER_FILES</code> uses backticks around a find command to
+get a list of all purescript files identified as purescript source files
+(the community tends to structure their projects a specific way, so this
+command makes sense for that structure)</li>
+<li>The <code>bootstrap</code> target can be used to install bower and all the
+dependancies that are needed for the project</li>
+<li>The <code>psci</code> target can be used as a shortcut for loading the REPL with all
+project files</li>
+<li>The <code>Chapter2</code> a target is for building the file(s) in Chapter 2 -- I&#39;ve only
+read through Chapter 3 so far, and Chapter 2 is the only one that&#39;s had any
+built files. Chapter 1 was introductory, and Chapter 3 mostly focused on the
+REPL.</li>
+</ul>
+<p>Hopefully I get some time soon to play with <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> some more! So far
+my impressions are very positive!</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Fri Oct 24 2014 19:00:00 GMT-0500 (CDT)">2014-10-24</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
+
+]]></summary>
+        <updated>Fri Oct 24 2014 19:00:00 GMT-0500 (CDT)</updated>
+        <id>http://joelkleier.com/blog/2014-10-purescript</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     
     <entry>
         <title><![CDATA[Recent Raspberry Pi Announcements]]></title>
@@ -1067,146 +1245,6 @@ documentation to newer documentation</li>
     </entry>
     
     <entry>
-        <title><![CDATA[0x0004 - Mr. Beer]]></title>
-        <link>http://joelkleier.com/blog/2013-06-0x0004-mr-beer</link>
-        <summary><![CDATA[<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <title>Electric Froth</title>
-    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
-
-    <!-- apple -->
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
-
-    <!-- metro -->
-    <meta name="msapplication-TileColor" content="#9ACD32">
-    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
-
-    <!-- standard -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <link href="./" rel="home start" />
-    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
-    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- syntax highlighting -->
-    <link rel="stylesheet" href="/static/solarized_light.css" />
-    <script src="/static/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
-
-    <h1 id='page-header'>0x0004 - Mr. Beer <span class='byline'>by Joel Kleier</span></h1>
-        <nav id='nav'>
-        <a id='index' href='/'>EF</a>
-        <a id='fullindex' href='/'>Electric Froth</a>
-        <span class='navsep'>&middot;</span>
-        <a class='navlink' href='/archive'>Archive</a>
-        <span class='navsep'>&middot;</span>
-        <a class='navlink' href='/brewlog'>Brewlog</a>
-        <span class='navsep'>&middot;</span>
-        <a class='navlink' href='/interesting-things'>Interesting Things</a>
-    </nav>
-    <nav id='mobile-nav'>
-        <input type='checkbox' id='mobile-menu-input' />
-        <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
-        <div id='mobile-menu-items'>
-            <a class='navlink' href='/archive'>Archive</a>
-            <a class='navlink' href='/brewlog'>Brewlog</a>
-            <a class='navlink' href='/'>Interesting Things</a>
-        </div>
-    </nav>
-
-    <article id='page-content' class='post'>
-        <h2 id="the-recipe">The Recipe</h2>
-<p>My family-in-law bought me a Mr. Beer kit for my birthday this year, it came
-with an American Light HME (Hopped Malt Extract). It was a pretty simple simple
-and quick process all told.</p>
-<h3 id="ingredients">Ingredients</h3>
-<ol>
-<li>Can of the American Light HME</li>
-<li>Packet of yeast that came with the HME</li>
-<li>About 2 Gallons of water</li>
-</ol>
-<h3 id="yield">Yield</h3>
-<p>About 2 gallons.</p>
-<h3 id="process">Process</h3>
-<p>Followed the Mr. Beer instructions pretty much to the letter -- except I
-sanitized everything a little more thoroughly, and made sure the water I used
-was free of bad little organisms (with campden tablets).</p>
-<p>Basically:</p>
-<ol>
-<li>Boil water</li>
-<li>Add HME to water, making sure to thoroughly mix it up</li>
-<li>Add mixture to 1 gallon of water in keg</li>
-<li>Pitch yeast, and let it sit for 2 weeks</li>
-<li>Bottle, adding a little sugar for carbonation, and wait/drink!</li>
-</ol>
-<h3 id="notes">Notes</h3>
-<p>Nothing really exciting. I didn&#39;t take any specific gravity readings, so I
-don&#39;t know about how much ABV is it.</p>
-<h3 id="pictures-and-progress-">Pictures and Progress!</h3>
-<p>No pictures here! Got lazy and didn&#39;t make any... perhaps for my next batch!</p>
-
-        <div id='page-meta'>
-            Published on
-            <time class='date' datetime="Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)">2013-06-14</time>
-        </div>
-    </article>
-    <footer id='page-footer'>
-        <div>
-            <a href='/rss.xml'>RSS</a>
-            &middot;
-            <a href='/atom.xml'>Atom</a>
-            &middot;
-            Built with <a href='http://metalsmith.io'>metalsmith</a>
-            &middot;
-            &copy; Joel Kleier
-        </div>
-        <div class='contact-info'>
-            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
-            &middot;
-            <a href='https://twitter.com/pbdiode'>@pbdiode</a>
-            &middot;
-            <a href='https://github.com/zombified'>github</a>
-            &middot;
-            <a href='https://facebook.com/joelkleier'>facebook</a>
-            &middot;
-            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
-            &middot;
-            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
-        </div>
-        <div class='about-me'>
-            My name is Joel Kleier. I'm a professional web developer with a lot
-            of interests. This is my little corner of the internet where I
-            share some of those interests.
-        </div>
-    </footer>
-</body>
-</html>
-
-]]></summary>
-        <updated>Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2013-06-0x0004-mr-beer</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    
-    <entry>
         <title><![CDATA[0x0006 - Root Beer From Extract]]></title>
         <link>http://joelkleier.com/blog/2013-06-0x0006-root-beer-from-extract</link>
         <summary><![CDATA[<!DOCTYPE html>
@@ -1358,8 +1396,8 @@ nice to have a better device than just a hose to fill each bottle.</li>
     </entry>
     
     <entry>
-        <title><![CDATA[0x0002 - Hard Cider (Better Late Than Never)]]></title>
-        <link>http://joelkleier.com/blog/2013-06-0x0002-hard-cider</link>
+        <title><![CDATA[0x0004 - Mr. Beer]]></title>
+        <link>http://joelkleier.com/blog/2013-06-0x0004-mr-beer</link>
         <summary><![CDATA[<!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -1402,7 +1440,7 @@ nice to have a better device than just a hose to fill each bottle.</li>
 </head>
 <body>
 
-    <h1 id='page-header'>0x0002 - Hard Cider (Better Late Than Never) <span class='byline'>by Joel Kleier</span></h1>
+    <h1 id='page-header'>0x0004 - Mr. Beer <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
         <a id='index' href='/'>EF</a>
         <a id='fullindex' href='/'>Electric Froth</a>
@@ -1425,53 +1463,38 @@ nice to have a better device than just a hose to fill each bottle.</li>
 
     <article id='page-content' class='post'>
         <h2 id="the-recipe">The Recipe</h2>
-<p>Based on the recipe presented in <a href="http://brewingtv.com/episodes/2012/9/7/brewing-tv-episode-67-how-to-make-hard-cider.html">BrewingTV ep. 67</a>, but modified a bit.</p>
+<p>My family-in-law bought me a Mr. Beer kit for my birthday this year, it came
+with an American Light HME (Hopped Malt Extract). It was a pretty simple simple
+and quick process all told.</p>
 <h3 id="ingredients">Ingredients</h3>
-<ul>
-<li>1 gallon of Roundy&#39;s 100% apple cider</li>
-<li>1 Cup pure Florida cane sugar</li>
-<li>1 gram Red Star &quot;Cote des Blancs&quot; active dry wine yeast</li>
-<li>1/2 tsp yeast energizer</li>
-<li>2 tsp yeast nutrient</li>
-</ul>
-<h3 id="yield">Yield</h3>
-<p>About 1 gallon</p>
-<h3 id="process">Process</h3>
 <ol>
-<li>Add yeast to warm water to activate it</li>
-<li>Add 1/2 of yeast nutrient, energizer and sugar to 1 gallon of cider</li>
-<li>Add yeast and gently mix</li>
-<li>Cap the jug with and airlock and store for 24 hours</li>
-<li>Add rest of yeast nutrient and put back in storage to let ferment for
-about a week (until there is no more activity)</li>
-<li>Rack to secondary for aging and clarifying</li>
+<li>Can of the American Light HME</li>
+<li>Packet of yeast that came with the HME</li>
+<li>About 2 Gallons of water</li>
+</ol>
+<h3 id="yield">Yield</h3>
+<p>About 2 gallons.</p>
+<h3 id="process">Process</h3>
+<p>Followed the Mr. Beer instructions pretty much to the letter -- except I
+sanitized everything a little more thoroughly, and made sure the water I used
+was free of bad little organisms (with campden tablets).</p>
+<p>Basically:</p>
+<ol>
+<li>Boil water</li>
+<li>Add HME to water, making sure to thoroughly mix it up</li>
+<li>Add mixture to 1 gallon of water in keg</li>
+<li>Pitch yeast, and let it sit for 2 weeks</li>
+<li>Bottle, adding a little sugar for carbonation, and wait/drink!</li>
 </ol>
 <h3 id="notes">Notes</h3>
-<ul>
-<li>Cider was a little cold so I had to get it warmed up to room temp -- remember
-to always take out your juice from the refridgerator (if you put it in there
-in the first place...)</li>
-<li>Need to mix sugar a little more maybe -- I think there might have been a
-little not dissolved</li>
-<li>I put the nutrient and energizer in late (forgot to do it, duh!) -- 6 days
-late, to be exact. There was a violent reaction :)</li>
-</ul>
+<p>Nothing really exciting. I didn&#39;t take any specific gravity readings, so I
+don&#39;t know about how much ABV is it.</p>
 <h3 id="pictures-and-progress-">Pictures and Progress!</h3>
-<p>Sorry, forgot to take pictures!</p>
-<p>But, the OG was 1.060, and came down to 1.002 at bottling -- putting the numbers
-into a calculator, it comes out to about 7.6% ABV and 202 calories per 12oz.</p>
-<p>I actually did a second batch of this (0x0003) -- changed the yeast to
-&#39;Pasteur Champagne&#39; Red Star, and used Apple Valley apple cider (hand pressed
-at a local orchard).</p>
-<p>I also decided to test out back-sweetening -- I back-sweetened 3 bottles with
-Old Orchard Apple Raspberry frozen concentrate (about 2 tbsp worth), and left
-one bottle unsweetened.</p>
-<p>The sweetened ones tasted fantastic -- nice and carbed. No pictures of that
-batch either!</p>
+<p>No pictures here! Got lazy and didn&#39;t make any... perhaps for my next batch!</p>
 
         <div id='page-meta'>
             Published on
-            <time class='date' datetime="Thu Jun 13 2013 19:00:00 GMT-0500 (CDT)">2013-06-13</time>
+            <time class='date' datetime="Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)">2013-06-14</time>
         </div>
     </article>
     <footer id='page-footer'>
@@ -1507,8 +1530,8 @@ batch either!</p>
 </html>
 
 ]]></summary>
-        <updated>Thu Jun 13 2013 19:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2013-06-0x0002-hard-cider</id>
+        <updated>Fri Jun 14 2013 19:00:00 GMT-0500 (CDT)</updated>
+        <id>http://joelkleier.com/blog/2013-06-0x0004-mr-beer</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
     
