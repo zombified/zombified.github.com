@@ -4,14 +4,15 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Sun Oct 26 2014 22:15:04 GMT-0500 (CDT)</updated>
+    <updated>Sun Oct 26 2014 22:18:01 GMT-0500 (CDT)</updated>
 
     <entry>
         <title><![CDATA[My Private Git Setup]]></title>
         <link>http://joelkleier.com/blog/2014-10-my-personal-git</link>
-        <summary><![CDATA[<p>Occasionally I work on a project that I want in version control, but don&#39;t want
-to throw it into the public eye. I don&#39;t need much to accomplish this -- I have
-a Raspberry Pi sitting headless on my home network that works perfectly.</p>
+        <summary><![CDATA[<p>Occasionally I work on a project that I want in version control, duplicated in a
+central location, but don&#39;t want to throw it into the public eye. I don&#39;t need
+much to accomplish this -- a Raspberry Pi sitting headless on my home network
+works perfectly.</p>
 <p>Basically, I use <a href="http://git-scm.com/" title="git --fast-version-control">git</a>+ssh to do operations on my repos remotely, and
 <a href="https://github.com/jonashaag/klaus" title="Klaus">klaus</a> + <a href="http://gunicorn.org/" title="gunicorn">gunicorn</a> to browse and dig through my repos when I want to.</p>
 <p>It&#39;s a pretty smooth setup!</p>
