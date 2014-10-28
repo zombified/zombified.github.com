@@ -4,8 +4,61 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Sun Oct 26 2014 22:18:01 GMT-0500 (CDT)</updated>
+    <updated>Mon Oct 27 2014 23:21:58 GMT-0500 (CDT)</updated>
 
+    <entry>
+        <title><![CDATA[Markup Languages]]></title>
+        <link>http://joelkleier.com/blog/2014-10-markup-langs</link>
+        <summary><![CDATA[<p>I read an article titled <a href="https://medium.com/@chacon/living-the-future-of-technical-writing-2f368bd0a272" title="Living the Future of Technical Writing">&quot;Living the Future of Technical Writing&quot; by Scott Chacon</a>, the author
+of <a href="http://git-scm.com/book/en/v2" title="Pro Git 2nd Edition">Pro Git</a>, and it got me thinking a little about the techical writing process,
+and the formats I use to markup text.</p>
+<p>I have no personal experience with asciidoc -- most of the plain-text based markup
+I write is in markdown or reStructuredText. I like markdown, but sometimes it&#39;s
+too simple and has ambiguously defined behaviors (like pre/code text in a list item).
+I like reStructuredText, but some aspects of it&#39;s syntax leave a bad taste (the weird
+syntax for links and no spaces before number/bullet for lists to name a couple).</p>
+<p>And so, reading this article made me want to find out if asciidoc improves on
+the issues I have with markdown and reStructuredText, and what kind of tooling
+I can use to manipulate it.</p>
+<p>Some neat features specific to asciidoc:</p>
+<ul>
+<li>Admonitions (document call-outs for notes, tips, etc)</li>
+<li>Simple usage of italic, bold, and inline monospace -- all embeddible within each other</li>
+<li>Custom inline styling (IE &quot;[small]#small print#&quot;)</li>
+<li>You can specify &quot;curved&quot; apostrophes and quotation marks</li>
+<li>Document Headers (which can include author, revision, and attributes)</li>
+<li>You can specify explicit id&#39;s for section links</li>
+<li>You can specify parts of other ascii documents to include inline</li>
+<li>You can include content from URI&#39;s</li>
+<li>You can specify manual page breaks</li>
+<li>You can specify checklists</li>
+<li>Ability to explicitly notate content as an extension of the previous list item</li>
+<li>Ability to link inline anchors</li>
+<li>Internal cross-references</li>
+<li>Callouts for code blocks</li>
+<li>Code blocks sourced from files</li>
+<li>Custom substitutions</li>
+<li>Commenting</li>
+</ul>
+<p>Some things I can see already annoying me:</p>
+<ul>
+<li>For lists of greater than one level, you need to use <em>n</em> number of list markers
+where <em>n</em> is the level of indentation. Small thing, but it annoys me greatly
+that reStructuredText requires the list marker to not have space in front of it too.
+BUT at least asciidoc explicitly specifies that leading white space to lists is
+not relevant</li>
+<li>The syntax for extending list content might make things a little hard to read</li>
+<li>Subjectively, I feel like the link syntax isn&#39;t as nice as markdowns -- it&#39;s
+about on par with how I feel about reStructuredText&#39;s link syntax.</li>
+</ul>
+<p>I might give this format a serious shot -- there is <a href="https://github.com/asciidoctor/asciidoctor.js" title="asciidoctor.js">asciidoctor.js</a>, so I might
+be able to integrate it into my <a href="https://github.com/asciidoctor/asciidoctor.js" title="Metalsmith">Metalsmith</a> build! I&#39;m certainly going to
+test it out, but who knows if it&#39;ll go anywhere!</p>
+]]></summary>
+        <updated>Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)</updated>
+        <id>http://joelkleier.com/blog/2014-10-markup-langs</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[My Private Git Setup]]></title>
         <link>http://joelkleier.com/blog/2014-10-my-personal-git</link>
@@ -449,38 +502,6 @@ documentation to newer documentation</li>
 ]]></summary>
         <updated>Tue Aug 20 2013 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2013-08-documentation</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Haxe Function Signatures]]></title>
-        <link>http://joelkleier.com/blog/2013-03-haxe-func-sigs</link>
-        <summary><![CDATA[<p>Just a quick note about this function signature:</p>
-<pre><code>#!haxe
-Dynamic -&gt; Void
-</code></pre><p>Dynamic generally means <em>any</em> type in Haxe. However, it does not mean <code>Void</code>.</p>
-<p>For example, if you have this:</p>
-<pre><code>#!haxe
-var func:Dynamic -&gt; Void;
-</code></pre><p>You cannot assign func a function that has a void parameter list. It DOES require
-a parameter, but that parameter can be of any type.</p>
-<p>IE, this is <em>bad</em>:</p>
-<pre><code>#!haxe
-function foo() {}
-
-// foo is of type Void -&gt; Void, not Dynamic -&gt; Void
-func = foo;
-</code></pre><p>But this is good:</p>
-<pre><code>#!haxe
-function foo(bar:Dynamic) {}
-
-func = foo;
-</code></pre><p>It may seem kinda obvious, but I was tripped up on it because I thought <code>Dynamic</code>
-could represent any type of value, including a Void parameter list. Which, in
-hindsight, seems kind of ridiculous, but none-the-less, it happened.</p>
-<p><strong>NOTE</strong> This was written for Haxe 2.10</p>
-]]></summary>
-        <updated>Tue Mar 05 2013 23:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2013-03-haxe-func-sigs</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>

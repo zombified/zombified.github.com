@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>Markup Languages <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -59,57 +59,57 @@
                 <a class='navlink' href='/'>Interesting Things</a>
             </div>
         </nav>
-    <article id='page-content'>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-markup-langs'>Markup Languages</a></h1></header>
-            <time class='date' datetime='Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)'>2014-10-27</time>
-            <p>I read an article (&quot;Living the Future of Technical Writing&quot; by Scott Chacon) and I have some thoughts</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-my-personal-git'>My Private Git Setup</a></h1></header>
-            <time class='date' datetime='Sun Oct 26 2014 00:00:00 GMT-0500 (CDT)'>2014-10-26</time>
-            <p>A little bit about how I setup my self-hosted private git repos</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-purescript'>PureScript</a></h1></header>
-            <time class='date' datetime='Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)'>2014-10-25</time>
-            <p>Decided to poke around purescript a little</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-rpi-display'>Recent Raspberry Pi Announcements</a></h1></header>
-            <time class='date' datetime='Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)'>2014-10-24</time>
-            <p>Just want to say a few words about the recent announcements on Techcrunch Distrupt</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-aws-tips'>A couple AWS Tips &amp; Tricks</a></h1></header>
-            <time class='date' datetime='Thu Oct 23 2014 00:00:00 GMT-0500 (CDT)'>2014-10-23</time>
-            <p>Just a a couple tips/tricks for AWS</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-06-metalsmith'>metalsmith</a></h1></header>
-            <time class='date' datetime='Sat Jun 07 2014 00:00:00 GMT-0500 (CDT)'>2014-06-07</time>
-            <p>Switched static site generators again :D</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-03-rss2email'>rss2email</a></h1></header>
-            <time class='date' datetime='Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)'>2014-03-26</time>
-            <p>My latest venture into rss readers</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-02-bash-fun'>Bash Fun</a></h1></header>
-            <time class='date' datetime='Thu Feb 13 2014 23:00:00 GMT-0600 (CST)'>2014-02-13</time>
-            <p>I created a (very) custom static site generator using Bash and Pandoc</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2013-09-ld48_27_grid_ten'>Postmortem for &#x27;Grid Ten&#x27;, my LD48#27 entry</a></h1></header>
-            <time class='date' datetime='Sun Sep 29 2013 00:00:00 GMT-0500 (CDT)'>2013-09-29</time>
-            <p>The good, the bad, and the ugly about my experience during my 6th attempt at the Ludum Dare 48-hour game making competition.</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2013-08-documentation'>Documentation</a></h1></header>
-            <time class='date' datetime='Tue Aug 20 2013 00:00:00 GMT-0500 (CDT)'>2013-08-20</time>
-            <p>A few of my current opinions on documentation of libraries and frameworks used by developers</p>
-        </article>
+    <article id='page-content' class='post'>
+        <p>I read an article titled <a href="https://medium.com/@chacon/living-the-future-of-technical-writing-2f368bd0a272" title="Living the Future of Technical Writing">&quot;Living the Future of Technical Writing&quot; by Scott Chacon</a>, the author
+of <a href="http://git-scm.com/book/en/v2" title="Pro Git 2nd Edition">Pro Git</a>, and it got me thinking a little about the techical writing process,
+and the formats I use to markup text.</p>
+<p>I have no personal experience with asciidoc -- most of the plain-text based markup
+I write is in markdown or reStructuredText. I like markdown, but sometimes it&#39;s
+too simple and has ambiguously defined behaviors (like pre/code text in a list item).
+I like reStructuredText, but some aspects of it&#39;s syntax leave a bad taste (the weird
+syntax for links and no spaces before number/bullet for lists to name a couple).</p>
+<p>And so, reading this article made me want to find out if asciidoc improves on
+the issues I have with markdown and reStructuredText, and what kind of tooling
+I can use to manipulate it.</p>
+<p>Some neat features specific to asciidoc:</p>
+<ul>
+<li>Admonitions (document call-outs for notes, tips, etc)</li>
+<li>Simple usage of italic, bold, and inline monospace -- all embeddible within each other</li>
+<li>Custom inline styling (IE &quot;[small]#small print#&quot;)</li>
+<li>You can specify &quot;curved&quot; apostrophes and quotation marks</li>
+<li>Document Headers (which can include author, revision, and attributes)</li>
+<li>You can specify explicit id&#39;s for section links</li>
+<li>You can specify parts of other ascii documents to include inline</li>
+<li>You can include content from URI&#39;s</li>
+<li>You can specify manual page breaks</li>
+<li>You can specify checklists</li>
+<li>Ability to explicitly notate content as an extension of the previous list item</li>
+<li>Ability to link inline anchors</li>
+<li>Internal cross-references</li>
+<li>Callouts for code blocks</li>
+<li>Code blocks sourced from files</li>
+<li>Custom substitutions</li>
+<li>Commenting</li>
+</ul>
+<p>Some things I can see already annoying me:</p>
+<ul>
+<li>For lists of greater than one level, you need to use <em>n</em> number of list markers
+where <em>n</em> is the level of indentation. Small thing, but it annoys me greatly
+that reStructuredText requires the list marker to not have space in front of it too.
+BUT at least asciidoc explicitly specifies that leading white space to lists is
+not relevant</li>
+<li>The syntax for extending list content might make things a little hard to read</li>
+<li>Subjectively, I feel like the link syntax isn&#39;t as nice as markdowns -- it&#39;s
+about on par with how I feel about reStructuredText&#39;s link syntax.</li>
+</ul>
+<p>I might give this format a serious shot -- there is <a href="https://github.com/asciidoctor/asciidoctor.js" title="asciidoctor.js">asciidoctor.js</a>, so I might
+be able to integrate it into my <a href="https://github.com/asciidoctor/asciidoctor.js" title="Metalsmith">Metalsmith</a> build! I&#39;m certainly going to
+test it out, but who knows if it&#39;ll go anywhere!</p>
+
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)">2014-10-27</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>
