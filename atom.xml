@@ -4,8 +4,27 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Mon Oct 27 2014 23:21:58 GMT-0500 (CDT)</updated>
+    <updated>Tue Oct 28 2014 20:20:30 GMT-0500 (CDT)</updated>
 
+    <entry>
+        <title><![CDATA[James Gurney]]></title>
+        <link>http://joelkleier.com/blog/2014-10-james-gurney</link>
+        <summary><![CDATA[<p>I learned of <a href="http://gurneyjourney.blogspot.com/" title="Gurney Journey">James Gurney</a> after stumbling across his <a href="http://gurneyjourney.blogspot.com/" title="Gurney Journey">blog</a> around six
+years ago. He makes a very strong effort to show his work in it&#39;s various stages,
+from very rough to simply beautiful. He doesn&#39;t trie to hide his process -- he
+tries to be open and forthcoming, two qualities that attract me to the ideas
+encompased by &quot;open source.&quot;</p>
+<p>His work focuses on two areas -- &quot;Imaginative Realism&quot; (realistically painting
+things that don&#39;t have any full references, like dinosaurs) and &quot;Plein Air&quot; 
+(essentially going somewhere and painting what you see).</p>
+<p>His preferred medium seems to be watercolor, <a href="http://en.wikipedia.org/wiki/Gouache" title="Gouache">gouache</a> (kind of an opaque
+watercolor, but not really), and, lately, <a href="http://en.wikipedia.org/wiki/Casein" title="Casein">casein</a> (milk based paint popular
+prior to 1960, when acrylic based paints gained popularity).</p>
+]]></summary>
+        <updated>Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)</updated>
+        <id>http://joelkleier.com/blog/2014-10-james-gurney</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[Markup Languages]]></title>
         <link>http://joelkleier.com/blog/2014-10-markup-langs</link>
@@ -53,7 +72,7 @@ about on par with how I feel about reStructuredText&#39;s link syntax.</li>
 </ul>
 <p>I might give this format a serious shot -- there is <a href="https://github.com/asciidoctor/asciidoctor.js" title="asciidoctor.js">asciidoctor.js</a>, so I might
 be able to integrate it into my <a href="https://github.com/asciidoctor/asciidoctor.js" title="Metalsmith">Metalsmith</a> build! I&#39;m certainly going to
-test it out, but who knows if it&#39;ll go anywhere!</p>
+test it out, but who knows if it&#39;ll go anywhere...</p>
 ]]></summary>
         <updated>Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2014-10-markup-langs</id>
@@ -397,111 +416,6 @@ absolutely nailed it.</p>
 ]]></summary>
         <updated>Sun Sep 29 2013 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2013-09-ld48_27_grid_ten</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Documentation]]></title>
-        <link>http://joelkleier.com/blog/2013-08-documentation</link>
-        <summary><![CDATA[<p>I think there are, primarily, four broad categories that developers fit into when
-they become users of a library or framework:</p>
-<ol>
-<li>Beginner</li>
-<li>Intermediate</li>
-<li>Experienced</li>
-<li>&#39;Master&#39;</li>
-</ol>
-<p>These four areas broadly define some important aspects that any set of
-documentation really needs to hit on to be considered &quot;good.&quot;</p>
-<p><em>Beginner&#39;s</em> are developers who&#39;ve bought into using a library or framework, and
-now need some direction in how to use it. Tutorials, walk-throughs, pod/video-casts,
-&#39;hello world&#39; apps, etc, are all tools that the beginner will find really useful.
-Documentation at this level really needs to be about guiding the individual in
-the uses of the library/framework without letting them bump into any sharp
-corners.</p>
-<p><em>Intermediate</em> level developers are those who&#39;ve read the beginner material, or
-are at least familiar with the system in question. The training wheels are off,
-and these individuals need documentation that covers the most common pitfalls
-and some more of the common, but, perhaps, complex, configuration situations that
-come up. They also need comprehensive documentation on the API or framework itself,
-so when a situation comes up that isn&#39;t documented directly, they have the tools
-to figure out some of the simpler pitfalls.</p>
-<p><em>Experienced</em> level developers are those who&#39;ve bumped into their fair share of
-sharp corners, and have had to really dig into the framework or API documentation.
-They may have also dug into the code to figure out their problems. These
-developers/users might also have committed a fix or two.</p>
-<p><em>&#39;Master&#39;</em> level developers are those who really understand the ins-and-outs of
-the system in question. They may not be familiar with every aspect of the code,
-but they&#39;re familiar enough that they have an intuition about problems that
-arise, and how to get around them. If the problem can&#39;t be worked around, these
-are the people that really know how the system should be altered to accommodate
-their situation.</p>
-<p>Now, of course this is an arbitrary categorization, and many times people that would
-fit into one category could also fit in another.</p>
-<p>Also, this whole idea presumes that developers are <em>users</em> of a piece of software
-first. To get a task done, they don&#39;t immediately want to jump into
-every library or framework and become intimately familiar with how it&#39;s coded
-up. Sometimes getting shit done means taking a leap of faith that they can depend
-on some library or framework to do what it advertises, without getting into the
-sticky details.</p>
-<p>With that in mind, working with Plone, Django, Pyramid/Pylons, and a host of other
-Python related libraries and frameworks tends to frustrate the crap out of me,
-at least in terms of their documentation strategies.</p>
-<p>On the one hand, there is <em>lots</em> and <em>lots</em> of documentation out there, but often
-times it&#39;s not really all that &#39;good&#39; (for my definition of good, anyway). Many
-times these pieces of software have decent beginner documentation -- plenty of
-&#39;hello world&#39; examples, and, usually, enough descriptive text to explain what
-the example is all about. Often times they have some sort of API documentation,
-which is usually auto-generated, and in varing states of usefulness.</p>
-<p>On the other hand, they <strong>tend</strong> to lack in more of the intermediate-level
-documentation -- documentation that more clearly explains some of the concepts
-of the advanced features, and gives some solutions to common situations/pitfalls.
-While they do often have API documentation, the API documentation often has gaps
-because it&#39;s someone didn&#39;t actually comment the code (or, maybe, comment it
-very well), because, you know, it&#39;s <em>obvious</em>.</p>
-<p>Often, for any kind of documentation other than the very basic &#39;hello world&#39;
-example(s), it&#39;s &quot;visit IRC&quot;, &quot;visit the list&quot;, or &quot;read the code.&quot;</p>
-<p>Yes, having a way to communicate with the community around a piece of software
-can be an awesome thing to behold! It can be very
-useful... except when people keep coming and asking the same general things.
-Then the people that tend to stick around and help either don&#39;t continue to
-stick around, or stop helping people with the same questions they&#39;ve answered
-many times before. Then it becomes &#39;search the archives&#39;, &#39;RTFM, stupid&#39;, or a
-question just goes unanswered.</p>
-<p>Certainly, this doesn&#39;t always happen, but it happens a lot more than maybe it
-should. I feel like this is the result of a lack &#39;good&#39; documentation.</p>
-<p>There are two more things that irrationally irritate me when it comes to
-documentation:</p>
-<p>First, pointing to another projects documentation, but not explaining
-<em>how</em> the current project uses it! I mean, come on. Just saying that a
-piece of software is based off another doesn&#39;t mean that it was integrated
-and is used exactly like the original project intends and documents it.</p>
-<p>Second, documentation location(s) -- seriously, don&#39;t have more than one location
-where you&#39;re documentation is accessed from. And while we&#39;re at it, when you have
-a lot of different versions of your applications, make sure google, etc, aren&#39;t
-pointing to old documentation versions. If they do, make sure there&#39;s an updated
-version of the documentation that is linked to from the old documentation.</p>
-<p>I&#39;m sure there&#39;s a lot more that I could complain about in regards to documentation,
-but this post is already long enough.</p>
-<p>I guess I leave my opinions for some hand-wavy solutions:</p>
-<ul>
-<li>Get the beginner docs solid</li>
-<li>Explain <em>how</em> a dependant, but external, library is used and configured
-when you need to refer a user to that library&#39;s own documentation</li>
-<li>Everytime the community answers a question, it might be a good idea to
-publish the problem and result to the primary documentation source -- perhaps
-even expanding on it</li>
-<li>When autogenerating the API, make sure to have comments on everything
-explaining the how&#39;s and why&#39;s of each little piece, even if it seems like
-it should be completely obvious</li>
-<li>Don&#39;t ever expect people to want to become intimately knowledgable with
-a library, and write your documentation accordingly -- most people probably
-just want to use it and move on with their lives</li>
-<li>Keep documentation centralized and well versioned, including links in old
-documentation to newer documentation</li>
-</ul>
-]]></summary>
-        <updated>Tue Aug 20 2013 00:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2013-08-documentation</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
