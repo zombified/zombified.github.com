@@ -4,8 +4,88 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Wed Oct 29 2014 20:54:02 GMT-0500 (CDT)</updated>
+    <updated>Thu Oct 30 2014 08:21:23 GMT-0500 (CDT)</updated>
 
+    <entry>
+        <title><![CDATA[Asciidoc + Metalsmith]]></title>
+        <link>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>I <em>love</em> metalsmith. It&#8217;s <strong>so</strong> easy to integrate extensions when they&#8217;re just
+middleware for reading and writing files. Very flexible&#8201;&#8212;&#8201;mind bending at times,
+perhaps a small challenge to debug occassionally, but really cool.</p>
+</div>
+<div class="paragraph">
+<p>And so, this is my first post using <a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a>
+to format the source text of my post, and <a href="https://github.com/asciidoctor/asciidoctor.js">AsciiDoctor.js</a>
+do perform the actual conversion to HTML.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll see how it goes! I may not proceed with it&#8217;s usage, but it does provide
+some clear advantages over markdown. The downside, though, I don&#8217;t think the
+tooling for asciidoc is quite as ubiquitous as markdown.</p>
+</div>
+<div class="paragraph">
+<p>As for the actual integration with metalsmith, I just created a plugin based on
+the <a href="https://github.com/segmentio/metalsmith-markdown/blob/master/lib/index.js"><em>metalsmith-markdown</em> plugin</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var basename = require('path').basename;
+var dirname = require('path').dirname;
+var extname = require('path').extname;
+var asciidoctor = require('asciidoctor.js')();
+var opal = asciidoctor.Opal;
+var asciidoc_processor = asciidoctor.Asciidoctor(true); // without extensions, pass 'true' for extensions
+
+function is_asciidoc(filename) {
+    return /\.adoc/.test(extname(filename));
+}
+
+var asciidoc = function(config) {
+    config = config || {};
+    var keys = config.keys || [];
+
+    return function(files, metalsmith, done) {
+        setImmediate(done);
+        Object.keys(files).forEach(function(file){
+            if(!is_asciidoc(file)) return;
+            var data = files[file];
+            var dir = dirname(file);
+            var html = basename(file, extname(file)) + '.html';
+            if('.' != dir) html = dir + '/' + html;
+
+            var options = opal.hash2(
+                ['doctype', 'attributes'],
+                {doctype:'article', attributes: ['showtitle']});
+            var str = asciidoc_processor.$convert(data.contents.toString(), options);
+            data.contents = new Buffer(str);
+            keys.forEach(function(key){
+                data[key] = asciidoc_processor.$convert(data[key], options);
+            });
+
+            delete files[file];
+            files[html] = data;
+        });
+    };
+};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>config</code> options aren&#8217;t really used when you instantiate the plugin&#8230;&#8203; but one
+step at a time. I still have to figure out how to effectively add the <code>config</code>
+options to the <code>options</code> passed into the <code>asciidoc_processor</code>, which I haven&#8217;t
+done yet, because I ran out of time to work on it for the moment, and it&#8217;s kinda
+low priority for me.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m still using yaml front-matter in my source documents, which is kinda not how
+asciidoc is intended to have metadata, but it works for my purposes and means
+I don&#8217;t have to change anything else right now!</p>
+</div>]]></summary>
+        <updated>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</updated>
+        <id>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[David Revoy]]></title>
         <link>http://joelkleier.com/blog/2014-10-david-revoy</link>
@@ -315,31 +395,6 @@ the rest.</p>
 ]]></summary>
         <updated>Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2014-03-rss2email</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Bash Fun]]></title>
-        <link>http://joelkleier.com/blog/2014-02-bash-fun</link>
-        <summary><![CDATA[<p>I decided to create my own custom site-generator for a couple of reasons:</p>
-<ul>
-<li>My site is so simple, a lot of existing generators make designing it and
-building it overly complex.</li>
-<li>The simple generators that already exist don&#39;t really organize things the
-way I want</li>
-<li>From a user perspective, a shell script doesn&#39;t require any special
-considerations, except for maybe the version of core utilities and other
-command-line programs required</li>
-<li>I thought it&#39;d be nice to learn a little more about bash and some linux
-core utils</li>
-</ul>
-<p>Sorry to anyone that subscribes to this site via rss/atom... the guids and
-file paths have all changed, so your readers are probably going to think all
-my content is new!</p>
-<p>If you&#39;d like to checkout how this site was made, you can look at the <a href="https://github.com/zombified/ef.sh">ef.sh
-repository on github</a>.</p>
-]]></summary>
-        <updated>Thu Feb 13 2014 23:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-02-bash-fun</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>

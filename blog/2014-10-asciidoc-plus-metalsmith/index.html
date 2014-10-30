@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>Asciidoc + Metalsmith <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -59,57 +59,84 @@
                 <a class='navlink' href='/'>Interesting Things</a>
             </div>
         </nav>
-    <article id='page-content'>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-asciidoc-plus-metalsmith'>Asciidoc + Metalsmith</a></h1></header>
-            <time class='date' datetime='Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)'>2014-10-30</time>
-            <p>I decided to give integrating metalsmith and asciidoc a go</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-david-revoy'>David Revoy</a></h1></header>
-            <time class='date' datetime='Wed Oct 29 2014 00:00:00 GMT-0500 (CDT)'>2014-10-29</time>
-            <p>Another of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-james-gurney'>James Gurney</a></h1></header>
-            <time class='date' datetime='Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)'>2014-10-28</time>
-            <p>Just wanted to talk about one of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-markup-langs'>Markup Languages</a></h1></header>
-            <time class='date' datetime='Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)'>2014-10-27</time>
-            <p>I read an article (&quot;Living the Future of Technical Writing&quot; by Scott Chacon) and I have some thoughts</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-my-personal-git'>My Private Git Setup</a></h1></header>
-            <time class='date' datetime='Sun Oct 26 2014 00:00:00 GMT-0500 (CDT)'>2014-10-26</time>
-            <p>A little bit about how I setup my self-hosted private git repos</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-purescript'>PureScript</a></h1></header>
-            <time class='date' datetime='Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)'>2014-10-25</time>
-            <p>Decided to poke around purescript a little</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-rpi-display'>Recent Raspberry Pi Announcements</a></h1></header>
-            <time class='date' datetime='Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)'>2014-10-24</time>
-            <p>Just want to say a few words about the recent announcements on Techcrunch Distrupt</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-aws-tips'>A couple AWS Tips &amp; Tricks</a></h1></header>
-            <time class='date' datetime='Thu Oct 23 2014 00:00:00 GMT-0500 (CDT)'>2014-10-23</time>
-            <p>Just a a couple tips/tricks for AWS</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-06-metalsmith'>metalsmith</a></h1></header>
-            <time class='date' datetime='Sat Jun 07 2014 00:00:00 GMT-0500 (CDT)'>2014-06-07</time>
-            <p>Switched static site generators again :D</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-03-rss2email'>rss2email</a></h1></header>
-            <time class='date' datetime='Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)'>2014-03-26</time>
-            <p>My latest venture into rss readers</p>
-        </article>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>I <em>love</em> metalsmith. It&#8217;s <strong>so</strong> easy to integrate extensions when they&#8217;re just
+middleware for reading and writing files. Very flexible&#8201;&#8212;&#8201;mind bending at times,
+perhaps a small challenge to debug occassionally, but really cool.</p>
+</div>
+<div class="paragraph">
+<p>And so, this is my first post using <a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a>
+to format the source text of my post, and <a href="https://github.com/asciidoctor/asciidoctor.js">AsciiDoctor.js</a>
+do perform the actual conversion to HTML.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll see how it goes! I may not proceed with it&#8217;s usage, but it does provide
+some clear advantages over markdown. The downside, though, I don&#8217;t think the
+tooling for asciidoc is quite as ubiquitous as markdown.</p>
+</div>
+<div class="paragraph">
+<p>As for the actual integration with metalsmith, I just created a plugin based on
+the <a href="https://github.com/segmentio/metalsmith-markdown/blob/master/lib/index.js"><em>metalsmith-markdown</em> plugin</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var basename = require('path').basename;
+var dirname = require('path').dirname;
+var extname = require('path').extname;
+var asciidoctor = require('asciidoctor.js')();
+var opal = asciidoctor.Opal;
+var asciidoc_processor = asciidoctor.Asciidoctor(true); // without extensions, pass 'true' for extensions
+
+function is_asciidoc(filename) {
+    return /\.adoc/.test(extname(filename));
+}
+
+var asciidoc = function(config) {
+    config = config || {};
+    var keys = config.keys || [];
+
+    return function(files, metalsmith, done) {
+        setImmediate(done);
+        Object.keys(files).forEach(function(file){
+            if(!is_asciidoc(file)) return;
+            var data = files[file];
+            var dir = dirname(file);
+            var html = basename(file, extname(file)) + '.html';
+            if('.' != dir) html = dir + '/' + html;
+
+            var options = opal.hash2(
+                ['doctype', 'attributes'],
+                {doctype:'article', attributes: ['showtitle']});
+            var str = asciidoc_processor.$convert(data.contents.toString(), options);
+            data.contents = new Buffer(str);
+            keys.forEach(function(key){
+                data[key] = asciidoc_processor.$convert(data[key], options);
+            });
+
+            delete files[file];
+            files[html] = data;
+        });
+    };
+};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>config</code> options aren&#8217;t really used when you instantiate the plugin&#8230;&#8203; but one
+step at a time. I still have to figure out how to effectively add the <code>config</code>
+options to the <code>options</code> passed into the <code>asciidoc_processor</code>, which I haven&#8217;t
+done yet, because I ran out of time to work on it for the moment, and it&#8217;s kinda
+low priority for me.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m still using yaml front-matter in my source documents, which is kinda not how
+asciidoc is intended to have metadata, but it works for my purposes and means
+I don&#8217;t have to change anything else right now!</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)">2014-10-30</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>
