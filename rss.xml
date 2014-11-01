@@ -7,6 +7,73 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[FirefoxOS and Ubuntu Phone]]></title>
+            <link>http://joelkleier.com/blog/2014-10-mobile-os</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Mobile devices are quickly taking over the world. We communicate to each other
+in all sorts of ways that once were limited to desktop computers and audio-only
+point-to-point connections. We broadcast, share, and hold conversations&#8201;&#8212;&#8201;between
+just two people up to thousands, or millions of people. Maybe more. We are living
+in an era where <em>anyone</em> (with an internet connection) can potentially
+communicate to the <em>entire</em> human population, all at once, for, basically, free.
+From a device we carry in our pockets.</p>
+</div>
+<div class="paragraph">
+<p>And I am <em>very</em> happy with all the big players in mobile, pushing this sort of
+tech to heights that are truley amazing.</p>
+</div>
+<div class="paragraph">
+<p>To get more out of it, though, we need truly free and open alternatives so that
+these devices can push boundaries in ways the current options cannot.</p>
+</div>
+<div class="paragraph">
+<p>This is where <a href="https://www.mozilla.org/en-US/firefox/os/"><em>FirefoxOS</em></a> and
+<a href="http://www.ubuntu.com/phone"><em>Ubuntu Phone</em></a> come into play. These operating systems
+may never be "bigger" than Android or iOS in terms of market penetration, but
+what they represent, and what they allow people to do is none-the-less important.</p>
+</div>
+<div class="paragraph">
+<p>FirefoxOS is pushing into low-end markets and trying to make a phone that can
+get people onto a web-enabled platform in the same price range as their classic
+phones. It&#8217;s very open, and promotes an open culture&#8201;&#8212;&#8201;more than that, it promotes
+a <em>web</em> culture. At the same time, it&#8217;s pushing technical boundaries for browsers
+by implementing and helping to standardize API&#8217;s for accessing all sorts of native
+device features.</p>
+</div>
+<div class="paragraph">
+<p>Ubuntu Phone, on the other hand, is trying to bring a fully open source OS into
+the mobile marketplace, but doesn&#8217;t seem to be focusing on the low-end market or
+the web, like FirefoxOS.</p>
+</div>
+<div class="paragraph">
+<p>Instead, Canonical seems to view the mobile space as having the same problems as
+the desktop space&#8201;&#8212;&#8201;no good, free libre open source operating systems with completely
+open development processes. AND they see a future where mobile devices start
+converging into desktop-level computers&#8201;&#8212;&#8201;having a different UI&#8217;s depending on
+how they&#8217;re being used. IE a touch based UI for mobile use, and a desktop UI for
+when it&#8217;s docked and paired to monitors, keyboards, and mice.</p>
+</div>
+<div class="paragraph">
+<p>The idea of this convergence may not be Canonicals highest priority with the
+failure of the Edge in 2013, but idea is still there. I can&#8217;t wait until it
+becomes reality.</p>
+</div>
+<div class="paragraph">
+<p>It may not happen right away, it probably won&#8217;t replace desktops and
+laptops completely, it may not be very good when it first starts to really happen, and,
+heck, it may fail once or twice. But it will happen. The concept of carrying around
+a fully functional computer in our pockets already exists&#8201;&#8212;&#8201;the next step
+is to make that computer <em>more</em> connectable and <em>more</em> useable for creative
+tasks.</p>
+</div>
+<div class="paragraph">
+<p>The future is awesome, and I think FirefoxOS and Ubuntu will play a huge role
+in the future, whether or not they have large marketshare.</p>
+</div>]]></description>
+            <pubDate>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-mobile-os</guid>
+        </item>
+        <item>
             <title><![CDATA[Asciidoc + Metalsmith]]></title>
             <link>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</link>
             <description><![CDATA[<div class="paragraph">
@@ -339,53 +406,6 @@ to just use permalinks. Simple, and a lot more portable going forward.</p>
 ]]></description>
             <pubDate>Sat Jun 07 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-06-metalsmith</guid>
-        </item>
-        <item>
-            <title><![CDATA[rss2email]]></title>
-            <link>http://joelkleier.com/blog/2014-03-rss2email</link>
-            <description><![CDATA[<p>March 13, 2013 -- Google <a href="http://googlereader.blogspot.com/2013/03/powering-down-google-reader.html">announced</a> the shutdown of Google Reader. Honestly,
-I became a little pissed. I mean, I certainly didn&#39;t use Reader a lot, but it
-was <em>so</em> convenient to keep track of my podcasts and news, especially the ones
-that weren&#39;t updated often. It also, usually, gave me a pretty good history
-of posts, beyond what was listed in the feed.</p>
-<p>Alas, it was not to be, and, in the end, it&#39;s probably a good thing. The
-shutdown did one great thing: it forced me to find a <em>better</em> solution for
-<em>my</em> use case.</p>
-<p>At this point, the hunt was on. I tried <a href="http://feedly.com/index.html#discover">Feedly</a>, but it didn&#39;t fit my
-wants. I had a problem with the plugins and how you viewed feeds. Then I
-moved on to <a href="https://theoldreader.com/">The Old Reader</a>, which was mostly a clone of Google Reader,
-but a clone of the good parts before Google started futzing with it!</p>
-<p>For awhile, it was nice and useful. Quickly, though, it became apparent to me
-that it was <em>another</em> service I had to log into, and it didn&#39;t have a great
-mobile offering. It was a little slow due to the massive attention it was
-getting, and they even announced that they would have to shutdown at one point.</p>
-<p>That announcement and the troubles I was running into with the app made me
-realize -- I had gone from one service that held the keys to the information
-I wanted, into to the hands of another.</p>
-<p>This realization forced me to work a little harder on a side project:
-<a href="https://github.com/zombified/slicerss">slicerss</a>, which has since been pretty much abandoned. This project let me
-really customize how I wanted to read my rss feeds. I setup a very minimal
-UI, and it had all the (minimal) features I needed out of it. But, it was
-slow... and bound to my home server.</p>
-<p>Ultimately, I discovered the key to what I want: I don&#39;t want to even <em>check</em>
-another service, and most of the time I just want to view the original article
-anyway. I don&#39;t want to share (most of the time) or organize my feeds.</p>
-<p>I just want a river of news that makes it easy to mark or save an article and
-a link to the original.</p>
-<p>Enter <a href="https://pypi.python.org/pypi/rss2email">rss2email</a> - a project which has been in development since at least
-2006 (that&#39;s the date of v2.56 in the changelog). What does it do? Very
-simply, it downloads a set of RSS feeds, keeps track of which ones it has
-sent you, and emails the ones it hasn&#39;t.</p>
-<p>Super, super, simple. Zero dependence on 3rd party services or proprietary
-software, an active project, and minimal system requirements. Plus, it&#39;s
-available anywhere I can access my email! I can use my email system to
-flag/pin/star or save any particular articles I want to, and I can just delete
-the rest.</p>
-<p>Why I didn&#39;t do this sooner? Beats me. Now I just have a cron job that runs
-<code>r2e run</code> once a day, and then, when I want to, I can just check my email.</p>
-]]></description>
-            <pubDate>Wed Mar 26 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-03-rss2email</guid>
         </item>
     </channel>
 </rss>
