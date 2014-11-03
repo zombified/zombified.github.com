@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>Nim! <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -59,57 +59,111 @@
                 <a class='navlink' href='/'>Interesting Things</a>
             </div>
         </nav>
-    <article id='page-content'>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-language'>Nim!</a></h1></header>
-            <time class='date' datetime='Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)'>2014-11-02</time>
-            <p>While reading discussion on Jonathan Blow&#x27;s lectures from my last post, I stumbled across Nim.</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-a-new-language'>A New Lanugage</a></h1></header>
-            <time class='date' datetime='Sat Nov 01 2014 00:00:00 GMT-0500 (CDT)'>2014-11-01</time>
-            <p>Jonathan Blow has been talking about developing a new language for a couple months now</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-asciidoc-plus-metalsmith'>Asciidoc + Metalsmith</a></h1></header>
-            <time class='date' datetime='Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)'>2014-10-30</time>
-            <p>I decided to give integrating metalsmith and asciidoc a go</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-mobile-os'>FirefoxOS and Ubuntu Phone</a></h1></header>
-            <time class='date' datetime='Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)'>2014-10-30</time>
-            <p>I have high hopes for Firefox OS and Ubuntu Touch</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-david-revoy'>David Revoy</a></h1></header>
-            <time class='date' datetime='Wed Oct 29 2014 00:00:00 GMT-0500 (CDT)'>2014-10-29</time>
-            <p>Another of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-james-gurney'>James Gurney</a></h1></header>
-            <time class='date' datetime='Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)'>2014-10-28</time>
-            <p>Just wanted to talk about one of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-markup-langs'>Markup Languages</a></h1></header>
-            <time class='date' datetime='Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)'>2014-10-27</time>
-            <p>I read an article (&quot;Living the Future of Technical Writing&quot; by Scott Chacon) and I have some thoughts</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-my-personal-git'>My Private Git Setup</a></h1></header>
-            <time class='date' datetime='Sun Oct 26 2014 00:00:00 GMT-0500 (CDT)'>2014-10-26</time>
-            <p>A little bit about how I setup my self-hosted private git repos</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-purescript'>PureScript</a></h1></header>
-            <time class='date' datetime='Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)'>2014-10-25</time>
-            <p>Decided to poke around purescript a little</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-rpi-display'>Recent Raspberry Pi Announcements</a></h1></header>
-            <time class='date' datetime='Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)'>2014-10-24</time>
-            <p>Just want to say a few words about the recent announcements on Techcrunch Distrupt</p>
-        </article>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>So, stumbling around discussions related to the topic in my
+/blog/2014-11-a-new-language/[last post], I discovered a new language that I
+find pretty neat!</p>
+</div>
+<div class="paragraph">
+<p><a href="http://nim-lang.org/">Nim</a> (formerly "Nimrod") is a statically typed imperative
+programming language that spits out C and Javascript (though the Javascript is
+still experimental). What struck me is how close the "read" of the language is
+to Python&#8201;&#8212;&#8201;by which I mean, when I look at a Nim program, it reads very much
+like Python.</p>
+</div>
+<div class="paragraph">
+<p>BUT it is most <em>certainly</em> <strong>not</strong> Python!</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s some stuff about Nim, if you&#8217;re curious:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://nim-lang.org/">Nim&#8217;s Homepage</a></p>
+</li>
+<li>
+<p><a href="http://www.drdobbs.com/open-source/nimrod-a-new-systems-programming-languag/240165321">A Dr. Dobb&#8217;s article (2014)</a></p>
+</li>
+<li>
+<p><a href="http://www.infoq.com/presentations/nimrod">InfoQ presentation from the original Author of the language</a></p>
+</li>
+<li>
+<p><a href="http://learnxinyminutes.com/docs/nim/">Learn X In Y Minutes: Where X is Nim</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a very simple sample program&#8201;&#8212;&#8201;a guess-the-random-number game:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>discard """
+This program is about playing a very simple game: guess a randomly generated number!
+"""
+
+from math import random, randomize
+from strutils import parseInt
+
+# make sure that the seed is randomized
+randomize()
+
+# keep playing the game until the user wants to quit
+var rand_val: int
+var raw_user_val: string
+var user_val: int
+while true:
+    # pick the number
+    rand_val = random(10) + 1 # +1 because it's 0 to max-1
+
+    # ask the user for the number
+    echo("Please guess a number between 1 and 10 [q to quit]")
+    raw_user_val = readLine(stdin)
+
+    # check to see if the user would like to quit
+    if raw_user_val == "q":
+        break;
+
+    # make sure the number is an integer
+    try:
+        user_val = parseInt(raw_user_val)
+    except EInvalidValue:
+        continue
+
+    # make sure the value is between 1 and 10, inclusive
+    if user_val &lt; 1 or user_val &gt; 10:
+        continue;
+
+    # check to see if it is the same
+    if user_val == rand_val:
+        echo("Yay! You Guessed It!")
+    else:
+        echo("You FAIL!")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The very first line in this example shows off something I find very interesting.
+<code>discard</code> is required so that the compiler ignores things like unused return
+values. BUT it can also be used like a multi-line comment by simply discarding
+an unassigned multi-line string value.</p>
+</div>
+<div class="paragraph">
+<p>Why is this the way multi-line comments are done? Well, because even regular
+single-line comments in Nim are part of the syntax tree, and aren&#8217;t just discarded
+during parsing!</p>
+</div>
+<div class="paragraph">
+<p>Progressing through this (very simplistic and not representative) program,
+you&#8217;d almost think you were looking at Python, with a few weird function calls
+and some type annotations on variables. This makes it very easy for me to
+start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
+structure I don&#8217;t already know.</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)">2014-11-02</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>

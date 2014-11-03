@@ -7,6 +7,112 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim!]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-language</link>
+            <description><![CDATA[<div class="paragraph">
+<p>So, stumbling around discussions related to the topic in my
+/blog/2014-11-a-new-language/[last post], I discovered a new language that I
+find pretty neat!</p>
+</div>
+<div class="paragraph">
+<p><a href="http://nim-lang.org/">Nim</a> (formerly "Nimrod") is a statically typed imperative
+programming language that spits out C and Javascript (though the Javascript is
+still experimental). What struck me is how close the "read" of the language is
+to Python&#8201;&#8212;&#8201;by which I mean, when I look at a Nim program, it reads very much
+like Python.</p>
+</div>
+<div class="paragraph">
+<p>BUT it is most <em>certainly</em> <strong>not</strong> Python!</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s some stuff about Nim, if you&#8217;re curious:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://nim-lang.org/">Nim&#8217;s Homepage</a></p>
+</li>
+<li>
+<p><a href="http://www.drdobbs.com/open-source/nimrod-a-new-systems-programming-languag/240165321">A Dr. Dobb&#8217;s article (2014)</a></p>
+</li>
+<li>
+<p><a href="http://www.infoq.com/presentations/nimrod">InfoQ presentation from the original Author of the language</a></p>
+</li>
+<li>
+<p><a href="http://learnxinyminutes.com/docs/nim/">Learn X In Y Minutes: Where X is Nim</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a very simple sample program&#8201;&#8212;&#8201;a guess-the-random-number game:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>discard """
+This program is about playing a very simple game: guess a randomly generated number!
+"""
+
+from math import random, randomize
+from strutils import parseInt
+
+# make sure that the seed is randomized
+randomize()
+
+# keep playing the game until the user wants to quit
+var rand_val: int
+var raw_user_val: string
+var user_val: int
+while true:
+    # pick the number
+    rand_val = random(10) + 1 # +1 because it's 0 to max-1
+
+    # ask the user for the number
+    echo("Please guess a number between 1 and 10 [q to quit]")
+    raw_user_val = readLine(stdin)
+
+    # check to see if the user would like to quit
+    if raw_user_val == "q":
+        break;
+
+    # make sure the number is an integer
+    try:
+        user_val = parseInt(raw_user_val)
+    except EInvalidValue:
+        continue
+
+    # make sure the value is between 1 and 10, inclusive
+    if user_val &lt; 1 or user_val &gt; 10:
+        continue;
+
+    # check to see if it is the same
+    if user_val == rand_val:
+        echo("Yay! You Guessed It!")
+    else:
+        echo("You FAIL!")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The very first line in this example shows off something I find very interesting.
+<code>discard</code> is required so that the compiler ignores things like unused return
+values. BUT it can also be used like a multi-line comment by simply discarding
+an unassigned multi-line string value.</p>
+</div>
+<div class="paragraph">
+<p>Why is this the way multi-line comments are done? Well, because even regular
+single-line comments in Nim are part of the syntax tree, and aren&#8217;t just discarded
+during parsing!</p>
+</div>
+<div class="paragraph">
+<p>Progressing through this (very simplistic and not representative) program,
+you&#8217;d almost think you were looking at Python, with a few weird function calls
+and some type annotations on variables. This makes it very easy for me to
+start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
+structure I don&#8217;t already know.</p>
+</div>]]></description>
+            <pubDate>Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-language</guid>
+        </item>
+        <item>
             <title><![CDATA[A New Lanugage]]></title>
             <link>http://joelkleier.com/blog/2014-11-a-new-language</link>
             <description><![CDATA[<div class="paragraph">
@@ -378,38 +484,6 @@ soon!</p>
 ]]></description>
             <pubDate>Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-rpi-display</guid>
-        </item>
-        <item>
-            <title><![CDATA[A couple AWS Tips &amp; Tricks]]></title>
-            <link>http://joelkleier.com/blog/2014-10-aws-tips</link>
-            <description><![CDATA[<p>Recently, I&#39;ve been playing around with AWS -- here are a couple of tips/tricks
-I found when I had to fix some problems. Hopefully they can help, but: your
-mileage may vary!</p>
-<h2 id="attaching-and-detaching-a-root-volume">Attaching and Detaching a root volume</h2>
-<p><em>Problem:</em> you didn&#39;t specify <code>nobootwait</code> as an option in fstab, and you detached
-the volume from an instance, BUT you still want to get back into that instance.</p>
-<ol>
-<li>Make sure the instance you want to get back into is shutdown (we&#39;ll call this &#39;old instance&#39;)</li>
-<li>Either create a new instance or use an existing instance (we&#39;ll call this &#39;new instance&#39;)</li>
-<li>Detach the root volume from the old instance, and attach it to the new instance</li>
-<li>Boot up new instance, and mount it temporarily with a command something like <code>mkdir -p /media/tmpmnt/ &amp;&amp; mount /dev/xdvf /media/tmpmnt/</code></li>
-<li>Modify the old instance fstab (<code>sudo vim /media/tmpmount/etc/fstab</code>) by commenting out, deleting, or modifying the offending line</li>
-<li>Unmount old instance root volume from new instance (<code>umount /media/tmpmnt/</code>)</li>
-<li>Attach to old instance root volume back to old instance -- <strong>NOTE:</strong> you will need to explicitly use the partiion number on the device to mount it is root, IE <code>/dev/sda1</code></li>
-<li>Boot up old instance, and it works!</li>
-</ol>
-<h2 id="enabling-or-disabling-public-ip-on-an-already-created-instance">Enabling or Disabling Public IP on an already created instance</h2>
-<p><em>Problem:</em> you want to switch the &#39;Automatically assign Public IP&#39; option for
-an instance... but you can&#39;t do this because it&#39;s already created.</p>
-<p>Basically, you need to detach the root volume on the
-old instance, create a new instance, detach the root volume on the new instance,
-attach the old root instance to the new instance as the root volume, then delete
-the new instances detached root volume.</p>
-<p>After you do that, you boot up the new instance and test it out, then delete the
-old instance as well.</p>
-]]></description>
-            <pubDate>Thu Oct 23 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-aws-tips</guid>
         </item>
     </channel>
 </rss>
