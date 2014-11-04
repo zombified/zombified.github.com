@@ -4,7 +4,7 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Mon Nov 03 2014 22:15:04 GMT-0600 (CST)</updated>
+    <updated>Mon Nov 03 2014 22:15:44 GMT-0600 (CST)</updated>
 
     <entry>
         <title><![CDATA[Nim! (pt2)]]></title>
@@ -180,7 +180,7 @@ and some type annotations on variables. This makes it very easy for me to
 start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
 structure I don&#8217;t already know.</p>
 </div>]]></summary>
-        <updated>Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)</updated>
+        <updated>Sun Nov 02 2014 23:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-nim-language</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
