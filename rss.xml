@@ -7,7 +7,7 @@
         <link>http://joelkleier.com</link>
 
         <item>
-            <title><![CDATA[Nim! (pt2)]]></title>
+            <title><![CDATA[Nim! pt2]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt2</link>
             <description><![CDATA[<div class="paragraph">
 <p>In my <a href="http://joelkleier.com/blog/2014-11-nim-language">last post</a> I mentioned I stumbled on a new
@@ -73,7 +73,7 @@ in the <code>Makefile</code>:</p>
 </li>
 </ul>
 </div>]]></description>
-            <pubDate>Sun Nov 02 2014 23:00:00 GMT-0600 (CST)</pubDate>
+            <pubDate>Mon Nov 03 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt2</guid>
         </item>
         <item>
@@ -179,7 +179,7 @@ and some type annotations on variables. This makes it very easy for me to
 start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
 structure I don&#8217;t already know.</p>
 </div>]]></description>
-            <pubDate>Sun Nov 02 2014 23:00:00 GMT-0600 (CST)</pubDate>
+            <pubDate>Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-language</guid>
         </item>
         <item>
@@ -269,7 +269,7 @@ tasks.</p>
 <p>The future is awesome, and I think FirefoxOS and Ubuntu will play a huge role
 in the future, whether or not they have large marketshare.</p>
 </div>]]></description>
-            <pubDate>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</pubDate>
+            <pubDate>Fri Oct 31 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-mobile-os</guid>
         </item>
         <item>
