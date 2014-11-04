@@ -7,12 +7,82 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim! (pt2)]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-pt2</link>
+            <description><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-language">last post</a> I mentioned I stumbled on a new
+language called <em>Nim</em> (formerly <em>Nimrod</em>), and I was able to sink my teeth
+into it only slightly more.</p>
+</div>
+<div class="paragraph">
+<p>I tried install the <em>beta</em> <a href="https://github.com/nimrod-code/nimble">package manager</a>,
+but was having some problems that are to advanced for me at the moment (IE
+I really would rather spend my time on stuff to help me learn the language
+before I dig in and really try to help debug what is probably an OSX specific
+<a href="https://github.com/nimrod-code/nimble/issues/62">compiler issue</a>).</p>
+</div>
+<div class="paragraph">
+<p>Where to start? I like games, and a game that utilizes <a href="https://www.libsdl.org/">SDL2</a>
+presents a <em>lot</em> of challenges. The first challenge, then, is to get a
+program up and running that can hook into SDL2&#8201;&#8212;&#8201;Nim already has a
+<a href="https://github.com/nimrod-code/sdl2">project</a> to wrap the SDL2 library, and
+an <a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim">example</a>
+that can get a window displaying.</p>
+</div>
+<div class="paragraph">
+<p>The trickiest part was actually just making sure the build command was composed
+correctly, since I really didn&#8217;t have to create any code (yet).</p>
+</div>
+<div class="paragraph">
+<p>The complication is that I want my directory structure to look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>- bin/
+  - (game executable)
+- libs/
+  - sdl2/
+- src/
+  - nimcache/
+  - main.nim
+- Makefile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which isn&#8217;t like what I&#8217;ve seen so far (which is very, very little).</p>
+</div>
+<div class="paragraph">
+<p>But it turns out Nim makes things super easy, this would be the <code>all:</code> target
+in the <code>Makefile</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nimrod c -p:./libs/sdl2/src/ -o:../bin/out src/main.nim</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A couple of things I learned from this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>-o</code> argument seems to be relative to the nim source file</p>
+</li>
+<li>
+<p>The <code>-p</code> argument seems to be relative to the compiler call or maybe the current working directory</p>
+</li>
+</ul>
+</div>]]></description>
+            <pubDate>Sun Nov 02 2014 23:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt2</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim!]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-language</link>
             <description><![CDATA[<div class="paragraph">
 <p>So, stumbling around discussions related to the topic in my
-/blog/2014-11-a-new-language/[last post], I discovered a new language that I
-find pretty neat!</p>
+<a href="http://joelkleier.com/blog/2014-11-a-new-language/">last post</a>,
+I discovered a new language that I find pretty neat!</p>
 </div>
 <div class="paragraph">
 <p><a href="http://nim-lang.org/">Nim</a> (formerly "Nimrod") is a statically typed imperative
@@ -136,6 +206,73 @@ sooner rather than later.</p>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-a-new-language</guid>
         </item>
         <item>
+            <title><![CDATA[FirefoxOS and Ubuntu Phone]]></title>
+            <link>http://joelkleier.com/blog/2014-10-mobile-os</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Mobile devices are quickly taking over the world. We communicate to each other
+in all sorts of ways that once were limited to desktop computers and audio-only
+point-to-point connections. We broadcast, share, and hold conversations&#8201;&#8212;&#8201;between
+just two people up to thousands, or millions of people. Maybe more. We are living
+in an era where <em>anyone</em> (with an internet connection) can potentially
+communicate to the <em>entire</em> human population, all at once, for, basically, free.
+From a device we carry in our pockets.</p>
+</div>
+<div class="paragraph">
+<p>And I am <em>very</em> happy with all the big players in mobile, pushing this sort of
+tech to heights that are truley amazing.</p>
+</div>
+<div class="paragraph">
+<p>To get more out of it, though, we need truly free and open alternatives so that
+these devices can push boundaries in ways the current options cannot.</p>
+</div>
+<div class="paragraph">
+<p>This is where <a href="https://www.mozilla.org/en-US/firefox/os/"><em>FirefoxOS</em></a> and
+<a href="http://www.ubuntu.com/phone"><em>Ubuntu Phone</em></a> come into play. These operating systems
+may never be "bigger" than Android or iOS in terms of market penetration, but
+what they represent, and what they allow people to do is none-the-less important.</p>
+</div>
+<div class="paragraph">
+<p>FirefoxOS is pushing into low-end markets and trying to make a phone that can
+get people onto a web-enabled platform in the same price range as their classic
+phones. It&#8217;s very open, and promotes an open culture&#8201;&#8212;&#8201;more than that, it promotes
+a <em>web</em> culture. At the same time, it&#8217;s pushing technical boundaries for browsers
+by implementing and helping to standardize API&#8217;s for accessing all sorts of native
+device features.</p>
+</div>
+<div class="paragraph">
+<p>Ubuntu Phone, on the other hand, is trying to bring a fully open source OS into
+the mobile marketplace, but doesn&#8217;t seem to be focusing on the low-end market or
+the web, like FirefoxOS.</p>
+</div>
+<div class="paragraph">
+<p>Instead, Canonical seems to view the mobile space as having the same problems as
+the desktop space&#8201;&#8212;&#8201;no good, free libre open source operating systems with completely
+open development processes. AND they see a future where mobile devices start
+converging into desktop-level computers&#8201;&#8212;&#8201;having a different UI&#8217;s depending on
+how they&#8217;re being used. IE a touch based UI for mobile use, and a desktop UI for
+when it&#8217;s docked and paired to monitors, keyboards, and mice.</p>
+</div>
+<div class="paragraph">
+<p>The idea of this convergence may not be Canonicals highest priority with the
+failure of the Edge in 2013, but idea is still there. I can&#8217;t wait until it
+becomes reality.</p>
+</div>
+<div class="paragraph">
+<p>It may not happen right away, it probably won&#8217;t replace desktops and
+laptops completely, it may not be very good when it first starts to really happen, and,
+heck, it may fail once or twice. But it will happen. The concept of carrying around
+a fully functional computer in our pockets already exists&#8201;&#8212;&#8201;the next step
+is to make that computer <em>more</em> connectable and <em>more</em> useable for creative
+tasks.</p>
+</div>
+<div class="paragraph">
+<p>The future is awesome, and I think FirefoxOS and Ubuntu will play a huge role
+in the future, whether or not they have large marketshare.</p>
+</div>]]></description>
+            <pubDate>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-mobile-os</guid>
+        </item>
+        <item>
             <title><![CDATA[Asciidoc + Metalsmith]]></title>
             <link>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</link>
             <description><![CDATA[<div class="paragraph">
@@ -213,73 +350,6 @@ I don&#8217;t have to change anything else right now!</p>
 </div>]]></description>
             <pubDate>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</guid>
-        </item>
-        <item>
-            <title><![CDATA[FirefoxOS and Ubuntu Phone]]></title>
-            <link>http://joelkleier.com/blog/2014-10-mobile-os</link>
-            <description><![CDATA[<div class="paragraph">
-<p>Mobile devices are quickly taking over the world. We communicate to each other
-in all sorts of ways that once were limited to desktop computers and audio-only
-point-to-point connections. We broadcast, share, and hold conversations&#8201;&#8212;&#8201;between
-just two people up to thousands, or millions of people. Maybe more. We are living
-in an era where <em>anyone</em> (with an internet connection) can potentially
-communicate to the <em>entire</em> human population, all at once, for, basically, free.
-From a device we carry in our pockets.</p>
-</div>
-<div class="paragraph">
-<p>And I am <em>very</em> happy with all the big players in mobile, pushing this sort of
-tech to heights that are truley amazing.</p>
-</div>
-<div class="paragraph">
-<p>To get more out of it, though, we need truly free and open alternatives so that
-these devices can push boundaries in ways the current options cannot.</p>
-</div>
-<div class="paragraph">
-<p>This is where <a href="https://www.mozilla.org/en-US/firefox/os/"><em>FirefoxOS</em></a> and
-<a href="http://www.ubuntu.com/phone"><em>Ubuntu Phone</em></a> come into play. These operating systems
-may never be "bigger" than Android or iOS in terms of market penetration, but
-what they represent, and what they allow people to do is none-the-less important.</p>
-</div>
-<div class="paragraph">
-<p>FirefoxOS is pushing into low-end markets and trying to make a phone that can
-get people onto a web-enabled platform in the same price range as their classic
-phones. It&#8217;s very open, and promotes an open culture&#8201;&#8212;&#8201;more than that, it promotes
-a <em>web</em> culture. At the same time, it&#8217;s pushing technical boundaries for browsers
-by implementing and helping to standardize API&#8217;s for accessing all sorts of native
-device features.</p>
-</div>
-<div class="paragraph">
-<p>Ubuntu Phone, on the other hand, is trying to bring a fully open source OS into
-the mobile marketplace, but doesn&#8217;t seem to be focusing on the low-end market or
-the web, like FirefoxOS.</p>
-</div>
-<div class="paragraph">
-<p>Instead, Canonical seems to view the mobile space as having the same problems as
-the desktop space&#8201;&#8212;&#8201;no good, free libre open source operating systems with completely
-open development processes. AND they see a future where mobile devices start
-converging into desktop-level computers&#8201;&#8212;&#8201;having a different UI&#8217;s depending on
-how they&#8217;re being used. IE a touch based UI for mobile use, and a desktop UI for
-when it&#8217;s docked and paired to monitors, keyboards, and mice.</p>
-</div>
-<div class="paragraph">
-<p>The idea of this convergence may not be Canonicals highest priority with the
-failure of the Edge in 2013, but idea is still there. I can&#8217;t wait until it
-becomes reality.</p>
-</div>
-<div class="paragraph">
-<p>It may not happen right away, it probably won&#8217;t replace desktops and
-laptops completely, it may not be very good when it first starts to really happen, and,
-heck, it may fail once or twice. But it will happen. The concept of carrying around
-a fully functional computer in our pockets already exists&#8201;&#8212;&#8201;the next step
-is to make that computer <em>more</em> connectable and <em>more</em> useable for creative
-tasks.</p>
-</div>
-<div class="paragraph">
-<p>The future is awesome, and I think FirefoxOS and Ubuntu will play a huge role
-in the future, whether or not they have large marketshare.</p>
-</div>]]></description>
-            <pubDate>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-mobile-os</guid>
         </item>
         <item>
             <title><![CDATA[David Revoy]]></title>
@@ -469,21 +539,6 @@ my impressions are very positive!</p>
 ]]></description>
             <pubDate>Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-purescript</guid>
-        </item>
-        <item>
-            <title><![CDATA[Recent Raspberry Pi Announcements]]></title>
-            <link>http://joelkleier.com/blog/2014-10-rpi-display</link>
-            <description><![CDATA[<p>I <em>love</em> the Raspberry Pi: cheap, small, powerful (enough), and completely
-programmable.</p>
-<p>Recently, <a href="http://www.raspberrypi.org/author/eben/">Eben Upton</a> gave a
-<a href="http://www.raspberrypi.org/eben-at-techcrunch-disrupt/">talk at TechCrunch Distrupt</a>.
-He talked a little about the RPi, a really cool 
-<a href="https://www.indiegogo.com/projects/pi-top-a-raspberry-pi-laptop-you-build-yourself">IndieGoGo Project (the PiTop)</a>,
-announced a 7-in WVGA capacitive touch display, and a new model (the A+) coming
-soon!</p>
-]]></description>
-            <pubDate>Fri Oct 24 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-rpi-display</guid>
         </item>
     </channel>
 </rss>

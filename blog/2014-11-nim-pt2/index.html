@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header'>Nim! <span class='byline'>by Joel Kleier</span></h1>
+    <h1 id='page-header'>Nim! (pt2) <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -61,108 +61,72 @@
         </nav>
     <article id='page-content' class='post'>
         <div class="paragraph">
-<p>So, stumbling around discussions related to the topic in my
-<a href="http://joelkleier.com/blog/2014-11-a-new-language/">last post</a>,
-I discovered a new language that I find pretty neat!</p>
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-language">last post</a> I mentioned I stumbled on a new
+language called <em>Nim</em> (formerly <em>Nimrod</em>), and I was able to sink my teeth
+into it only slightly more.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://nim-lang.org/">Nim</a> (formerly "Nimrod") is a statically typed imperative
-programming language that spits out C and Javascript (though the Javascript is
-still experimental). What struck me is how close the "read" of the language is
-to Python&#8201;&#8212;&#8201;by which I mean, when I look at a Nim program, it reads very much
-like Python.</p>
+<p>I tried install the <em>beta</em> <a href="https://github.com/nimrod-code/nimble">package manager</a>,
+but was having some problems that are to advanced for me at the moment (IE
+I really would rather spend my time on stuff to help me learn the language
+before I dig in and really try to help debug what is probably an OSX specific
+<a href="https://github.com/nimrod-code/nimble/issues/62">compiler issue</a>).</p>
 </div>
 <div class="paragraph">
-<p>BUT it is most <em>certainly</em> <strong>not</strong> Python!</p>
+<p>Where to start? I like games, and a game that utilizes <a href="https://www.libsdl.org/">SDL2</a>
+presents a <em>lot</em> of challenges. The first challenge, then, is to get a
+program up and running that can hook into SDL2&#8201;&#8212;&#8201;Nim already has a
+<a href="https://github.com/nimrod-code/sdl2">project</a> to wrap the SDL2 library, and
+an <a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim">example</a>
+that can get a window displaying.</p>
 </div>
 <div class="paragraph">
-<p>Here&#8217;s some stuff about Nim, if you&#8217;re curious:</p>
+<p>The trickiest part was actually just making sure the build command was composed
+correctly, since I really didn&#8217;t have to create any code (yet).</p>
+</div>
+<div class="paragraph">
+<p>The complication is that I want my directory structure to look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>- bin/
+  - (game executable)
+- libs/
+  - sdl2/
+- src/
+  - nimcache/
+  - main.nim
+- Makefile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which isn&#8217;t like what I&#8217;ve seen so far (which is very, very little).</p>
+</div>
+<div class="paragraph">
+<p>But it turns out Nim makes things super easy, this would be the <code>all:</code> target
+in the <code>Makefile</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nimrod c -p:./libs/sdl2/src/ -o:../bin/out src/main.nim</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A couple of things I learned from this:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://nim-lang.org/">Nim&#8217;s Homepage</a></p>
+<p>The <code>-o</code> argument seems to be relative to the nim source file</p>
 </li>
 <li>
-<p><a href="http://www.drdobbs.com/open-source/nimrod-a-new-systems-programming-languag/240165321">A Dr. Dobb&#8217;s article (2014)</a></p>
-</li>
-<li>
-<p><a href="http://www.infoq.com/presentations/nimrod">InfoQ presentation from the original Author of the language</a></p>
-</li>
-<li>
-<p><a href="http://learnxinyminutes.com/docs/nim/">Learn X In Y Minutes: Where X is Nim</a></p>
+<p>The <code>-p</code> argument seems to be relative to the compiler call or maybe the current working directory</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Here&#8217;s a very simple sample program&#8201;&#8212;&#8201;a guess-the-random-number game:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>discard """
-This program is about playing a very simple game: guess a randomly generated number!
-"""
-
-from math import random, randomize
-from strutils import parseInt
-
-# make sure that the seed is randomized
-randomize()
-
-# keep playing the game until the user wants to quit
-var rand_val: int
-var raw_user_val: string
-var user_val: int
-while true:
-    # pick the number
-    rand_val = random(10) + 1 # +1 because it's 0 to max-1
-
-    # ask the user for the number
-    echo("Please guess a number between 1 and 10 [q to quit]")
-    raw_user_val = readLine(stdin)
-
-    # check to see if the user would like to quit
-    if raw_user_val == "q":
-        break;
-
-    # make sure the number is an integer
-    try:
-        user_val = parseInt(raw_user_val)
-    except EInvalidValue:
-        continue
-
-    # make sure the value is between 1 and 10, inclusive
-    if user_val &lt; 1 or user_val &gt; 10:
-        continue;
-
-    # check to see if it is the same
-    if user_val == rand_val:
-        echo("Yay! You Guessed It!")
-    else:
-        echo("You FAIL!")</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The very first line in this example shows off something I find very interesting.
-<code>discard</code> is required so that the compiler ignores things like unused return
-values. BUT it can also be used like a multi-line comment by simply discarding
-an unassigned multi-line string value.</p>
-</div>
-<div class="paragraph">
-<p>Why is this the way multi-line comments are done? Well, because even regular
-single-line comments in Nim are part of the syntax tree, and aren&#8217;t just discarded
-during parsing!</p>
-</div>
-<div class="paragraph">
-<p>Progressing through this (very simplistic and not representative) program,
-you&#8217;d almost think you were looking at Python, with a few weird function calls
-and some type annotations on variables. This makes it very easy for me to
-start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
-structure I don&#8217;t already know.</p>
-</div>
         <div id='page-meta'>
             Published on
-            <time class='date' datetime="Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)">2014-11-02</time>
+            <time class='date' datetime="Sun Nov 02 2014 23:00:00 GMT-0600 (CST)">2014-11-02</time>
         </div>
     </article>
     <footer id='page-footer'>
