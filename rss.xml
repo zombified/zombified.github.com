@@ -7,6 +7,186 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim! pt3]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-pt3</link>
+            <description><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt2">last post</a> I setup a simple
+example skeleton project and made it compile like I wanted to. This time around,
+I am going to go through my process of figuring things out. I&#8217;m new to both
+Nim and SDL2, so I have a bunch of stuff to learn!</p>
+</div>
+<div class="paragraph">
+<p>After skimming the skeleton code from last time, and generally getting a grasp
+of what the program is doing, I start picking out pieces of the code that I
+want to know more about. The first such piece is
+<a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim#L13-L17">this one</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var
+  evt: TEvent
+  runGame = true
+  fpsman: TFPSmanager
+fpsman.init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I have a bunch of questions, but lets start with "What is 'TFPSManager'? Does
+it come from SDL2? is it part of the wrapper?" (alright, lets start with
+3 questions&#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>As it turns out, it&#8217;s defined in
+<a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2/gfx.nim"><code>sdl2/gfx.nim</code></a>,
+which is a wrapper for the <a href="http://cms.ferzkopp.net/index.php/software/13-sdl-gfx">SDL2_gfx</a>
+library, which seems to be not part of the <a href="https://www.libsdl.org/">SDL2</a> library
+proper, but instead is a sort of boiler-plate project.</p>
+</div>
+<div class="paragraph">
+<p>The <code>sdl2/gfx.nim</code> library is actually imported into the skeleton by
+<a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim#L2">this</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import sdl2, sdl2/gfx</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;m still wondering how <code>sdl2/gfx</code> imports TFPSmanager into the skeleton&#8217;s scope,
+but I&#8217;ll save figuring that out for later. Regardless, the <code>sdl2/gfx</code> part pulls
+in the exported symbols in <code>sdl2/gfx</code>.</p>
+</div>
+<div class="paragraph">
+<p>And here&#8217;s the actual <a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2/gfx.nim#L46-L52">type definition</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TFPSmanager* {.pure, final.} = object
+    framecount*: cint
+    rateticks*: cfloat
+    baseticks*: cint
+    lastticks*: cint
+    rate*: cint</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>{.pure, final.}</code> is a pragma statement saying:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This type cannot be inherited from (final)</p>
+</li>
+<li>
+<p>This type should have not have any runtime type checking for binary compatibility with other compiled languages (pure)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Basically, this type needs to match up with a type found in the SDL2_gfx library
+called <code>FPSmanager</code>, which these pragmas ensure.</p>
+</div>
+<div class="paragraph">
+<p>My next question, seeing this type definition, is "Where are 'cint' and 'cfloat' defined?"</p>
+</div>
+<div class="paragraph">
+<p>Turns out, these are built-into the compiler <code>system</code> module, which is included
+and available by default in all modules. Took me some doing, for some reason, but
+I ended up finding the documentation <a href="http://nimrod-lang.org/system.html#cint">here</a>.
+The documentation basically just explicitely says that <code>cint</code> == C&#8217;s 'int' == <code>int32</code>
+in Nim.</p>
+</div>
+<div class="paragraph">
+<p>Okay, so back to the skeleton&#8201;&#8212;&#8201;there&#8217;s a line: <code>fpsman.init</code>. Where is this
+method or property defined? Actually, it&#8217;s a "procedure" definition, and it&#8217;s
+located in the
+<a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2/gfx.nim#L229-L234">sdl2/gfx.nim</a>
+file as well. But this teaches me a bunch of things! First, here are the definitions:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>proc init*(manager: var TFPSmanager) {.importc: "SDL_initFramerate".}
+proc setFramerate*(manager: var TFPSmanager; rate: cint): SDL_Return {.
+  importc: "SDL_setFramerate", discardable.}
+proc getFramerate*(manager: var TFPSmanager): cint {.importc: "SDL_getFramerate".}
+proc getFramecount*(manager: var TFPSmanager): cint {.importc: "SDL_getFramecount".}
+proc delay*(manager: var TFPSmanager): cint {.importc: "SDL_framerateDelay", discardable.}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>They are <a href="http://nim-lang.org/tut1.html#forward-declarations"><em>forward declarations</em></a>
+of methods, with which the FFI imports declarations for from C libs.</p>
+</div>
+<div class="paragraph">
+<p>And then, the procedures here are defined to take advantage of syntactic sugar
+called <a href="http://nim-lang.org/tut2.html#method-call-syntax"><em>method call syntax</em></a> in
+Nim. Essentially, the first value of a procedure can be prefixed to a call of the
+procedure. Example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># assuming this is defined
+proc xlen(s: string) =
+   result = len(s)
+# then this:
+assert(xlen("value")==5)
+# is the same as:
+assert("value".xlen==5)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pretty nifty!</p>
+</div>
+<div class="paragraph">
+<p>Back to the <code>init</code> definition: since <code>init</code> takes 1 parameter, a <code>TFPSmanager</code>,
+then the statement <code>fpsman.init</code> makes sense, as it&#8217;s syntactic sugar for
+<code>init(fpsman)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Next up, what is the asterisk between <code>init</code> and <code>(</code> mean? Easy! It tells Nim that
+this procedure is to be exported by the module.</p>
+</div>
+<div class="paragraph">
+<p>What about the 'importc' pragma statement? Well, like you&#8217;d imagine, it&#8217;s for
+telling the compiler that this forward declaration represents a definition found
+in a C library, and the FFI should do it&#8217;s magic and import that definition.</p>
+</div>
+<div class="paragraph">
+<p>And What about that 'SDL_Return' value&#8201;&#8212;&#8201;where&#8217;s that coming from? It&#8217;s in
+<a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2.nim#L205-L207">sdl2.nim</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SDL_Return* {.size: sizeof(cint).} = enum SdlError = -1, SdlSuccess = 0 ##\
+    ## Return value for many SDL functions. Any function that returns like this \
+    ## should also be discardable</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <em>type</em> definition for an enum with 2 values, that is marked as being the <code>size</code>
+of a <code>cint</code> so as to be compatible with code referenced using the FFI.</p>
+</div>
+<div class="paragraph">
+<p>Back to the procedures defined for use with <code>TFPSmanager</code>, the last thing I had a
+question about tonight is the <code>discardable</code> pragma value. The answer is pretty
+straight-forward: it is telling the compiler that the return value can be
+discarded implicitely&#8201;&#8212;&#8201;IE there&#8217;s no need to use the <code>discard</code> keyword when calling
+this procedure.</p>
+</div>
+<div class="paragraph">
+<p>And that&#8217;s it for tonight!</p>
+</div>
+<div class="paragraph">
+<p>I learned a <em>bunch</em> about how Nim works, and a little about SDL2.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>]]></description>
+            <pubDate>Tue Nov 04 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt3</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt2]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt2</link>
             <description><![CDATA[<div class="paragraph">
@@ -465,80 +645,6 @@ nice UI to browse my source with, if I want!</p>
 ]]></description>
             <pubDate>Sun Oct 26 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-my-personal-git</guid>
-        </item>
-        <item>
-            <title><![CDATA[PureScript]]></title>
-            <link>http://joelkleier.com/blog/2014-10-purescript</link>
-            <description><![CDATA[<p>I&#39;ve always had a fondness for programming languages, and one that caught my eye
-recently is <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> -- a strongly and statically typed language in the
-vein of Haskell (which I&#39;ve never really learned proper, though I have it on
-the &#39;maybe someday&#39; list). <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a>, though, compiles to JavaScript
--- which, despite it&#39;s warts, is a language that I think is the bees knees.</p>
-<p>There&#39;s a <a href="https://leanpub.com/purescript/" title="PureScript By Example">book</a> out there for it, available free to read online, so I thought
-I&#39;d just start going through it to check out the language.</p>
-<p>It has you install <a href="https://www.haskell.org/platform/" title="The Haskell Platform">The Haskell Platform</a> (for the actual compiler), <a href="http://nodejs.org/" title="node.js">node/npm</a>
-(for node based utilities and tools), <a href="http://bower.io/" title="Bower: A package manager for the web">Bower</a> (for all the <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a>
-packages), and then <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> (to automate builds and such).</p>
-<p>Well, that&#39;s a pretty big stack to install just to write some &quot;Hello World&quot;
-equivalent programs... but, I don&#39;t mind! Already had most of them installed
-anyway. However, their setup is not how I prefer to work (when I&#39;m working on
-my own projects at least).</p>
-<p>Here are my deviations from the books setup:</p>
-<ol>
-<li>I installed <a href="http://bower.io/" title="Bower: A package manager for the web">Bower</a> locally to the folder (I don&#39;t like polluting my global
-npm packages if I don&#39;t have to... and prefixing <code>./node_packages/.bin/bower</code>
-doesn&#39;t bother me since I&#39;m scripting my builds anyway).</li>
-<li>I Started using <a href="http://www.gnu.org/software/make/" title="GNU Make">GNU Make</a> instead of <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a>. Why? Sure, grunt is the
-new &#39;hot&#39; thing, but, for my purposes, it&#39;s clearly a reinvention of a
-wheel that works <em>really</em> well. I like <a href="http://www.gnu.org/software/make/" title="GNU Make">GNU Make</a>, and it will serve me
-better than <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> (that&#39;s not to say <a href="http://gruntjs.com/" title="Grunt: The JavaScript Task Runner">Grunt</a> is useless,
-but in this instance I prefer to stick with the tried and true).</li>
-</ol>
-<p>So, my <code>Makefile</code> looks something like this:</p>
-<pre><code>BOWER_FILES=`find ./bower_components -regex &quot;.*/src/.*\.purs&quot;`
-CHAPTER2_FILES=src/Chapter2.purs
-PHONEBOOK_FILES=src/Data/PhoneBook.purs
-ALL_FILES=${BOWER_FILES} \
-          ${CHAPTER2_FILES} \
-          ${PHONEBOOK_FILES}
-
-
-all: Chapter2 PhoneBook
-
-bootstrap:
-    npm install bower
-    bower install purescript-math#0.1.0
-    bower install purescript-list
-
-psci:
-    psci ${ALL_FILES}
-
-Chapter2:
-    psc ${BOWER_FILES} \
-        ${CHAPTER2_FILES} \
-        --output dist/Chapter2-Main.js \
-        --module Chapter2 \
-        --main Chapter2
-</code></pre><p>Some explanations:</p>
-<ul>
-<li>The definition of <code>BOWER_FILES</code> uses backticks around a find command to
-get a list of all purescript files identified as purescript source files
-(the community tends to structure their projects a specific way, so this
-command makes sense for that structure)</li>
-<li>The <code>bootstrap</code> target can be used to install bower and all the
-dependancies that are needed for the project</li>
-<li>The <code>psci</code> target can be used as a shortcut for loading the REPL with all
-project files</li>
-<li>The <code>Chapter2</code> a target is for building the file(s) in Chapter 2 -- I&#39;ve only
-read through Chapter 3 so far, and Chapter 2 is the only one that&#39;s had any
-built files. Chapter 1 was introductory, and Chapter 3 mostly focused on the
-REPL.</li>
-</ul>
-<p>Hopefully I get some time soon to play with <a href="http://www.purescript.org/" title="PureScript Community Blog">PureScript</a> some more! So far
-my impressions are very positive!</p>
-]]></description>
-            <pubDate>Sat Oct 25 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-purescript</guid>
         </item>
     </channel>
 </rss>
