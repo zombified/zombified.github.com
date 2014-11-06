@@ -7,6 +7,110 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim! pt5]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-pt5</link>
+            <description><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt4">last post</a> I showed how to
+get a circle bouncing back and forth on the screen. Next, I&#8217;d need to figure
+out how Nim handles
+<a href="https://wiki.libsdl.org/SDL_Event?highlight=%28%5CbCategoryStruct%5Cb%29%7C%28SDLStructTemplate%29">SDL_Event</a>,
+which normally uses a union structure along with a <em>type</em> field to determine
+how the data for an event gets used.</p>
+</div>
+<div class="paragraph">
+<p>Nim doesn&#8217;t have a union type as far as I can tell. It has a
+<a href="http://nim-lang.org/manual.html#union-pragma"><em>pragma</em></a> for
+telling the compiler that a Nim structure should be translated to a C <em>union</em>,
+but that&#8217;s not what I"m looking for.</p>
+</div>
+<div class="paragraph">
+<p>Digging into the <a href="https://github.com/nimrod-code/sdl2/">SDL2 wrapper</a> a little,
+I think this is the piece of code I need to understand:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>template EvConv(name, name2, ptype: expr; valid: set[TEventType]): stmt {.immediate.}=
+  proc `name`* (event: var TEvent): ptype =
+    assert event.kind in valid
+    return cast[ptype](addr event)
+  proc `name2`* (event: var TEvent): ptype =
+    assert event.kind in valid
+    return cast[ptype](addr event)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which is used like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>EvConv(EvWindow, window, PWindowEvent, {WindowEvent})</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is a <code>template</code> in Nim&#8217;s parlance?
+<a href="http://nim-lang.org/manual.html#templates">As it turns out</a>, it&#8217;s a way of creating
+a simple substitution macro at compile time, and is called like a normal procedure.</p>
+</div>
+<div class="paragraph">
+<p>Therefore the <code>EvConv</code> template being defined above is creating 2 procedures that
+are identical, except for the name. If you direct your gaze to the usage example,
+the first two parameters are <code>EvWindow</code> and <code>window</code>&#8201;&#8212;&#8201;which means that the
+example will result in two procedures called <code>EvWindow</code> and <code>window</code>, which do
+precisly the same thing, which is to make certain the <em>kind</em> of event is a valid
+<em>kind</em>, and then to <em>cast</em> (reinterpret the type without altering the bit structure)
+the <em>event</em> data into the Nim <em>type</em> pointed to by the <em>ptype</em> pointer.</p>
+</div>
+<div class="paragraph">
+<p>The result of this is that in my program I can check for a keydown event thusly:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    if evt.kind == KeyDown:
+      if evt.key.keysym.sym == K_ESCAPE:
+        runGame = false
+        break</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a few things that initially tripped me up with even that, so allow me
+to explain a few more things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <code>TEvent</code> type (in the SDL2 wrapper) is an
+<a href="http://nim-lang.org/manual.html#reference-and-pointer-types"><em>unsafe/untraced</em></a>
+pointer&#8201;&#8212;&#8201;but it get&#8217;s dereferenced implicitely by the &#8220;.&#8221;</p>
+</li>
+<li>
+<p>the <code>EvConv</code> <em>template</em> produces the <code>EvKeyboard</code> and <code>key</code> procedures that
+each can be used in the <a href="http://nim-lang.org/manual.html#method-call-syntax">method call syntax</a>
+style on TEvent values</p>
+</li>
+<li>
+<p>The actual key value is retrieved from the <code>TEvent</code> property <code>keysym</code>, which
+in turn is a <code>TKeySym</code> type. The <code>TKeySym</code> type has properties that get values
+for a <em>scancode</em>, a <em>keycode</em>, or the <em>unicode value</em>. The difference between
+the <em>scancode</em> and <em>keycode</em> is that the <em>scancode</em> tries to represent the
+location on the actual keyboard, whereas the <em>keycode</em> is just the value
+returned by the device, regardless of whether or not it&#8217;s in the expected
+physical position. I chose <em>keycode</em> (the <code>.sym</code> call) because the
+<em>scancode</em> seems like it&#8217;s rife with potential hardware compatibility issues,
+and, eventually, I should allow for custom remapping of keys anyway.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Whew!</p>
+</div>
+<div class="paragraph">
+<p>That still wasn&#8217;t much code, but I did learn a lot about the SDL2 wrapper, Nim,
+and even a little about SDL2 itself!</p>
+</div>]]></description>
+            <pubDate>Thu Nov 06 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt5</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt4]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt4</link>
             <description><![CDATA[<div class="paragraph">
@@ -645,58 +749,6 @@ prior to 1960, when acrylic based paints gained popularity).</p>
 ]]></description>
             <pubDate>Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-james-gurney</guid>
-        </item>
-        <item>
-            <title><![CDATA[Markup Languages]]></title>
-            <link>http://joelkleier.com/blog/2014-10-markup-langs</link>
-            <description><![CDATA[<p>I read an article titled <a href="https://medium.com/@chacon/living-the-future-of-technical-writing-2f368bd0a272" title="Living the Future of Technical Writing">&quot;Living the Future of Technical Writing&quot; by Scott Chacon</a>, the author
-of <a href="http://git-scm.com/book/en/v2" title="Pro Git 2nd Edition">Pro Git</a>, and it got me thinking a little about the techical writing process,
-and the formats I use to markup text.</p>
-<p>I have no personal experience with asciidoc -- most of the plain-text based markup
-I write is in markdown or reStructuredText. I like markdown, but sometimes it&#39;s
-too simple and has ambiguously defined behaviors (like pre/code text in a list item).
-I like reStructuredText, but some aspects of it&#39;s syntax leave a bad taste (the weird
-syntax for links and no spaces before number/bullet for lists to name a couple).</p>
-<p>And so, reading this article made me want to find out if asciidoc improves on
-the issues I have with markdown and reStructuredText, and what kind of tooling
-I can use to manipulate it.</p>
-<p>Some neat features specific to asciidoc:</p>
-<ul>
-<li>Admonitions (document call-outs for notes, tips, etc)</li>
-<li>Simple usage of italic, bold, and inline monospace -- all embeddible within each other</li>
-<li>Custom inline styling (IE &quot;[small]#small print#&quot;)</li>
-<li>You can specify &quot;curved&quot; apostrophes and quotation marks</li>
-<li>Document Headers (which can include author, revision, and attributes)</li>
-<li>You can specify explicit id&#39;s for section links</li>
-<li>You can specify parts of other ascii documents to include inline</li>
-<li>You can include content from URI&#39;s</li>
-<li>You can specify manual page breaks</li>
-<li>You can specify checklists</li>
-<li>Ability to explicitly notate content as an extension of the previous list item</li>
-<li>Ability to link inline anchors</li>
-<li>Internal cross-references</li>
-<li>Callouts for code blocks</li>
-<li>Code blocks sourced from files</li>
-<li>Custom substitutions</li>
-<li>Commenting</li>
-</ul>
-<p>Some things I can see already annoying me:</p>
-<ul>
-<li>For lists of greater than one level, you need to use <em>n</em> number of list markers
-where <em>n</em> is the level of indentation. Small thing, but it annoys me greatly
-that reStructuredText requires the list marker to not have space in front of it too.
-BUT at least asciidoc explicitly specifies that leading white space to lists is
-not relevant</li>
-<li>The syntax for extending list content might make things a little hard to read</li>
-<li>Subjectively, I feel like the link syntax isn&#39;t as nice as markdowns -- it&#39;s
-about on par with how I feel about reStructuredText&#39;s link syntax.</li>
-</ul>
-<p>I might give this format a serious shot -- there is <a href="https://github.com/asciidoctor/asciidoctor.js" title="asciidoctor.js">asciidoctor.js</a>, so I might
-be able to integrate it into my <a href="https://github.com/asciidoctor/asciidoctor.js" title="Metalsmith">Metalsmith</a> build! I&#39;m certainly going to
-test it out, but who knows if it&#39;ll go anywhere...</p>
-]]></description>
-            <pubDate>Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-markup-langs</guid>
         </item>
     </channel>
 </rss>

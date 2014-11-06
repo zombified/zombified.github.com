@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Nim! pt5 <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt4">last post</a> I showed how to
+get a circle bouncing back and forth on the screen. Next, I&#8217;d need to figure
+out how Nim handles
+<a href="https://wiki.libsdl.org/SDL_Event?highlight=%28%5CbCategoryStruct%5Cb%29%7C%28SDLStructTemplate%29">SDL_Event</a>,
+which normally uses a union structure along with a <em>type</em> field to determine
+how the data for an event gets used.</p>
+</div>
+<div class="paragraph">
+<p>Nim doesn&#8217;t have a union type as far as I can tell. It has a
+<a href="http://nim-lang.org/manual.html#union-pragma"><em>pragma</em></a> for
+telling the compiler that a Nim structure should be translated to a C <em>union</em>,
+but that&#8217;s not what I"m looking for.</p>
+</div>
+<div class="paragraph">
+<p>Digging into the <a href="https://github.com/nimrod-code/sdl2/">SDL2 wrapper</a> a little,
+I think this is the piece of code I need to understand:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>template EvConv(name, name2, ptype: expr; valid: set[TEventType]): stmt {.immediate.}=
+  proc `name`* (event: var TEvent): ptype =
+    assert event.kind in valid
+    return cast[ptype](addr event)
+  proc `name2`* (event: var TEvent): ptype =
+    assert event.kind in valid
+    return cast[ptype](addr event)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which is used like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>EvConv(EvWindow, window, PWindowEvent, {WindowEvent})</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is a <code>template</code> in Nim&#8217;s parlance?
+<a href="http://nim-lang.org/manual.html#templates">As it turns out</a>, it&#8217;s a way of creating
+a simple substitution macro at compile time, and is called like a normal procedure.</p>
+</div>
+<div class="paragraph">
+<p>Therefore the <code>EvConv</code> template being defined above is creating 2 procedures that
+are identical, except for the name. If you direct your gaze to the usage example,
+the first two parameters are <code>EvWindow</code> and <code>window</code>&#8201;&#8212;&#8201;which means that the
+example will result in two procedures called <code>EvWindow</code> and <code>window</code>, which do
+precisly the same thing, which is to make certain the <em>kind</em> of event is a valid
+<em>kind</em>, and then to <em>cast</em> (reinterpret the type without altering the bit structure)
+the <em>event</em> data into the Nim <em>type</em> pointed to by the <em>ptype</em> pointer.</p>
+</div>
+<div class="paragraph">
+<p>The result of this is that in my program I can check for a keydown event thusly:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    if evt.kind == KeyDown:
+      if evt.key.keysym.sym == K_ESCAPE:
+        runGame = false
+        break</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a few things that initially tripped me up with even that, so allow me
+to explain a few more things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <code>TEvent</code> type (in the SDL2 wrapper) is an
+<a href="http://nim-lang.org/manual.html#reference-and-pointer-types"><em>unsafe/untraced</em></a>
+pointer&#8201;&#8212;&#8201;but it get&#8217;s dereferenced implicitely by the &#8220;.&#8221;</p>
+</li>
+<li>
+<p>the <code>EvConv</code> <em>template</em> produces the <code>EvKeyboard</code> and <code>key</code> procedures that
+each can be used in the <a href="http://nim-lang.org/manual.html#method-call-syntax">method call syntax</a>
+style on TEvent values</p>
+</li>
+<li>
+<p>The actual key value is retrieved from the <code>TEvent</code> property <code>keysym</code>, which
+in turn is a <code>TKeySym</code> type. The <code>TKeySym</code> type has properties that get values
+for a <em>scancode</em>, a <em>keycode</em>, or the <em>unicode value</em>. The difference between
+the <em>scancode</em> and <em>keycode</em> is that the <em>scancode</em> tries to represent the
+location on the actual keyboard, whereas the <em>keycode</em> is just the value
+returned by the device, regardless of whether or not it&#8217;s in the expected
+physical position. I chose <em>keycode</em> (the <code>.sym</code> call) because the
+<em>scancode</em> seems like it&#8217;s rife with potential hardware compatibility issues,
+and, eventually, I should allow for custom remapping of keys anyway.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Whew!</p>
+</div>
+<div class="paragraph">
+<p>That still wasn&#8217;t much code, but I did learn a lot about the SDL2 wrapper, Nim,
+and even a little about SDL2 itself!</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Thu Nov 06 2014 00:00:00 GMT-0600 (CST)">2014-11-06</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
