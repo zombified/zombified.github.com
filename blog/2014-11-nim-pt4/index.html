@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>Nim! pt4 <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -59,57 +59,88 @@
                 <a class='navlink' href='/'>Interesting Things</a>
             </div>
         </nav>
-    <article id='page-content'>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt4'>Nim! pt4</a></h1></header>
-            <time class='date' datetime='Wed Nov 05 2014 00:00:00 GMT-0600 (CST)'>2014-11-05</time>
-            <p>I got a ball rolling!</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt3'>Nim! pt3</a></h1></header>
-            <time class='date' datetime='Tue Nov 04 2014 00:00:00 GMT-0600 (CST)'>2014-11-04</time>
-            <p>Nim is holding my limited spare-time attention for the moment, so here&#x27;s some things I learned about it.</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt2'>Nim! pt2</a></h1></header>
-            <time class='date' datetime='Mon Nov 03 2014 00:00:00 GMT-0600 (CST)'>2014-11-03</time>
-            <p>Still exploring Nim</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-language'>Nim!</a></h1></header>
-            <time class='date' datetime='Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)'>2014-11-02</time>
-            <p>While reading discussion on Jonathan Blow&#x27;s lectures from my last post, I stumbled across Nim.</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-a-new-language'>A New Lanugage</a></h1></header>
-            <time class='date' datetime='Sat Nov 01 2014 00:00:00 GMT-0500 (CDT)'>2014-11-01</time>
-            <p>Jonathan Blow has been talking about developing a new language for a couple months now</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-mobile-os'>FirefoxOS and Ubuntu Phone</a></h1></header>
-            <time class='date' datetime='Fri Oct 31 2014 00:00:00 GMT-0500 (CDT)'>2014-10-31</time>
-            <p>I have high hopes for Firefox OS and Ubuntu Touch</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-asciidoc-plus-metalsmith'>Asciidoc + Metalsmith</a></h1></header>
-            <time class='date' datetime='Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)'>2014-10-30</time>
-            <p>I decided to give integrating metalsmith and asciidoc a go</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-david-revoy'>David Revoy</a></h1></header>
-            <time class='date' datetime='Wed Oct 29 2014 00:00:00 GMT-0500 (CDT)'>2014-10-29</time>
-            <p>Another of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-james-gurney'>James Gurney</a></h1></header>
-            <time class='date' datetime='Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)'>2014-10-28</time>
-            <p>Just wanted to talk about one of my favorite artists</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-10-markup-langs'>Markup Languages</a></h1></header>
-            <time class='date' datetime='Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)'>2014-10-27</time>
-            <p>I read an article (&quot;Living the Future of Technical Writing&quot; by Scott Chacon) and I have some thoughts</p>
-        </article>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt3">last post</a> I went through my
+process of discovering how Nim works, at least a little bit. This time around
+I want to talk about what I did to get a circle bouncing back and forth on the
+screen! Not much of an acheivment, all things considered, but I spent most of
+my time just reading a little about
+<a href="http://cms.ferzkopp.net/index.php/software/13-sdl-gfx">SDL2_gfx</a>.</p>
+</div>
+<div class="paragraph">
+<p>First, I defined a type <code>TBall</code> to describe the position, size, and velocity
+of my little circle:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TBall = object
+    x: float
+    y: float
+    rad: float
+    vx: float
+    vy: float</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, I instantiated what will become the bouncing circle:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var
+  ball = TBall(
+    x: 320,
+    y: 240,
+    rad: 10,
+    vx: 100,
+    vy: 0)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I do some checks to make sure the ball position is in bounds, and moving in
+the correct direction:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  ball.x += ball.vx * dt
+
+  if ball.x &lt; ball.rad:
+    ball.x = ball.rad
+    ball.vx *= -1
+  elif ball.x &gt; 640-ball.rad:
+    ball.x = 640-ball.rad
+    ball.vx *= -1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, I render the ball with a handy method in the <code>SDL2_gfx</code> library:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> renderer.filledCircleRGBA(int16(ball.x), int16(ball.y), int16(ball.rad), 0,255,0,255)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only tricky thing here is the type conversion&#8201;&#8212;&#8201;in nim there&#8217;s a distinct
+difference between type <em>conversion</em> and type <em>casting</em>.</p>
+</div>
+<div class="paragraph">
+<p>Type <em>conversion</em> is used in a manner like <code>int16(123.3)</code>, and the program will
+do it&#8217;s best to translate the value into the specified type.</p>
+</div>
+<div class="paragraph">
+<p>Type <em>casting</em> is used in a manner like <code>cast[int16](123.3)</code>, and the program will
+keep the same bit patter, but change the values type. Which will lead, inevitably
+to different values than <em>conversion</em>.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Wed Nov 05 2014 00:00:00 GMT-0600 (CST)">2014-11-05</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>

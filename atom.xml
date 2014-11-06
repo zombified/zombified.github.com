@@ -4,8 +4,92 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Tue Nov 04 2014 23:18:38 GMT-0600 (CST)</updated>
+    <updated>Wed Nov 05 2014 22:32:54 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Nim! pt4]]></title>
+        <link>http://joelkleier.com/blog/2014-11-nim-pt4</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt3">last post</a> I went through my
+process of discovering how Nim works, at least a little bit. This time around
+I want to talk about what I did to get a circle bouncing back and forth on the
+screen! Not much of an acheivment, all things considered, but I spent most of
+my time just reading a little about
+<a href="http://cms.ferzkopp.net/index.php/software/13-sdl-gfx">SDL2_gfx</a>.</p>
+</div>
+<div class="paragraph">
+<p>First, I defined a type <code>TBall</code> to describe the position, size, and velocity
+of my little circle:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TBall = object
+    x: float
+    y: float
+    rad: float
+    vx: float
+    vy: float</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, I instantiated what will become the bouncing circle:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var
+  ball = TBall(
+    x: 320,
+    y: 240,
+    rad: 10,
+    vx: 100,
+    vy: 0)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I do some checks to make sure the ball position is in bounds, and moving in
+the correct direction:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  ball.x += ball.vx * dt
+
+  if ball.x &lt; ball.rad:
+    ball.x = ball.rad
+    ball.vx *= -1
+  elif ball.x &gt; 640-ball.rad:
+    ball.x = 640-ball.rad
+    ball.vx *= -1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, I render the ball with a handy method in the <code>SDL2_gfx</code> library:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> renderer.filledCircleRGBA(int16(ball.x), int16(ball.y), int16(ball.rad), 0,255,0,255)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only tricky thing here is the type conversion&#8201;&#8212;&#8201;in nim there&#8217;s a distinct
+difference between type <em>conversion</em> and type <em>casting</em>.</p>
+</div>
+<div class="paragraph">
+<p>Type <em>conversion</em> is used in a manner like <code>int16(123.3)</code>, and the program will
+do it&#8217;s best to translate the value into the specified type.</p>
+</div>
+<div class="paragraph">
+<p>Type <em>casting</em> is used in a manner like <code>cast[int16](123.3)</code>, and the program will
+keep the same bit patter, but change the values type. Which will lead, inevitably
+to different values than <em>conversion</em>.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>]]></summary>
+        <updated>Wed Nov 05 2014 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2014-11-nim-pt4</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[Nim! pt3]]></title>
         <link>http://joelkleier.com/blog/2014-11-nim-pt3</link>
@@ -622,38 +706,6 @@ test it out, but who knows if it&#39;ll go anywhere...</p>
 ]]></summary>
         <updated>Mon Oct 27 2014 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2014-10-markup-langs</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[My Private Git Setup]]></title>
-        <link>http://joelkleier.com/blog/2014-10-my-personal-git</link>
-        <summary><![CDATA[<p>Occasionally I work on a project that I want in version control, duplicated in a
-central location, but don&#39;t want to throw it into the public eye. I don&#39;t need
-much to accomplish this -- a Raspberry Pi sitting headless on my home network
-works perfectly.</p>
-<p>Basically, I use <a href="http://git-scm.com/" title="git --fast-version-control">git</a>+ssh to do operations on my repos remotely, and
-<a href="https://github.com/jonashaag/klaus" title="Klaus">klaus</a> + <a href="http://gunicorn.org/" title="gunicorn">gunicorn</a> to browse and dig through my repos when I want to.</p>
-<p>It&#39;s a pretty smooth setup!</p>
-<p>The most complicated parts of this setup are:</p>
-<ol>
-<li>I use a <code>virtualenv</code> to wrap gunicorn, klaus, and dependencies in their own python environment</li>
-<li>I use this gunicorn command (which uses <code>klaus.contrib.wsgi_autoreload</code>
-pointed at a single directory containing only git repo subdirectories):</li>
-</ol>
-<!-- -->
-
-<pre><code>    exec /path/to/gunicorn -w 1 -b 0.0.0.0:80 \
-        --env KLAUS_SITE_NAME=&quot;You Have The GITS&quot; \
-        --env KLAUS_REPOS=&quot;/path/to/git/repo/parent/dir&quot; \
-        --log-level error --log-file /var/log/klaus.log \
-        klaus.contrib.wsgi_autoreload
-</code></pre><p>Combined with some basic ssh configuration (setting up a Host &#39;shortcut&#39; in
-my <code>~/.ssh/config</code> file and authorizing my public key for a user on my
-raspberry pi), this method is very low-friction to work with and I get a
-nice UI to browse my source with, if I want!</p>
-]]></summary>
-        <updated>Sun Oct 26 2014 00:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2014-10-my-personal-git</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
