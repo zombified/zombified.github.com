@@ -4,8 +4,81 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Nov 07 2014 21:57:48 GMT-0600 (CST)</updated>
+    <updated>Sat Nov 08 2014 17:41:30 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Interstellar]]></title>
+        <link>http://joelkleier.com/blog/2014-11-interstellar</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>I would recommend anyone who has the chance, see
+<a href="https://interstellar.withgoogle.com/">Insterstellar</a>. It&#8217;s almost 3 hours, but
+its 3 hours of awesome. I&#8217;ll try not to be spoilery here, so you
+should be safe to keep reading.</p>
+</div>
+<div class="paragraph">
+<p>Ultimately, it&#8217;s a story about love, and not a story without it&#8217;s faults. What
+it does well, in my opinion, is tell a tail of the future that is at least
+<em>plausible</em>. One where humanity faces a crisis of extinction and must fight
+to over come it. No robots take over the earth, there&#8217;s no specific apocolypic
+event, and there&#8217;s no direct political motivations influencing the course of
+the movie.</p>
+</div>
+<div class="paragraph">
+<p>On the topic of extinction, one of my favorite thought experiments is
+<a href="http://waitbutwhy.com/2014/05/fermi-paradox.html?doing_wp_cron=1415474450.1038939952850341796875">The Firmi Paradox</a>.
+I suggest reading the article, as it does a much better job of explaining, but
+I&#8217;ll attempt to paraphrase:</p>
+</div>
+<div class="paragraph">
+<p>The whole paradox is based on the question 'Where is everybody?' when we look
+to the stars and can detect no other signs of life.</p>
+</div>
+<div class="paragraph">
+<p>This question leads to something else called the <em>The Great Filter</em>&#8201;&#8212;&#8201;a theory
+that says that there are common eveolutionary steps for every species, but
+there is one step that almost <em>no</em> spieces cross, perhaps because it&#8217;s very unlikely,
+or perhaps because it&#8217;s impossible. This step allows a species to evolve to the
+point where it can leverage the power found with in an entire galaxy.</p>
+</div>
+<div class="paragraph">
+<p>Now, if this filter is <em>behind</em> us, then we, humans, are a rarity in the universe,
+perhaps even unique if this 'filter' is so hard that in the multible <em>billions</em>
+of years of the universes existence, no other species has been able to overcome it.</p>
+</div>
+<div class="paragraph">
+<p>Another possibility is that this filter doesn&#8217;t really exist (yet) because the
+universe is to young to have developed it. Maybe life is
+simply not old enough to have been able to support a species that can span
+galaxies. Perhaps we are on the leading edge, along with other species that have
+also not left their planets yet.</p>
+</div>
+<div class="paragraph">
+<p>Or maybe, and this is the <em>really</em> depressing thought, the great filter is <em>ahead</em>
+of us, and we are on a collision course for an extinciton event that is very likely
+to destroy us.</p>
+</div>
+<div class="paragraph">
+<p>And so, with this line of thinking, no news is good news. If we find simple life
+on Mars, or another celestial body, it eliminates a bunch of possible events that
+have already occured as being "The Great Filter", making it more likely that it
+is ahead of us. If we find fossils of <em>complex</em> life, it would mean that it is
+likely the filter is <em>ahead</em> of us, and that, in all likely hood, we would be
+doomed.</p>
+</div>
+<div class="paragraph">
+<p>Anyway, there&#8217;s a lot more the the article I linked, but those are my favorite
+bits of it. How does this relate to Interstellar? Well, you need to watch it to
+find out :D</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ll say this: the Great Filter is where my thoughts drifted after the film, not
+during it. The movie is about humans and their chance to not be extinct, not about
+aliens and galactic civilizations!</p>
+</div>]]></summary>
+        <updated>Sat Nov 08 2014 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2014-11-interstellar</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[Survivorship Bias]]></title>
         <link>http://joelkleier.com/blog/2014-11-survivorship-bias</link>
@@ -766,21 +839,6 @@ I don&#8217;t have to change anything else right now!</p>
 </div>]]></summary>
         <updated>Thu Oct 30 2014 00:00:00 GMT-0500 (CDT)</updated>
         <id>http://joelkleier.com/blog/2014-10-asciidoc-plus-metalsmith</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[David Revoy]]></title>
-        <link>http://joelkleier.com/blog/2014-10-david-revoy</link>
-        <summary><![CDATA[<p><a href="http://www.davidrevoy.com/" title="David Revoy: illustrator, concept-artist">David Revoy</a> works mostly as a digital artist doing illustrations. I find his
-work inspiring -- both as an artist, and as an open source enthusiast.</p>
-<p>He&#39;s worked on three of the open movies produced by the Blender Foundation in
-their <a href="http://www.blender.org/features/projects/" title="Blender: Open Projects">&quot;Open Projects&quot;</a> -- an attempt to make short feature films with 100%
-open source software.</p>
-<p>He also spends a lot of time helping out the <a href="https://krita.org/" title="KRITA">Krita</a> and <a href="http://mypaint.intilinux.com/" title="MyPaint">mypaint</a> open
-source illustration/painting/drawing tools.</p>
-]]></summary>
-        <updated>Wed Oct 29 2014 00:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2014-10-david-revoy</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
