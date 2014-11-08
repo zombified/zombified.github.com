@@ -7,6 +7,47 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Survivorship Bias]]></title>
+            <link>http://joelkleier.com/blog/2014-11-survivorship-bias</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Here&#8217;s a <a href="http://en.wikipedia.org/wiki/Survivorship_bias">Wikipedia article</a> on
+a phenominon called <em>survivorship bias</em>. Basically, when concentration is given
+only to people or things that have "survived" a process, there can be a bias
+towards overly optimistic beliefs about the survivors.</p>
+</div>
+<div class="paragraph">
+<p>Reading <a href="https://news.ycombinator.com/">Hacker News</a> or <a href="http://www.reddit.com/">Reddit</a>
+with any regularity, it&#8217;s easy to learn about all sorts of amazing things that
+other people do. While this <em>can</em> be encouragement to work hard to do amazing
+things in one&#8217;s own life, it <em>can</em> also lead into the opposite direction,
+and foster feelings of worthlessness and under-achievement. Seeing so many
+people do so many things that look like they are so much better than anything
+you&#8217;ve done can trick you into believing you can&#8217;t do anything great.</p>
+</div>
+<div class="paragraph">
+<p><strong>Wrong</strong>!</p>
+</div>
+<div class="paragraph">
+<p>When you <em>read</em> about other people doing amazing things, you are <em>not</em> reading
+about the other not-so-amazing things they&#8217;ve done to create that one amazing
+thing. Very rare is the person that can start doing amazing things without
+prior experience, and keep doing amazing things consistently. 'Very rare' may be
+to common&#8230;&#8203; perhaps a more appropriate description would be 'never'.</p>
+</div>
+<div class="paragraph">
+<p>People make mistakes, people fail, and if all you do is read the likes of
+Hacker News and Reddit, you&#8217;ll never see all the hard work that goes into
+success.</p>
+</div>
+<div class="paragraph">
+<p>Part of the equation <em>is</em> reading and learning from other people, but the other
+part, the one you <em>cannot</em> ignore, is that amazing things come from <em>doing</em> things
+and failing a lot first.</p>
+</div>]]></description>
+            <pubDate>Fri Nov 07 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-survivorship-bias</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt5]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt5</link>
             <description><![CDATA[<div class="paragraph">
@@ -731,24 +772,6 @@ source illustration/painting/drawing tools.</p>
 ]]></description>
             <pubDate>Wed Oct 29 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-david-revoy</guid>
-        </item>
-        <item>
-            <title><![CDATA[James Gurney]]></title>
-            <link>http://joelkleier.com/blog/2014-10-james-gurney</link>
-            <description><![CDATA[<p>I learned of <a href="http://gurneyjourney.blogspot.com/" title="Gurney Journey">James Gurney</a> after stumbling across his <a href="http://gurneyjourney.blogspot.com/" title="Gurney Journey">blog</a> around six
-years ago. He makes a very strong effort to show his work in it&#39;s various stages,
-from very rough to simply beautiful. He doesn&#39;t try to hide his process -- he
-tries to be open and forthcoming, two qualities that attract me to the ideas
-encompased by &quot;open source.&quot;</p>
-<p>His work focuses on two areas -- &quot;Imaginative Realism&quot; (realistically painting
-things that don&#39;t have any full references, like dinosaurs) and &quot;Plein Air&quot; 
-(essentially going somewhere and painting what you see).</p>
-<p>His preferred medium seems to be watercolor, <a href="http://en.wikipedia.org/wiki/Gouache" title="Gouache">gouache</a> (kind of an opaque
-watercolor, but not really), and, lately, <a href="http://en.wikipedia.org/wiki/Casein" title="Casein">casein</a> (milk based paint popular
-prior to 1960, when acrylic based paints gained popularity).</p>
-]]></description>
-            <pubDate>Tue Oct 28 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-james-gurney</guid>
         </item>
     </channel>
 </rss>
