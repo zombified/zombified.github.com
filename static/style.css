@@ -111,7 +111,7 @@ h1#page-header.index {
 
 #page-content.post {
     max-width:480px;
-    text-align:justify;
+    xtext-align:justify;
 }
 #page-content li a {
     border:0 none;
