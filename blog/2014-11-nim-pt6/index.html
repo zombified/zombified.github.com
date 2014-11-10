@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Nim! pt6 - I learned a bit about modules <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt5">last post</a> on Nim, I was learning
+a lot about the <a href="https://github.com/nim-lang/sdl2">SDL2 wrapper</a>. In my post
+<a href="http://joelkleier.com/blog/2014-11-nim-pt3">Nim! pt3</a> I had expressed that I still
+didn&#8217;t quite understand how <code>TFPSmanager</code> was able to get imported into the
+example&#8217;s scope with just the statement <code>import sdl2/gfx</code>. I&#8217;ve figured that bit
+out (because, you know, I <em>read</em> a little more&#8230;&#8203;) and I&#8217;d like to talk about
+Nim&#8217;s modules briefly.</p>
+</div>
+<div class="paragraph">
+<p>Modules in Nim are defined much like modules in Python (at least on the surface)&#8201;&#8212;&#8201;the folder and filename provide the module segments used with the <code>import</code>
+statement. That&#8217;s pretty much where the comparison to Python ends.</p>
+</div>
+<div class="paragraph">
+<p>The <code>import</code> statement itself can use what I refer to as a dot-notation
+(<code>import path.to.module</code>), or a slash-notation (<code>import path/to/module</code>). The
+<code>path/to/module</code> part is the file path, including the filename, of a`.nim` file
+(without the <code>.nim</code> portion). What is very different to Python is that, in the statement
+<code>import path/to/module</code>, <code>path/to/</code> is <em>not</em> part of the namespace! The "namespace"
+is still just <code>module</code>. Therefore, as far as I can tell, the only way to resolve
+conflicts between module names is to use an alias.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import lib.ent.entity_manager
+import lib.flush.entity_manager
+entity_manager.init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Would be in conflict, but:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import lib.ent.entity_manager
+import lib.flush.entity_manager as flush_emgr
+entity_manager.init
+flush_emgr.init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Would disambiguate the module names and resolve any conflicts.</p>
+</div>
+<div class="paragraph">
+<p>Which leads me to my unanswered question in <a href="http://joelkleier.com/blog/2014-11-nim-pt3">Nim! pt3</a>!
+Nim&#8217;s modules, by default, sort of import everything from a module specified in
+an <code>import</code> statement. Only when there is ambiguity does a module prefix need to
+be specified for a call to a member of the module.</p>
+</div>
+<div class="paragraph">
+<p>If two or more modules with different names import the same member, then you can
+resolve the situation in a couple different ways. First, you can indeed prefix the module
+name onto the member call, and the other way would be to alias the member in a <code>from</code> import
+statement (IE <code>from lib.ent.entity_manager import init as emgr_init</code>).</p>
+</div>
+<div class="paragraph">
+<p>There are a couple of other neat things that Nim does with it&#8217;s module system:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>There is an <code>export</code> statement to do "symbol forwarding" so clients of a
+particular module don&#8217;t have to include that modules dependancies. IE if
+<code>entity_manager</code> requires <code>entity</code>, and a client of the <code>entity_manager</code>
+module would need to make use of definitions in <code>entity</code> in order to use
+members of <code>entity_manager</code>, the <code>entity_manager</code> module could have a
+statement like <code>export entity.TEntity</code> to let any client that imports
+<code>entity_manager</code> have access to <code>TEntity</code> from it&#8217;s own namespace (IE
+<code>entity_manager.TEntity</code>)</p>
+</li>
+<li>
+<p><code>import</code> statements can be followed by an <code>except</code> statement, which lets
+clients do the inverse of what the <code>from x import y</code> syntax let&#8217;s you do!</p>
+</li>
+<li>
+<p>In order to be used outside a module, a member must be defined as being
+exported</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Haven&#8217;t really written much useful code besides some tests for this, but I think
+next time I talk about Nim, I might start an actual project that I can discuss.
+I feel like I have a pretty good (very) basic understanding of the syntax, and
+I need to have some sort of project to movtivate further learning of Nim and
+it&#8217;s capabilities and usefulness to me.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Sun Nov 09 2014 00:00:00 GMT-0600 (CST)">2014-11-09</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
