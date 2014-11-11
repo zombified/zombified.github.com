@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Nim! pt7 - Testing <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt6">last post</a> on Nim, I discussed
+modules a bit. This time around, I want to figure out the answer to "How do
+I test in Nim?"</p>
+</div>
+<div class="paragraph">
+<p>First, very little comes up in basic searches. Mostly you get reference to using
+the <code>when</code> statement (compile-time if) along with <code>assert</code> and company, but that
+is fairly primitive.</p>
+</div>
+<div class="paragraph">
+<p>Doing some more digging, I found that a <a href="http://build.nimrod-lang.org/docs/unittest.html">unittest</a>
+library does actually exist in the standard libs, but it is not
+linked to from anywhere becase it
+<a href="https://www.bountysource.com/issues/3189991-unit-test-library-documentation-too-hard-to-find">requires better documentation</a>.
+If you do a <a href="https://github.com/Araq/Nimrod/search?utf8=%E2%9C%93&amp;q=unittest">search</a>
+on the Nimrod repository, though, you can find that there are some examples of
+the libraries use! However, there&#8217;s probably a reason for it not being listed
+in the documentation <em>besides</em> a <em>lack</em> of documentation for itself.</p>
+</div>
+<div class="paragraph">
+<p>So, another way to do tests, if you look at the Nim compiler source itself, is
+to just create a directory with individual modules that contain nothing but
+code for performing tests.</p>
+</div>
+<div class="paragraph">
+<p>I decided to use a small vector math library for motivation to explore the
+testing facilities (that are not <em>unittest</em>), and to see how I might incorporate
+testing into a larger project.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s just a small part of the library that covers only a convenient way to
+initialize a <code>TVec3</code> value (<code>src/vectors.nim</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TVec3* = array[0..2, int]
+
+proc init*(vec: var TVec3; x, y, z: int) =
+  vec[0] = x
+  vec[1] = y
+  vec[2] = z</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here&#8217;s my testing code (<code>tests/tvectors.nim</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import vectors
+
+var vec: TVec3
+vec.init 1, 2, 3
+
+assert(vec[0] == 1)
+assert(vec[1] == 2)
+assert(vec[2] == 3)
+
+echo "OK"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Simple: create a <code>TVec3</code>, initialize it, assert values are what are expected,
+then give the "OK" if all the asserts pass.</p>
+</div>
+<div class="paragraph">
+<p>The key to this approach is in the command used to build and execute the tests,
+since I use a make file, this test (and every other test) are, are in a <code>test</code>
+target that executes commands similar to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nimrod c --verbosity:0 -p:./src/ -o:../bin/tests tests/tvectors.nim &amp;&amp; ./bin/tests</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command does several things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>sets <code>--verbosity</code> to <code>0</code> so that a bunch of mostly unimportant info isn&#8217;t
+printed to stdout</p>
+</li>
+<li>
+<p>adds the <code>src</code> directory to the <code>path</code> that Nim uses to search for modules</p>
+</li>
+<li>
+<p>sets the <code>-o</code> output file to a generic exe name</p>
+</li>
+<li>
+<p>specifies the test to build (<code>tests/tvectors.nim</code> in this case)</p>
+</li>
+<li>
+<p>and after a successful build, runs the tests with <code>&amp;&amp; ./bin/tests</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With my above <code>tvectors.nim</code> tests, I get a simple <code>OK</code> printed to the console
+after each test is built and run. Otherwise I either get a compilation error message,
+or something more akin to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Traceback (most recent call last)
+tvectors.nim(6)          tvectors
+system.nim(2908)         failedAssertImpl
+system.nim(2136)         raiseAssert
+Error: unhandled exception: vec[0] == 2  [EAssertionFailed]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which is what gets displayed when an assertion fails.</p>
+</div>
+<div class="paragraph">
+<p>Next time I talk about Nim, I tentitively plan on building out this vector
+library a little more and seeing how the tests scale. But I think a more pressing
+need might be the ability to specify the <code>TVec3</code> type more generically so that
+I don&#8217;t have to re-declare types for integers, floats, etc.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Mon Nov 10 2014 00:00:00 GMT-0600 (CST)">2014-11-10</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>

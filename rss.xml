@@ -7,6 +7,137 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim! pt7 - Testing]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-pt7</link>
+            <description><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt6">last post</a> on Nim, I discussed
+modules a bit. This time around, I want to figure out the answer to "How do
+I test in Nim?"</p>
+</div>
+<div class="paragraph">
+<p>First, very little comes up in basic searches. Mostly you get reference to using
+the <code>when</code> statement (compile-time if) along with <code>assert</code> and company, but that
+is fairly primitive.</p>
+</div>
+<div class="paragraph">
+<p>Doing some more digging, I found that a <a href="http://build.nimrod-lang.org/docs/unittest.html">unittest</a>
+library does actually exist in the standard libs, but it is not
+linked to from anywhere becase it
+<a href="https://www.bountysource.com/issues/3189991-unit-test-library-documentation-too-hard-to-find">requires better documentation</a>.
+If you do a <a href="https://github.com/Araq/Nimrod/search?utf8=%E2%9C%93&amp;q=unittest">search</a>
+on the Nimrod repository, though, you can find that there are some examples of
+the libraries use! However, there&#8217;s probably a reason for it not being listed
+in the documentation <em>besides</em> a <em>lack</em> of documentation for itself.</p>
+</div>
+<div class="paragraph">
+<p>So, another way to do tests, if you look at the Nim compiler source itself, is
+to just create a directory with individual modules that contain nothing but
+code for performing tests.</p>
+</div>
+<div class="paragraph">
+<p>I decided to use a small vector math library for motivation to explore the
+testing facilities (that are not <em>unittest</em>), and to see how I might incorporate
+testing into a larger project.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s just a small part of the library that covers only a convenient way to
+initialize a <code>TVec3</code> value (<code>src/vectors.nim</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TVec3* = array[0..2, int]
+
+proc init*(vec: var TVec3; x, y, z: int) =
+  vec[0] = x
+  vec[1] = y
+  vec[2] = z</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here&#8217;s my testing code (<code>tests/tvectors.nim</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import vectors
+
+var vec: TVec3
+vec.init 1, 2, 3
+
+assert(vec[0] == 1)
+assert(vec[1] == 2)
+assert(vec[2] == 3)
+
+echo "OK"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Simple: create a <code>TVec3</code>, initialize it, assert values are what are expected,
+then give the "OK" if all the asserts pass.</p>
+</div>
+<div class="paragraph">
+<p>The key to this approach is in the command used to build and execute the tests,
+since I use a make file, this test (and every other test) are, are in a <code>test</code>
+target that executes commands similar to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nimrod c --verbosity:0 -p:./src/ -o:../bin/tests tests/tvectors.nim &amp;&amp; ./bin/tests</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command does several things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>sets <code>--verbosity</code> to <code>0</code> so that a bunch of mostly unimportant info isn&#8217;t
+printed to stdout</p>
+</li>
+<li>
+<p>adds the <code>src</code> directory to the <code>path</code> that Nim uses to search for modules</p>
+</li>
+<li>
+<p>sets the <code>-o</code> output file to a generic exe name</p>
+</li>
+<li>
+<p>specifies the test to build (<code>tests/tvectors.nim</code> in this case)</p>
+</li>
+<li>
+<p>and after a successful build, runs the tests with <code>&amp;&amp; ./bin/tests</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With my above <code>tvectors.nim</code> tests, I get a simple <code>OK</code> printed to the console
+after each test is built and run. Otherwise I either get a compilation error message,
+or something more akin to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Traceback (most recent call last)
+tvectors.nim(6)          tvectors
+system.nim(2908)         failedAssertImpl
+system.nim(2136)         raiseAssert
+Error: unhandled exception: vec[0] == 2  [EAssertionFailed]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which is what gets displayed when an assertion fails.</p>
+</div>
+<div class="paragraph">
+<p>Next time I talk about Nim, I tentitively plan on building out this vector
+library a little more and seeing how the tests scale. But I think a more pressing
+need might be the ability to specify the <code>TVec3</code> type more generically so that
+I don&#8217;t have to re-declare types for integers, floats, etc.</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>]]></description>
+            <pubDate>Mon Nov 10 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt7</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt6 - I learned a bit about modules]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt6</link>
             <description><![CDATA[<div class="paragraph">
@@ -783,73 +914,6 @@ sooner rather than later.</p>
 </div>]]></description>
             <pubDate>Sat Nov 01 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-a-new-language</guid>
-        </item>
-        <item>
-            <title><![CDATA[FirefoxOS and Ubuntu Phone]]></title>
-            <link>http://joelkleier.com/blog/2014-10-mobile-os</link>
-            <description><![CDATA[<div class="paragraph">
-<p>Mobile devices are quickly taking over the world. We communicate to each other
-in all sorts of ways that once were limited to desktop computers and audio-only
-point-to-point connections. We broadcast, share, and hold conversations&#8201;&#8212;&#8201;between
-just two people up to thousands, or millions of people. Maybe more. We are living
-in an era where <em>anyone</em> (with an internet connection) can potentially
-communicate to the <em>entire</em> human population, all at once, for, basically, free.
-From a device we carry in our pockets.</p>
-</div>
-<div class="paragraph">
-<p>And I am <em>very</em> happy with all the big players in mobile, pushing this sort of
-tech to heights that are truley amazing.</p>
-</div>
-<div class="paragraph">
-<p>To get more out of it, though, we need truly free and open alternatives so that
-these devices can push boundaries in ways the current options cannot.</p>
-</div>
-<div class="paragraph">
-<p>This is where <a href="https://www.mozilla.org/en-US/firefox/os/"><em>FirefoxOS</em></a> and
-<a href="http://www.ubuntu.com/phone"><em>Ubuntu Phone</em></a> come into play. These operating systems
-may never be "bigger" than Android or iOS in terms of market penetration, but
-what they represent, and what they allow people to do is none-the-less important.</p>
-</div>
-<div class="paragraph">
-<p>FirefoxOS is pushing into low-end markets and trying to make a phone that can
-get people onto a web-enabled platform in the same price range as their classic
-phones. It&#8217;s very open, and promotes an open culture&#8201;&#8212;&#8201;more than that, it promotes
-a <em>web</em> culture. At the same time, it&#8217;s pushing technical boundaries for browsers
-by implementing and helping to standardize API&#8217;s for accessing all sorts of native
-device features.</p>
-</div>
-<div class="paragraph">
-<p>Ubuntu Phone, on the other hand, is trying to bring a fully open source OS into
-the mobile marketplace, but doesn&#8217;t seem to be focusing on the low-end market or
-the web, like FirefoxOS.</p>
-</div>
-<div class="paragraph">
-<p>Instead, Canonical seems to view the mobile space as having the same problems as
-the desktop space&#8201;&#8212;&#8201;no good, free libre open source operating systems with completely
-open development processes. AND they see a future where mobile devices start
-converging into desktop-level computers&#8201;&#8212;&#8201;having a different UI&#8217;s depending on
-how they&#8217;re being used. IE a touch based UI for mobile use, and a desktop UI for
-when it&#8217;s docked and paired to monitors, keyboards, and mice.</p>
-</div>
-<div class="paragraph">
-<p>The idea of this convergence may not be Canonicals highest priority with the
-failure of the Edge in 2013, but idea is still there. I can&#8217;t wait until it
-becomes reality.</p>
-</div>
-<div class="paragraph">
-<p>It may not happen right away, it probably won&#8217;t replace desktops and
-laptops completely, it may not be very good when it first starts to really happen, and,
-heck, it may fail once or twice. But it will happen. The concept of carrying around
-a fully functional computer in our pockets already exists&#8201;&#8212;&#8201;the next step
-is to make that computer <em>more</em> connectable and <em>more</em> useable for creative
-tasks.</p>
-</div>
-<div class="paragraph">
-<p>The future is awesome, and I think FirefoxOS and Ubuntu will play a huge role
-in the future, whether or not they have large marketshare.</p>
-</div>]]></description>
-            <pubDate>Fri Oct 31 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-10-mobile-os</guid>
         </item>
     </channel>
 </rss>
