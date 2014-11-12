@@ -7,6 +7,31 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[_why]]></title>
+            <link>http://joelkleier.com/blog/2014-11-why</link>
+            <description><![CDATA[<div class="paragraph">
+<p><a href="http://en.wikipedia.org/wiki/Why_the_lucky_stiff">_why</a> was active and fairly
+well known, especially in the Ruby community (from what I gather). The person
+behind _why, whatever his reasons, decided to abruptly end his work as _why in
+2009.</p>
+</div>
+<div class="paragraph">
+<p>I had heard about _why in passing&#8201;&#8212;&#8201;probably in 2009 when everyone who knew
+about him and didn&#8217;t understand his motives was all a-chatter about him. But I
+hadn&#8217;t really read any of his work. This changed when I stumbled across
+<a href="http://perl11.org/potion/">Potion</a>, and read the
+<a href="http://perl11.org/potion/pamphlet.html">pamphlet</a> written, apparently,
+by _why himself.</p>
+</div>
+<div class="paragraph">
+<p>I came away from reading that a little impressed by the writing&#8201;&#8212;&#8201;conversational, humble, funny, clear, concise, and easy to read. I don&#8217;t think
+<em>Potion</em> itself is anything but an esoteric language for doing hobbiest-level
+projects at this point, but the <em>writing</em> is really good. You should check it out!</p>
+</div>]]></description>
+            <pubDate>Tue Nov 11 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-why</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt7 - Testing]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt7</link>
             <description><![CDATA[<div class="paragraph">
@@ -891,29 +916,6 @@ structure I don&#8217;t already know.</p>
 </div>]]></description>
             <pubDate>Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-language</guid>
-        </item>
-        <item>
-            <title><![CDATA[A New Lanugage]]></title>
-            <link>http://joelkleier.com/blog/2014-11-a-new-language</link>
-            <description><![CDATA[<div class="paragraph">
-<p>I since September, <a href="http://number-none.com/blow/">Jonathan Blow</a>, well known for
-<a href="http://braid-game.com/"><em>Braid</em></a> and the upcoming <a href="http://the-witness.net/"><em>The Witness</em></a>,
-has been publishing <a href="https://www.youtube.com/playlist?list=PLmV5I2fxaiCKfxMBrNsU1kgKJXD3PkyxO">video "lectures"</a>
-discussing his desire to create a language that <em>he</em> likes, specifically for games.</p>
-</div>
-<div class="paragraph">
-<p>They&#8217;re long videos, but his informal presentation is very interesting, and more
-conversational than what you&#8217;d get if it were a more precisly planned and timed
-lecture or presentation. The tone he takes is refreshing&#8201;&#8212;&#8201;and his attitude towards
-building something he wants is inspiring.</p>
-</div>
-<div class="paragraph">
-<p>I look forward to seeing what other ideas he wants to tackle with this language,
-and hope he decides to share the code, or at least binaries, for the compiler
-sooner rather than later.</p>
-</div>]]></description>
-            <pubDate>Sat Nov 01 2014 00:00:00 GMT-0500 (CDT)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-a-new-language</guid>
         </item>
     </channel>
 </rss>
