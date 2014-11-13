@@ -4,8 +4,46 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Tue Nov 11 2014 22:23:18 GMT-0600 (CST)</updated>
+    <updated>Wed Nov 12 2014 21:41:39 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Rosetta and Philae]]></title>
+        <link>http://joelkleier.com/blog/2014-11-rosetta</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>Truly an astonishing day for humanity!</p>
+</div>
+<div class="paragraph">
+<p>The ESA&#8217;s <a href="http://www.esa.int/Our_Activities/Space_Science/Rosetta/Rosetta_to_deploy_lander_on_12_November">Rosseta mission</a>
+Deployed it&#8217;s lander (Philae) to the surface of Comet 67P (aka Churyumov-Gerasimenko).
+This mission took 25 years to realise, 10 of which involved <em>Rosetta</em> circling our
+sun and using the gravitation forces of Earth and Mars to slingshot it&#8217;s way into
+the path of Comet 67P!</p>
+</div>
+<div class="paragraph">
+<p>Here is the first image captured of this historic event:</p>
+</div>
+<div id="img-farwell-rossetta" class="imageblock">
+<div class="content">
+<a class="image" href="https://www.flickr.com/photos/europeanspaceagency/15587895747/in/set-72157649192589446/"><img src="https://farm8.staticflickr.com/7473/15587895747_d1a4a70a93_n.jpg" alt="First picture from Philae of Rossetta"></a>
+</div>
+<div class="title">Figure 1. Farewell Rosetta</div>
+</div>
+<div class="paragraph">
+<p>I recommend the <a href="https://www.flickr.com/photos/europeanspaceagency/">the whole ESA Flickr stream</a>,
+it is full of beautiful images!</p>
+</div>
+<div class="paragraph">
+<p>If humanity can do this, humanity can do <em>anything</em>. I&#8217;m truly proud, inspired,
+and in awe of the dedication, talent, hard work, and <em>international cooperation</em>
+that went into this venture.</p>
+</div>
+<div class="paragraph">
+<p>This is only the very beginning, and it is a wonder to behold first hand.</p>
+</div>]]></summary>
+        <updated>Wed Nov 12 2014 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2014-11-rosetta</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[_why]]></title>
         <link>http://joelkleier.com/blog/2014-11-why</link>
@@ -818,113 +856,6 @@ in the <code>Makefile</code>:</p>
 </div>]]></summary>
         <updated>Mon Nov 03 2014 00:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-nim-pt2</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Nim!]]></title>
-        <link>http://joelkleier.com/blog/2014-11-nim-language</link>
-        <summary><![CDATA[<div class="paragraph">
-<p>So, stumbling around discussions related to the topic in my
-<a href="http://joelkleier.com/blog/2014-11-a-new-language/">last post</a>,
-I discovered a new language that I find pretty neat!</p>
-</div>
-<div class="paragraph">
-<p><a href="http://nim-lang.org/">Nim</a> (formerly "Nimrod") is a statically typed imperative
-programming language that spits out C and Javascript (though the Javascript is
-still experimental). What struck me is how close the "read" of the language is
-to Python&#8201;&#8212;&#8201;by which I mean, when I look at a Nim program, it reads very much
-like Python.</p>
-</div>
-<div class="paragraph">
-<p>BUT it is most <em>certainly</em> <strong>not</strong> Python!</p>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s some stuff about Nim, if you&#8217;re curious:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://nim-lang.org/">Nim&#8217;s Homepage</a></p>
-</li>
-<li>
-<p><a href="http://www.drdobbs.com/open-source/nimrod-a-new-systems-programming-languag/240165321">A Dr. Dobb&#8217;s article (2014)</a></p>
-</li>
-<li>
-<p><a href="http://www.infoq.com/presentations/nimrod">InfoQ presentation from the original Author of the language</a></p>
-</li>
-<li>
-<p><a href="http://learnxinyminutes.com/docs/nim/">Learn X In Y Minutes: Where X is Nim</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s a very simple sample program&#8201;&#8212;&#8201;a guess-the-random-number game:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>discard """
-This program is about playing a very simple game: guess a randomly generated number!
-"""
-
-from math import random, randomize
-from strutils import parseInt
-
-# make sure that the seed is randomized
-randomize()
-
-# keep playing the game until the user wants to quit
-var rand_val: int
-var raw_user_val: string
-var user_val: int
-while true:
-    # pick the number
-    rand_val = random(10) + 1 # +1 because it's 0 to max-1
-
-    # ask the user for the number
-    echo("Please guess a number between 1 and 10 [q to quit]")
-    raw_user_val = readLine(stdin)
-
-    # check to see if the user would like to quit
-    if raw_user_val == "q":
-        break;
-
-    # make sure the number is an integer
-    try:
-        user_val = parseInt(raw_user_val)
-    except EInvalidValue:
-        continue
-
-    # make sure the value is between 1 and 10, inclusive
-    if user_val &lt; 1 or user_val &gt; 10:
-        continue;
-
-    # check to see if it is the same
-    if user_val == rand_val:
-        echo("Yay! You Guessed It!")
-    else:
-        echo("You FAIL!")</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The very first line in this example shows off something I find very interesting.
-<code>discard</code> is required so that the compiler ignores things like unused return
-values. BUT it can also be used like a multi-line comment by simply discarding
-an unassigned multi-line string value.</p>
-</div>
-<div class="paragraph">
-<p>Why is this the way multi-line comments are done? Well, because even regular
-single-line comments in Nim are part of the syntax tree, and aren&#8217;t just discarded
-during parsing!</p>
-</div>
-<div class="paragraph">
-<p>Progressing through this (very simplistic and not representative) program,
-you&#8217;d almost think you were looking at Python, with a few weird function calls
-and some type annotations on variables. This makes it very easy for me to
-start reading and understanding&#8230;&#8203; not to mention guess at some of the syntax
-structure I don&#8217;t already know.</p>
-</div>]]></summary>
-        <updated>Sun Nov 02 2014 00:00:00 GMT-0500 (CDT)</updated>
-        <id>http://joelkleier.com/blog/2014-11-nim-language</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
