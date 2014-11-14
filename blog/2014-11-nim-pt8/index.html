@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header' class='index'></h1>
+    <h1 id='page-header'>Nim! pt8 - Generics <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -59,57 +59,68 @@
                 <a class='navlink' href='/'>Interesting Things</a>
             </div>
         </nav>
-    <article id='page-content'>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt8'>Nim! pt8 - Generics</a></h1></header>
-            <time class='date' datetime='Thu Nov 13 2014 00:00:00 GMT-0600 (CST)'>2014-11-13</time>
-            <p>A hotly debated topic, I wanted to dive in and see how they were used in Nim</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-rosetta'>Rosetta and Philae</a></h1></header>
-            <time class='date' datetime='Wed Nov 12 2014 00:00:00 GMT-0600 (CST)'>2014-11-12</time>
-            <p>What an amazing accomplishment! 25 years of planning, 10 years of waiting, and finally humanity has landed on Comet 67P (Churyumov-Gerasimenko)</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-why'>_why</a></h1></header>
-            <time class='date' datetime='Tue Nov 11 2014 00:00:00 GMT-0600 (CST)'>2014-11-11</time>
-            <p>Years to late, but just perusing some of his writing and have a couple thoughts</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt7'>Nim! pt7 - Testing</a></h1></header>
-            <time class='date' datetime='Mon Nov 10 2014 00:00:00 GMT-0600 (CST)'>2014-11-10</time>
-            <p>I found myself asking, &quot;Now, how do I test this?&quot;</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt6'>Nim! pt6 - I learned a bit about modules</a></h1></header>
-            <time class='date' datetime='Sun Nov 09 2014 00:00:00 GMT-0600 (CST)'>2014-11-09</time>
-            <p>Nope, not done learning about Nim yet!</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-interstellar'>Interstellar</a></h1></header>
-            <time class='date' datetime='Sat Nov 08 2014 00:00:00 GMT-0600 (CST)'>2014-11-08</time>
-            <p>My thoughts on the near 3-hour &#x27;epic&#x27;</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-survivorship-bias'>Survivorship Bias</a></h1></header>
-            <time class='date' datetime='Fri Nov 07 2014 00:00:00 GMT-0600 (CST)'>2014-11-07</time>
-            <p>If you frequent places like Hacker News or Reddit, you might run into this problem</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt5'>Nim! pt5</a></h1></header>
-            <time class='date' datetime='Thu Nov 06 2014 00:00:00 GMT-0600 (CST)'>2014-11-06</time>
-            <p>How to use SDL input with the Nim SDL2 wrapper</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt4'>Nim! pt4</a></h1></header>
-            <time class='date' datetime='Wed Nov 05 2014 00:00:00 GMT-0600 (CST)'>2014-11-05</time>
-            <p>I got a ball rolling!</p>
-        </article>
-        <article class='post-summary'>
-            <header><h1><a href='blog/2014-11-nim-pt3'>Nim! pt3</a></h1></header>
-            <time class='date' datetime='Tue Nov 04 2014 00:00:00 GMT-0600 (CST)'>2014-11-04</time>
-            <p>Nim is holding my limited spare-time attention for the moment, so here&#x27;s some things I learned about it.</p>
-        </article>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt7">last post</a> on Nim, I tried to
+figure out the answer to "How do I test in Nim?". The answer was, basically,
+create a separate program with a bunch of asserts for each module I want to test.
+The next thing I decided I should learn about are how Nim implements Generics!</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at a little snippet of a vector library I&#8217;m developing in Nim:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TVec2*[T] = object
+    x*: T
+    y*: T
+
+# pretty print the vector
+proc `$`*[T](a:TVec2[T]): string =
+  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code actually illustrates <em>several</em> concepts! First, lets talk about
+<em>operator overloading</em>. You overload operators by naming a procedure specially,
+IE with back-ticks around the operator symbol. There are a couple of operators
+that don&#8217;t have overloading implemented (like the assignment operator, <code>=</code>).</p>
+</div>
+<div class="paragraph">
+<p>The above example demonstrates an operator used to automatically convert a type
+into a string, very useful when dealing with an unknown generic type.</p>
+</div>
+<div class="paragraph">
+<p>The brackets and <code>T</code> value (<code>[T]</code>) after <code>TVec2*</code> tells the compiler that when
+being instantiated, a type <code>T</code> should be specified for <code>TVec2</code>. The <code><strong></code> means
+that the <code>Tvec2</code> type should be <em>exported</em> for use outside the module. The <code>T</code>
+value can be used anywhere in the subsequent expression (Ex: <code>y</strong>: T</code>).</p>
+</div>
+<div class="paragraph">
+<p>This means that the above definition of <code>TVec2</code> needs to be instantiated something
+like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var vec = TVec2[float](x: 1, y: 1)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the <code>[float]</code> after <code>TVec2</code>.</p>
+</div>
+<div class="paragraph">
+<p>This turns out to be pretty straight forward and scaleable to more than one type
+being defined generically.</p>
+</div>
+<div class="paragraph">
+<p>One thing to keep in mind is that the brackets <em>always</em> come <em>after</em> the export
+symbol (<code>*</code>), if there is one.</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Thu Nov 13 2014 00:00:00 GMT-0600 (CST)">2014-11-13</time>
+        </div>
     </article>
     <footer id='page-footer'>
         <div>

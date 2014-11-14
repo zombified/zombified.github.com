@@ -7,6 +7,69 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Nim! pt8 - Generics]]></title>
+            <link>http://joelkleier.com/blog/2014-11-nim-pt8</link>
+            <description><![CDATA[<div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt7">last post</a> on Nim, I tried to
+figure out the answer to "How do I test in Nim?". The answer was, basically,
+create a separate program with a bunch of asserts for each module I want to test.
+The next thing I decided I should learn about are how Nim implements Generics!</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at a little snippet of a vector library I&#8217;m developing in Nim:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TVec2*[T] = object
+    x*: T
+    y*: T
+
+# pretty print the vector
+proc `$`*[T](a:TVec2[T]): string =
+  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code actually illustrates <em>several</em> concepts! First, lets talk about
+<em>operator overloading</em>. You overload operators by naming a procedure specially,
+IE with back-ticks around the operator symbol. There are a couple of operators
+that don&#8217;t have overloading implemented (like the assignment operator, <code>=</code>).</p>
+</div>
+<div class="paragraph">
+<p>The above example demonstrates an operator used to automatically convert a type
+into a string, very useful when dealing with an unknown generic type.</p>
+</div>
+<div class="paragraph">
+<p>The brackets and <code>T</code> value (<code>[T]</code>) after <code>TVec2*</code> tells the compiler that when
+being instantiated, a type <code>T</code> should be specified for <code>TVec2</code>. The <code><strong></code> means
+that the <code>Tvec2</code> type should be <em>exported</em> for use outside the module. The <code>T</code>
+value can be used anywhere in the subsequent expression (Ex: <code>y</strong>: T</code>).</p>
+</div>
+<div class="paragraph">
+<p>This means that the above definition of <code>TVec2</code> needs to be instantiated something
+like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>var vec = TVec2[float](x: 1, y: 1)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the <code>[float]</code> after <code>TVec2</code>.</p>
+</div>
+<div class="paragraph">
+<p>This turns out to be pretty straight forward and scaleable to more than one type
+being defined generically.</p>
+</div>
+<div class="paragraph">
+<p>One thing to keep in mind is that the brackets <em>always</em> come <em>after</em> the export
+symbol (<code>*</code>), if there is one.</p>
+</div>]]></description>
+            <pubDate>Thu Nov 13 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt8</guid>
+        </item>
+        <item>
             <title><![CDATA[Rosetta and Philae]]></title>
             <link>http://joelkleier.com/blog/2014-11-rosetta</link>
             <description><![CDATA[<div class="paragraph">
@@ -777,76 +840,6 @@ this procedure.</p>
 </div>]]></description>
             <pubDate>Tue Nov 04 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt3</guid>
-        </item>
-        <item>
-            <title><![CDATA[Nim! pt2]]></title>
-            <link>http://joelkleier.com/blog/2014-11-nim-pt2</link>
-            <description><![CDATA[<div class="paragraph">
-<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-language">last post</a> I mentioned I stumbled on a new
-language called <em>Nim</em> (formerly <em>Nimrod</em>), and I was able to sink my teeth
-into it only slightly more.</p>
-</div>
-<div class="paragraph">
-<p>I tried install the <em>beta</em> <a href="https://github.com/nimrod-code/nimble">package manager</a>,
-but was having some problems that are to advanced for me at the moment (IE
-I really would rather spend my time on stuff to help me learn the language
-before I dig in and really try to help debug what is probably an OSX specific
-<a href="https://github.com/nimrod-code/nimble/issues/62">compiler issue</a>).</p>
-</div>
-<div class="paragraph">
-<p>Where to start? I like games, and a game that utilizes <a href="https://www.libsdl.org/">SDL2</a>
-presents a <em>lot</em> of challenges. The first challenge, then, is to get a
-program up and running that can hook into SDL2&#8201;&#8212;&#8201;Nim already has a
-<a href="https://github.com/nimrod-code/sdl2">project</a> to wrap the SDL2 library, and
-an <a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim">example</a>
-that can get a window displaying.</p>
-</div>
-<div class="paragraph">
-<p>The trickiest part was actually just making sure the build command was composed
-correctly, since I really didn&#8217;t have to create any code (yet).</p>
-</div>
-<div class="paragraph">
-<p>The complication is that I want my directory structure to look like this:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>- bin/
-  - (game executable)
-- libs/
-  - sdl2/
-- src/
-  - nimcache/
-  - main.nim
-- Makefile</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Which isn&#8217;t like what I&#8217;ve seen so far (which is very, very little).</p>
-</div>
-<div class="paragraph">
-<p>But it turns out Nim makes things super easy, this would be the <code>all:</code> target
-in the <code>Makefile</code>:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>nimrod c -p:./libs/sdl2/src/ -o:../bin/out src/main.nim</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A couple of things I learned from this:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>-o</code> argument seems to be relative to the nim source file</p>
-</li>
-<li>
-<p>The <code>-p</code> argument seems to be relative to the compiler call or maybe the current working directory</p>
-</li>
-</ul>
-</div>]]></description>
-            <pubDate>Mon Nov 03 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt2</guid>
         </item>
     </channel>
 </rss>
