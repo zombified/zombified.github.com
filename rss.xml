@@ -7,6 +7,36 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Why do people watch live streams (or their recordings) of people coding?]]></title>
+            <link>http://joelkleier.com/blog/2014-11-programming-videos</link>
+            <description><![CDATA[<div class="paragraph">
+<p>There&#8217;s a proliferation of people streaming their coding&#8201;&#8212;&#8201;I&#8217;ve seen it the most
+when I follow and participate in the <a href="http://ludumdare.com/compo/">Ludum Dare</a> or
+with the likes of <a href="http://notch.net/">notch</a>. I get that people may want to know
+the 'secret sauce' of a particular developer&#8230;&#8203; but isn&#8217;t it <em>boring</em> to watch
+someone write text? Isn&#8217;t it akin to watching someone handwrite or type a novel?</p>
+</div>
+<div class="paragraph">
+<p>To me that sounds about as much fun as watching grass grow.</p>
+</div>
+<div class="paragraph">
+<p>I mean, I see real value in a discussion between the streamer and the viewer in
+a more lecture-like session, and I see the value in recording a session for
+voice overs or footage for teaching programming later&#8230;&#8203; but why would anyone
+want to just tune into a stream like that?</p>
+</div>
+<div class="paragraph">
+<p>Maybe it&#8217;s different for someone just starting to get into programming. Or maybe
+it&#8217;s less that people are tuning into actively watch, but more of a background
+thing that they can interact with occasionally?</p>
+</div>
+<div class="paragraph">
+<p>I have no idea&#8230;&#8203;</p>
+</div>]]></description>
+            <pubDate>Sat Nov 15 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-programming-videos</guid>
+        </item>
+        <item>
             <title><![CDATA[What is this world coming too???]]></title>
             <link>http://joelkleier.com/blog/2014-11-go-go-github</link>
             <description><![CDATA[<div class="paragraph">
@@ -597,89 +627,6 @@ and even a little about SDL2 itself!</p>
 </div>]]></description>
             <pubDate>Thu Nov 06 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt5</guid>
-        </item>
-        <item>
-            <title><![CDATA[Nim! pt4]]></title>
-            <link>http://joelkleier.com/blog/2014-11-nim-pt4</link>
-            <description><![CDATA[<div class="paragraph">
-<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt3">last post</a> I went through my
-process of discovering how Nim works, at least a little bit. This time around
-I want to talk about what I did to get a circle bouncing back and forth on the
-screen! Not much of an acheivment, all things considered, but I spent most of
-my time just reading a little about
-<a href="http://cms.ferzkopp.net/index.php/software/13-sdl-gfx">SDL2_gfx</a>.</p>
-</div>
-<div class="paragraph">
-<p>First, I defined a type <code>TBall</code> to describe the position, size, and velocity
-of my little circle:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>type
-  TBall = object
-    x: float
-    y: float
-    rad: float
-    vx: float
-    vy: float</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then, I instantiated what will become the bouncing circle:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>var
-  ball = TBall(
-    x: 320,
-    y: 240,
-    rad: 10,
-    vx: 100,
-    vy: 0)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>I do some checks to make sure the ball position is in bounds, and moving in
-the correct direction:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  ball.x += ball.vx * dt
-
-  if ball.x &lt; ball.rad:
-    ball.x = ball.rad
-    ball.vx *= -1
-  elif ball.x &gt; 640-ball.rad:
-    ball.x = 640-ball.rad
-    ball.vx *= -1</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And finally, I render the ball with a handy method in the <code>SDL2_gfx</code> library:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre> renderer.filledCircleRGBA(int16(ball.x), int16(ball.y), int16(ball.rad), 0,255,0,255)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The only tricky thing here is the type conversion&#8201;&#8212;&#8201;in nim there&#8217;s a distinct
-difference between type <em>conversion</em> and type <em>casting</em>.</p>
-</div>
-<div class="paragraph">
-<p>Type <em>conversion</em> is used in a manner like <code>int16(123.3)</code>, and the program will
-do it&#8217;s best to translate the value into the specified type.</p>
-</div>
-<div class="paragraph">
-<p>Type <em>casting</em> is used in a manner like <code>cast[int16](123.3)</code>, and the program will
-keep the same bit patter, but change the values type. Which will lead, inevitably
-to different values than <em>conversion</em>.</p>
-</div>
-<div class="paragraph">
-<p>Until next time!</p>
-</div>]]></description>
-            <pubDate>Wed Nov 05 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt4</guid>
         </item>
     </channel>
 </rss>
