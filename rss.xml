@@ -8,7 +8,7 @@
 
         <item>
             <title><![CDATA[What is this world coming too???]]></title>
-            <link>http://joelkleier.com/blog/2014-11-lollipop</link>
+            <link>http://joelkleier.com/blog/2014-11-go-go-github</link>
             <description><![CDATA[<div class="paragraph">
 <p>First, Microsoft <a href="http://www.wired.com/2014/11/microsoft-open-sources-net-says-will-run-linux-mac/">opens a lot more</a>
 of their stack. Huge news, right? THEN they announce they&#8217;re putting it on
@@ -24,7 +24,7 @@ a week for .NET! I hope Microsoft keeps it up and one day starts deciding to
 accept pull requests (which, AFAIK, they are not currently going to do)!</p>
 </div>]]></description>
             <pubDate>Fri Nov 14 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-lollipop</guid>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-go-go-github</guid>
         </item>
         <item>
             <title><![CDATA[Nim! pt8 - Generics]]></title>

@@ -4,11 +4,11 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Nov 14 2014 20:02:48 GMT-0600 (CST)</updated>
+    <updated>Fri Nov 14 2014 20:05:13 GMT-0600 (CST)</updated>
 
     <entry>
         <title><![CDATA[What is this world coming too???]]></title>
-        <link>http://joelkleier.com/blog/2014-11-lollipop</link>
+        <link>http://joelkleier.com/blog/2014-11-go-go-github</link>
         <summary><![CDATA[<div class="paragraph">
 <p>First, Microsoft <a href="http://www.wired.com/2014/11/microsoft-open-sources-net-says-will-run-linux-mac/">opens a lot more</a>
 of their stack. Huge news, right? THEN they announce they&#8217;re putting it on
@@ -24,7 +24,7 @@ a week for .NET! I hope Microsoft keeps it up and one day starts deciding to
 accept pull requests (which, AFAIK, they are not currently going to do)!</p>
 </div>]]></summary>
         <updated>Fri Nov 14 2014 00:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-11-lollipop</id>
+        <id>http://joelkleier.com/blog/2014-11-go-go-github</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
     <entry>
