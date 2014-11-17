@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Nim! pt9 - Pointer Fun <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt8">last post</a> on Nim, I talked
+about how I was learning to use generics. This time, I&#8217;d like to talk a bit
+about pointers!</p>
+</div>
+<div class="paragraph">
+<p>The <em>first</em> thing to know is that there are two different types of pointer&#8201;&#8212;&#8201;the "safe" and "unsafe" kind. The "safe" one is <em>traced</em> (in Nim parlance) and
+managed by a garbage collector. The <em>untraced</em> ("unsafe") pointers are expected
+to be entirely managed by the user&#8201;&#8212;&#8201;these are very useful for accessing hardware,
+or interoping with non-Nim code.</p>
+</div>
+<div class="paragraph">
+<p>The <em>seocnd</em> thing to know is that you really don&#8217;t need them unless you are, in
+fact, interoping with <em>C</em> code, accessing hardware, or have a very specific
+use-case. Of course I didn&#8217;t <em>know</em> that until after writing a few hundred lines
+of code and then writing up the first draft of this article&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>In my search for some questions I came up with in the first draft, I came across
+<a href="http://stackoverflow.com/questions/22096880/what-is-the-model-of-value-vs-reference-in-nimrod"><em>this</em></a>,
+which explained the folly of my ways (well, not directly, but I was able to
+think through the problems I was solving with a better understanding).</p>
+</div>
+<div class="paragraph">
+<p>But, <em>awesome</em>! Now I have a much better grasp on when and when <em>not</em> to use
+Nim&#8217;s pointer constructs.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the equivalent of some code I was trying to write (note: this is the
+<em>bad example</em> of how to use pointers&#8201;&#8212;&#8201;not that this example <em>won&#8217;t work</em>,
+it&#8217;s just not a place you need to use pointers):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  TBaz = object
+    y: int
+  PBaz = ref TBaz
+  TFoo = object
+    baz: TBaz
+  PFoo = ref TFoo
+
+proc init_new(foo: var PFoo; y: int) =
+  foo = PFoo()
+  new(foo.baz)
+  foo.baz.y = y
+
+proc baz_accessor(f:var PFoo): var PBaz =
+  return f.baz
+proc `baz_accessor=`(f:var PFoo, baz: PBaz) =
+  f.baz.y = baz.y
+  discard """and I was doing some other stuff here (which is why I had the 'baz_accessor' property at all"""
+
+var bar: PFoo
+PFoo.init_new 1
+assert(bar.baz_accessor.y == 1)
+assert(bar.baz.y == 1)
+bar.baz_accessor = 10
+assert(bar.baz_accessor.y == 10)
+assert(bar.baz.y == 10)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here&#8217;s some code whose end result is the same, without pointers (and without
+the "old" syntax, which I also found out about from the aboved linked article&#8230;&#8203;):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>type
+  Baz = object
+    y: int
+  Foo = object
+    baz: Baz
+
+proc baz_accessor(f:var Foo): var Baz =
+  result = f.baz
+proc `baz_accessor=`(f:var Foo, y: int) =
+  f.baz.y = y
+  discard """and I was doing some other stuff here (which is why I had the 'baz_accessor' property at all"""
+
+var bar = Foo(baz: Baz(y:1))
+assert(bar.baz_accessor.y == 1)
+assert(bar.baz.y == 1)
+bar.baz_accessor = 10
+assert(bar.baz_accessor.y == 10)
+assert(bar.baz.y == 10)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first example (the one that uses pointers) uses 26 lines and 581 characters.</p>
+</div>
+<div class="paragraph">
+<p>The second example (the seemingly <em>correct</em> one) uses 18 lines and 445 characters.</p>
+</div>
+<div class="paragraph">
+<p>Not a huge difference for this particular example, but as code grows I have first
+hand knowledge that it becomes a bigger difference! The second, <em>correct</em> example
+is clearly more concise and readable. It also has no actual need for the <code>init_new</code>
+method, like the pointer approach really does need. Certainly if initialization
+was a more important aspect of the <code>Foo</code> type, then the <code>init_new</code> method would
+have stayed in the second example.</p>
+</div>
+<div class="paragraph">
+<p>On-wards and upwards! I have some code to clean up now&#8230;&#8203; but this whole
+process has been enlightening.</p>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Sun Nov 16 2014 00:00:00 GMT-0600 (CST)">2014-11-16</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
