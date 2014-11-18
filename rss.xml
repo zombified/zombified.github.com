@@ -7,6 +7,25 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Pixel Pioneers- A Brief History of Graphics]]></title>
+            <link>http://joelkleier.com/blog/2014-11-history-of-graphics</link>
+            <description><![CDATA[<div class="paragraph">
+<p><a href="https://www.youtube.com/playlist?list=PLOQZmjD6P2HlOoEVKOPaCFvLnjP865X1f">Check this out</a>,
+it&#8217;s an account of graphics as they relate to games. It&#8217;s planned to be a
+four-part series by <a href="https://twitter.com/xboxahoy">Stuart Brown</a>, aka <em>Ahoy</em>.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the first video for your viewing pleasure:</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe width="854" height="510" src="//www.youtube.com/embed/dzN2pgL0zeg?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>]]></description>
+            <pubDate>Mon Nov 17 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-history-of-graphics</guid>
+        </item>
+        <item>
             <title><![CDATA[Nim! pt9 - Pointer Fun]]></title>
             <link>http://joelkleier.com/blog/2014-11-nim-pt9</link>
             <description><![CDATA[<div class="paragraph">
@@ -594,47 +613,6 @@ aliens and galactic civilizations!</p>
 </div>]]></description>
             <pubDate>Sat Nov 08 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-interstellar</guid>
-        </item>
-        <item>
-            <title><![CDATA[Survivorship Bias]]></title>
-            <link>http://joelkleier.com/blog/2014-11-survivorship-bias</link>
-            <description><![CDATA[<div class="paragraph">
-<p>Here&#8217;s a <a href="http://en.wikipedia.org/wiki/Survivorship_bias">Wikipedia article</a> on
-a phenominon called <em>survivorship bias</em>. Basically, when concentration is given
-only to people or things that have "survived" a process, there can be a bias
-towards overly optimistic beliefs about the survivors.</p>
-</div>
-<div class="paragraph">
-<p>Reading <a href="https://news.ycombinator.com/">Hacker News</a> or <a href="http://www.reddit.com/">Reddit</a>
-with any regularity, it&#8217;s easy to learn about all sorts of amazing things that
-other people do. While this <em>can</em> be encouragement to work hard to do amazing
-things in one&#8217;s own life, it <em>can</em> also lead into the opposite direction,
-and foster feelings of worthlessness and under-achievement. Seeing so many
-people do so many things that look like they are so much better than anything
-you&#8217;ve done can trick you into believing you can&#8217;t do anything great.</p>
-</div>
-<div class="paragraph">
-<p><strong>Wrong</strong>!</p>
-</div>
-<div class="paragraph">
-<p>When you <em>read</em> about other people doing amazing things, you are <em>not</em> reading
-about the other not-so-amazing things they&#8217;ve done to create that one amazing
-thing. Very rare is the person that can start doing amazing things without
-prior experience, and keep doing amazing things consistently. 'Very rare' may be
-to common&#8230;&#8203; perhaps a more appropriate description would be 'never'.</p>
-</div>
-<div class="paragraph">
-<p>People make mistakes, people fail, and if all you do is read the likes of
-Hacker News and Reddit, you&#8217;ll never see all the hard work that goes into
-success.</p>
-</div>
-<div class="paragraph">
-<p>Part of the equation <em>is</em> reading and learning from other people, but the other
-part, the one you <em>cannot</em> ignore, is that amazing things come from <em>doing</em> things
-and failing a lot first.</p>
-</div>]]></description>
-            <pubDate>Fri Nov 07 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-survivorship-bias</guid>
         </item>
     </channel>
 </rss>
