@@ -7,6 +7,22 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Ludum Dare 31 -- Who&#x27;s Ready??]]></title>
+            <link>http://joelkleier.com/blog/2014-11-ludum-dare-31</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Woohoo!!! <a href="http://ludumdare.com/compo/">Ludum Dare 31</a> is almost upon us! I haven&#8217;t
+participated since August 2013 because of life stuff, but I&#8217;m hoping that I can
+squeeze in enough time this coming December to make <em>something</em>, even if I don&#8217;t
+get to spend the whole time on it, and even if it&#8217;s super crappy.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://ludumdare.com/compo/author/pbdiode/">Here&#8217;s</a> all my old entries&#8230;&#8203; nothing
+impressive, but the process of doing it was <em>so</em> worth the time.</p>
+</div>]]></description>
+            <pubDate>Tue Nov 18 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-ludum-dare-31</guid>
+        </item>
+        <item>
             <title><![CDATA[Pixel Pioneers- A Brief History of Graphics]]></title>
             <link>http://joelkleier.com/blog/2014-11-history-of-graphics</link>
             <description><![CDATA[<div class="paragraph">
@@ -541,78 +557,6 @@ it&#8217;s capabilities and usefulness to me.</p>
 </div>]]></description>
             <pubDate>Sun Nov 09 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt6</guid>
-        </item>
-        <item>
-            <title><![CDATA[Interstellar]]></title>
-            <link>http://joelkleier.com/blog/2014-11-interstellar</link>
-            <description><![CDATA[<div class="paragraph">
-<p>I would recommend anyone who has the chance, see
-<a href="https://interstellar.withgoogle.com/">Insterstellar</a>. It&#8217;s almost 3 hours, but
-its 3 hours of awesome. I&#8217;ll try not to be spoilery here, so you
-should be safe to keep reading.</p>
-</div>
-<div class="paragraph">
-<p>Ultimately, it&#8217;s a story about love, and not a story without it&#8217;s faults. What
-it does well, in my opinion, is tell a tail of the future that is at least
-<em>plausible</em>. One where humanity faces a crisis of extinction and must fight
-to over come it. No robots take over the earth, there&#8217;s no specific apocolypic
-event, and there&#8217;s no direct political motivations influencing the course of
-the movie.</p>
-</div>
-<div class="paragraph">
-<p>On the topic of extinction, one of my favorite thought experiments is
-<a href="http://waitbutwhy.com/2014/05/fermi-paradox.html?doing_wp_cron=1415474450.1038939952850341796875">The Firmi Paradox</a>.
-I suggest reading the article, as it does a much better job of explaining, but
-I&#8217;ll attempt to paraphrase:</p>
-</div>
-<div class="paragraph">
-<p>The whole paradox is based on the question 'Where is everybody?' when we look
-to the stars and can detect no other signs of life.</p>
-</div>
-<div class="paragraph">
-<p>This question leads to something else called the <em>The Great Filter</em>&#8201;&#8212;&#8201;a theory
-that says that there are common eveolutionary steps for every species, but
-there is one step that almost <em>no</em> spieces cross, perhaps because it&#8217;s very unlikely,
-or perhaps because it&#8217;s impossible. This step allows a species to evolve to the
-point where it can leverage the power found with in an entire galaxy.</p>
-</div>
-<div class="paragraph">
-<p>Now, if this filter is <em>behind</em> us, then we, humans, are a rarity in the universe,
-perhaps even unique if this 'filter' is so hard that in the multible <em>billions</em>
-of years of the universes existence, no other species has been able to overcome it.</p>
-</div>
-<div class="paragraph">
-<p>Another possibility is that this filter doesn&#8217;t really exist (yet) because the
-universe is to young to have developed it. Maybe life is
-simply not old enough to have been able to support a species that can span
-galaxies. Perhaps we are on the leading edge, along with other species that have
-also not left their planets yet.</p>
-</div>
-<div class="paragraph">
-<p>Or maybe, and this is the <em>really</em> depressing thought, the great filter is <em>ahead</em>
-of us, and we are on a collision course for an extinciton event that is very likely
-to destroy us.</p>
-</div>
-<div class="paragraph">
-<p>And so, with this line of thinking, no news is good news. If we find simple life
-on Mars, or another celestial body, it eliminates a bunch of possible events that
-have already occured as being "The Great Filter", making it more likely that it
-is ahead of us. If we find fossils of <em>complex</em> life, it would mean that it is
-likely the filter is <em>ahead</em> of us, and that, in all likely hood, we would be
-doomed.</p>
-</div>
-<div class="paragraph">
-<p>Anyway, there&#8217;s a lot more the the article I linked, but those are my favorite
-bits of it. How does this relate to Interstellar? Well, you need to watch it to
-find out :D</p>
-</div>
-<div class="paragraph">
-<p>I&#8217;ll say this: the Great Filter is where my thoughts drifted after the film, not
-during it. The movie is about humans and their chance to not be extinct, not about
-aliens and galactic civilizations!</p>
-</div>]]></description>
-            <pubDate>Sat Nov 08 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-interstellar</guid>
         </item>
     </channel>
 </rss>
