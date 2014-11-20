@@ -166,6 +166,28 @@ have stayed in the second example.</p>
 <p>On-wards and upwards! I have some code to clean up now&#8230;&#8203; but this whole
 process has been enlightening.</p>
 </div>
+<div class="paragraph">
+<p><em>2014-11-19 Addendum:</em> After posting this article, I received a nice message from
+<a href="http://gradha.github.io/index.html">this guy</a> regarding a couple of things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When there is a need for an init function for an object, the convention for
+much of the existing code has been something like <code>init_Somthing_</code>, but a newer
+convention is to just use <code>init</code> and let the compiler auto-select the correct
+<code>init</code> method based on the arguments passed to it. The
+<a href="http://nimrod-lang.org/sets.html#init,TSet">A</a>,int[<em>sets</em> library] is a good
+example.</p>
+</li>
+<li>
+<p>The other is on the <a href="http://gradha.github.io/articles/2014/10/adding-objectivec-properties-to-nimrod-objects-with-macros.html">subject of getters/setters</a>.
+The article describes how to utilize Nim&#8217;s awesome <a href="http://nimrod-lang.org/manual.html#macros">macro</a>
+system to automatically generate properties with specific actions for particuarly
+styled members of types. Lots of good information there about macros and AST&#8217;s!</p>
+</li>
+</ol>
+</div>
         <div id='page-meta'>
             Published on
             <time class='date' datetime="Sun Nov 16 2014 00:00:00 GMT-0600 (CST)">2014-11-16</time>
