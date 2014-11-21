@@ -4,8 +4,81 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Wed Nov 19 2014 22:20:01 GMT-0600 (CST)</updated>
+    <updated>Thu Nov 20 2014 22:53:10 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Games Physics... Specifically 2D Games Physics]]></title>
+        <link>http://joelkleier.com/blog/2014-11-physics</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>I&#8217;ll be honest: when I&#8217;ve hobby-developed games in my past, I&#8217;ve either used
+super simple "physics" or just used an existing framework so as not to get
+stuck on implementing any sort of physics simulation. Everytime I move past this
+point, though, I&#8217;m left without any real understanding&#8230;&#8203; I plug in the numbers,
+retype and copy code, and just hook things up to make them work.</p>
+</div>
+<div class="paragraph">
+<p>This kinda bugs me, so I want to really internalize what it takes to make a
+2d physics engine. And by internalize, I mean that I want to brush off some of
+the math I studied in high school and college, and really understand how it
+applies to physical simulation. In addition, I want to understand how to write
+code to do physical simulations&#8230;&#8203; and I don&#8217;t mean just glue code. I want to really
+understand what&#8217;s going on behind the scenes, and develop an intuition for it!</p>
+</div>
+<div class="paragraph">
+<p>Why not just stick with the pre-made libraries and frameworks, and leave the physics
+stuff up to people who focus a whole lot on physics? It&#8217;s a hobby&#8230;&#8203; and I want
+to learn more about it.</p>
+</div>
+<div class="paragraph">
+<p>To do this, I&#8217;ve dug around a bit for some online resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://blog.wolfire.com/2009/07/linear-algebra-for-game-developers-part-1/">Wolfire&#8217;s <em>Linear Algebra</em> series</a>&#8201;&#8212;&#8201;while not called "physics", it covers some of the basic math behind _physic_al simulation
+using a little linear algebra.</p>
+</li>
+<li>
+<p><a href="http://www.wildbunny.co.uk/blog/vector-maths-a-primer-for-games-programmers/">Wildbunny&#8217;s <em>Vector maths - a primer for games programmers</a>&#8201;&#8212;&#8201;which covers what it says, basically an overlap of what _Wolfire&#8217;s</em> article is
+about.</p>
+</li>
+<li>
+<p><a href="http://www.wildbunny.co.uk/blog/2011/04/06/physics-engines-for-dummies/">Wildbunny&#8217;s <em>Physics Engines for Dummies</em></a>&#8201;&#8212;&#8201;lots of info, but the actual source code costs some cash (which may or may
+not be worth it&#8230;&#8203; I wouldn&#8217;t know since I can be a cheapskate when it comes
+to this sort of thing, and I&#8217;m probably not going to buy it).</p>
+</li>
+<li>
+<p><a href="http://gafferongames.com/game-physics/">gafferongames.com&#8217;s <em>Game Physics</em> articles</a>&#8201;&#8212;&#8201;some seamingly really good information here, possibly over my head this far
+out of maths practice.</p>
+</li>
+<li>
+<p><a href="http://www.rodedev.com/tutorials/gamephysics/">Nate Rode&#8217;s <em>2D Game Physics 101</em></a>&#8201;&#8212;&#8201;some examples of various maths needed for 2D physics.</p>
+</li>
+<li>
+<p><a href="http://gamedevelopment.tutsplus.com/series/how-to-create-a-custom-physics-engine--gamedev-12715">tuts+ <em>How to Create a Custom Physics Engine</em> by Randy Gaul</a>&#8201;&#8212;&#8201;looks, from the outside, to be a fairly comprehensive series of articles on
+the math and code needed for creating a 2d physical simulation engine.</p>
+</li>
+<li>
+<p><a href="https://www.khanacademy.org/math/linear-algebra">Khan Academy&#8217;s <em>Linear Algebra</em> subject</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I&#8217;m <em>certain</em> there are a lot more resources out there on the web, and probably
+just as many in meat-space!</p>
+</div>
+<div class="paragraph">
+<p>The first thing I&#8217;m going to do is review some math on
+<a href="https://www.khanacademy.org/math/linear-algebra">Khan Academy</a>, then I&#8217;m going to
+use Nim to play around with some of these concepts and shake the rust off!</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>]]></summary>
+        <updated>Thu Nov 20 2014 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2014-11-physics</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[68 Katy]]></title>
         <link>http://joelkleier.com/blog/2014-11-68-katy</link>
@@ -375,138 +448,6 @@ projects at this point, but the <em>writing</em> is really good. You should chec
 </div>]]></summary>
         <updated>Tue Nov 11 2014 00:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-why</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Nim! pt7 - Testing]]></title>
-        <link>http://joelkleier.com/blog/2014-11-nim-pt7</link>
-        <summary><![CDATA[<div class="paragraph">
-<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt6">last post</a> on Nim, I discussed
-modules a bit. This time around, I want to figure out the answer to "How do
-I test in Nim?"</p>
-</div>
-<div class="paragraph">
-<p>First, very little comes up in basic searches. Mostly you get reference to using
-the <code>when</code> statement (compile-time if) along with <code>assert</code> and company, but that
-is fairly primitive.</p>
-</div>
-<div class="paragraph">
-<p>Doing some more digging, I found that a <a href="http://build.nimrod-lang.org/docs/unittest.html">unittest</a>
-library does actually exist in the standard libs, but it is not
-linked to from anywhere becase it
-<a href="https://www.bountysource.com/issues/3189991-unit-test-library-documentation-too-hard-to-find">requires better documentation</a>.
-If you do a <a href="https://github.com/Araq/Nimrod/search?utf8=%E2%9C%93&amp;q=unittest">search</a>
-on the Nimrod repository, though, you can find that there are some examples of
-the libraries use! However, there&#8217;s probably a reason for it not being listed
-in the documentation <em>besides</em> a <em>lack</em> of documentation for itself.</p>
-</div>
-<div class="paragraph">
-<p>So, another way to do tests, if you look at the Nim compiler source itself, is
-to just create a directory with individual modules that contain nothing but
-code for performing tests.</p>
-</div>
-<div class="paragraph">
-<p>I decided to use a small vector math library for motivation to explore the
-testing facilities (that are not <em>unittest</em>), and to see how I might incorporate
-testing into a larger project.</p>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s just a small part of the library that covers only a convenient way to
-initialize a <code>TVec3</code> value (<code>src/vectors.nim</code>):</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>type
-  TVec3* = array[0..2, int]
-
-proc init*(vec: var TVec3; x, y, z: int) =
-  vec[0] = x
-  vec[1] = y
-  vec[2] = z</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And here&#8217;s my testing code (<code>tests/tvectors.nim</code>):</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>import vectors
-
-var vec: TVec3
-vec.init 1, 2, 3
-
-assert(vec[0] == 1)
-assert(vec[1] == 2)
-assert(vec[2] == 3)
-
-echo "OK"</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Simple: create a <code>TVec3</code>, initialize it, assert values are what are expected,
-then give the "OK" if all the asserts pass.</p>
-</div>
-<div class="paragraph">
-<p>The key to this approach is in the command used to build and execute the tests,
-since I use a make file, this test (and every other test) are, are in a <code>test</code>
-target that executes commands similar to:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>nimrod c --verbosity:0 -p:./src/ -o:../bin/tests tests/tvectors.nim &amp;&amp; ./bin/tests</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command does several things:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>sets <code>--verbosity</code> to <code>0</code> so that a bunch of mostly unimportant info isn&#8217;t
-printed to stdout</p>
-</li>
-<li>
-<p>adds the <code>src</code> directory to the <code>path</code> that Nim uses to search for modules</p>
-</li>
-<li>
-<p>sets the <code>-o</code> output file to a generic exe name</p>
-</li>
-<li>
-<p>specifies the test to build (<code>tests/tvectors.nim</code> in this case)</p>
-</li>
-<li>
-<p>and after a successful build, runs the tests with <code>&amp;&amp; ./bin/tests</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>With my above <code>tvectors.nim</code> tests, I get a simple <code>OK</code> printed to the console
-after each test is built and run. Otherwise I either get a compilation error message,
-or something more akin to:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Traceback (most recent call last)
-tvectors.nim(6)          tvectors
-system.nim(2908)         failedAssertImpl
-system.nim(2136)         raiseAssert
-Error: unhandled exception: vec[0] == 2  [EAssertionFailed]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Which is what gets displayed when an assertion fails.</p>
-</div>
-<div class="paragraph">
-<p>Next time I talk about Nim, I tentitively plan on building out this vector
-library a little more and seeing how the tests scale. But I think a more pressing
-need might be the ability to specify the <code>TVec3</code> type more generically so that
-I don&#8217;t have to re-declare types for integers, floats, etc.</p>
-</div>
-<div class="paragraph">
-<p>Until next time!</p>
-</div>]]></summary>
-        <updated>Mon Nov 10 2014 00:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-11-nim-pt7</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
