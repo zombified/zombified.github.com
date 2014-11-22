@@ -7,6 +7,108 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[30 Day Challenge, COMPLETE]]></title>
+            <link>http://joelkleier.com/blog/2014-11-30-day-challenge</link>
+            <description><![CDATA[<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The next 30 days are going to pass whether you like it or not, so why not think
+about something you&#8217;ve always wanted to try, and give it a shot!</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Matt Cutts in his TED Talk "Try something new for 30 days"
+</div>
+</div>
+<div class="paragraph">
+<p>Those words really resonated with me when I watched
+<a href="http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days">Matt Cutt&#8217;s TED Talk</a>,
+and launched into the idea of writing a blog post once per day for 30 days.</p>
+</div>
+<div class="paragraph">
+<p>I latched onto writing on my blog because for <em>years</em> it&#8217;s been a very inconsistent,
+on/off activity&#8201;&#8212;&#8201;one that had close to the lowest priority in my life. Inverting
+the priority of this activity has forced me to really consider the how and
+why&#8217;s of keeping a blog.</p>
+</div>
+<div class="paragraph">
+<p>What I&#8217;ve discovered:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>I can&#8217;t post something unless I give it an hour or more of my attention (the
+quality of the writing goes way down with less time, to the point where I
+am writing what essentially amounts to a long-form tweet or a facebook/g+
+type of post)</p>
+</li>
+<li>
+<p>Most of the posts I&#8217;m particuarly happy with were written either early in
+the morning before work or before dinner time (the longer I put it off, the
+more likely I was to fall into the trap of posting filler for filler&#8217;s sake)</p>
+</li>
+<li>
+<p>Writing down questions about, and snippets of, code that I don&#8217;t understand
+<em>really</em> helped me focus and gain a deeper understanding than I would have
+if I just <em>looked</em> at it&#8201;&#8212;&#8201;subsequently, I feel like these were some of my
+best posts in terms of content (if not in quality of writing)</p>
+</li>
+<li>
+<p>Filler for filler&#8217;s sake makes nobody happy&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The result of this challenge has really made me think about how I want to write,
+how often I want to write, and what I feel like I&#8217;m good(ish) at writing. The
+conclusion I&#8217;ve come too is that I don&#8217;t what to write a <em>post</em> every day. I just
+end up with lots of filler that clutters up my blog and makes it look a little
+more trashy and irrelevant.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ve considered how to proceed, and I think I still want to write and work on
+a post or article every day, but only publish once per week. There are times
+when I think I&#8217;ll probably post more&#8201;&#8212;&#8201;I post everything to the main blog, and
+then have a 'brewlog' which is a tagged subset of posts about brewing&#8230;&#8203; those
+posts, and similiar posts, will probably still be published irreguarly. I won&#8217;t
+be considering those posts my weekly article.</p>
+</div>
+<div class="paragraph">
+<p>The subject matter I&#8217;ve enjoyed most this past month has definitely been the
+<em>Nim!</em> posts&#8201;&#8212;&#8201;writing was a great way to focus and clarify the process of
+learning Nim. In the future, I&#8217;d like to continue to apply this technique to
+learning more than just new computer languages.</p>
+</div>
+<div class="paragraph">
+<p>In short:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Posting just to post is out.</p>
+</li>
+<li>
+<p>I&#8217;m going to post a regular article once per week.</p>
+</li>
+<li>
+<p>My regular article will be about <em>learning</em> something new.</p>
+</li>
+<li>
+<p>My regular article will be made with intent, not on the spur of the moment</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>What&#8217;s next? <a href="http://joelkleier.com/blog/2014-11-physics/">Yesterday</a> I posted
+about wanting to brush off some dust on my math skills and really learn how to
+do proper physical simulation in (2D) games. Specifically, I&#8217;m considering writing
+about developing a Nim library or framework for simple 2D physics&#8230;&#8203; purely as
+an exercise to develop my understanding of the math required in such a case.</p>
+</div>]]></description>
+            <pubDate>Fri Nov 21 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-30-day-challenge</guid>
+        </item>
+        <item>
             <title><![CDATA[Games Physics... Specifically 2D Games Physics]]></title>
             <link>http://joelkleier.com/blog/2014-11-physics</link>
             <description><![CDATA[<div class="paragraph">
@@ -414,31 +516,6 @@ that went into this venture.</p>
 </div>]]></description>
             <pubDate>Wed Nov 12 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-rosetta</guid>
-        </item>
-        <item>
-            <title><![CDATA[_why]]></title>
-            <link>http://joelkleier.com/blog/2014-11-why</link>
-            <description><![CDATA[<div class="paragraph">
-<p><a href="http://en.wikipedia.org/wiki/Why_the_lucky_stiff">_why</a> was active and fairly
-well known, especially in the Ruby community (from what I gather). The person
-behind _why, whatever his reasons, decided to abruptly end his work as _why in
-2009.</p>
-</div>
-<div class="paragraph">
-<p>I had heard about _why in passing&#8201;&#8212;&#8201;probably in 2009 when everyone who knew
-about him and didn&#8217;t understand his motives was all a-chatter about him. But I
-hadn&#8217;t really read any of his work. This changed when I stumbled across
-<a href="http://perl11.org/potion/">Potion</a>, and read the
-<a href="http://perl11.org/potion/pamphlet.html">pamphlet</a> written, apparently,
-by _why himself.</p>
-</div>
-<div class="paragraph">
-<p>I came away from reading that a little impressed by the writing&#8201;&#8212;&#8201;conversational, humble, funny, clear, concise, and easy to read. I don&#8217;t think
-<em>Potion</em> itself is anything but an esoteric language for doing hobbiest-level
-projects at this point, but the <em>writing</em> is really good. You should check it out!</p>
-</div>]]></description>
-            <pubDate>Tue Nov 11 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-why</guid>
         </item>
     </channel>
 </rss>

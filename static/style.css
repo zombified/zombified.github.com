@@ -19,6 +19,15 @@ pre {
     overflow-y:auto;
 }
 
+.quoteblock blockquote {
+    font-size: smaller;
+}
+.quoteblock .attribution {
+    font-size: smaller;
+    font-style: italic;
+    text-align: right;
+}
+
 #nav,
 #mobile-nav,
 #page-header,
