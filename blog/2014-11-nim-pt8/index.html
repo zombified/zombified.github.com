@@ -69,16 +69,16 @@ The next thing I decided I should learn about are how Nim implements Generics!</
 <div class="paragraph">
 <p>Let&#8217;s look at a little snippet of a vector library I&#8217;m developing in Nim:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TVec2*[T] = object
     x*: T
     y*: T
 
 # pretty print the vector
 proc `$`*[T](a:TVec2[T]): string =
-  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</pre>
+  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -101,9 +101,9 @@ value can be used anywhere in the subsequent expression (Ex: <code>y</strong>: T
 <p>This means that the above definition of <code>TVec2</code> needs to be instantiated something
 like so:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>var vec = TVec2[float](x: 1, y: 1)</pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">var vec = TVec2[float](x: 1, y: 1)</code></pre>
 </div>
 </div>
 <div class="paragraph">

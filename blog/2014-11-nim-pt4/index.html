@@ -72,53 +72,53 @@ my time just reading a little about
 <p>First, I defined a type <code>TBall</code> to describe the position, size, and velocity
 of my little circle:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TBall = object
     x: float
     y: float
     rad: float
     vx: float
-    vy: float</pre>
+    vy: float</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Then, I instantiated what will become the bouncing circle:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>var
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">var
   ball = TBall(
     x: 320,
     y: 240,
     rad: 10,
     vx: 100,
-    vy: 0)</pre>
+    vy: 0)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>I do some checks to make sure the ball position is in bounds, and moving in
 the correct direction:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>  ball.x += ball.vx * dt
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">  ball.x += ball.vx * dt
 
   if ball.x &lt; ball.rad:
     ball.x = ball.rad
     ball.vx *= -1
   elif ball.x &gt; 640-ball.rad:
     ball.x = 640-ball.rad
-    ball.vx *= -1</pre>
+    ball.vx *= -1</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>And finally, I render the ball with a handy method in the <code>SDL2_gfx</code> library:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre> renderer.filledCircleRGBA(int16(ball.x), int16(ball.y), int16(ball.rad), 0,255,0,255)</pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"> renderer.filledCircleRGBA(int16(ball.x), int16(ball.y), int16(ball.rad), 0,255,0,255)</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -92,9 +92,9 @@ Nim&#8217;s pointer constructs.</p>
 <em>bad example</em> of how to use pointers&#8201;&#8212;&#8201;not that this example <em>won&#8217;t work</em>,
 it&#8217;s just not a place you need to use pointers):</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TBaz = object
     y: int
   PBaz = ref TBaz
@@ -119,16 +119,16 @@ assert(bar.baz_accessor.y == 1)
 assert(bar.baz.y == 1)
 bar.baz_accessor = 10
 assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</pre>
+assert(bar.baz.y == 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>And here&#8217;s some code whose end result is the same, without pointers (and without
 the "old" syntax, which I also found out about from the aboved linked article&#8230;&#8203;):</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   Baz = object
     y: int
   Foo = object
@@ -145,7 +145,7 @@ assert(bar.baz_accessor.y == 1)
 assert(bar.baz.y == 1)
 bar.baz_accessor = 10
 assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</pre>
+assert(bar.baz.y == 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">

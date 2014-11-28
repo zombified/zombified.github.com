@@ -85,22 +85,22 @@ conflicts between module names is to use an alias.</p>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import lib.ent.entity_manager
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">import lib.ent.entity_manager
 import lib.flush.entity_manager
-entity_manager.init</pre>
+entity_manager.init</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Would be in conflict, but:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import lib.ent.entity_manager
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">import lib.ent.entity_manager
 import lib.flush.entity_manager as flush_emgr
 entity_manager.init
-flush_emgr.init</pre>
+flush_emgr.init</code></pre>
 </div>
 </div>
 <div class="paragraph">

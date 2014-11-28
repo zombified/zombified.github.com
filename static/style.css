@@ -28,6 +28,25 @@ pre {
     text-align: right;
 }
 
+.listingblock .title {
+    text-align:right;
+    font-style:italic;
+    font-size:smaller;
+}
+.listingblock .content pre,
+.literalblock .content pre {
+    margin:0;
+    border-left:2px solid rgba(128,128,128,.5);
+}
+.listingblock,
+.literalblock {
+    margin:13px 0;
+}
+
+.literalblock .content pre {
+    padding: 4px;
+}
+
 #nav,
 #mobile-nav,
 #page-header,
@@ -187,6 +206,24 @@ h1#page-header.index {
     margin-top:15px;
     max-width:480px;
 }
+
+.admonitionblock table {
+    border: 1px solid #c3c3c3;
+    font-size: smaller;
+    margin: 10px;
+}
+.admonitionblock td {
+    padding: 10px;
+}
+.admonitionblock .icon {
+    border-right: 1px solid #c3c3c3;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 75px;
+    text-align: center;
+}
+.admonitionblock.warning .icon { background-color: orange; }
+.admonitionblock.note .icon { background-color: dodgerblue; }
 
 @media (min-width: 521px) {
     body { padding-left:30px; }

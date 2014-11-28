@@ -72,13 +72,13 @@ of what the program is doing, I start picking out pieces of the code that I
 want to know more about. The first such piece is
 <a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim#L13-L17">this one</a>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>var
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">var
   evt: TEvent
   runGame = true
   fpsman: TFPSmanager
-fpsman.init</pre>
+fpsman.init</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -97,9 +97,9 @@ proper, but instead is a sort of boiler-plate project.</p>
 <p>The <code>sdl2/gfx.nim</code> library is actually imported into the skeleton by
 <a href="https://github.com/nimrod-code/sdl2/blob/master/examples/sdl_skeleton.nim#L2">this</a>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import sdl2, sdl2/gfx</pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">import sdl2, sdl2/gfx</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -110,15 +110,15 @@ in the exported symbols in <code>sdl2/gfx</code>.</p>
 <div class="paragraph">
 <p>And here&#8217;s the actual <a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2/gfx.nim#L46-L52">type definition</a>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TFPSmanager* {.pure, final.} = object
     framecount*: cint
     rateticks*: cfloat
     baseticks*: cint
     lastticks*: cint
-    rate*: cint</pre>
+    rate*: cint</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -155,14 +155,14 @@ located in the
 <a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2/gfx.nim#L229-L234">sdl2/gfx.nim</a>
 file as well. But this teaches me a bunch of things! First, here are the definitions:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>proc init*(manager: var TFPSmanager) {.importc: "SDL_initFramerate".}
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc init*(manager: var TFPSmanager) {.importc: "SDL_initFramerate".}
 proc setFramerate*(manager: var TFPSmanager; rate: cint): SDL_Return {.
   importc: "SDL_setFramerate", discardable.}
 proc getFramerate*(manager: var TFPSmanager): cint {.importc: "SDL_getFramerate".}
 proc getFramecount*(manager: var TFPSmanager): cint {.importc: "SDL_getFramecount".}
-proc delay*(manager: var TFPSmanager): cint {.importc: "SDL_framerateDelay", discardable.}</pre>
+proc delay*(manager: var TFPSmanager): cint {.importc: "SDL_framerateDelay", discardable.}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -175,15 +175,15 @@ called <a href="http://nim-lang.org/tut2.html#method-call-syntax"><em>method cal
 Nim. Essentially, the first value of a procedure can be prefixed to a call of the
 procedure. Example:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre># assuming this is defined
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># assuming this is defined
 proc xlen(s: string) =
    result = len(s)
 # then this:
 assert(xlen("value")==5)
 # is the same as:
-assert("value".xlen==5)</pre>
+assert("value".xlen==5)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -207,11 +207,11 @@ in a C library, and the FFI should do it&#8217;s magic and import that definitio
 <p>And What about that 'SDL_Return' value&#8201;&#8212;&#8201;where&#8217;s that coming from? It&#8217;s in
 <a href="https://github.com/nimrod-code/sdl2/blob/master/src/sdl2.nim#L205-L207">sdl2.nim</a>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>SDL_Return* {.size: sizeof(cint).} = enum SdlError = -1, SdlSuccess = 0 ##\
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">SDL_Return* {.size: sizeof(cint).} = enum SdlError = -1, SdlSuccess = 0 ##\
     ## Return value for many SDL functions. Any function that returns like this \
-    ## should also be discardable</pre>
+    ## should also be discardable</code></pre>
 </div>
 </div>
 <div class="paragraph">

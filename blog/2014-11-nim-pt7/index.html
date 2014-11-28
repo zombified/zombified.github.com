@@ -92,25 +92,27 @@ testing into a larger project.</p>
 </div>
 <div class="paragraph">
 <p>Here&#8217;s just a small part of the library that covers only a convenient way to
-initialize a <code>TVec3</code> value (<code>src/vectors.nim</code>):</p>
+initialize a <code>TVec3</code> value:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">src/vectors.nim</div>
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TVec3* = array[0..2, int]
 
 proc init*(vec: var TVec3; x, y, z: int) =
   vec[0] = x
   vec[1] = y
-  vec[2] = z</pre>
+  vec[2] = z</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And here&#8217;s my testing code (<code>tests/tvectors.nim</code>):</p>
+<p>And here&#8217;s my testing code:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">tests/tvectors.nim</div>
 <div class="content">
-<pre>import vectors
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">import vectors
 
 var vec: TVec3
 vec.init 1, 2, 3
@@ -119,7 +121,7 @@ assert(vec[0] == 1)
 assert(vec[1] == 2)
 assert(vec[2] == 3)
 
-echo "OK"</pre>
+echo "OK"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -131,9 +133,9 @@ then give the "OK" if all the asserts pass.</p>
 since I use a make file, this test (and every other test) are, are in a <code>test</code>
 target that executes commands similar to:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nimrod c --verbosity:0 -p:./src/ -o:../bin/tests tests/tvectors.nim &amp;&amp; ./bin/tests</pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">nimrod c --verbosity:0 -p:./src/ -o:../bin/tests tests/tvectors.nim &amp;&amp; ./bin/tests</code></pre>
 </div>
 </div>
 <div class="paragraph">

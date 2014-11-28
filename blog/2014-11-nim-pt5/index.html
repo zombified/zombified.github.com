@@ -78,23 +78,23 @@ but that&#8217;s not what I"m looking for.</p>
 <p>Digging into the <a href="https://github.com/nimrod-code/sdl2/">SDL2 wrapper</a> a little,
 I think this is the piece of code I need to understand:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>template EvConv(name, name2, ptype: expr; valid: set[TEventType]): stmt {.immediate.}=
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">template EvConv(name, name2, ptype: expr; valid: set[TEventType]): stmt {.immediate.}=
   proc `name`* (event: var TEvent): ptype =
     assert event.kind in valid
     return cast[ptype](addr event)
   proc `name2`* (event: var TEvent): ptype =
     assert event.kind in valid
-    return cast[ptype](addr event)</pre>
+    return cast[ptype](addr event)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>which is used like:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>EvConv(EvWindow, window, PWindowEvent, {WindowEvent})</pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">EvConv(EvWindow, window, PWindowEvent, {WindowEvent})</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -114,12 +114,12 @@ the <em>event</em> data into the Nim <em>type</em> pointed to by the <em>ptype</
 <div class="paragraph">
 <p>The result of this is that in my program I can check for a keydown event thusly:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>    if evt.kind == KeyDown:
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">    if evt.kind == KeyDown:
       if evt.key.keysym.sym == K_ESCAPE:
         runGame = false
-        break</pre>
+        break</code></pre>
 </div>
 </div>
 <div class="paragraph">

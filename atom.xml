@@ -4,8 +4,478 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Nov 21 2014 20:09:39 GMT-0600 (CST)</updated>
+    <updated>Fri Nov 28 2014 14:02:57 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Game Physics - Vectors]]></title>
+        <link>http://joelkleier.com/blog/2014-11-2d-game-physics--vectors</link>
+        <summary><![CDATA[<div class="paragraph">
+<p>Developing hobby games I usually just stick to libraries that already handle
+things like <em>physics</em>. Basically I follow examples, copy/paste code, and plugin
+numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
+math and gain an intuition of what&#8217;s actually going on, which is what I want
+to do now.</p>
+</div>
+<div class="paragraph">
+<p><em>Vectors</em> are the basic building block of 2D game physics. They describe the
+distance and direction of game objects (from player characters to projectiles,
+even lighting). As such, I think they may be the <em>best</em> place to start this
+exploration and self-learning exercise.</p>
+</div>
+<div class="sect1">
+<h2 id="_table_of_contents">Table of Contents</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#what-are-vectors">What are Vectors?</a></p>
+</li>
+<li>
+<p><a href="#adding-subtracting">Adding and Subtracting Vectors</a></p>
+</li>
+<li>
+<p><a href="#scaling">Scaling Vectors</a></p>
+</li>
+<li>
+<p><a href="#unit-normalized">Unit Vectors and Normalized Vectors</a></p>
+</li>
+<li>
+<p><a href="#dot-product">The Dot Product</a></p>
+</li>
+<li>
+<p><a href="#projection">Projecting a Vector onto Another</a></p>
+</li>
+<li>
+<p><a href="#conclusion">Vectors - Conclusion</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This article was written as I attempt to learn the subject matter at hand,
+so there is a strong possibility of incorrect information based on my own ignorance.</p>
+</div>
+<div class="paragraph">
+<p>Please, if you see an error of any kind, feel free to send me an email!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Check out the source code to this page, I used
+<a href="http://www.processingjs.org">processing.js</a> to generate all the visual examples,
+and I tried to pepper the source files with a bunch of comments.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<!--
+I used "processing.js" (http://processingjs.org/) to generate all the visual
+examples on this page.
+-->
+<script src='/static/processing.min.js'></script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-are-vectors">What are Vectors?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vectors represent two measurements&#8201;&#8212;&#8201;a magnitude and a direction. For example,
+"traveling at 2 kph (kilometers per hour) due east" is a vector! This data is
+descriptive, but not necessarily useful for computation in that format.  To
+make the data more useful, it is typically encoded into two numerical values,
+<code>x</code> and <code>y</code>, representing a distance from the origin on the x and y axis.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I am assuming the use of a 2-dimensiononal, <a href="http://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian coordinate system</a>, and kind of ignoring 3-dimensional stuff for now
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Our "traveling at 2 kph due east" example then turns into something like <code>[2, 0]</code>,
+which would look something like:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example1.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>The important thing to remember is in order to think about a (2D) vector
+in concrete numbers, we can express it as a pair of these x and y values.
+IE (0, 1), (30.3, 2.2), etc. These 2 numbers represent
+a <em>distance</em> on the x and y axis, and not a point&#8201;&#8212;&#8201;this is important
+because it means vectors are encoded as the <em>legs</em> of a <em>right triangle</em>. Why
+is this important? I&#8217;ve found that it helps me to <em>visualize</em> vectors in a 2D
+space.</p>
+</div>
+<div class="paragraph">
+<p>In terms of (Nim) code, this could be expressed as a 2 dimensional array, a tuple,
+or more explicitly, like:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
+  Vector* = object
+    x*: float
+    y*: float</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I like the more explicit approach in this case because I think it&#8217;ll make
+writing dependent code a little more clear, and I need as much clarity I can
+get.</p>
+</div>
+<div class="paragraph">
+<p>The first really useful value to calculate based off of this vector encoding is
+the <em>magnitude</em>. This turns out to be pretty simple. Remember how the this vector
+encoding is basically showing us the lengths of the legs of a <em>right triangle</em>?
+Taking advantage of that, we can use Pythagoras Theorem, which boils down to
+this formula: <em>x<sup>2</sup> + y<sup>2</sup> = h<sup>2</sup></em>.</p>
+</div>
+<div class="paragraph">
+<p>The <em>magnitude</em>, then, is the <em>h</em> value, and since the formula is for <em>h<sup>2</sup></em>,
+rearranging it to solve for <em>h</em> turns it into: <em>sqrt(x<sup>2</sup> + y^2) = h</em>.</p>
+</div>
+<div class="paragraph">
+<p>I think the results of both formulas will be useful later, so I&#8217;m going to make
+two procedures&#8201;&#8212;&#8201;one to calculate the magnitude squared (<em>h<sup>2</sup></em>) and the
+magnitude itself (just <em>h</em>), here&#8217;s the code:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># magSq == "magnitude squared" == h*h
+proc magnitudeSq*(self: Vector): float =
+  result = self.x * self.x + self.y * self.y
+
+# the actual magnitude value (h)
+proc magnitude*(self: Vector): float =
+  result = sqrt(self.magSq)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+the <code>sqrt</code> comes from the Nim standard library <code>math</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The definition of a vector is a <em>magnitude</em> AND <em>direction, so how do we encode
+the direction in terms of <code>x</code> and <code>y</code>? Simple put, the _sign</em> of the <code>x</code> and <code>y</code>
+values indicates their direction. If the <code>x</code> is <em>positive</em> then the vector is going an
+<em>easterly</em> direction (if we&#8217;re thinking of <em>direction</em> in terms of the cardinal
+directions) and a <em>positive</em> <code>y</code> would be a <em>northernly</em> direction. A <em>negative</em>
+<code>x</code> value will be in a <em>westerly</em> direction, and a <em>negative</em> <code>y</code> value would
+be in a <em>southernly</em> direction.</p>
+</div>
+<div class="paragraph">
+<p>In terms of code, there&#8217;s nothing extra needed since <code>Vector.x</code> and <code>Vector.y</code> are
+signed values.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-subtracting">Adding and Subtracting Vectors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, why add and subtract vectors? The best answer is an example: presuming a characters
+movement is described by velocity (direction and speed, encoded as a vector) and
+acceleration (change in direction and speed, encoded as a vector), then it is
+only natural that when it comes time for a character to move within the simulation,
+their <em>acceleration</em> should be added to their <em>velocity</em>, and the result should
+be added to their current position. Being able to add <em>acceleration</em> and <em>velocity</em>
+(both vectors) becomes super important here.</p>
+</div>
+<div class="paragraph">
+<p>Adding and subtracting vectors, conceptually, is like traveling along the the
+hypotenuse of one triangle, then traveling along the hypotenuse of a second
+triangle. From where the first vector began to where the second vector ends is
+the resulting vector. Confusing?
+<a href="https://www.khanacademy.org/math/linear-algebra/vectors_and_spaces/vectors/v/adding-vectors">Khan Academy</a>
+has a pretty good video on adding vectors.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s my attempt to visualize it:</p>
+</div>
+<div class="paragraph">
+<p>The first vector:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example2.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>The second vector:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example3.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>Traveling along the first vector, then traveling along the second vector to get a third vector:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example4.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>The resulting vector:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example5.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>The math for this is straight forward: add the two <code>x</code> values for the result <code>x</code> value,
+add the two <code>y</code> values for the result <code>y</code> value. The same formula can be used for
+subtracting vectors as well, just subract the <code>x</code> and <code>y</code> values instead of adding them.</p>
+</div>
+<div class="paragraph">
+<p>The resulting code might look like:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># just overload the `+` operator
+proc `+`*(a, b: Vector): Vector =
+  result.x = a.x + b.x
+  result.y = a.y + b.y
+
+# just overload the `-` operator
+proc `-`*(a, b: Vector): Vector =
+  result.x = a.x - b.x
+  result.y = a.y - b.y</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scaling">Scaling Vectors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <em>scalar</em> is just a single number, and <em>scaling</em> a vector by a <em>scalar</em> is the
+act of multiplying the <em>vector</em> by the <em>scalar</em>. Why is this useful? Let&#8217;s say
+there&#8217;s a scenario where a ball rolls along a floor&#8230;&#8203; how fast does it slow
+down? This could be modeled by using a <em>scalar</em> value for friction, and shrinking
+the <em>velocity</em> (a vector) of the ball by that much every tick of the simulation.</p>
+</div>
+<div class="paragraph">
+<p>The math for scaling a vector is as simple as multiplying the <em>scalar</em> by the
+<code>x</code> and <code>y</code> components of the vector. In terms of code, it might look something
+like:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># just overloaded the `*` operator
+proc `*`*(a: Vector, b: float): Vector =
+  result.x = a.x * b;
+  result.y = a.y * b;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unit-normalized">Unit Vectors and Normalized Vectors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <em>unit vector</em> is a vector who&#8217;s length/magnitude is exactly 1. A <em>normalized
+vector</em> is a vector who&#8217;s components have been divided by it&#8217;s magnitude in order
+to be in proportion with a unit vector. For example, the vector <code>[1, 2]</code> has a
+magnitude of about <code>2.236</code>. If this vector is <em>normalized</em>, it&#8217;s value would
+become <code>[1/2.236, 2/2.236]</code>.</p>
+</div>
+<div class="paragraph">
+<p>Why is this useful? The key is that a normalized vector is <em>proportional</em> to
+the original vector. This means the <em>normalized</em> vector carries direction with
+a proportional encoding for magnitude, thus enabling the <em>normalized</em> vector to
+be scaled to any size proportional to the original magnitude.</p>
+</div>
+<div class="paragraph">
+<p>Again, why is this useful? I think it&#8217;s best illustrated with an example! Think
+of light reflecting off of several objects. Each object has a vector describing
+an amount of light that get&#8217;s reflected, as well as a direction of reflection.
+The intensity of light can be represented by a single scalar value, turning the
+problem into one of <em>scaling</em> each objects light vector.</p>
+</div>
+<div class="paragraph">
+<p>If each object&#8217;s light vector is <em>normalized</em>, then they will have a consistent
+representation of reflected light based on the same <em>scale</em>. If each light vector
+were <strong>not</strong> <em>normalized</em>, then there would be a very inconsistent representation
+of light, each object behaving like it existed in it&#8217;s own little world.</p>
+</div>
+<div class="paragraph">
+<p>Whew. I hope that helped. Here&#8217;s some code to implement normalization:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc normalize*(self: Vector): Vector =
+  result.x = self.x/self.mag;
+  result.y = self.y/self.mag;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dot-product">The Dot Product</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Seriously, <a href="http://blog.wolfire.com/2009/07/linear-algebra-for-game-developers-part-2/">Wolfire&#8217;s Linear Algebra for Game Developers, Part 2</a>
+has a great example of the <em>dot product</em> and why it&#8217;s useful. Not even going
+to try to make a better example and explanation, because I doubt I could at this point.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ll paraphrase though, the <em>dot product</em> is kind of a proportion of how much
+the vectors are pointing in the same direction. It&#8217;s also kind of useful in
+<a href="#projection">Projecting a Vector onto Another</a>.</p>
+</div>
+<div class="paragraph">
+<p>Suffice it to say, here&#8217;s some code for implementing the dot product:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc dot*(A, B: Vector): float =
+  return A.x*B.x + A.y*B.y;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that this code looks an aweful lot like the <em>magnitudeSq</em> method! Intuitively,
+then, the dot product of vector A against intself would be the <em>h<sup>2</sup></em> value
+when solving for Pythagora&#8217;s Theorem&#8230;&#8203; which means our magnitude code could
+be adjusted to look more like:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># just get the square-root of the dot product of the vector against itself
+proc magnitude*(self: Vector): float =
+  result = sqrt(self.dot(self))</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="projection">Projecting a Vector onto Another</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The act of <em>projecting</em> a vector onto another is, essentially, finding the vector
+between the <em>points</em> <code>a</code> and <code>b</code> in the following image:</p>
+</div>
+<div class="paragraph">
+<p><canvas data-processing-sources="/static/processingjs/2d-game-physics--vectors/vectors.pde /static/processingjs/2d-game-physics--vectors/example6.pde"></canvas></p>
+</div>
+<div class="paragraph">
+<p>Intuitively, if the vector being projected onto is a <em>normalized</em> vector, then
+really the problem becomes straight forward! First, find the <em>magnitude</em> of the
+vector resulting from a vector projected onto a <em>normalized</em> vector (turns out,
+this is the <em>dot product</em>). Then, scale the <em>normalized</em> vector (who&#8217;s legs are
+proportional to each other) by the <em>magnitude</em> to get the resulting vector
+encoded as <code>x</code> and <code>y</code> values.</p>
+</div>
+<div class="paragraph">
+<p>Why is this useful? This is kinda hard for me to answer in what I feel is total
+understanding, as I don&#8217;t think I&#8217;ve actually <em>used</em> it enough to really grasp
+it use. The text book answer might be a few things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>finding the proportion of how much of one vector lies in another&#8217;s
+direction (useful for determining if AI with a view arc can see a player,
+for example)</p>
+</li>
+<li>
+<p>tying into the first point, finding the angle between two vectors</p>
+</li>
+<li>
+<p>finding the local coordinates of a vector on an arbitrary axis other than
+the <code>x</code> and <code>y</code> axis</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>That&#8217;s still a pretty meaty explaination. I guess it boils down to being able
+to see a vector in the context of another, and making assumptions based off the
+result.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m pretty sure that I will be using <em>projection</em> pretty heavily once I start
+getting into implementing the <a href="http://www.codezealot.org/archives/55">Separating Axis Theorem</a>.</p>
+</div>
+<div class="paragraph">
+<p>Enough talk! Let&#8217;s see some code:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod"># this procedure handles a more generalized form of projection (IE when unit
+# vectors aren't explicitly used
+# A projected onto B
+proc project*(A, B: Vector): Vector =
+    var magSq = B.dot(B);
+    var dot = A.dot(B) / magSq;
+    result.x = A.x * dot;
+    result.y = A.y * dot;
+
+# B is an already normalized vector
+# A projected onto B
+proc projectN*(A, B: Vector): Vector =
+    var dot = A.dot(B);
+    result.x = A.x * dot;
+    result.y = A.x * dot;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Vectors - Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I <em>think</em> I&#8217;ve gone through all of the absolute basics of vectors as they
+immediately relate to 2D game physics. The next
+step for me to take will be to (re)learn about linear transformations (for
+things like vector rotation, reflection, etc). I&#8217;m fairly certain there are
+shortcuts for these things, especially for 2D, but the goal is to develop an
+intuition about this stuff, so it&#8217;s important that I don&#8217;t just copy/paste
+code or take every formula at face value.</p>
+</div>
+<div class="paragraph">
+<p>Next time will <em>probably</em> be a much shorter post, specifically covering
+my re-learning and codification of useful linear transformations for 2D
+vectors and hopefully dealing with a lot more code!</p>
+</div>
+</div>
+</div>]]></summary>
+        <updated>Fri Nov 28 2014 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2014-11-2d-game-physics--vectors</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[30 Day Challenge, COMPLETE]]></title>
         <link>http://joelkleier.com/blog/2014-11-30-day-challenge</link>
@@ -273,9 +743,9 @@ Nim&#8217;s pointer constructs.</p>
 <em>bad example</em> of how to use pointers&#8201;&#8212;&#8201;not that this example <em>won&#8217;t work</em>,
 it&#8217;s just not a place you need to use pointers):</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TBaz = object
     y: int
   PBaz = ref TBaz
@@ -300,16 +770,16 @@ assert(bar.baz_accessor.y == 1)
 assert(bar.baz.y == 1)
 bar.baz_accessor = 10
 assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</pre>
+assert(bar.baz.y == 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>And here&#8217;s some code whose end result is the same, without pointers (and without
 the "old" syntax, which I also found out about from the aboved linked article&#8230;&#8203;):</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   Baz = object
     y: int
   Foo = object
@@ -326,7 +796,7 @@ assert(bar.baz_accessor.y == 1)
 assert(bar.baz.y == 1)
 bar.baz_accessor = 10
 assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</pre>
+assert(bar.baz.y == 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -437,16 +907,16 @@ The next thing I decided I should learn about are how Nim implements Generics!</
 <div class="paragraph">
 <p>Let&#8217;s look at a little snippet of a vector library I&#8217;m developing in Nim:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>type
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
   TVec2*[T] = object
     x*: T
     y*: T
 
 # pretty print the vector
 proc `$`*[T](a:TVec2[T]): string =
-  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</pre>
+  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -469,9 +939,9 @@ value can be used anywhere in the subsequent expression (Ex: <code>y</strong>: T
 <p>This means that the above definition of <code>TVec2</code> needs to be instantiated something
 like so:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>var vec = TVec2[float](x: 1, y: 1)</pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">var vec = TVec2[float](x: 1, y: 1)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -487,44 +957,6 @@ symbol (<code>*</code>), if there is one.</p>
 </div>]]></summary>
         <updated>Thu Nov 13 2014 00:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-nim-pt8</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Rosetta and Philae]]></title>
-        <link>http://joelkleier.com/blog/2014-11-rosetta</link>
-        <summary><![CDATA[<div class="paragraph">
-<p>Truly an astonishing day for humanity!</p>
-</div>
-<div class="paragraph">
-<p>The ESA&#8217;s <a href="http://www.esa.int/Our_Activities/Space_Science/Rosetta/Rosetta_to_deploy_lander_on_12_November">Rosseta mission</a>
-Deployed it&#8217;s lander (Philae) to the surface of Comet 67P (aka Churyumov-Gerasimenko).
-This mission took 25 years to realise, 10 of which involved <em>Rosetta</em> circling our
-sun and using the gravitation forces of Earth and Mars to slingshot it&#8217;s way into
-the path of Comet 67P!</p>
-</div>
-<div class="paragraph">
-<p>Here is the first image captured of this historic event:</p>
-</div>
-<div id="img-farwell-rossetta" class="imageblock">
-<div class="content">
-<a class="image" href="https://www.flickr.com/photos/europeanspaceagency/15587895747/in/set-72157649192589446/"><img src="https://farm8.staticflickr.com/7473/15587895747_d1a4a70a93_n.jpg" alt="First picture from Philae of Rossetta"></a>
-</div>
-<div class="title">Figure 1. Farewell Rosetta</div>
-</div>
-<div class="paragraph">
-<p>I recommend the <a href="https://www.flickr.com/photos/europeanspaceagency/">the whole ESA Flickr stream</a>,
-it is full of beautiful images!</p>
-</div>
-<div class="paragraph">
-<p>If humanity can do this, humanity can do <em>anything</em>. I&#8217;m truly proud, inspired,
-and in awe of the dedication, talent, hard work, and <em>international cooperation</em>
-that went into this venture.</p>
-</div>
-<div class="paragraph">
-<p>This is only the very beginning, and it is a wonder to behold first hand.</p>
-</div>]]></summary>
-        <updated>Wed Nov 12 2014 00:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-11-rosetta</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
