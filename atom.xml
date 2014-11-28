@@ -4,7 +4,7 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Nov 28 2014 14:02:57 GMT-0600 (CST)</updated>
+    <updated>Fri Nov 28 2014 14:05:30 GMT-0600 (CST)</updated>
 
     <entry>
         <title><![CDATA[Game Physics - Vectors]]></title>
@@ -467,7 +467,7 @@ code or take every formula at face value.</p>
 </div>
 <div class="paragraph">
 <p>Next time will <em>probably</em> be a much shorter post, specifically covering
-my re-learning and codification of useful linear transformations for 2D
+my re-learning useful linear transformations for 2D
 vectors and hopefully dealing with a lot more code!</p>
 </div>
 </div>
