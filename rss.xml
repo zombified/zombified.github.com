@@ -7,6 +7,128 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Game Physics - Rotation]]></title>
+            <link>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--rotation</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Developing hobby games I usually just stick to libraries that already handle
+things like <em>physics</em>. Basically I follow examples, copy/paste code, and plugin
+numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
+math and gain an intuition of what&#8217;s actually going on, which is what I want
+to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics&#8212;&#8203;vectors/">part 1</a>
+<strong>part 2</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Vector rotation is simple in principle! But really digging in and getting to
+understand the math made may head&#8230;&#8203;. <em>spin</em>. hehe.</p>
+</div>
+<div class="paragraph">
+<p>Anyhow, I did discover some things, but hit a wall with the intuition. I think
+I could get past this wall, but I would need to invest more time and effort than
+I really want to into understanding the math to a absurdly completionist point
+(and who knows, maybe I only think I understand it now!). To that end, I&#8217;d
+like to talk about what I <em>do</em> think I understand.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This article was written as I attempt to learn the subject matter at hand,
+so there is a strong possibility of incorrect information based on my own ignorance.</p>
+</div>
+<div class="paragraph">
+<p>Please, if you see an error of any kind, feel free to send me an email!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_rotation">Rotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simple case is to consider what happens when you rotate a unit vector in
+90 degree increments. Specifically, let&#8217;s consider the vector [1, 0]. The
+sequence of values will be: <em>[1, 0], [0, 1], [-1, 0], [0, -1]</em></p>
+</div>
+<div class="paragraph">
+<p>From this, a pattern emerges:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x' = -y
+y' = x</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This breaks down for any other increment than 90, but that&#8217;s because 90 is
+a special case for a more generalized formula (where <code>t</code> is an angle):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x' = cos(t)*x - sin(t)*y
+y' = sin(t)*x + cos(t)*y</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is more often represented in <em>matrix</em> form (called a <em>rotation matrix</em>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>R(t) = |cos(t) -sin(t)|
+       |sin(t)  cos(t)|</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But when it&#8217;s multiplied by a vector <code>[x, y]</code> you&#8217;ll get the first formula. Even
+with all of the reading and exploration that I&#8217;ve done, I don&#8217;t think I fully
+<em>grok</em> this enough to really explain it without regurgitating text book information
+that doesn&#8217;t really explain everything. My current understanding is that the
+formula is basically deriving an <code>x</code>/<code>y</code> offset caused by the first angle, then
+figuring out the second angle in <code>x</code>/<code>y</code>, then applying the offset.</p>
+</div>
+<div class="paragraph">
+<p>Yay! Time for some code, which is a lot more concise that the above :)</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc rotate*(self: Vector, angle: float): Vector =
+    var cs = cos(angle), s = sin(angle)
+    result.x = cs*self.x - s*y
+    result.y = s*self.x + cs*self.y
+
+# a special case, slightly faster than the general formula
+proc rotate90*(self: Vector): Vector =
+    result.x = -self.y
+    result.y = self.x</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;ve briefly explained what needs to be done to calculate the rotation of
+a vector, and I think I&#8217;ve learned a bit along the way&#8201;&#8212;&#8201;though not enough
+to truly <em>grok</em> the operation.</p>
+</div>
+<div class="paragraph">
+<p>Next week will likely not be a continuation of this series, but a diversion
+into the 31st <a href="http://ludumdare.com/compo">Ludum Dare</a> 48-hour game competition,
+which I am competing in this weekend!</p>
+</div>
+</div>
+</div>]]></description>
+            <pubDate>Fri Dec 05 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--rotation</guid>
+        </item>
+        <item>
             <title><![CDATA[Game Physics - Vectors]]></title>
             <link>http://joelkleier.com/blog/2014-11-2d-game-physics--vectors</link>
             <description><![CDATA[<div class="paragraph">
@@ -14,7 +136,9 @@
 things like <em>physics</em>. Basically I follow examples, copy/paste code, and plugin
 numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
 math and gain an intuition of what&#8217;s actually going on, which is what I want
-to do now.</p>
+to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
+<strong>part 1</strong>
+<a href="http://joelkleier.com/blog/2014-12-2d-game-physics&#8212;&#8203;rotation/">part 2</a>.</p>
 </div>
 <div class="paragraph">
 <p><em>Vectors</em> are the basic building block of 2D game physics. They describe the
@@ -644,6 +768,11 @@ just as many in meat-space!</p>
 use Nim to play around with some of these concepts and shake the rust off!</p>
 </div>
 <div class="paragraph">
+<p>Here&#8217;s what I&#8217;ve written on this toppic: <strong>part 0</strong>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics&#8212;&#8203;vectors/">part 1</a>
+<a href="http://joelkleier.com/blog/2014-12-2d-game-physics&#8212;&#8203;rotation/">part 2</a>.</p>
+</div>
+<div class="paragraph">
 <p>Until next time!</p>
 </div>]]></description>
             <pubDate>Thu Nov 20 2014 00:00:00 GMT-0600 (CST)</pubDate>
@@ -885,69 +1014,6 @@ accept pull requests (which, AFAIK, they are not currently going to do)!</p>
 </div>]]></description>
             <pubDate>Fri Nov 14 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-go-go-github</guid>
-        </item>
-        <item>
-            <title><![CDATA[Nim! pt8 - Generics]]></title>
-            <link>http://joelkleier.com/blog/2014-11-nim-pt8</link>
-            <description><![CDATA[<div class="paragraph">
-<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt7">last post</a> on Nim, I tried to
-figure out the answer to "How do I test in Nim?". The answer was, basically,
-create a separate program with a bunch of asserts for each module I want to test.
-The next thing I decided I should learn about are how Nim implements Generics!</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s look at a little snippet of a vector library I&#8217;m developing in Nim:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
-  TVec2*[T] = object
-    x*: T
-    y*: T
-
-# pretty print the vector
-proc `$`*[T](a:TVec2[T]): string =
-  result = "(" &amp; $a.x &amp; "," &amp; $a.y &amp; ")"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This code actually illustrates <em>several</em> concepts! First, lets talk about
-<em>operator overloading</em>. You overload operators by naming a procedure specially,
-IE with back-ticks around the operator symbol. There are a couple of operators
-that don&#8217;t have overloading implemented (like the assignment operator, <code>=</code>).</p>
-</div>
-<div class="paragraph">
-<p>The above example demonstrates an operator used to automatically convert a type
-into a string, very useful when dealing with an unknown generic type.</p>
-</div>
-<div class="paragraph">
-<p>The brackets and <code>T</code> value (<code>[T]</code>) after <code>TVec2*</code> tells the compiler that when
-being instantiated, a type <code>T</code> should be specified for <code>TVec2</code>. The <code><strong></code> means
-that the <code>Tvec2</code> type should be <em>exported</em> for use outside the module. The <code>T</code>
-value can be used anywhere in the subsequent expression (Ex: <code>y</strong>: T</code>).</p>
-</div>
-<div class="paragraph">
-<p>This means that the above definition of <code>TVec2</code> needs to be instantiated something
-like so:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">var vec = TVec2[float](x: 1, y: 1)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note the <code>[float]</code> after <code>TVec2</code>.</p>
-</div>
-<div class="paragraph">
-<p>This turns out to be pretty straight forward and scaleable to more than one type
-being defined generically.</p>
-</div>
-<div class="paragraph">
-<p>One thing to keep in mind is that the brackets <em>always</em> come <em>after</em> the export
-symbol (<code>*</code>), if there is one.</p>
-</div>]]></description>
-            <pubDate>Thu Nov 13 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt8</guid>
         </item>
     </channel>
 </rss>

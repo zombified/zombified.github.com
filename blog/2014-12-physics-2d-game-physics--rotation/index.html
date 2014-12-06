@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Game Physics - Rotation <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p>Developing hobby games I usually just stick to libraries that already handle
+things like <em>physics</em>. Basically I follow examples, copy/paste code, and plugin
+numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
+math and gain an intuition of what&#8217;s actually going on, which is what I want
+to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics&#8212;&#8203;vectors/">part 1</a>
+<strong>part 2</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Vector rotation is simple in principle! But really digging in and getting to
+understand the math made may head&#8230;&#8203;. <em>spin</em>. hehe.</p>
+</div>
+<div class="paragraph">
+<p>Anyhow, I did discover some things, but hit a wall with the intuition. I think
+I could get past this wall, but I would need to invest more time and effort than
+I really want to into understanding the math to a absurdly completionist point
+(and who knows, maybe I only think I understand it now!). To that end, I&#8217;d
+like to talk about what I <em>do</em> think I understand.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This article was written as I attempt to learn the subject matter at hand,
+so there is a strong possibility of incorrect information based on my own ignorance.</p>
+</div>
+<div class="paragraph">
+<p>Please, if you see an error of any kind, feel free to send me an email!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_rotation">Rotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simple case is to consider what happens when you rotate a unit vector in
+90 degree increments. Specifically, let&#8217;s consider the vector [1, 0]. The
+sequence of values will be: <em>[1, 0], [0, 1], [-1, 0], [0, -1]</em></p>
+</div>
+<div class="paragraph">
+<p>From this, a pattern emerges:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x' = -y
+y' = x</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This breaks down for any other increment than 90, but that&#8217;s because 90 is
+a special case for a more generalized formula (where <code>t</code> is an angle):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>x' = cos(t)*x - sin(t)*y
+y' = sin(t)*x + cos(t)*y</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is more often represented in <em>matrix</em> form (called a <em>rotation matrix</em>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>R(t) = |cos(t) -sin(t)|
+       |sin(t)  cos(t)|</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But when it&#8217;s multiplied by a vector <code>[x, y]</code> you&#8217;ll get the first formula. Even
+with all of the reading and exploration that I&#8217;ve done, I don&#8217;t think I fully
+<em>grok</em> this enough to really explain it without regurgitating text book information
+that doesn&#8217;t really explain everything. My current understanding is that the
+formula is basically deriving an <code>x</code>/<code>y</code> offset caused by the first angle, then
+figuring out the second angle in <code>x</code>/<code>y</code>, then applying the offset.</p>
+</div>
+<div class="paragraph">
+<p>Yay! Time for some code, which is a lot more concise that the above :)</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc rotate*(self: Vector, angle: float): Vector =
+    var cs = cos(angle), s = sin(angle)
+    result.x = cs*self.x - s*y
+    result.y = s*self.x + cs*self.y
+
+# a special case, slightly faster than the general formula
+proc rotate90*(self: Vector): Vector =
+    result.x = -self.y
+    result.y = self.x</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;ve briefly explained what needs to be done to calculate the rotation of
+a vector, and I think I&#8217;ve learned a bit along the way&#8201;&#8212;&#8201;though not enough
+to truly <em>grok</em> the operation.</p>
+</div>
+<div class="paragraph">
+<p>Next week will likely not be a continuation of this series, but a diversion
+into the 31st <a href="http://ludumdare.com/compo">Ludum Dare</a> 48-hour game competition,
+which I am competing in this weekend!</p>
+</div>
+</div>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Fri Dec 05 2014 00:00:00 GMT-0600 (CST)">2014-12-05</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
