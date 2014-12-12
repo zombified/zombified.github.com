@@ -7,6 +7,156 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[LD48 31 &#x27;Post-Mortem&#x27;]]></title>
+            <link>http://joelkleier.com/blog/2014-12-ld48-31-post-mortem</link>
+            <description><![CDATA[<div class="sect1">
+<h2 id="_what_is_it">What is it?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a sentance, the Ludum Dare is an event that acts as a focal point for learning
+how to eschew distraction and unnecessary complication. I encourage you to
+<a href="http://ludumdare.com/compo/">check it out</a>!</p>
+</div>
+<div class="paragraph">
+<p>The theme this year was <em>Entire Game on One Screen</em>, and my entry is called
+<a href="http://ludumdare.com/compo/ludum-dare-31/?action=preview&amp;uid=7263">Asteroid Miner</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_did_i_participate">Why did I participate?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I absolutely <em>love</em> this "competition" because it emphasizes the <em>process</em> of
+creating something over the final product. Certainly, high scores and
+premium placement post-competition are desireable, but not so desirable that
+they become an overriding focus for participants.</p>
+</div>
+<div class="paragraph">
+<p>Above all, it&#8217;s an opportunity to mark dedicated time on my calendar for practice
+of a skill that requires perpetual attention to master: the ability to focus
+and perform efficiently, simply, and quickly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_went_right">What Went Right?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>My wife was absolutely amazing&#8201;&#8212;&#8201;it is <strong>very</strong> important to have the support of
+those you love and respect when every part of you is tired and your mind is
+practically putty. Every word of encouragment helps renew commitement
+to the process of seeing the 48-hours through.</p>
+</li>
+<li>
+<p>Tooling&#8201;&#8212;&#8201;I made a concious effort to look back at my previous entries and
+use only tooling that I felt I did good work with. To that end, I used
+<a href="https://love2d.org">LÖVE</a>&#8201;&#8212;&#8201;a framework that you script with Lua. Not my
+favorite language, but the community is solid, the documentation is good,
+and the tools are easy to dive into.</p>
+</li>
+<li>
+<p>Twitter turned out to be a very motivating tool&#8201;&#8212;&#8201;<em>#LDJAM</em> was trending so
+every tweet got quite a bit of attention, this was really the first time
+I&#8217;ve interacted with complete strangers so actively. Normally I just lurk
+in social environments, but this was definitely a positive experience and
+it makes me curious how much more useful it could be.</p>
+</li>
+<li>
+<p><a href="http://www.gifgrabber.com/">GifGrabber</a> and <a href="https://imageoptim.com/">ImageOptim</a>
+are two fantastic tools for generating short little progress "videos"&#8201;&#8212;&#8201;and
+the "videos" were a motivation all in themselves. After taking a series of
+these throughout my game, it let me reflect on my progress much more
+visually that a static screenshot (or nothing at all) would. This is
+surprisingly powerful, epsecially when you are working on something that is
+very dynamic and visual by nature.</p>
+</li>
+<li>
+<p>I stayed hydrated and didn&#8217;t starve myself&#8201;&#8212;&#8201;seemingly irrelevant maybe,
+but this is an important one. Learned that lesson <em>long</em> ago.</p>
+</li>
+<li>
+<p>My recent (incomplete) dive into 2d game physics <em>really</em> helped out. Not
+a particuarly impressive example, but I was quite proud of myself when I
+finished the code to dynamically create polygonal circles, then deform them
+in such a manner to make them appear to be odd-shaped asteroids! It was a
+moment that I would have normally gone hunting for examples online. This time
+I thought through the entire problem, and already <em>knew</em> how to solve it.
+Such a small thing, but so very motivating.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_went_wrong">What Went Wrong?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Distraction! I spent about 3 hours watching TV that I <em>could</em> have been
+making my game better! To be fair, some level of distraction is required
+to maintain sanity in stressful situations, but 3 hours seems to be more
+than I needed.</p>
+</li>
+<li>
+<p>I didn&#8217;t didn&#8217;t <em>stop</em> when I was getting tired on the second night&#8230;&#8203; which
+just put me behind&#8201;&#8212;&#8201;not only did I make bad decisions, I ended up short
+changing myself by over-sleeping the next day and not getting as much work
+done as I could have.</p>
+</li>
+<li>
+<p>If economy of time is important, don&#8217;t explore unfamiliar tools, and if you
+do <em>have</em> to, make certain they <em>are</em> the right tool for the job before you
+invest time into using them. In my case, this was <code>love.physics</code>. Really
+cool, but <em>way</em> over-kill, and trying to use it cost me about 4-hours of
+work.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_can_i_do_better_next_time">What Can I Do Better Next Time?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Don&#8217;t use unfamiliar tools</p>
+</li>
+<li>
+<p>Sleep on a schedule</p>
+</li>
+<li>
+<p>Less distraction</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parting_words">Parting words</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Everytime I participate, it strengthens my ability to just <em>get stuff done</em> and
+forces me out of the "decision paralysis" mindset. All to often it is easy to
+get into a state where <em>analysis</em> of a problem turns into <em>decision paralysis</em>.
+This state is the death of productivity of any kind, and turns into avoidance
+or pure laziness. Bad habits.</p>
+</div>
+<div class="paragraph">
+<p>This was my first participation in the Ludum Dare in about a year, and I&#8217;m glad
+I did it. Will I be doing this again? If life permits (and it is a priority
+of mine to make sure it does), you bet!</p>
+</div>
+</div>
+</div>]]></description>
+            <pubDate>Fri Dec 12 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-12-ld48-31-post-mortem</guid>
+        </item>
+        <item>
             <title><![CDATA[Game Physics - Rotation]]></title>
             <link>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--rotation</link>
             <description><![CDATA[<div class="paragraph">
@@ -994,26 +1144,6 @@ thing that they can interact with occasionally?</p>
 </div>]]></description>
             <pubDate>Sat Nov 15 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-programming-videos</guid>
-        </item>
-        <item>
-            <title><![CDATA[What is this world coming too???]]></title>
-            <link>http://joelkleier.com/blog/2014-11-go-go-github</link>
-            <description><![CDATA[<div class="paragraph">
-<p>First, Microsoft <a href="http://www.wired.com/2014/11/microsoft-open-sources-net-says-will-run-linux-mac/">opens a lot more</a>
-of their stack. Huge news, right? THEN they announce they&#8217;re putting it on
-<a href="https://github.com/Microsoft/dotnet"><em>Github</em></a>!</p>
-</div>
-<div class="paragraph">
-<p>And today? <em>Google</em> announces their <a href="https://groups.google.com/forum/#!topic/golang-dev/sckirqOWepg">moving <em>Go</em></a>
-to Github!</p>
-</div>
-<div class="paragraph">
-<p>This is a huge endorsement for <em>Github</em>, even if it&#8217;s not a direct one. And what
-a week for .NET! I hope Microsoft keeps it up and one day starts deciding to
-accept pull requests (which, AFAIK, they are not currently going to do)!</p>
-</div>]]></description>
-            <pubDate>Fri Nov 14 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-go-go-github</guid>
         </item>
     </channel>
 </rss>

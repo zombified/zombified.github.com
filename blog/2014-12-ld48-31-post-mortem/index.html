@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>LD48 31 &#x27;Post-Mortem&#x27; <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="sect1">
+<h2 id="_what_is_it">What is it?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a sentance, the Ludum Dare is an event that acts as a focal point for learning
+how to eschew distraction and unnecessary complication. I encourage you to
+<a href="http://ludumdare.com/compo/">check it out</a>!</p>
+</div>
+<div class="paragraph">
+<p>The theme this year was <em>Entire Game on One Screen</em>, and my entry is called
+<a href="http://ludumdare.com/compo/ludum-dare-31/?action=preview&amp;uid=7263">Asteroid Miner</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_did_i_participate">Why did I participate?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I absolutely <em>love</em> this "competition" because it emphasizes the <em>process</em> of
+creating something over the final product. Certainly, high scores and
+premium placement post-competition are desireable, but not so desirable that
+they become an overriding focus for participants.</p>
+</div>
+<div class="paragraph">
+<p>Above all, it&#8217;s an opportunity to mark dedicated time on my calendar for practice
+of a skill that requires perpetual attention to master: the ability to focus
+and perform efficiently, simply, and quickly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_went_right">What Went Right?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>My wife was absolutely amazing&#8201;&#8212;&#8201;it is <strong>very</strong> important to have the support of
+those you love and respect when every part of you is tired and your mind is
+practically putty. Every word of encouragment helps renew commitement
+to the process of seeing the 48-hours through.</p>
+</li>
+<li>
+<p>Tooling&#8201;&#8212;&#8201;I made a concious effort to look back at my previous entries and
+use only tooling that I felt I did good work with. To that end, I used
+<a href="https://love2d.org">LÖVE</a>&#8201;&#8212;&#8201;a framework that you script with Lua. Not my
+favorite language, but the community is solid, the documentation is good,
+and the tools are easy to dive into.</p>
+</li>
+<li>
+<p>Twitter turned out to be a very motivating tool&#8201;&#8212;&#8201;<em>#LDJAM</em> was trending so
+every tweet got quite a bit of attention, this was really the first time
+I&#8217;ve interacted with complete strangers so actively. Normally I just lurk
+in social environments, but this was definitely a positive experience and
+it makes me curious how much more useful it could be.</p>
+</li>
+<li>
+<p><a href="http://www.gifgrabber.com/">GifGrabber</a> and <a href="https://imageoptim.com/">ImageOptim</a>
+are two fantastic tools for generating short little progress "videos"&#8201;&#8212;&#8201;and
+the "videos" were a motivation all in themselves. After taking a series of
+these throughout my game, it let me reflect on my progress much more
+visually that a static screenshot (or nothing at all) would. This is
+surprisingly powerful, epsecially when you are working on something that is
+very dynamic and visual by nature.</p>
+</li>
+<li>
+<p>I stayed hydrated and didn&#8217;t starve myself&#8201;&#8212;&#8201;seemingly irrelevant maybe,
+but this is an important one. Learned that lesson <em>long</em> ago.</p>
+</li>
+<li>
+<p>My recent (incomplete) dive into 2d game physics <em>really</em> helped out. Not
+a particuarly impressive example, but I was quite proud of myself when I
+finished the code to dynamically create polygonal circles, then deform them
+in such a manner to make them appear to be odd-shaped asteroids! It was a
+moment that I would have normally gone hunting for examples online. This time
+I thought through the entire problem, and already <em>knew</em> how to solve it.
+Such a small thing, but so very motivating.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_went_wrong">What Went Wrong?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Distraction! I spent about 3 hours watching TV that I <em>could</em> have been
+making my game better! To be fair, some level of distraction is required
+to maintain sanity in stressful situations, but 3 hours seems to be more
+than I needed.</p>
+</li>
+<li>
+<p>I didn&#8217;t didn&#8217;t <em>stop</em> when I was getting tired on the second night&#8230;&#8203; which
+just put me behind&#8201;&#8212;&#8201;not only did I make bad decisions, I ended up short
+changing myself by over-sleeping the next day and not getting as much work
+done as I could have.</p>
+</li>
+<li>
+<p>If economy of time is important, don&#8217;t explore unfamiliar tools, and if you
+do <em>have</em> to, make certain they <em>are</em> the right tool for the job before you
+invest time into using them. In my case, this was <code>love.physics</code>. Really
+cool, but <em>way</em> over-kill, and trying to use it cost me about 4-hours of
+work.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_can_i_do_better_next_time">What Can I Do Better Next Time?</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Don&#8217;t use unfamiliar tools</p>
+</li>
+<li>
+<p>Sleep on a schedule</p>
+</li>
+<li>
+<p>Less distraction</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parting_words">Parting words</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Everytime I participate, it strengthens my ability to just <em>get stuff done</em> and
+forces me out of the "decision paralysis" mindset. All to often it is easy to
+get into a state where <em>analysis</em> of a problem turns into <em>decision paralysis</em>.
+This state is the death of productivity of any kind, and turns into avoidance
+or pure laziness. Bad habits.</p>
+</div>
+<div class="paragraph">
+<p>This was my first participation in the Ludum Dare in about a year, and I&#8217;m glad
+I did it. Will I be doing this again? If life permits (and it is a priority
+of mine to make sure it does), you bet!</p>
+</div>
+</div>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Fri Dec 12 2014 00:00:00 GMT-0600 (CST)">2014-12-12</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>
