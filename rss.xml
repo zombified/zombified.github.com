@@ -7,6 +7,126 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Game Physics - Reflection and Reversing Vectors]]></title>
+            <link>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--reflection</link>
+            <description><![CDATA[<div class="paragraph">
+<p>Developing hobby games I usually just stick to libraries that already handle
+things like <em>physics</em>. Basically I follow examples, copy/paste code, and plugin
+numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
+math and gain an intuition of what&#8217;s actually going on, which is what I want
+to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics--vectors/">part 1</a>
+<a href="http://joelkleier.com/blog/2014-12-physics-2d-game-physics--rotation/">part 2</a>
+<strong>part 3</strong>.</p>
+</div>
+<div class="paragraph">
+<p>There are only a couple of operations that I&#8217;ve read about that seem generally
+useful to my purpose: reflection of a vector about an arbitrary axis, and reversing
+the direction of a vector!</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This article was written as I attempt to learn the subject matter at hand,
+so there is a strong possibility of incorrect information based on my own ignorance.</p>
+</div>
+<div class="paragraph">
+<p>Please, if you see an error of any kind, feel free to send me an email!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_reflection_about_an_arbitrary_axis">Reflection About an Arbitrary Axis</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Say you have a vector V and a vector T&#8230;&#8203; how do you reflect vector V about vector T?</p>
+</div>
+<div class="paragraph">
+<p>The key here is that the intent is not to rotate around just the x and y <em>axis</em>,
+no, the rotation should occur about an <em>arbitrary</em> axis! Not as straight forward,
+and, like rotation, the math is a little much for me to delve into right now,
+but <a href="http://planetmath.org/derivationof2dreflectionmatrix">here&#8217;s a great resource</a>,
+which provides the following formula:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>w' = w - 2(w . v)v</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the V and T values defined earlier, this turns into:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>V' = V - 2(V . T)T</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(the period is supposed to represent the <code>dot product</code> operation)</p>
+</div>
+<div class="paragraph">
+<p>And the code ends up looking like:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc reflect*(self, axis: Vector): Vector =
+    var V = axis * (self.dot(axis) * 2)
+    return self - V</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Admittedly, this is untested at the time of this writing, but that <em>should</em> be
+the gist of the operation as code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reversing_the_direction_of_a_vector">Reversing the Direction of A Vector</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is almost too simple! If you think about it, to reverse a vector is simply
+to subtract it&#8217;s x and y distances instead of add them, so reversing a vector
+really just boils down to returning the opposite of each of it&#8217;s components,
+like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc reverse*(self: Vector): Vector =
+    result.x = -self.x
+    result.y = -self.y</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this point, my grasp of <em>some</em> of the math requried for 2D game physics is
+a little less shaky, and has already helped me out! The next step
+is to dive in to some more advanced concepts, like the Separating-Axis
+Theorem for detection and (possibly) resolution of collisions. But, I&#8217;m not
+sure if I&#8217;ll continue into that subject next week or not. There are some other
+languages, tools, and libraries that I&#8217;d like to take a deeper look into.</p>
+</div>
+<div class="paragraph">
+<p>Whatever comes next time, thanks for reading!</p>
+</div>
+</div>
+</div>]]></description>
+            <pubDate>Fri Dec 19 2014 00:00:00 GMT-0600 (CST)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--reflection</guid>
+        </item>
+        <item>
             <title><![CDATA[LD48 31 &#x27;Post-Mortem&#x27;]]></title>
             <link>http://joelkleier.com/blog/2014-12-ld48-31-post-mortem</link>
             <description><![CDATA[<div class="sect1">
@@ -165,7 +285,7 @@ things like <em>physics</em>. Basically I follow examples, copy/paste code, and 
 numbers. This is good for getting a hobby game <em>built</em> but not so good to learn the
 math and gain an intuition of what&#8217;s actually going on, which is what I want
 to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
-<a href="http://joelkleier.com/blog/2014-11-2d-game-physics&#8212;&#8203;vectors/">part 1</a>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics--vectors/">part 1</a>
 <strong>part 2</strong>.</p>
 </div>
 <div class="paragraph">
@@ -919,8 +1039,8 @@ use Nim to play around with some of these concepts and shake the rust off!</p>
 </div>
 <div class="paragraph">
 <p>Here&#8217;s what I&#8217;ve written on this toppic: <strong>part 0</strong>
-<a href="http://joelkleier.com/blog/2014-11-2d-game-physics&#8212;&#8203;vectors/">part 1</a>
-<a href="http://joelkleier.com/blog/2014-12-2d-game-physics&#8212;&#8203;rotation/">part 2</a>.</p>
+<a href="http://joelkleier.com/blog/2014-11-2d-game-physics--vectors/">part 1</a>
+<a href="http://joelkleier.com/blog/2014-12-2d-game-physics--rotation/">part 2</a>.</p>
 </div>
 <div class="paragraph">
 <p>Until next time!</p>
@@ -1114,36 +1234,6 @@ styled members of types. Lots of good information there about macros and AST&#82
 </div>]]></description>
             <pubDate>Sun Nov 16 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-nim-pt9</guid>
-        </item>
-        <item>
-            <title><![CDATA[Why do people watch live streams (or their recordings) of people coding?]]></title>
-            <link>http://joelkleier.com/blog/2014-11-programming-videos</link>
-            <description><![CDATA[<div class="paragraph">
-<p>There&#8217;s a proliferation of people streaming their coding&#8201;&#8212;&#8201;I&#8217;ve seen it the most
-when I follow and participate in the <a href="http://ludumdare.com/compo/">Ludum Dare</a> or
-with the likes of <a href="http://notch.net/">notch</a>. I get that people may want to know
-the 'secret sauce' of a particular developer&#8230;&#8203; but isn&#8217;t it <em>boring</em> to watch
-someone write text? Isn&#8217;t it akin to watching someone handwrite or type a novel?</p>
-</div>
-<div class="paragraph">
-<p>To me that sounds about as much fun as watching grass grow.</p>
-</div>
-<div class="paragraph">
-<p>I mean, I see real value in a discussion between the streamer and the viewer in
-a more lecture-like session, and I see the value in recording a session for
-voice overs or footage for teaching programming later&#8230;&#8203; but why would anyone
-want to just tune into a stream like that?</p>
-</div>
-<div class="paragraph">
-<p>Maybe it&#8217;s different for someone just starting to get into programming. Or maybe
-it&#8217;s less that people are tuning into actively watch, but more of a background
-thing that they can interact with occasionally?</p>
-</div>
-<div class="paragraph">
-<p>I have no idea&#8230;&#8203;</p>
-</div>]]></description>
-            <pubDate>Sat Nov 15 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-programming-videos</guid>
         </item>
     </channel>
 </rss>

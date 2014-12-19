@@ -39,7 +39,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-    <h1 id='page-header'>Game Physics - Rotation <span class='byline'>by Joel Kleier</span></h1>
+    <h1 id='page-header'>Game Physics - Reflection and Reversing Vectors <span class='byline'>by Joel Kleier</span></h1>
         <nav id='nav'>
             <a id='index' href='/'>EF</a>
             <a id='fullindex' href='/'>Electric Froth</a>
@@ -67,18 +67,13 @@ numbers. This is good for getting a hobby game <em>built</em> but not so good to
 math and gain an intuition of what&#8217;s actually going on, which is what I want
 to do now. <a href="http://joelkleier.com/blog/2014-11-physics/">part 0</a>
 <a href="http://joelkleier.com/blog/2014-11-2d-game-physics--vectors/">part 1</a>
-<strong>part 2</strong>.</p>
+<a href="http://joelkleier.com/blog/2014-12-physics-2d-game-physics--rotation/">part 2</a>
+<strong>part 3</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Vector rotation is simple in principle! But really digging in and getting to
-understand the math made may head&#8230;&#8203;. <em>spin</em>. hehe.</p>
-</div>
-<div class="paragraph">
-<p>Anyhow, I did discover some things, but hit a wall with the intuition. I think
-I could get past this wall, but I would need to invest more time and effort than
-I really want to into understanding the math to a absurdly completionist point
-(and who knows, maybe I only think I understand it now!). To that end, I&#8217;d
-like to talk about what I <em>do</em> think I understand.</p>
+<p>There are only a couple of operations that I&#8217;ve read about that seem generally
+useful to my purpose: reflection of a vector about an arbitrary axis, and reversing
+the direction of a vector!</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -99,64 +94,66 @@ so there is a strong possibility of incorrect information based on my own ignora
 </table>
 </div>
 <div class="sect1">
-<h2 id="_rotation">Rotation</h2>
+<h2 id="_reflection_about_an_arbitrary_axis">Reflection About an Arbitrary Axis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The simple case is to consider what happens when you rotate a unit vector in
-90 degree increments. Specifically, let&#8217;s consider the vector [1, 0]. The
-sequence of values will be: <em>[1, 0], [0, 1], [-1, 0], [0, -1]</em></p>
+<p>Say you have a vector V and a vector T&#8230;&#8203; how do you reflect vector V about vector T?</p>
 </div>
 <div class="paragraph">
-<p>From this, a pattern emerges:</p>
+<p>The key here is that the intent is not to rotate around just the x and y <em>axis</em>,
+no, the rotation should occur about an <em>arbitrary</em> axis! Not as straight forward,
+and, like rotation, the math is a little much for me to delve into right now,
+but <a href="http://planetmath.org/derivationof2dreflectionmatrix">here&#8217;s a great resource</a>,
+which provides the following formula:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>x' = -y
-y' = x</pre>
+<pre>w' = w - 2(w . v)v</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This breaks down for any other increment than 90, but that&#8217;s because 90 is
-a special case for a more generalized formula (where <code>t</code> is an angle):</p>
+<p>With the V and T values defined earlier, this turns into:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>x' = cos(t)*x - sin(t)*y
-y' = sin(t)*x + cos(t)*y</pre>
+<pre>V' = V - 2(V . T)T</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is more often represented in <em>matrix</em> form (called a <em>rotation matrix</em>):</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>R(t) = |cos(t) -sin(t)|
-       |sin(t)  cos(t)|</pre>
-</div>
+<p>(the period is supposed to represent the <code>dot product</code> operation)</p>
 </div>
 <div class="paragraph">
-<p>But when it&#8217;s multiplied by a vector <code>[x, y]</code> you&#8217;ll get the first formula. Even
-with all of the reading and exploration that I&#8217;ve done, I don&#8217;t think I fully
-<em>grok</em> this enough to really explain it without regurgitating text book information
-that doesn&#8217;t really explain everything. My current understanding is that the
-formula is basically deriving an <code>x</code>/<code>y</code> offset caused by the first angle, then
-figuring out the second angle in <code>x</code>/<code>y</code>, then applying the offset.</p>
-</div>
-<div class="paragraph">
-<p>Yay! Time for some code, which is a lot more concise that the above :)</p>
+<p>And the code ends up looking like:</p>
 </div>
 <div class="listingblock">
 <div class="title">vector.nim</div>
 <div class="content">
-<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc rotate*(self: Vector, angle: float): Vector =
-    var cs = cos(angle), s = sin(angle)
-    result.x = cs*self.x - s*y
-    result.y = s*self.x + cs*self.y
-
-# a special case, slightly faster than the general formula
-proc rotate90*(self: Vector): Vector =
-    result.x = -self.y
-    result.y = self.x</code></pre>
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc reflect*(self, axis: Vector): Vector =
+    var V = axis * (self.dot(axis) * 2)
+    return self - V</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Admittedly, this is untested at the time of this writing, but that <em>should</em> be
+the gist of the operation as code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reversing_the_direction_of_a_vector">Reversing the Direction of A Vector</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is almost too simple! If you think about it, to reverse a vector is simply
+to subtract it&#8217;s x and y distances instead of add them, so reversing a vector
+really just boils down to returning the opposite of each of it&#8217;s components,
+like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">vector.nim</div>
+<div class="content">
+<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">proc reverse*(self: Vector): Vector =
+    result.x = -self.x
+    result.y = -self.y</code></pre>
 </div>
 </div>
 </div>
@@ -165,20 +162,21 @@ proc rotate90*(self: Vector): Vector =
 <h2 id="_conclusion">Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I&#8217;ve briefly explained what needs to be done to calculate the rotation of
-a vector, and I think I&#8217;ve learned a bit along the way&#8201;&#8212;&#8201;though not enough
-to truly <em>grok</em> the operation.</p>
+<p>At this point, my grasp of <em>some</em> of the math requried for 2D game physics is
+a little less shaky, and has already helped me out! The next step
+is to dive in to some more advanced concepts, like the Separating-Axis
+Theorem for detection and (possibly) resolution of collisions. But, I&#8217;m not
+sure if I&#8217;ll continue into that subject next week or not. There are some other
+languages, tools, and libraries that I&#8217;d like to take a deeper look into.</p>
 </div>
 <div class="paragraph">
-<p>Next week will likely not be a continuation of this series, but a diversion
-into the 31st <a href="http://ludumdare.com/compo">Ludum Dare</a> 48-hour game competition,
-which I am competing in this weekend!</p>
+<p>Whatever comes next time, thanks for reading!</p>
 </div>
 </div>
 </div>
         <div id='page-meta'>
             Published on
-            <time class='date' datetime="Fri Dec 05 2014 00:00:00 GMT-0600 (CST)">2014-12-05</time>
+            <time class='date' datetime="Fri Dec 19 2014 00:00:00 GMT-0600 (CST)">2014-12-19</time>
         </div>
     </article>
     <footer id='page-footer'>
