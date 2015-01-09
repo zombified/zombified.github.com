@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Electric Froth</title>
+    <link rel='stylesheet' type='text/css' href='/static/style.css'/>
+
+    <!-- apple -->
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/favicon-152.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/favicon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/favicon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/favicon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/favicon-72.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-57.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/favicon-152.png">
+
+    <!-- metro -->
+    <meta name="msapplication-TileColor" content="#9ACD32">
+    <meta name="msapplication-TileImage" content="/static/favicon-144.png">
+
+    <!-- standard -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <link href="./" rel="home start" />
+    <link href="./atom.xml" type="application/atom+xml" rel="alternate" title="Atom Feed" />
+    <link href="./rss.xml" type="application/rss+xml" rel="alternate" title="RSS Feed" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- syntax highlighting -->
+    <link rel="stylesheet" href="/static/solarized_light.css" />
+    <script src="/static/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <h1 id='page-header'>Completely Useless HTTP Server in Rust <span class='byline'>by Joel Kleier</span></h1>
+        <nav id='nav'>
+            <a id='index' href='/'>EF</a>
+            <a id='fullindex' href='/'>Electric Froth</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/archive'>Archive</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/brewlog'>Brewlog</a>
+            <span class='navsep'>&middot;</span>
+            <a class='navlink' href='/interesting-things'>Interesting Things</a>
+        </nav>
+        <nav id='mobile-nav'>
+            <input type='checkbox' id='mobile-menu-input' />
+            <label  id='mobile-menu-button' for='mobile-menu-input'>&#9776; Menu</label>
+            <div id='mobile-menu-items'>
+                <a class='navlink' href='/archive'>Archive</a>
+                <a class='navlink' href='/brewlog'>Brewlog</a>
+                <a class='navlink' href='/'>Interesting Things</a>
+            </div>
+        </nav>
+    <article id='page-content' class='post'>
+        <div class="paragraph">
+<p><a href="http://blog.rust-lang.org/2015/01/09/Rust-1.0-alpha.html">Rust 1.0 Alpha</a> just
+released, and I think it&#8217;s about time to dig into it. I have an idea for a
+very personal side project (just a handy tool for me and my wife to use), and
+a super simple HTTP (read: basically useless) server fits the bill for one of
+the requirements.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s be clear: by 'super simple' I really mean a server that understands
+the absolute bare minimum of HTTP to serve a response in the most stupid/simple
+of ways.</p>
+</div>
+<div class="paragraph">
+<p>Turns out, if you ignore almost all HTTP features, it&#8217;s really quite simple
+(I think&#8230;&#8203; I&#8217;ll probably eat my words later ;)!
+In the rest of this post I&#8217;ll throw some Rust code at you, basically
+ripped out of the example in the <a href="http://doc.rust-lang.org/std/io/">std::io
+documentation</a>, then walk through my process in learning exactly what the
+heck is going on.</p>
+</div>
+<div class="paragraph">
+<p>The Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::io::{TcpListener, TcpStream};
+use std::io::{Acceptor, Listener};
+use std::thread::Thread;
+
+fn handle_client(mut stream: TcpStream) {
+    stream.write_str("HTTP/1.1 200 OK\nContent-Type: text/plain\n\nahoy!");
+}
+
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:8080");
+    let mut acceptor = listener.listen();
+
+    for stream in acceptor.incoming() {
+        match stream {
+            Err(e) =&gt; {
+                println!("connection failed");
+            },
+            Ok(stream) =&gt; {
+                Thread::spawn(move|| {
+                    handle_client(stream)
+                });
+            },
+        }
+    }
+
+    drop(acceptor);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Perusing over this code, my eye catches on the <code>match</code> statement first. Boiled
+down, it looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">match stream {
+    Err(e) =&gt; {},
+    Ok(Stream) =&gt; {},
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My first thought is that this is just a different kind of <code>select</code> or <code>case</code>
+statement&#8201;&#8212;&#8201;but it turns out that it is <em>so much more</em>.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s actually a pattern matching statement that can be used as an <em>expression</em>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s break that down some:</p>
+</div>
+<div class="paragraph">
+<p>First, "can be used as an expression"&#8201;&#8212;&#8201;a <code>match</code> can actually return a value!
+This is perfectly legal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">let s = match x {
+    1 =&gt; "true",
+    _ =&gt; "false",
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this actually goes deeper than just the <code>match</code> statement&#8201;&#8212;&#8201;almost everything
+in rust is an <em>expression</em>. If an <em>expression</em> is followed by a semicolon, then
+the value of the <em>expression</em> is suppressed and it&#8217;s treated like a <code>nil</code> value.</p>
+</div>
+<div class="paragraph">
+<p>An implication of this is that if the last line of a block is not terminated
+with a semicolon, it becomes the blocks <em>value</em>. IE:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">fn test() -&gt; String {
+    "test".to_string()
+}
+
+println!("{}", test());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s some more interesting stuff! The <code>.to_string()</code> is necessary in this
+example because <code>"test"</code> by itself is of type <code>&amp;str</code> (a reference to a statically
+allocated string), which is not the type that the <code>println!</code> macro expects
+(macro&#8217;s are indicated by the exclamation). The <code>.to_string()</code> method actually
+converts the <code>&amp;str</code> value into a <code>String</code> (dynamically allocated mutable utf-8
+string value).</p>
+</div>
+<div class="paragraph">
+<p>Nifty!</p>
+</div>
+<div class="paragraph">
+<p>Back to the <code>match</code> statement&#8201;&#8212;&#8201;moving past expressions and statements and
+back to "pattern matching". The <code>Err(e)</code> and <code>Ok</code> are actually <code>enum</code> values
+ultimately of the type <a href="http://doc.rust-lang.org/std/result/enum.Result.html"><code>std::result::Result</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Enums are <em>powerful</em> in Rust in that they let you structure data, then destructure
+that data in expressions like <code>match</code>. So, a method can return a value of an
+enum type <code>Result</code> and <em>know</em> exhaustively the possible enum values are <code>Ok</code>
+or <code>Err</code>. That by itself would be good-to-know information, but practically useless
+in many situations&#8201;&#8212;&#8201;there&#8217;s no other information like an error message or
+success code, etc. These enums actually allow for sort of 'embedding' values
+into them, so the value or values of an enum can be carried with the enum value.</p>
+</div>
+<div class="paragraph">
+<p>In the <code>match</code> statement the value held by the <code>Err</code> enum value can be
+pulled out (by destructuring the enum values), like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">match resultvalue {
+    Ok(resultvalue) =&gt; { /* do something with the resultvalue */ }
+    Err(errmsg) =&gt; { println!("error detected: {}", errmsg); }
+}</code></pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>That&#8217;s enough for this time around. Next time will be more learning
+Rust, as well as getting into the nitty-gritty of what is actually needed to
+make a minimally useful HTTP server!</p>
+</div>
+</div>
+</div>
+        <div id='page-meta'>
+            Published on
+            <time class='date' datetime="Fri Jan 09 2015 00:00:00 GMT-0600 (CST)">2015-01-09</time>
+        </div>
+    </article>
+    <footer id='page-footer'>
+        <div>
+            <a href='/rss.xml'>RSS</a>
+            &middot;
+            <a href='/atom.xml'>Atom</a>
+            &middot;
+            Built with <a href='http://metalsmith.io'>metalsmith</a>
+            &middot;
+            &copy; Joel Kleier
+        </div>
+        <div class='contact-info'>
+            <a href='mailto:joel@kleier.us'>joel@kleier.us</a>
+            &middot;
+            <a href='https://twitter.com/_joelkleier'>@_joelkleier</a>
+            &middot;
+            <a href='https://github.com/zombified'>github</a>
+            &middot;
+            <a href='https://facebook.com/joelkleier'>facebook</a>
+            &middot;
+            <a href='https://plus.google.com/103068742768232395606/about'>g+</a>
+            &middot;
+            <a href='https://www.linkedin.com/in/joelkleier'>linkedin</a>
+        </div>
+        <div class='about-me'>
+            My name is Joel Kleier. I'm a professional web developer with a lot
+            of interests. This is my little corner of the internet where I
+            share some of those interests.
+        </div>
+    </footer>
+</body>
+</html>

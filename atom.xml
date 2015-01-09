@@ -4,8 +4,168 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Thu Dec 18 2014 22:50:29 GMT-0600 (CST)</updated>
+    <updated>Fri Jan 09 2015 17:53:11 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Completely Useless HTTP Server in Rust]]></title>
+        <link>http://joelkleier.com/blog/2015-01-completely-useless-httpd-in-rust-lang</link>
+        <summary><![CDATA[<div class="paragraph">
+<p><a href="http://blog.rust-lang.org/2015/01/09/Rust-1.0-alpha.html">Rust 1.0 Alpha</a> just
+released, and I think it&#8217;s about time to dig into it. I have an idea for a
+very personal side project (just a handy tool for me and my wife to use), and
+a super simple HTTP (read: basically useless) server fits the bill for one of
+the requirements.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s be clear: by 'super simple' I really mean a server that understands
+the absolute bare minimum of HTTP to serve a response in the most stupid/simple
+of ways.</p>
+</div>
+<div class="paragraph">
+<p>Turns out, if you ignore almost all HTTP features, it&#8217;s really quite simple
+(I think&#8230;&#8203; I&#8217;ll probably eat my words later ;)!
+In the rest of this post I&#8217;ll throw some Rust code at you, basically
+ripped out of the example in the <a href="http://doc.rust-lang.org/std/io/">std::io
+documentation</a>, then walk through my process in learning exactly what the
+heck is going on.</p>
+</div>
+<div class="paragraph">
+<p>The Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">use std::io::{TcpListener, TcpStream};
+use std::io::{Acceptor, Listener};
+use std::thread::Thread;
+
+fn handle_client(mut stream: TcpStream) {
+    stream.write_str("HTTP/1.1 200 OK\nContent-Type: text/plain\n\nahoy!");
+}
+
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:8080");
+    let mut acceptor = listener.listen();
+
+    for stream in acceptor.incoming() {
+        match stream {
+            Err(e) =&gt; {
+                println!("connection failed");
+            },
+            Ok(stream) =&gt; {
+                Thread::spawn(move|| {
+                    handle_client(stream)
+                });
+            },
+        }
+    }
+
+    drop(acceptor);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Perusing over this code, my eye catches on the <code>match</code> statement first. Boiled
+down, it looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">match stream {
+    Err(e) =&gt; {},
+    Ok(Stream) =&gt; {},
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My first thought is that this is just a different kind of <code>select</code> or <code>case</code>
+statement&#8201;&#8212;&#8201;but it turns out that it is <em>so much more</em>.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s actually a pattern matching statement that can be used as an <em>expression</em>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s break that down some:</p>
+</div>
+<div class="paragraph">
+<p>First, "can be used as an expression"&#8201;&#8212;&#8201;a <code>match</code> can actually return a value!
+This is perfectly legal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">let s = match x {
+    1 =&gt; "true",
+    _ =&gt; "false",
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this actually goes deeper than just the <code>match</code> statement&#8201;&#8212;&#8201;almost everything
+in rust is an <em>expression</em>. If an <em>expression</em> is followed by a semicolon, then
+the value of the <em>expression</em> is suppressed and it&#8217;s treated like a <code>nil</code> value.</p>
+</div>
+<div class="paragraph">
+<p>An implication of this is that if the last line of a block is not terminated
+with a semicolon, it becomes the blocks <em>value</em>. IE:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">fn test() -&gt; String {
+    "test".to_string()
+}
+
+println!("{}", test());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s some more interesting stuff! The <code>.to_string()</code> is necessary in this
+example because <code>"test"</code> by itself is of type <code>&amp;str</code> (a reference to a statically
+allocated string), which is not the type that the <code>println!</code> macro expects
+(macro&#8217;s are indicated by the exclamation). The <code>.to_string()</code> method actually
+converts the <code>&amp;str</code> value into a <code>String</code> (dynamically allocated mutable utf-8
+string value).</p>
+</div>
+<div class="paragraph">
+<p>Nifty!</p>
+</div>
+<div class="paragraph">
+<p>Back to the <code>match</code> statement&#8201;&#8212;&#8201;moving past expressions and statements and
+back to "pattern matching". The <code>Err(e)</code> and <code>Ok</code> are actually <code>enum</code> values
+ultimately of the type <a href="http://doc.rust-lang.org/std/result/enum.Result.html"><code>std::result::Result</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Enums are <em>powerful</em> in Rust in that they let you structure data, then destructure
+that data in expressions like <code>match</code>. So, a method can return a value of an
+enum type <code>Result</code> and <em>know</em> exhaustively the possible enum values are <code>Ok</code>
+or <code>Err</code>. That by itself would be good-to-know information, but practically useless
+in many situations&#8201;&#8212;&#8201;there&#8217;s no other information like an error message or
+success code, etc. These enums actually allow for sort of 'embedding' values
+into them, so the value or values of an enum can be carried with the enum value.</p>
+</div>
+<div class="paragraph">
+<p>In the <code>match</code> statement the value held by the <code>Err</code> enum value can be
+pulled out (by destructuring the enum values), like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">match resultvalue {
+    Ok(resultvalue) =&gt; { /* do something with the resultvalue */ }
+    Err(errmsg) =&gt; { println!("error detected: {}", errmsg); }
+}</code></pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>That&#8217;s enough for this time around. Next time will be more learning
+Rust, as well as getting into the nitty-gritty of what is actually needed to
+make a minimally useful HTTP server!</p>
+</div>
+</div>
+</div>]]></summary>
+        <updated>Fri Jan 09 2015 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2015-01-completely-useless-httpd-in-rust-lang</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[Game Physics - Reflection and Reversing Vectors]]></title>
         <link>http://joelkleier.com/blog/2014-12-physics-2d-game-physics--reflection</link>
@@ -1108,141 +1268,6 @@ four-part series by <a href="https://twitter.com/xboxahoy">Stuart Brown</a>, aka
 </div>]]></summary>
         <updated>Mon Nov 17 2014 00:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-history-of-graphics</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Nim! pt9 - Pointer Fun]]></title>
-        <link>http://joelkleier.com/blog/2014-11-nim-pt9</link>
-        <summary><![CDATA[<div class="paragraph">
-<p>In my <a href="http://joelkleier.com/blog/2014-11-nim-pt8">last post</a> on Nim, I talked
-about how I was learning to use generics. This time, I&#8217;d like to talk a bit
-about pointers!</p>
-</div>
-<div class="paragraph">
-<p>The <em>first</em> thing to know is that there are two different types of pointer&#8201;&#8212;&#8201;the "safe" and "unsafe" kind. The "safe" one is <em>traced</em> (in Nim parlance) and
-managed by a garbage collector. The <em>untraced</em> ("unsafe") pointers are expected
-to be entirely managed by the user&#8201;&#8212;&#8201;these are very useful for accessing hardware,
-or interoping with non-Nim code.</p>
-</div>
-<div class="paragraph">
-<p>The <em>seocnd</em> thing to know is that you really don&#8217;t need them unless you are, in
-fact, interoping with <em>C</em> code, accessing hardware, or have a very specific
-use-case. Of course I didn&#8217;t <em>know</em> that until after writing a few hundred lines
-of code and then writing up the first draft of this article&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>In my search for some questions I came up with in the first draft, I came across
-<a href="http://stackoverflow.com/questions/22096880/what-is-the-model-of-value-vs-reference-in-nimrod"><em>this</em></a>,
-which explained the folly of my ways (well, not directly, but I was able to
-think through the problems I was solving with a better understanding).</p>
-</div>
-<div class="paragraph">
-<p>But, <em>awesome</em>! Now I have a much better grasp on when and when <em>not</em> to use
-Nim&#8217;s pointer constructs.</p>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s the equivalent of some code I was trying to write (note: this is the
-<em>bad example</em> of how to use pointers&#8201;&#8212;&#8201;not that this example <em>won&#8217;t work</em>,
-it&#8217;s just not a place you need to use pointers):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
-  TBaz = object
-    y: int
-  PBaz = ref TBaz
-  TFoo = object
-    baz: TBaz
-  PFoo = ref TFoo
-
-proc init_new(foo: var PFoo; y: int) =
-  foo = PFoo()
-  new(foo.baz)
-  foo.baz.y = y
-
-proc baz_accessor(f:var PFoo): var PBaz =
-  return f.baz
-proc `baz_accessor=`(f:var PFoo, baz: PBaz) =
-  f.baz.y = baz.y
-  discard """and I was doing some other stuff here (which is why I had the 'baz_accessor' property at all"""
-
-var bar: PFoo
-PFoo.init_new 1
-assert(bar.baz_accessor.y == 1)
-assert(bar.baz.y == 1)
-bar.baz_accessor = 10
-assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And here&#8217;s some code whose end result is the same, without pointers (and without
-the "old" syntax, which I also found out about from the aboved linked article&#8230;&#8203;):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-nimrod" data-lang="nimrod">type
-  Baz = object
-    y: int
-  Foo = object
-    baz: Baz
-
-proc baz_accessor(f:var Foo): var Baz =
-  result = f.baz
-proc `baz_accessor=`(f:var Foo, y: int) =
-  f.baz.y = y
-  discard """and I was doing some other stuff here (which is why I had the 'baz_accessor' property at all"""
-
-var bar = Foo(baz: Baz(y:1))
-assert(bar.baz_accessor.y == 1)
-assert(bar.baz.y == 1)
-bar.baz_accessor = 10
-assert(bar.baz_accessor.y == 10)
-assert(bar.baz.y == 10)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The first example (the one that uses pointers) uses 26 lines and 581 characters.</p>
-</div>
-<div class="paragraph">
-<p>The second example (the seemingly <em>correct</em> one) uses 18 lines and 445 characters.</p>
-</div>
-<div class="paragraph">
-<p>Not a huge difference for this particular example, but as code grows I have first
-hand knowledge that it becomes a bigger difference! The second, <em>correct</em> example
-is clearly more concise and readable. It also has no actual need for the <code>init_new</code>
-method, like the pointer approach really does need. Certainly if initialization
-was a more important aspect of the <code>Foo</code> type, then the <code>init_new</code> method would
-have stayed in the second example.</p>
-</div>
-<div class="paragraph">
-<p>On-wards and upwards! I have some code to clean up now&#8230;&#8203; but this whole
-process has been enlightening.</p>
-</div>
-<div class="paragraph">
-<p><em>2014-11-19 Addendum:</em> After posting this article, I received a nice message from
-<a href="http://gradha.github.io/index.html">this guy</a> regarding a couple of things:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>When there is a need for an init function for an object, the convention for
-much of the existing code has been something like <code>init_Somthing_</code>, but a newer
-convention is to just use <code>init</code> and let the compiler auto-select the correct
-<code>init</code> method based on the arguments passed to it. The
-<a href="http://nimrod-lang.org/sets.html#init,TSet">A</a>,int[<em>sets</em> library] is a good
-example.</p>
-</li>
-<li>
-<p>The other is on the <a href="http://gradha.github.io/articles/2014/10/adding-objectivec-properties-to-nimrod-objects-with-macros.html">subject of getters/setters</a>.
-The article describes how to utilize Nim&#8217;s awesome <a href="http://nimrod-lang.org/manual.html#macros">macro</a>
-system to automatically generate properties with specific actions for particuarly
-styled members of types. Lots of good information there about macros and AST&#8217;s!</p>
-</li>
-</ol>
-</div>]]></summary>
-        <updated>Sun Nov 16 2014 00:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-11-nim-pt9</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
