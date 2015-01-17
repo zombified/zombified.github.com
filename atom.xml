@@ -4,7 +4,7 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Sat Jan 17 2015 14:27:55 GMT-0600 (CST)</updated>
+    <updated>Sat Jan 17 2015 14:31:06 GMT-0600 (CST)</updated>
 
     <entry>
         <title><![CDATA[Anatomy of an HTTP Request]]></title>
@@ -50,7 +50,8 @@ GET values), version, headers, and post data.</p>
     version: String,
     headers: HashMap&lt;String, String&gt;,
     get: HashMap&lt;String, String&gt;,
-    post: HashMap&lt;String, String&gt;</code></pre>
+    post: HashMap&lt;String, String&gt;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
