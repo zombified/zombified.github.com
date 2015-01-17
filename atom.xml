@@ -4,8 +4,76 @@
     <subtitle>Brewlog, musings, and an outlet for random stuff by Joel Kleier</subtitle>
     <link rel="self">http://joelkleier.com/atom.xml</link>
     <link>http://joelkleier.com</link>
-    <updated>Fri Jan 09 2015 17:53:11 GMT-0600 (CST)</updated>
+    <updated>Sat Jan 17 2015 14:27:55 GMT-0600 (CST)</updated>
 
+    <entry>
+        <title><![CDATA[Anatomy of an HTTP Request]]></title>
+        <link>http://joelkleier.com/blog/2015-01-anatomy-of-an-http-request</link>
+        <summary><![CDATA[<div class="paragraph">
+<p><a href="http://joelkleier.com/blog/2015-01-completely-useless-httpd-in-rust-lang/">Last time</a>
+Rust 1.0 Alpha was released, and I decided to dive in and learn a little about
+it by creating a small (very bad and near-featurless) http server.</p>
+</div>
+<div class="paragraph">
+<p>I decided to create something that looks vaguely like Python&#8217;s <a href="http://wsgi.readthedocs.org/en/latest/">WSGI</a>
+(and I do mean 'vaguely'). Basically the process for my server will go like this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Establish connection and spawn a thread to handle it</p>
+</li>
+<li>
+<p>Grab all the relevant data out of the request and put it into a more maleable datastructure (<code>HTTPEnv</code> in my case)</p>
+</li>
+<li>
+<p>Pass the organized data off through a chain of handlers that accept the data and return a structure representing the response</p>
+</li>
+<li>
+<p>At the end of the chain the response is converted into a string and returned to the requestor</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For now, lets get into the the <code>HTTPEnv</code> data structure. This <code>struct</code> will organize
+all request information&#8201;&#8212;&#8201;method (IE get/post/delete/etc), target (URI path and
+GET values), version, headers, and post data.</p>
+</div>
+<div class="paragraph">
+<p>So far, this is what I have:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">struct HTTPEnv {
+    method: String,
+    target: String,
+    version: String,
+    headers: HashMap&lt;String, String&gt;,
+    get: HashMap&lt;String, String&gt;,
+    post: HashMap&lt;String, String&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I&#8217;m struggling a bit with the whole ownership thing, so the <code>String</code> type might
+get switched with <code>&amp;str</code> since I really don&#8217;t need the more dynamic nature of
+<code>String</code> for most of these values.</p>
+</div>
+<div class="paragraph">
+<p>I may or may not decide to continue to pursue Rust for this project. While I&#8217;m
+<em>really</em> interested in rust, I don&#8217;t know if I&#8217;ll actually get enough benefit
+out of it for this particular project (which is more than just the http server
+portion I&#8217;m writing about). If I <em>do</em> stick with it, I&#8217;ll get more
+into the structure for responses, and the middle-ware chain that&#8217;ll be
+implemented.</p>
+</div>
+<div class="paragraph">
+<p>If I <em>don&#8217;t</em> continue with it, well, perhaps I&#8217;ll find another use for Rust I
+can use to learn it more deeply!</p>
+</div>]]></summary>
+        <updated>Sat Jan 17 2015 00:00:00 GMT-0600 (CST)</updated>
+        <id>http://joelkleier.com/blog/2015-01-anatomy-of-an-http-request</id>
+        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
+    </entry>
     <entry>
         <title><![CDATA[Completely Useless HTTP Server in Rust]]></title>
         <link>http://joelkleier.com/blog/2015-01-completely-useless-httpd-in-rust-lang</link>
@@ -1248,26 +1316,6 @@ impressive, but the process of doing it was <em>so</em> worth the time.</p>
 </div>]]></summary>
         <updated>Tue Nov 18 2014 00:00:00 GMT-0600 (CST)</updated>
         <id>http://joelkleier.com/blog/2014-11-ludum-dare-31</id>
-        <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
-    </entry>
-    <entry>
-        <title><![CDATA[Pixel Pioneers- A Brief History of Graphics]]></title>
-        <link>http://joelkleier.com/blog/2014-11-history-of-graphics</link>
-        <summary><![CDATA[<div class="paragraph">
-<p><a href="https://www.youtube.com/playlist?list=PLOQZmjD6P2HlOoEVKOPaCFvLnjP865X1f">Check this out</a>,
-it&#8217;s an account of graphics as they relate to games. It&#8217;s planned to be a
-four-part series by <a href="https://twitter.com/xboxahoy">Stuart Brown</a>, aka <em>Ahoy</em>.</p>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s the first video for your viewing pleasure:</p>
-</div>
-<div class="videoblock">
-<div class="content">
-<iframe width="854" height="510" src="//www.youtube.com/embed/dzN2pgL0zeg?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>]]></summary>
-        <updated>Mon Nov 17 2014 00:00:00 GMT-0600 (CST)</updated>
-        <id>http://joelkleier.com/blog/2014-11-history-of-graphics</id>
         <author><name>Joel Kleier</name><email>joel@kleier.us</email></author>
     </entry>
 </feed>
