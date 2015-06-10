@@ -7,6 +7,287 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Rust Polymorphism and References]]></title>
+            <link>http://joelkleier.com/blog/2015-06-rust-polymorphism-and-references</link>
+            <description><![CDATA[<div class="paragraph">
+<p><a href="http://blog.rust-lang.org/2015/05/15/Rust-1.0.html">Rust 1.0 Released</a>! I&#8217;ve since
+been tinkering with a small side project here and there (not the
+<a href="http://joelkleier.com/blog/2015-01-anatomy-of-an-http-request/">vaguly WSGI like thing</a>&#8201;&#8212;&#8201;that project taught me lots of interesting things, but nothing worthy of
+more posts about it). This post won&#8217;t get into sepecifics about that&#8201;&#8212;&#8201;I&#8217;m saving
+that for another post or series of posts&#8201;&#8212;&#8201;but I <em>will</em> talk about something that
+made me pause to think about, mostly because I&#8217;m just not used to dealing with
+this sort of thing so explicitly!</p>
+</div>
+<div class="paragraph">
+<p>The problem came from my desired to test my code&#8201;&#8212;&#8201;for my tests I wanted a stubbed
+out dummy object that I could put in place of it&#8217;s more completed sibling while
+testing some aspects of the code. Immediately what you find is that
+<a href="https://doc.rust-lang.org/stable/book/traits.html">traits</a> are a perfect fit for
+this problem.</p>
+</div>
+<div class="paragraph">
+<p>For my purposes in this case, they&#8217;re basically the equivalent of interfaces&#8201;&#8212;&#8201;a thing that specifies how something looks if it identifies itself as a thing.</p>
+</div>
+<div class="paragraph">
+<p>Now, let me show you some code that you might think would work at first glance
+(but it won&#8217;t, for good reason):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">trait Sword {
+	fn foo(&amp;self) -&gt; u8;
+}
+
+struct Sting;
+impl Sword for Sting {
+	fn length(&amp;self) -&gt; u8 { 15 } // fixed size since there's only one Sting!
+}
+impl Sting {
+	fn new() -&gt; Sting { Sting }
+}
+
+struct OrcBlade {
+	len: u8, // Orc blades come in all sorts of lengths
+}
+impl Sword for OrcBlade {
+	fn length(&amp;self) -&gt; u8 { self.len }
+}
+impl OrcBlade {
+	fn new(len: u8) -&gt; OrcBlade { OrcBlade { len: len } }
+}
+
+struct Character {
+	sword: Sword,
+}
+impl Character {
+	fn new&lt;T: Sword&gt;(s: T) -&gt; Character {
+		Character { sword: s }
+	}
+}
+
+fn main() {
+	let sting = Sting::new();
+	let frodo = Character::new(sting);
+	println!("How long is the sword Frodo carries? {}in", frodo.sword.length());
+
+	let orcblade = OrcBlade::new(24);
+	let orc = Character::new(orcblade);
+	println!("How long is this orc's blade? {}in", orc.sword.length());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yes, this example is <em>completely</em> contrived!</p>
+</div>
+<div class="paragraph">
+<p>This example errors out with just a few well written errors:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>swords.rs:28:22: 28:23 error: mismatched types:
+ expected `Sword`,
+    found `T`
+(expected trait Sword,
+    found type parameter) [E0308]
+swords.rs:28 		Character { sword: s }
+             		                   ^
+swords.rs:27:28: 27:37 error: the trait `core::marker::Sized` is not implemented for the type `Sword` [E0277]
+swords.rs:27 	fn new&lt;T: Sword&gt;(s: T) -&gt; Character {
+             	                          ^~~~~~~~~
+swords.rs:27:28: 27:37 note: `Sword` does not have a constant size known at compile-time
+swords.rs:27 	fn new&lt;T: Sword&gt;(s: T) -&gt; Character {
+             	                          ^~~~~~~~~
+swords.rs:34:6: 34:11 error: the trait `core::marker::Sized` is not implemented for the type `Sword` [E0277]
+swords.rs:34 	let frodo = Character::new(sting);
+             	    ^~~~~
+swords.rs:34:6: 34:11 note: `Sword` does not have a constant size known at compile-time
+swords.rs:34 	let frodo = Character::new(sting);
+             	    ^~~~~
+swords.rs:37:17: 37:34 error: this function takes 0 parameters but 1 parameter was supplied [E0061]
+swords.rs:37 	let orcblade = OrcBlade::new(24);
+             	               ^~~~~~~~~~~~~~~~~
+error: aborting due to 4 previous errors</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at the first one first!</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>swords.rs:28:22: 28:23 error: mismatched types:
+ expected `Sword`,
+    found `T`
+(expected trait Sword,
+    found type parameter) [E0308]
+swords.rs:28 		Character { sword: s }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the bunch of code that&#8217;s erroring out, specifically:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">struct Character {
+	sword: Sword,
+}
+impl Character {
+	fn new&lt;T: Sword&gt;(s: T) -&gt; Character {
+		Character { sword: s }
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What&#8217;s the problem? Well, turns out you can&#8217;t really use traits as drop in
+replacements for types. Instead of using sword as a concrete value, you want
+to swing it around as a reference, and then tell the compiler that whatever
+object is being referenced should implement the specified <em>trait</em>.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s what I mean, the previous example should actually look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">struct Character {
+	sword: &amp;Sword,
+}
+impl Character {
+	fn new&lt;T: Sword&gt;(s: &amp;T) -&gt; Character {
+		Character { sword: s }
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But what&#8217;s this? A completely different error about something called a
+'lifetime'?</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>swords.rs:24:9: 24:15 error: missing lifetime specifier [E0106]
+swords.rs:24 	sword: &amp;Sword,
+             	       ^~~~~~
+error: aborting due to previous error</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Turns out that Rust likes to know when references to memory aren&#8217;t actually
+needed anymore. It kinda does this automatically and transparently in
+some situations, but in this situation Rust has no idea when it should
+expect the <em>sword</em> reference to be valid or invalid. All this means
+is the code needs to be a little more explicit. I&#8217;m still learning
+a <strong>BUNCH</strong> about this, and haven&#8217;t really wrapped my mind all the way
+around it, but if we add a few tokens to the code, we won&#8217;t have this
+error anymore:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">struct Character&lt;'a&gt; {
+	sword: &amp;'a Sword,
+}
+impl&lt;'a&gt; Character&lt;'a&gt; {
+	fn new&lt;T: Sword&gt;(s: &amp;T) -&gt; Character {
+		Character { sword: s }
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sadly, we still have some though:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>swords.rs:34:29: 34:34 error: mismatched types:
+ expected `&amp;_`,
+    found `Sting`
+(expected &amp;-ptr,
+    found struct `Sting`) [E0308]
+swords.rs:34 	let frodo = Character::new(sting);
+             	                           ^~~~~
+swords.rs:37:17: 37:34 error: this function takes 0 parameters but 1 parameter was supplied [E0061]
+swords.rs:37 	let orcblade = OrcBlade::new(24);
+             	               ^~~~~~~~~~~~~~~~~
+swords.rs:38:27: 38:35 error: mismatched types:
+ expected `&amp;_`,
+    found `OrcBlade`
+(expected &amp;-ptr,
+    found struct `OrcBlade`) [E0308]
+swords.rs:38 	let orc = Character::new(orcblade);
+             	                         ^~~~~~~~
+error: aborting due to 3 previous errors</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lets just look at the first one again:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>swords.rs:34:29: 34:34 error: mismatched types:
+ expected `&amp;_`,
+    found `Sting`
+(expected &amp;-ptr,
+    found struct `Sting`) [E0308]
+swords.rs:34 	let frodo = Character::new(sting);
+             	                           ^~~~~</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Doh! Forgot to change our test code in <code>main()</code>! It&#8217;s not passing references to the
+<code>Character::new()</code> method we modified earlier. Here&#8217;s the final code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-rust" data-lang="rust">trait Sword {
+	fn length(&amp;self) -&gt; u8;
+}
+
+struct Sting;
+impl Sword for Sting {
+	fn length(&amp;self) -&gt; u8 { 15 } // fixed size since there's only one Sting!
+}
+impl Sting {
+	fn new() -&gt; Sting { Sting }
+}
+
+struct OrcBlade {
+	len: u8, // Orc blades come in all sorts of lengths
+}
+impl Sword for OrcBlade {
+	fn length(&amp;self) -&gt; u8 { self.len }
+}
+impl OrcBlade {
+	fn new(len: u8) -&gt; OrcBlade { OrcBlade { len: len } }
+}
+
+struct Character&lt;'a&gt; {
+	sword: &amp;'a Sword,
+}
+impl&lt;'a&gt; Character&lt;'a&gt; {
+	fn new&lt;T: Sword&gt;(s: &amp;T) -&gt; Character {
+		Character { sword: s }
+	}
+}
+
+fn main() {
+	let sting = &amp;Sting::new();
+	let frodo = Character::new(sting);
+	println!("How long is the sword Frodo carries? {}in", frodo.sword.length());
+
+	let orcblade = &amp;OrcBlade::new(22);
+	let orc = Character::new(orcblade);
+	println!("How long is this orc's blade? {}in", orc.sword.length());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we&#8217;re being explicit with how our references are being passed around,
+and the Rust compiler can give us piece of mind that we&#8217;re handling our
+data safely!</p>
+</div>]]></description>
+            <pubDate>Wed Jun 10 2015 01:00:00 GMT-0500 (CDT)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2015-06-rust-polymorphism-and-references</guid>
+        </item>
+        <item>
             <title><![CDATA[MOTD]]></title>
             <link>http://joelkleier.com/blog/2015-01-motd</link>
             <description><![CDATA[<div class="paragraph">
@@ -1314,24 +1595,6 @@ use Nim to play around with some of these concepts and shake the rust off!</p>
 </div>]]></description>
             <pubDate>Thu Nov 20 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-physics</guid>
-        </item>
-        <item>
-            <title><![CDATA[68 Katy]]></title>
-            <link>http://joelkleier.com/blog/2014-11-68-katy</link>
-            <description><![CDATA[<div class="paragraph">
-<p><a href="http://www.bigmessowires.com/2014/11/17/68-katy-68000-linux-on-a-solderless-breadboard/">This is so awesome</a>.
-<a href="http://www.bigmessowires.com/">This guy</a> put together a 68000-based computer,
-running linux, on a <em>solderless</em> breadboard. 1MB of address space, 512K 8-bit SRAM,
-512K Flash ROM (480K addressible, 32K memory-mapped I/O devices), and runs at 2MHz with
-performance closer to a 1MHz 68000 (which is apparently slow&#8230;&#8203; originally the
-68000 ran at 8MHz).</p>
-</div>
-<div class="paragraph">
-<p>I love projects like this. They show at once how simple and how complicated and
-amazing computers are.</p>
-</div>]]></description>
-            <pubDate>Wed Nov 19 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-68-katy</guid>
         </item>
     </channel>
 </rss>
