@@ -7,6 +7,209 @@
         <link>http://joelkleier.com</link>
 
         <item>
+            <title><![CDATA[Maintaining a Set of Private Python Packages with Nix]]></title>
+            <link>http://joelkleier.com/blog/2015-07-maintaining-a-set-of-private-python-packages</link>
+            <description><![CDATA[<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I&#8217;m very new to NixOS. I&#8217;ve been following it for a couple years on and off,
+and recently I&#8217;ve had a bigger need to do better packaging, so I&#8217;m taking a
+deeper look at Nix.</p>
+</div>
+<div class="paragraph">
+<p>I very well may be <strong>completey</strong> wrong. If you do find a mistake, I would really
+<strong>love</strong> to correct it, so please PM me (see the footer of this page)!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My first goal was to setup a configuration such that a Python (2.7) package
+didn&#8217;t have to be in the public package definition in order to be used. For
+now, while I&#8217;m still experimenting and exploring, I&#8217;ve decided to, basically,
+extend the core expression(s) in NixPkgs like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix"># private-python27.nix
+with import &lt;nixpkgs&gt; {};
+let
+    pythonPackages = pkgs.python27Packages;
+    buildPythonPackage = pythonPackages.buildPythonPackage;
+
+    privatePythonPackages = {
+        inherit pythonPackages;
+
+        mypackage = buildPythonPackage rec {
+            name = "mypackage-${version}";
+            version = "0.0.1";
+
+            src = pkgs.fetchurl {
+                url = "https://example.server/${name}-py2-none-any.whl";
+                sha256 = "0da519rqvail7fwbjsq1hnx0b3368df6hvqj0a6j7xvfafgaeb43";
+            };
+
+            meta = {
+                homepage = "https://example.server/";
+                description = "Example Package";
+                license = "GPLv2";
+            };
+        };
+    };
+in privatePythonPackages</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above nix expression defines the nix package <code>mypackage</code> for python 2.7
+(full name: <code>python27-mypackage-0.0.1</code>).</p>
+</div>
+<div class="paragraph">
+<p>It needs to be used with the '--file' (or '-f') parameter in order to be
+evaluated, like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ nix-env -f private-python27.nix -qa python2.7-mypackage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the time being, this gives me a nice local place to tweak and explore the
+Nix expression language, without the need for any additional infrastructure.
+I may not proceed down this path, but it certainly is teaching me a lot!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deeper_dive">Deeper Dive</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s take a look at each line in this definition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">with import &lt;nixpkgs&gt; {};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This pulls everything from the <code>nixpkgs</code> expression into the current
+expressions scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">let
+	privatePythonPackages = {
+		# ...
+	};
+in privatePythonPackages</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This creates the expression <code>privatePythonPackages</code> which is defined in the
+<code>let-in</code> block.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">	pythonPackages = pkgs.python27Packages;
+    buildPythonPackage = pythonPackages.buildPythonPackage;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These define values to use else where in the current scope. The
+<code>pkgs.python27Packages</code> value describes some handy python related
+things that are applicable to my example package.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">        mypackage = buildPythonPackage rec {
+        };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the actual package definition&#8201;&#8212;&#8201;in Nix expressions, it can be referred
+to by <code>mypackage</code>. The <code>rec</code> means that the following set (sets are defined
+by <code>{}</code>) is "recursive" and individual elements of the set can refer to each other.
+<code>buildPythonPackage</code> is one of those things that is conveniently defined in the
+<code>nixpkgs</code> import. <a href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/generic/default.nix">This</a>
+is the nix expression that defines <code>buildPythonPackage</code>.</p>
+</div>
+<div class="paragraph">
+<p>What does it do exactly? Well, it&#8217;s just kind of a helper for generating the build
+that gets created for a package in it&#8217;s <code>/nix/store/</code> directory, and works in
+conjuction with a few other parts of nix.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">            name = "mypackage-${version}";
+            version = "0.0.1";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since the set is identified as <code>rec</code>, the <code>name</code> value can include a reference
+to <code>version</code>. The name attribute is required and will be part of the name that
+can be used when interacting with a channel&#8201;&#8212;&#8201;IE <code>nix-env -qa .*mypackage.*</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">            src = pkgs.fetchurl {
+                url = "https://example.server/${name}-py2-none-any.whl";
+                sha256 = "0da519rqvail7fwbjsq1hnx0b3368df6hvqj0a6j7xvfafgaeb43";
+            };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>pkg.fetchurl</code> is a convenience function that, suffice to say, will pull down
+the url that you would like, and then verifies it&#8217;s sha256 hash matches that
+which is given. Since Nix is lazily evaluated, the fetch isn&#8217;t performed until
+<code>src</code> is used, and <code>src</code> will only be used when the package is to be installed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Interestingly enough, you can use the <code>nix-prefetch-url</code> to figure out it&#8217;s
+sha256 hash and cache it at the same time. This command basically fetches the
+file and puts it in the <code>/nix/store</code>, and part of it&#8217;s output is giving the
+sha256 that it generates for the file. Check out the
+<a href="https://nixos.org/wiki/How_to_add_files_to_the_nix-store">wiki page</a>
+on it for more info!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-nix" data-lang="nix">            meta = {
+                homepage = "https://example.server/";
+                description = "Example Package";
+                license = "GPLv2";
+            };</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, this is a set containing some meta information about the package,
+which is generally just extra information that isn&#8217;t actually required
+for a package to be installed.</p>
+</div>
+</div>
+</div>]]></description>
+            <pubDate>Mon Jul 13 2015 01:00:00 GMT-0500 (CDT)</pubDate>
+            <guid isPermaLink='true'>http://joelkleier.com/blog/2015-07-maintaining-a-set-of-private-python-packages</guid>
+        </item>
+        <item>
             <title><![CDATA[Rust Polymorphism and References]]></title>
             <link>http://joelkleier.com/blog/2015-06-rust-polymorphism-and-references</link>
             <description><![CDATA[<div class="paragraph">
@@ -1518,83 +1721,6 @@ an exercise to develop my understanding of the math required in such a case.</p>
 </div>]]></description>
             <pubDate>Fri Nov 21 2014 00:00:00 GMT-0600 (CST)</pubDate>
             <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-30-day-challenge</guid>
-        </item>
-        <item>
-            <title><![CDATA[Games Physics... Specifically 2D Games Physics]]></title>
-            <link>http://joelkleier.com/blog/2014-11-physics</link>
-            <description><![CDATA[<div class="paragraph">
-<p>I&#8217;ll be honest: when I&#8217;ve hobby-developed games in my past, I&#8217;ve either used
-super simple "physics" or just used an existing framework so as not to get
-stuck on implementing any sort of physics simulation. Everytime I move past this
-point, though, I&#8217;m left without any real understanding&#8230;&#8203; I plug in the numbers,
-retype and copy code, and just hook things up to make them work.</p>
-</div>
-<div class="paragraph">
-<p>This kinda bugs me, so I want to really internalize what it takes to make a
-2d physics engine. And by internalize, I mean that I want to brush off some of
-the math I studied in high school and college, and really understand how it
-applies to physical simulation. In addition, I want to understand how to write
-code to do physical simulations&#8230;&#8203; and I don&#8217;t mean just glue code. I want to really
-understand what&#8217;s going on behind the scenes, and develop an intuition for it!</p>
-</div>
-<div class="paragraph">
-<p>Why not just stick with the pre-made libraries and frameworks, and leave the physics
-stuff up to people who focus a whole lot on physics? It&#8217;s a hobby&#8230;&#8203; and I want
-to learn more about it.</p>
-</div>
-<div class="paragraph">
-<p>To do this, I&#8217;ve dug around a bit for some online resources:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://blog.wolfire.com/2009/07/linear-algebra-for-game-developers-part-1/">Wolfire&#8217;s <em>Linear Algebra</em> series</a>&#8201;&#8212;&#8201;while not called "physics", it covers some of the basic math behind _physic_al simulation
-using a little linear algebra.</p>
-</li>
-<li>
-<p><a href="http://www.wildbunny.co.uk/blog/vector-maths-a-primer-for-games-programmers/">Wildbunny&#8217;s <em>Vector maths - a primer for games programmers</a>&#8201;&#8212;&#8201;which covers what it says, basically an overlap of what _Wolfire&#8217;s</em> article is
-about.</p>
-</li>
-<li>
-<p><a href="http://www.wildbunny.co.uk/blog/2011/04/06/physics-engines-for-dummies/">Wildbunny&#8217;s <em>Physics Engines for Dummies</em></a>&#8201;&#8212;&#8201;lots of info, but the actual source code costs some cash (which may or may
-not be worth it&#8230;&#8203; I wouldn&#8217;t know since I can be a cheapskate when it comes
-to this sort of thing, and I&#8217;m probably not going to buy it).</p>
-</li>
-<li>
-<p><a href="http://gafferongames.com/game-physics/">gafferongames.com&#8217;s <em>Game Physics</em> articles</a>&#8201;&#8212;&#8201;some seamingly really good information here, possibly over my head this far
-out of maths practice.</p>
-</li>
-<li>
-<p><a href="http://www.rodedev.com/tutorials/gamephysics/">Nate Rode&#8217;s <em>2D Game Physics 101</em></a>&#8201;&#8212;&#8201;some examples of various maths needed for 2D physics.</p>
-</li>
-<li>
-<p><a href="http://gamedevelopment.tutsplus.com/series/how-to-create-a-custom-physics-engine--gamedev-12715">tuts+ <em>How to Create a Custom Physics Engine</em> by Randy Gaul</a>&#8201;&#8212;&#8201;looks, from the outside, to be a fairly comprehensive series of articles on
-the math and code needed for creating a 2d physical simulation engine.</p>
-</li>
-<li>
-<p><a href="https://www.khanacademy.org/math/linear-algebra">Khan Academy&#8217;s <em>Linear Algebra</em> subject</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>I&#8217;m <em>certain</em> there are a lot more resources out there on the web, and probably
-just as many in meat-space!</p>
-</div>
-<div class="paragraph">
-<p>The first thing I&#8217;m going to do is review some math on
-<a href="https://www.khanacademy.org/math/linear-algebra">Khan Academy</a>, then I&#8217;m going to
-use Nim to play around with some of these concepts and shake the rust off!</p>
-</div>
-<div class="paragraph">
-<p>Here&#8217;s what I&#8217;ve written on this toppic: <strong>part 0</strong>
-<a href="http://joelkleier.com/blog/2014-11-2d-game-physics--vectors/">part 1</a>
-<a href="http://joelkleier.com/blog/2014-12-2d-game-physics--rotation/">part 2</a>.</p>
-</div>
-<div class="paragraph">
-<p>Until next time!</p>
-</div>]]></description>
-            <pubDate>Thu Nov 20 2014 00:00:00 GMT-0600 (CST)</pubDate>
-            <guid isPermaLink='true'>http://joelkleier.com/blog/2014-11-physics</guid>
         </item>
     </channel>
 </rss>
